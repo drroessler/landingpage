@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__reactbits__list_categories",
+      "mcp__reactbits__search_components",
+      "mcp__reactbits__list_components",
+      "mcp__reactbits__get_component",
+      "Bash(mkdir -p \"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/src/components\")",
+      "Bash(mkdir -p \"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/public\")",
+      "Bash(BASE=\"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec\")",
+      "Bash(cp \"$BASE/Roessler.jpeg\" \"$BASE/public/Roessler.jpeg\")",
+      "Bash(cp \"$BASE/Wieland.jpeg\" \"$BASE/public/Wieland.jpeg\")",
+      "Bash(cp \"$BASE/HMD.jpeg\" \"$BASE/public/HMD.jpeg\")",
+      "Bash(touch \"$BASE/public/.nojekyll\")",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:www.porsche-consulting.com)",
+      "WebFetch(domain:www.rolandberger.com)",
+      "mcp__mcp-registry__search_mcp_registry",
+      "WebSearch",
+      "WebFetch(domain:reactbits.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npm view:*)",
+      "Bash(npm search:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(curl -s https://raw.githubusercontent.com/DavidHDev/react-bits/main/src/content/Animations/AnimatedContent/AnimatedContent.jsx)",
+      "Bash(npm create:*)",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
+      "Bash(TMPDIR_VITE=\"/var/folders/_6/px1zj75j4k95ylh74h0th_gc0000gn/T/tmp.1v132vnLCY\")",
+      "Bash(TARGET=\"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec\")",
+      "Bash(cp -r \"$TMPDIR_VITE/myapp/\"* \"$TARGET/\")",
+      "Bash(cp \"$TMPDIR_VITE/myapp/.gitignore\" \"$TARGET/\")",
+      "Read(//Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/**)",
+      "Read(//Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/$BASE/**)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm uninstall:*)"
+    ]
+  }
+}
