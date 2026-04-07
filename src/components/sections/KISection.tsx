@@ -6,7 +6,6 @@ import {
   ListChecks,
   Mic,
   SlidersHorizontal,
-  ShieldCheck,
   User,
 } from "lucide-react";
 
@@ -94,14 +93,10 @@ export default function KISection() {
           </div>
         </AnimatedContent>
 
-        {/* Phase Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+        {/* Phase Cards + Human-in-the-Loop as 6th card */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {phases.map((p, i) => (
-            <AnimatedContent
-              key={p.phase}
-              delay={i * 0.1}
-              className={i === phases.length - 1 ? "md:col-span-2 lg:col-span-1" : ""}
-            >
+            <AnimatedContent key={p.phase} delay={i * 0.1}>
               <div className="bg-paper rounded-xl border border-border p-6 md:p-8 h-full group hover:border-accent/20 transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
@@ -120,44 +115,31 @@ export default function KISection() {
               </div>
             </AnimatedContent>
           ))}
-        </div>
 
-        {/* Human-in-the-Loop Banner */}
-        <AnimatedContent>
-          <div className="max-w-5xl mx-auto bg-navy rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-            <div className="flex items-center gap-4 shrink-0">
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                <User className="w-6 h-6 text-white" />
+          {/* 6th card: Human-in-the-Loop */}
+          <AnimatedContent delay={phases.length * 0.1}>
+            <div className="bg-navy rounded-xl p-6 md:p-8 h-full flex flex-col">
+              <div className="flex items-center gap-1 mb-4 shrink-0">
+                <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
+                  <User className="w-4 h-4 text-white" />
+                </div>
+                <div className="w-9 h-9 rounded-full bg-accent/20 flex items-center justify-center -ml-3 border-2 border-navy">
+                  <BrainCircuit className="w-4 h-4 text-accent" />
+                </div>
               </div>
-              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center -ml-6 border-2 border-navy">
-                <BrainCircuit className="w-5 h-5 text-accent" />
-              </div>
-            </div>
-            <div className="flex-1">
-              <p className="font-semibold text-white text-base mb-1">
+              <h3 className="font-semibold text-white text-lg mb-3">
                 Ihre Experten bleiben im Lead.
-              </p>
+              </h3>
               <p className="text-navy-muted text-sm leading-relaxed">
                 KI generiert Entwürfe, prüft Konsistenz und beschleunigt
                 Routineaufgaben. Aber jede inhaltliche Entscheidung, jede
-                Priorisierung und jede Freigabe liegt bei Ihren Fachexperten und
-                Stakeholdern. Technologie ersetzt kein Urteilsvermögen – sie
-                macht es wirksamer.
+                Priorisierung und jede Freigabe liegt bei Ihren Fachexperten
+                und Stakeholdern. Technologie ersetzt kein Urteilsvermögen –
+                sie macht es wirksamer.
               </p>
             </div>
-            <div className="shrink-0 hidden lg:flex flex-col gap-1.5">
-              {["Quality Gate", "Quality Gate", "Quality Gate"].map((label, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 text-xs text-navy-muted"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5 text-accent" />
-                  <span>{label} {i + 1}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </AnimatedContent>
+          </AnimatedContent>
+        </div>
       </div>
     </section>
   );

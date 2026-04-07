@@ -26,9 +26,9 @@ function LandingPage() {
         <ProblemSection />
         <MethodeSection />
         <FrameworkSection />
-        <KISection />
         <ArtefaktSection />
         <UmsetzungSection />
+        <KISection />
         <SzenarienSection />
         <PraxisSection />
         <AngebotSection />
