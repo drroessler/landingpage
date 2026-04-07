@@ -39,11 +39,22 @@ export default function Hero() {
           </button>
         </div>
 
-        {/* Social Proof Bar */}
+      </div>
+
+      {/* Social Proof Bar – wider container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="pt-12 mt-16 border-t border-border flex flex-col md:flex-row justify-center items-center gap-6 text-center md:text-left">
-          <p className="text-xs text-muted font-semibold uppercase tracking-[0.2em]">
+          <p className="text-xs text-muted font-semibold uppercase tracking-[0.2em] shrink-0">
             Wissenschaftlich fundiert
           </p>
+
+          <div className="hidden md:block w-px h-12 bg-border" />
+
+          <img
+            src="HMD.jpeg"
+            alt="HMD Praxis der Wirtschaftsinformatik"
+            className="hidden md:block h-10 w-auto object-contain shrink-0"
+          />
 
           <div className="hidden md:block w-px h-12 bg-border" />
 
@@ -51,26 +62,19 @@ export default function Hero() {
             href="https://link.springer.com/epdf/10.1365/s40702-025-01234-z?sharing_token=2GcSA2NwyHc5ZFVHNLOokX2kjFioqY_JoFJDVSa1602aUYkWxEZ0qDiq0nqKya3TVcFpFlMJ-w6U_3aV089ye1tk2LK8kCB7LXf3vW4rNlkuQzP6Iv71lk5qIUaz2KuVMlxU-loa0RJZ4qvO6c6UaS6fnPhQeXqYPV8neYP5xbM%3D"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col md:flex-row items-center gap-3 hover:bg-surface p-3 rounded-lg transition-colors"
+            className="group flex-1 flex flex-col items-center md:items-start hover:bg-surface p-3 rounded-lg transition-colors"
           >
-            <img
-              src="HMD.jpeg"
-              alt="HMD Praxis der Wirtschaftsinformatik"
-              className="h-8 w-auto object-contain"
-            />
-            <div className="flex flex-col items-center md:items-start">
-              <span className="text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-snug">
-                "Evidenzbasierte IT-Entscheidungen durch strukturierte
-                Narrative"
+            <span className="text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-snug">
+              "Evidenzbasierte IT-Entscheidungen durch strukturierte
+              Narrative"
+            </span>
+            <span className="text-xs text-muted flex items-center gap-1.5 mt-1">
+              <span className="bg-accent-light text-accent font-bold px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
+                HMD
               </span>
-              <span className="text-xs text-muted flex items-center gap-1.5 mt-1">
-                <span className="bg-accent-light text-accent font-bold px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
-                  HMD
-                </span>
-                Studie lesen
-                <ArrowRight className="w-3 h-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-              </span>
-            </div>
+              Studie lesen
+              <ArrowRight className="w-3 h-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+            </span>
           </a>
 
           <div className="hidden md:block w-px h-12 bg-border" />
@@ -80,21 +84,19 @@ export default function Hero() {
             href="LINK_ZUM_PREREAD"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col md:flex-row items-center gap-3 hover:bg-surface p-3 rounded-lg transition-colors"
+            className="group flex-1 flex flex-col items-center md:items-start hover:bg-surface p-3 rounded-lg transition-colors"
           >
-            <div className="flex flex-col items-center md:items-start">
-              <span className="text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-snug">
-                "Narrative-to-Action: Ein Framework zur Überführung in agile
-                Backlog-Items"
+            <span className="text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-snug">
+              "Narrative-to-Action: Ein Framework zur Überführung in agile
+              Backlog-Items"
+            </span>
+            <span className="text-xs text-muted flex items-center gap-1.5 mt-1">
+              <span className="bg-amber-50 text-amber-700 font-bold px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
+                Pre-Read
               </span>
-              <span className="text-xs text-muted flex items-center gap-1.5 mt-1">
-                <span className="bg-amber-50 text-amber-700 font-bold px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
-                  Pre-Read
-                </span>
-                Vorabversion lesen
-                <ArrowRight className="w-3 h-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-              </span>
-            </div>
+              Vorabversion lesen
+              <ArrowRight className="w-3 h-3 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+            </span>
           </a>
         </div>
       </div>
