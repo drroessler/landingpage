@@ -5,6 +5,7 @@ import Hero from "./components/sections/Hero";
 import ProblemSection from "./components/sections/ProblemSection";
 import MethodeSection from "./components/sections/MethodeSection";
 import FrameworkSection from "./components/sections/FrameworkSection";
+import KISection from "./components/sections/KISection";
 import ArtefaktSection from "./components/sections/ArtefaktSection";
 import UmsetzungSection from "./components/sections/UmsetzungSection";
 import SzenarienSection from "./components/sections/SzenarienSection";
@@ -25,6 +26,7 @@ function LandingPage() {
         <ProblemSection />
         <MethodeSection />
         <FrameworkSection />
+        <KISection />
         <ArtefaktSection />
         <UmsetzungSection />
         <SzenarienSection />
