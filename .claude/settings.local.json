@@ -34,7 +34,9 @@
       "Read(//Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/**)",
       "Read(//Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/$BASE/**)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")",
+      "Bash(npx vite:*)"
     ]
   }
 }
