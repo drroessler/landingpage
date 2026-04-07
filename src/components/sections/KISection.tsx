@@ -14,7 +14,7 @@ const phases = [
     icon: Mic,
     phase: "Vorbereiten",
     title: "Workshop-Dokumentation",
-    text: "Transkription und Zusammenfassung von Workshops – oder klassische Arbeit am Whiteboard mit Protokoll. Was für das Team und den Anwendungsfall adäquat ist, entscheidet der Narrative Owner.",
+    text: "KI-gestützte Transkription und Zusammenfassung von Workshops – oder klassische Arbeit am Whiteboard mit Protokoll. Was für das Team und den Anwendungsfall adäquat ist, entscheidet der Narrative Owner.",
   },
   {
     icon: PenLine,
@@ -26,19 +26,19 @@ const phases = [
     icon: SearchCheck,
     phase: "Validieren & Schärfen",
     title: "Qualitätssicherung",
-    text: "Prüfung der Root-Cause-Analyse auf Effektivität, der Argumentationen auf Stichhaltigkeit und der Anforderungsdefinitionen auf Vollständigkeit – als zweite Perspektive neben dem Stakeholder-Review.",
+    text: "KI prüft die Root-Cause-Analyse auf Effektivität, die Argumentationen auf Stichhaltigkeit und die Anforderungsdefinitionen auf Vollständigkeit – als zweite Perspektive neben dem Stakeholder-Review.",
   },
   {
     icon: BrainCircuit,
     phase: "Entscheiden",
     title: "Entscheidungsvorbereitung",
-    text: "Konsistenzprüfung der Entscheidungsvorlage über alle Abschnitte hinweg: Passen Zielbild, Lösungsbausteine und Finanzierung zusammen? Gibt es Widersprüche oder Lücken?",
+    text: "KI-basierte Konsistenzprüfung der Entscheidungsvorlage über alle Abschnitte hinweg: Passen Zielbild, Lösungsbausteine und Finanzierung zusammen? Gibt es Widersprüche oder Lücken?",
   },
   {
     icon: ListChecks,
     phase: "Umsetzen",
     title: "Ableitung der Arbeitspakete",
-    text: "Erstellung von Aufgabenbeschreibungen und Akzeptanzkriterien aus den Analyseergebnissen. Lösungsbausteine werden in strukturierte Epics und User Stories überführt.",
+    text: "KI erstellt Aufgabenbeschreibungen und Akzeptanzkriterien aus den Analyseergebnissen. Lösungsbausteine werden in strukturierte Epics und User Stories überführt.",
   },
 ];
 

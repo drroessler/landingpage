@@ -1,5 +1,5 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
-import { GitBranch, Bot, Factory, FlaskConical } from "lucide-react";
+import { GitBranch, Bot, Factory, FlaskConical, TrendingUp } from "lucide-react";
 
 const useCases = [
   {
@@ -17,6 +17,7 @@ const useCases = [
       "Strukturiertes Narrativ mit gleichberechtigtem Einbezug aller drei Stakeholdergruppen. Die Analyse deckte neben technischen auch organisatorische und menschliche Ursachen auf – die bei isolierter Betrachtung unsichtbar geblieben wären.",
     ergebnis:
       "Ganzheitliches Zielbild. Agile Umsetzung der Lösungsbausteine führte zu gemeinschaftlich getragener Lösung und erheblicher Beschleunigung der Freigabedauern.",
+    outcome: "Erhebliche Beschleunigung",
   },
   {
     icon: Bot,
@@ -33,6 +34,7 @@ const useCases = [
       "Das Narrativ wurde ergänzend entlang der Phasen des Produktlebenszyklus strukturiert. Bewusste Steuerung des Zielkonflikts zwischen vollständiger Problemanalyse und Geschwindigkeit bei hoher Stakeholderanzahl. Komplexität der Aufgabenstellung führte zu thematisch heterogenen Lösungsbausteinen (u.a. Technische Implementierungen vs. Community Aufbau).",
     ergebnis:
       "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Konsensfähiges Zielmodell. Priorisierte Umsetzung der heterogenen Lösungsbausteine.",
+    outcome: "Konsensfähiges Zielmodell",
   },
   {
     icon: Factory,
@@ -49,6 +51,7 @@ const useCases = [
       "Konsequente Ursachenanalyse nach menschlicher, organisatorischer und technischer Perspektive. Strikte Trennung von Problemanalyse und Lösungskonzeption verhinderte vorschnelle Fixierung auf isolierte Lösungsansätze. Systematische Erarbeitung eines Nordstern-Narrativs und abgeleiteter Fokus-Narrative. Anpassung des Narrativs nach ersten Feedbackschleifen aus der iterativen Umsetzung.",
     ergebnis:
       "Umsetzung der Lösungsbausteine in agiler Produktorganisation. Zweistellige Anzahl an Umsetzungsteams. Risikoreduzierte, phasenweise Budgetierung der Umsetzung.",
+    outcome: "Phasenweise Budgetierung",
   },
 ];
 
@@ -117,9 +120,15 @@ export default function PraxisSection() {
                     </p>
                   </div>
                   <div className="mt-auto pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-muted uppercase tracking-wide mb-1">
-                      Ergebnis
-                    </p>
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-xs font-semibold text-muted uppercase tracking-wide">
+                        Ergebnis
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                        <TrendingUp className="w-3 h-3" />
+                        {uc.outcome}
+                      </span>
+                    </div>
                     <p className="text-sm font-medium text-ink">
                       {uc.ergebnis}
                     </p>

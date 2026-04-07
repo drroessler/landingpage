@@ -10,6 +10,8 @@ import ArtefaktSection from "./components/sections/ArtefaktSection";
 import UmsetzungSection from "./components/sections/UmsetzungSection";
 import SzenarienSection from "./components/sections/SzenarienSection";
 import PraxisSection from "./components/sections/PraxisSection";
+import PullQuote from "./components/sections/PullQuote";
+import StatsStrip from "./components/sections/StatsStrip";
 import AngebotSection from "./components/sections/AngebotSection";
 import TeamSection from "./components/sections/TeamSection";
 import Footer from "./components/sections/Footer";
@@ -29,8 +31,10 @@ function LandingPage() {
         <ArtefaktSection />
         <UmsetzungSection />
         <KISection />
+        <PullQuote />
         <SzenarienSection />
         <PraxisSection />
+        <StatsStrip />
         <AngebotSection />
         <TeamSection />
       </main>

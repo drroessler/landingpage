@@ -46,8 +46,8 @@ export default function ProblemSection() {
         </AnimatedContent>
 
         <div className="grid md:grid-cols-2 gap-px max-w-5xl mx-auto bg-border rounded-2xl overflow-hidden shadow-sm">
-          {problems.map((p, i) => (
-            <AnimatedContent key={p.title} delay={i * 0.12}>
+          {problems.map((p) => (
+            <div key={p.title}>
               <div className="bg-paper p-8 md:p-10 flex flex-col h-full group hover:bg-white transition-colors duration-300">
                 <span className="font-display text-5xl text-border group-hover:text-accent/20 transition-colors duration-300 leading-none mb-6">
                   {p.num}
@@ -62,7 +62,7 @@ export default function ProblemSection() {
                   → {p.result}
                 </p>
               </div>
-            </AnimatedContent>
+            </div>
           ))}
         </div>
       </div>

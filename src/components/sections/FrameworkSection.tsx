@@ -65,6 +65,23 @@ export default function FrameworkSection() {
           </div>
         </AnimatedContent>
 
+        {/* Progress track */}
+        <div className="hidden md:flex items-center max-w-5xl mx-auto mb-8 px-8">
+          {steps.map((s, i) => (
+            <div key={`track-${s.num}`} className="contents">
+              <div className="flex flex-col items-center gap-1.5">
+                <div className={`w-3 h-3 rounded-full ${s.accent}`} />
+                <span className="text-[10px] font-semibold text-muted uppercase tracking-wider whitespace-nowrap">
+                  Schritt {s.num}
+                </span>
+              </div>
+              {i < steps.length - 1 && (
+                <div className="flex-1 h-px bg-gradient-to-r from-border to-border mx-1 mt-[-10px]" />
+              )}
+            </div>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-5 gap-5">
           {steps.map((s, i) => (
             <AnimatedContent key={s.num} delay={i * 0.12}>
