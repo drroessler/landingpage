@@ -3,42 +3,8 @@ import { GitBranch, Bot, Factory, FlaskConical, TrendingUp } from "lucide-react"
 
 const useCases = [
   {
-    icon: GitBranch,
-    tag: "Fall 1 · Governance",
-    title: "Open-Source-Freigabeprozess",
-    headerBg: "bg-blue-50",
-    headerBorder: "border-blue-100",
-    tagColor: "text-blue-600",
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    ausgangslage:
-      "Ein träges Freigabeverfahren bei der Verwendung von Open-Source-Software verzögerte die Lieferung von Softwareprodukten in einem Industriekonzern. Drei Stakeholdergruppen – Rechtswesen, Softwareentwicklung und Open Source Office – arbeiteten ohne gemeinsames Problemverständnis an jeweils lokalen Optimierungen.",
-    vorgehen:
-      "Strukturiertes Narrativ mit gleichberechtigtem Einbezug aller drei Stakeholdergruppen. Die Analyse deckte neben technischen auch organisatorische und menschliche Ursachen auf – die bei isolierter Betrachtung unsichtbar geblieben wären.",
-    ergebnis:
-      "Ganzheitliches Zielbild. Agile Umsetzung der Lösungsbausteine führte zu gemeinschaftlich getragener Lösung und erheblicher Beschleunigung der Freigabedauern.",
-    outcome: "Erhebliche Beschleunigung",
-  },
-  {
-    icon: Bot,
-    tag: "Fall 2 · Strategische IT",
-    title: "KI-Liefermodell",
-    headerBg: "bg-emerald-50",
-    headerBorder: "border-emerald-100",
-    tagColor: "text-emerald-600",
-    iconBg: "bg-emerald-100",
-    iconColor: "text-emerald-600",
-    ausgangslage:
-      "Ein Konzern benötigte ein einheitliches Modell für die Lieferung von KI-Softwareprodukten – unter Einbindung zentraler IT, mehrerer Markendomänen und des Business Partner Managements auf verschiedenen Hierarchieebenen.",
-    vorgehen:
-      "Das Narrativ wurde ergänzend entlang der Phasen des Produktlebenszyklus strukturiert. Bewusste Steuerung des Zielkonflikts zwischen vollständiger Problemanalyse und Geschwindigkeit bei hoher Stakeholderanzahl. Komplexität der Aufgabenstellung führte zu thematisch heterogenen Lösungsbausteinen (u.a. Technische Implementierungen vs. Community Aufbau).",
-    ergebnis:
-      "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Konsensfähiges Zielmodell. Priorisierte Umsetzung der heterogenen Lösungsbausteine.",
-    outcome: "Konsensfähiges Zielmodell",
-  },
-  {
     icon: Factory,
-    tag: "Fall 3 · Transformation",
+    tag: "Fall 1 · Transformation",
     title: "Reorganisation Shopfloor-IT",
     headerBg: "bg-violet-50",
     headerBorder: "border-violet-100",
@@ -46,12 +12,46 @@ const useCases = [
     iconBg: "bg-violet-100",
     iconColor: "text-violet-600",
     ausgangslage:
-      "Strategische Neuordnung der IT-Architektur im Produktionsumfeld einer Konzernmarke – mit Perspektiven aus Werks-IT, Marken-IT, Konzern-IT und Fachdomänen, die harmonisiert werden mussten.",
+      "Teams aus Werks-IT, Marken-IT, zentraler IT und Fachbereichen sollten IT-Architektur und IT-Organisation im Produktionsumfeld gemeinsam neu ausrichten – arbeiteten aber mit unterschiedlichen Prioritäten, Zeithorizonten und Fachsprachen.",
     vorgehen:
-      "Konsequente Ursachenanalyse nach menschlicher, organisatorischer und technischer Perspektive. Strikte Trennung von Problemanalyse und Lösungskonzeption verhinderte vorschnelle Fixierung auf isolierte Lösungsansätze. Systematische Erarbeitung eines Nordstern-Narrativs und abgeleiteter Fokus-Narrative. Anpassung des Narrativs nach ersten Feedbackschleifen aus der iterativen Umsetzung.",
+      "Die Methode erzwang eine konsequente Ursachenanalyse aus menschlicher, organisatorischer und technischer Perspektive. Strikte Trennung von Problem und Lösung verhinderte vorschnelle Fixierung auf isolierte Ansätze. Ein Nordstern-Narrativ schuf teamübergreifende Orientierung, abgeleitete Fokus-Narrative machten die Arbeit in den einzelnen Bereichen steuerbar. Die Umstellung auf das Scaled Agile Framework (SAFe) führte zur Neuformation von Teams und geänderten Arbeitsweisen. Das Narrativ wurde nach ersten Feedbackschleifen iterativ angepasst.",
     ergebnis:
-      "Umsetzung der Lösungsbausteine in agiler Produktorganisation. Zweistellige Anzahl an Umsetzungsteams. Risikoreduzierte, phasenweise Budgetierung der Umsetzung.",
+      "Gemeinsam getragene Zielarchitektur. Umsetzung in agiler Produktorganisation mit zweistelliger Anzahl an Teams. Risikoreduzierte, phasenweise Budgetierung.",
     outcome: "Phasenweise Budgetierung",
+  },
+  {
+    icon: GitBranch,
+    tag: "Fall 2 · Governance",
+    title: "Open-Source-Freigabeprozess",
+    headerBg: "bg-blue-50",
+    headerBorder: "border-blue-100",
+    tagColor: "text-blue-600",
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    ausgangslage:
+      "Ein träges Open-Source-Freigabeverfahren bremste die Softwarelieferung. Drei Teams – Rechtswesen, Entwicklung und Open Source Office – optimierten jeweils lokal, ohne ein gemeinsames Problemverständnis zu entwickeln.",
+    vorgehen:
+      "Die Methode brachte alle drei Gruppen gleichberechtigt an einen Tisch. Das strukturierte Narrativ deckte neben technischen auch organisatorische und menschliche Ursachen auf – Zusammenhänge, die bei isolierter Betrachtung unsichtbar geblieben wären.",
+    ergebnis:
+      "Ganzheitliches Zielbild statt Insellösungen. Die gemeinschaftlich getragene Lösung führte zu erheblicher Beschleunigung der Freigabedauern.",
+    outcome: "Erhebliche Beschleunigung",
+  },
+  {
+    icon: Bot,
+    tag: "Fall 3 · Strategische IT",
+    title: "KI-Liefermodell",
+    headerBg: "bg-emerald-50",
+    headerBorder: "border-emerald-100",
+    tagColor: "text-emerald-600",
+    iconBg: "bg-emerald-100",
+    iconColor: "text-emerald-600",
+    ausgangslage:
+      "Zentrale IT, mehrere Markendomänen und Business Partner Management sollten gemeinsam ein Liefermodell für KI-Softwareprodukte entwickeln – über Hierarchieebenen hinweg, mit teils widersprüchlichen Anforderungen.",
+    vorgehen:
+      "Die Methode strukturierte das Narrativ entlang der Phasen des Produktlebenszyklus und machte den Zielkonflikt zwischen Gründlichkeit und Geschwindigkeit bei hoher Stakeholderanzahl steuerbar. Die Komplexität führte zu thematisch heterogenen Lösungsbausteinen – von technischen Implementierungen bis zum Community-Aufbau.",
+    ergebnis:
+      "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Konsensfähiges Zielmodell mit priorisierter Umsetzung der heterogenen Lösungsbausteine.",
+    outcome: "Konsensfähiges Zielmodell",
   },
 ];
 
