@@ -36,7 +36,18 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(npm uninstall:*)",
       "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Read(//Users/richard/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/6f461929-96c5-4adc-bbc3-4bc1a972e8bb/0b3fee77-f53e-4d2c-8332-48df6b4b6555/skills/docx/**)",
+      "Bash(pandoc --track-changes=all \"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Beiträge/Paper 2/Initial Submission/Initial_Full_Narrative To Action.docx\" -o /tmp/paper2_content.md)",
+      "Bash(brew install:*)",
+      "Bash(SKILLS_BASE=\"/Users/richard/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/6f461929-96c5-4adc-bbc3-4bc1a972e8bb/0b3fee77-f53e-4d2c-8332-48df6b4b6555/skills/docx\")",
+      "Bash(python3 \"$SKILLS_BASE/scripts/office/unpack.py\" \"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Beiträge/Paper 2/Initial Submission/Initial_Full_Narrative To Action.docx\" /tmp/paper2_unpacked/)",
+      "Bash(pip3 install:*)",
+      "Bash(python3 -c \"import reportlab; print\\(reportlab.__version__\\)\")",
+      "Read(//System/Library/Fonts/**)",
+      "Bash(find ~/Library/Fonts -name *.ttf)",
+      "Bash(/dev/null find:*)",
+      "Bash(ls -lh \"/Users/richard/Library/Mobile Documents/com~apple~CloudDocs/Projekte/Landing Page/narratec/\"*.jpeg)"
     ]
   }
 }

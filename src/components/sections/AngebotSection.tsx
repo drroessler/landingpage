@@ -1,5 +1,6 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
 import { Check, CheckCircle } from "lucide-react";
+import { openContactModal } from "../ContactModal";
 
 const tiers = [
   {
@@ -95,7 +96,7 @@ export default function AngebotSection() {
                   ))}
                 </ul>
                 <button
-                  onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={openContactModal}
                   className={`block w-full text-center py-2.5 text-sm font-semibold transition mt-auto cursor-pointer ${
                     t.highlight
                       ? "bg-accent text-white hover:bg-accent-hover"

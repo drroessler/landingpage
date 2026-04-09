@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Layers } from "lucide-react";
+import { openContactModal } from "./ContactModal";
 
 function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -73,8 +74,8 @@ export default function Navbar() {
 
           <div className="hidden md:flex">
             <button
-              onClick={() => handleNav("kontakt")}
-              className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors"
+              onClick={openContactModal}
+              className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer"
             >
               Erstgespräch vereinbaren
             </button>
@@ -103,8 +104,8 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => handleNav("kontakt")}
-              className="block w-full mt-3 text-center bg-accent text-white px-6 py-2.5 text-sm font-semibold"
+              onClick={() => { setOpen(false); openContactModal(); }}
+              className="block w-full mt-3 text-center bg-accent text-white px-6 py-2.5 text-sm font-semibold cursor-pointer"
             >
               Erstgespräch vereinbaren
             </button>

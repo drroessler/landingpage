@@ -1,5 +1,6 @@
 import NetworkBackground from "../NetworkBackground";
 import { ArrowRight } from "lucide-react";
+import { openContactModal } from "../ContactModal";
 
 export default function Hero() {
   return (
@@ -31,7 +32,7 @@ export default function Hero() {
 
         <div className="mt-10">
           <button
-            onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={openContactModal}
             className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white px-8 py-4 text-base font-semibold tracking-wide transition-colors cursor-pointer"
           >
             Erstgespräch vereinbaren

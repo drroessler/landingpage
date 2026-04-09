@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import ContactModal from "./components/ContactModal";
 import Navbar from "./components/Navbar";
 import Hero from "./components/sections/Hero";
 import ProblemSection from "./components/sections/ProblemSection";
@@ -47,6 +48,7 @@ export default function App() {
   return (
     <>
     <ScrollToTop />
+    <ContactModal />
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/impressum" element={<Impressum />} />
