@@ -33,7 +33,7 @@ export default function Hero() {
         <div className="mt-10">
           <button
             onClick={openContactModal}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white px-8 py-4 text-base font-semibold tracking-wide transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white px-8 py-4 text-base font-semibold tracking-wide transition-colors cursor-pointer rounded-md"
           >
             Erstgespräch vereinbaren
             <ArrowRight className="w-4 h-4" />

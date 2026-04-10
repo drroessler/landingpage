@@ -75,7 +75,7 @@ export default function Navbar() {
           <div className="hidden md:flex">
             <button
               onClick={openContactModal}
-              className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer"
+              className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer rounded-md"
             >
               Erstgespräch vereinbaren
             </button>
@@ -105,7 +105,7 @@ export default function Navbar() {
             ))}
             <button
               onClick={() => { setOpen(false); openContactModal(); }}
-              className="block w-full mt-3 text-center bg-accent text-white px-6 py-2.5 text-sm font-semibold cursor-pointer"
+              className="block w-full mt-3 text-center bg-accent text-white px-6 py-2.5 text-sm font-semibold cursor-pointer rounded-md"
             >
               Erstgespräch vereinbaren
             </button>
