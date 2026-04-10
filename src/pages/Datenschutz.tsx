@@ -21,10 +21,6 @@ export default function Datenschutz() {
           Datenerfassung auf dieser Website
         </h3>
         <p>
-          <strong className="text-ink">
-            Wer ist verantwortlich für die Datenerfassung auf dieser Website?
-          </strong>
-          <br />
           Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber.
           Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.
         </p>
@@ -71,9 +67,10 @@ export default function Datenschutz() {
           Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
         </p>
         <p className="mt-2">
-          NarraTec GmbH<br />
-          Musterstraße 1<br />
-          80000 München<br />
+          Dr. Richard Rößler Management Advisory<br />
+          Flensburger Straße 92<br />
+          01157 Dresden<br />
+          Deutschland<br />
           E-Mail:{" "}
           <a href="mailto:contact@narratec.io" className="text-accent hover:underline">
             contact@narratec.io

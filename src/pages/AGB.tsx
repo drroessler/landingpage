@@ -7,10 +7,10 @@ export default function AGB() {
         <h2 className="font-display text-2xl text-ink mb-4">§ 1 Geltungsbereich</h2>
         <p>
           Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten für alle
-          Geschäftsbeziehungen zwischen der NarraTec GmbH, Musterstraße 1, 80000
-          München (nachfolgend „NarraTec" oder „wir") und ihren Kunden (nachfolgend
-          „Auftraggeber"). Maßgeblich ist die jeweils zum Zeitpunkt des
-          Vertragsschlusses gültige Fassung.
+          Geschäftsbeziehungen zwischen Dr. Richard Rößler Management Advisory,
+          Flensburger Straße 92, 01157 Dresden (nachfolgend „NarraTec" oder „wir")
+          und ihren Kunden (nachfolgend „Auftraggeber"). Maßgeblich ist die jeweils
+          zum Zeitpunkt des Vertragsschlusses gültige Fassung.
         </p>
         <p className="mt-4">
           Abweichende, entgegenstehende oder ergänzende AGB des Auftraggebers werden
@@ -134,7 +134,7 @@ export default function AGB() {
         </h2>
         <p>
           Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand für alle
-          Streitigkeiten aus diesem Vertrag ist München, sofern der Auftraggeber
+          Streitigkeiten aus diesem Vertrag ist Dresden, sofern der Auftraggeber
           Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches
           Sondervermögen ist.
         </p>

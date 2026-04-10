@@ -6,16 +6,16 @@ export default function Impressum() {
       <section>
         <h2 className="font-display text-2xl text-ink mb-4">Angaben gemäß § 5 TMG</h2>
         <p>
-          NarraTec GmbH<br />
-          Musterstraße 1<br />
-          80000 München<br />
+          Dr. Richard Rößler Management Advisory<br />
+          Flensburger Straße 92<br />
+          01157 Dresden<br />
           Deutschland
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Vertreten durch</h2>
-        <p>Geschäftsführer: [Name eintragen]</p>
+        <h2 className="font-display text-2xl text-ink mb-4">Inhaber</h2>
+        <p>Dr. Richard Rößler</p>
       </section>
 
       <section>
@@ -31,9 +31,7 @@ export default function Impressum() {
       <section>
         <h2 className="font-display text-2xl text-ink mb-4">Registereintrag</h2>
         <p>
-          Eintragung im Handelsregister<br />
-          Registergericht: Amtsgericht München<br />
-          Registernummer: HRB [Nummer eintragen]
+          Kein Eintrag im Handelsregister.
         </p>
       </section>
 
@@ -41,7 +39,7 @@ export default function Impressum() {
         <h2 className="font-display text-2xl text-ink mb-4">Umsatzsteuer-ID</h2>
         <p>
           Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-          DE [Nummer eintragen]
+          DE408433294
         </p>
       </section>
 
@@ -50,9 +48,10 @@ export default function Impressum() {
           Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
         </h2>
         <p>
-          [Name eintragen]<br />
-          Musterstraße 1<br />
-          80000 München
+          Dr. Richard Rößler<br />
+          Flensburger Straße 92<br />
+          01157 Dresden<br />
+          Deutschland
         </p>
       </section>
 
