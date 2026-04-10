@@ -11,6 +11,7 @@ import {
   GitBranch,
   Puzzle,
   CheckCircle,
+  ChevronDown,
 } from "lucide-react";
 
 const mappingBlocks = [
@@ -46,9 +47,9 @@ const mappingBlocks = [
     label: "Durchgängig",
     title: "Volle Traceability",
     desc: 'Jedes Ticket referenziert sein „Warum" – keine Arbeit ohne Begründung',
-    style: "bg-accent-light border border-accent/20 text-ink",
-    labelStyle: "text-accent",
-    iconStyle: "bg-accent/10 text-accent",
+    style: "bg-violet-50 border border-violet-100 text-ink",
+    labelStyle: "text-violet-600",
+    iconStyle: "bg-violet-100 text-violet-600",
   },
 ];
 
@@ -118,7 +119,7 @@ export default function UmsetzungSection() {
               {mappingBlocks.map((b, i) => (
                 <div key={b.title} className="contents">
                   <div
-                    className={`w-full md:w-52 ${b.style} rounded-xl p-5 shadow-sm text-center shrink-0`}
+                    className={`w-full md:flex-1 md:min-w-0 ${b.style} rounded-xl p-5 shadow-sm text-center`}
                   >
                     <div
                       className={`${b.iconStyle} rounded-lg w-10 h-10 flex items-center justify-center mx-auto mb-3`}
@@ -161,7 +162,7 @@ export default function UmsetzungSection() {
                 href="LINK PREREAD"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 text-xs font-semibold text-accent hover:text-accent-hover bg-accent-light border border-accent/20 px-4 py-2 rounded-lg transition whitespace-nowrap"
+                className="shrink-0 inline-flex items-center gap-2 text-xs font-semibold text-muted hover:text-ink bg-surface border border-border px-4 py-2 rounded-lg transition whitespace-nowrap"
               >
                 <span className="bg-amber-50 text-amber-700 font-bold px-1.5 py-0.5 text-[10px] uppercase tracking-wider">
                   Pre-Read
@@ -172,6 +173,12 @@ export default function UmsetzungSection() {
             </div>
           </div>
         </AnimatedContent>
+
+        {/* Connector: Process → Benefits */}
+        <div className="flex flex-col items-center mt-10 mb-8 text-muted">
+          <ChevronDown className="w-8 h-8 -mb-4" />
+          <ChevronDown className="w-8 h-8" />
+        </div>
 
         {/* Benefit Cards */}
         <div className="grid md:grid-cols-3 gap-6">
