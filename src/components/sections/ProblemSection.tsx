@@ -29,39 +29,39 @@ const problems = [
 
 export default function ProblemSection() {
   return (
-    <section id="problem" className="py-20 lg:py-28 bg-surface">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="problem" className="py-14 lg:py-20 bg-surface">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedContent>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
               Typische Muster des Scheiterns
             </span>
             <h2 className="font-display text-3xl md:text-4xl text-ink mt-3">
               Kennen Sie das?
             </h2>
-            <p className="mt-4 text-lg text-ink-light max-w-xl mx-auto">
-              Warum komplexe Projekte in Unternehmen häufig scheitern.
-            </p>
           </div>
         </AnimatedContent>
 
-        <div className="grid md:grid-cols-2 gap-px max-w-5xl mx-auto bg-border rounded-2xl overflow-hidden shadow-sm">
+        <div className="grid md:grid-cols-2 gap-3 max-w-5xl mx-auto">
           {problems.map((p) => (
-            <div key={p.title}>
-              <div className="bg-paper p-8 md:p-10 flex flex-col h-full group hover:bg-white transition-colors duration-300">
-                <span className="font-display text-5xl text-border group-hover:text-accent/20 transition-colors duration-300 leading-none mb-6">
-                  {p.num}
-                </span>
-                <h3 className="font-semibold text-ink text-lg mb-3">
+            <div
+              key={p.title}
+              className="group bg-paper h-full flex flex-col border border-border border-l-4 border-l-accent p-5 md:p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <div className="flex items-start justify-between gap-2 mb-3">
+                <h3 className="font-display text-xl md:text-2xl text-ink leading-tight">
                   {p.title}
                 </h3>
-                <p className="text-muted text-sm leading-relaxed mb-6 flex-1">
-                  {p.text}
-                </p>
-                <p className="text-accent text-sm font-medium border-t border-border pt-4">
-                  → {p.result}
-                </p>
+                <span className="text-[10px] font-mono tracking-widest text-muted mt-1 shrink-0">
+                  {p.num}
+                </span>
               </div>
+              <p className="text-muted text-sm leading-relaxed flex-1 mb-4">
+                {p.text}
+              </p>
+              <p className="text-accent text-sm font-semibold border-t border-border pt-3">
+                ↳ {p.result}
+              </p>
             </div>
           ))}
         </div>
