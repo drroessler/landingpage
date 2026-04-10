@@ -1,5 +1,6 @@
 import { Layers, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { openContactModal } from "../ContactModal";
 
 export default function Footer() {
   return (
@@ -15,13 +16,13 @@ export default function Footer() {
               Lassen Sie uns darüber sprechen, wie wir Ihre nächste
               Herausforderung strukturiert lösen.
             </p>
-            <a
-              href="mailto:contact@narratec.io"
-              className="inline-flex items-center gap-2 text-white font-semibold text-lg hover:text-accent transition-colors"
+            <button
+              onClick={openContactModal}
+              className="inline-flex items-center gap-2 text-white font-semibold text-lg hover:text-accent transition-colors cursor-pointer"
             >
               <Mail className="w-5 h-5" />
               contact@narratec.io
-            </a>
+            </button>
           </div>
           <div className="md:text-right">
             <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
