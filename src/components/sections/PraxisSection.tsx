@@ -17,7 +17,7 @@ const useCases = [
       "Die Methode erzwang eine konsequente Ursachenanalyse aus menschlicher, organisatorischer und technischer Perspektive. Strikte Trennung von Problem und Lösung verhinderte vorschnelle Fixierung auf isolierte Ansätze. Ein Nordstern-Narrativ schuf teamübergreifende Orientierung, abgeleitete Fokus-Narrative machten die Arbeit in den einzelnen Bereichen steuerbar. Die Umstellung auf das Scaled Agile Framework (SAFe) führte zur Neuformation von Teams und geänderten Arbeitsweisen. Das Narrativ wurde nach ersten Feedbackschleifen iterativ angepasst.",
     ergebnis:
       "Gemeinsam getragene Zielarchitektur. Umsetzung in agiler Produktorganisation mit zweistelliger Anzahl an Teams. Risikoreduzierte, phasenweise Budgetierung.",
-    outcome: "Phasenweise Budgetierung",
+    outcome: "Risikoreduzierte Budgetierung",
   },
   {
     icon: GitBranch,
@@ -50,7 +50,7 @@ const useCases = [
     vorgehen:
       "Die Methode strukturierte das Narrativ entlang der Phasen des Produktlebenszyklus und machte den Zielkonflikt zwischen Gründlichkeit und Geschwindigkeit bei hoher Stakeholderanzahl steuerbar. Die Komplexität führte zu thematisch heterogenen Lösungsbausteinen – von technischen Implementierungen bis zum Community-Aufbau.",
     ergebnis:
-      "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Konsensfähiges Zielmodell mit priorisierter Umsetzung der heterogenen Lösungsbausteine.",
+      "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Modulare Umsetzung der heterogenen Lösungsbausteine.",
     outcome: "Konsensfähiges Zielmodell",
   },
 ];
@@ -68,14 +68,8 @@ export default function PraxisSection() {
               Drei echte Anwendungsfälle.
             </h2>
             <p className="mt-4 text-ink-light max-w-2xl mx-auto">
-              Die Methode wurde bereits mehrfach erfolgreich im
-              Unternehmensumfeld eingesetzt.
+              Die Methode wird regelmäßig in anspruchsvollen Unternehmenssettings eingesetzt.
             </p>
-            <div className="mt-4 inline-flex items-center gap-2 text-xs text-muted bg-white border border-border rounded-full px-4 py-2">
-              <FlaskConical className="w-3.5 h-3.5 text-accent" />
-              Dokumentiert in: Rößler & Wieland (2026), HMD Praxis der
-              Wirtschaftsinformatik
-            </div>
           </div>
         </AnimatedContent>
 

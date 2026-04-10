@@ -1,7 +1,7 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
 
 const stats = [
-  { value: "3", label: "Publizierte Anwendungsfälle", sub: "HMD Praxis der Wirtschaftsinformatik" },
+  { value: "2", label: "Wissenschaftliche Publikationen", sub: "HMD Praxis der Wirtschaftsinformatik" },
   { value: "5", label: "Prozessschritte", sub: "Vom diffusen Problem zur klaren Umsetzung" },
   { value: "100%", label: "Interne Befähigung", sub: "Ihr Team übernimmt – wir begleiten" },
 ];
