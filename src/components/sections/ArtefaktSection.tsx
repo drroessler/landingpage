@@ -103,7 +103,7 @@ export default function ArtefaktSection() {
                       <div className="h-2 w-11/12 bg-surface rounded" />
                     </div>
                     {/* Comment bubble */}
-                    <div className="absolute -right-14 top-1 bg-rose-50 border border-rose-200 shadow-lg p-2.5 rounded-lg w-36 z-10 text-xs transform rotate-1 hidden lg:block">
+                    <div className="mt-3 md:mt-0 md:absolute md:-right-14 md:top-1 bg-rose-50 border border-rose-200 shadow-lg p-2.5 rounded-lg md:w-36 z-10 text-xs md:rotate-1">
                       <div className="flex items-center gap-1.5 mb-1">
                         <div className="w-4 h-4 rounded-full bg-rose-200 flex items-center justify-center text-[8px] font-bold text-rose-700">
                           CO
@@ -140,7 +140,7 @@ export default function ArtefaktSection() {
                       </div>
                     </div>
                     {/* CTO comment */}
-                    <div className="absolute -right-14 top-14 bg-blue-50 border border-blue-200 shadow-lg p-2.5 rounded-lg w-36 z-10 text-xs transform -rotate-1 hidden lg:block">
+                    <div className="mt-3 md:mt-0 md:absolute md:-right-14 md:top-14 bg-blue-50 border border-blue-200 shadow-lg p-2.5 rounded-lg md:w-36 z-10 text-xs md:-rotate-1">
                       <div className="flex items-center gap-1.5 mb-1">
                         <div className="w-4 h-4 rounded-full bg-blue-200 flex items-center justify-center text-[8px] font-bold text-blue-700">
                           IT

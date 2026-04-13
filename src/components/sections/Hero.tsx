@@ -82,7 +82,7 @@ export default function Hero() {
           <div className="block md:hidden w-16 h-px bg-border" />
 
           <a
-            href="LINK_ZUM_PREREAD"
+            href="Pre-Read Narrative To Action.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex-1 flex flex-col items-center md:items-start hover:bg-surface p-3 rounded-lg transition-colors"

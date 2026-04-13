@@ -159,7 +159,7 @@ export default function UmsetzungSection() {
                 </p>
               </div>
               <a
-                href="LINK PREREAD"
+                href="Pre-Read Narrative To Action.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2 text-xs font-semibold text-muted hover:text-ink bg-surface border border-border px-4 py-2 rounded-lg transition whitespace-nowrap"
