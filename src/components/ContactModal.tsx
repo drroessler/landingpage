@@ -1,32 +1,7 @@
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { X, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const countries = [
-  "Deutschland",
-  "Österreich",
-  "Schweiz",
-  "Belgien",
-  "Dänemark",
-  "Finnland",
-  "Frankreich",
-  "Griechenland",
-  "Irland",
-  "Italien",
-  "Luxemburg",
-  "Niederlande",
-  "Norwegen",
-  "Polen",
-  "Portugal",
-  "Schweden",
-  "Spanien",
-  "Tschechien",
-  "Ungarn",
-  "Vereinigtes Königreich",
-  "USA",
-  "Kanada",
-  "Andere",
-];
+import { useI18n } from "../i18n/LanguageContext";
 
 const initialForm = {
   vorname: "",
@@ -48,6 +23,7 @@ export default function ContactModal() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     const handler = () => {
@@ -92,14 +68,14 @@ export default function ContactModal() {
     setSending(true);
 
     const body = [
-      `Vorname: ${form.vorname}`,
-      `Nachname: ${form.nachname}`,
-      `Email: ${form.email}`,
-      `Beruf: ${form.beruf}`,
-      `Unternehmen: ${form.unternehmen}`,
-      `Land: ${form.land}`,
+      `${t.contact.firstName}: ${form.vorname}`,
+      `${t.contact.lastName}: ${form.nachname}`,
+      `${t.contact.email}: ${form.email}`,
+      `${t.contact.profession}: ${form.beruf}`,
+      `${t.contact.company}: ${form.unternehmen}`,
+      `${t.contact.country}: ${form.land}`,
       ``,
-      `Nachricht:`,
+      `${t.contact.message}:`,
       form.nachricht,
     ].join("\n");
 
@@ -129,13 +105,13 @@ export default function ContactModal() {
         className="relative bg-white w-full max-w-2xl mx-4 mt-12 mb-12 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-xl shadow-2xl animate-[reveal-in_0.3s_ease-out]"
         role="dialog"
         aria-modal="true"
-        aria-label="Kontaktformular"
+        aria-label={t.contact.heading}
       >
         {/* Close button */}
         <button
           onClick={() => setOpen(false)}
           className="absolute top-4 right-4 text-muted hover:text-ink transition-colors cursor-pointer z-10"
-          aria-label="Schließen"
+          aria-label={t.contact.close}
         >
           <X className="w-6 h-6" />
         </button>
@@ -146,15 +122,15 @@ export default function ContactModal() {
             <div className="w-20 h-20 rounded-full overflow-hidden shrink-0 border-2 border-border">
               <img
                 src="Roessler.jpeg"
-                alt="Dr. Richard Rößler"
+                alt={t.contact.name}
                 className="w-full h-full object-cover"
               />
             </div>
             <div>
               <h2 className="font-display text-2xl text-ink leading-snug">
-                Senden Sie eine Nachricht an
+                {t.contact.heading}
                 <br />
-                Dr. Richard Rößler
+                {t.contact.name}
               </h2>
             </div>
           </div>
@@ -162,10 +138,10 @@ export default function ContactModal() {
           {sent ? (
             <div className="text-center py-12">
               <p className="text-lg font-semibold text-ink mb-2">
-                Ihr E-Mail-Programm wurde geöffnet.
+                {t.contact.successTitle}
               </p>
               <p className="text-muted text-sm">
-                Bitte senden Sie die vorausgefüllte E-Mail ab. Wir melden uns schnellstmöglich bei Ihnen.
+                {t.contact.successText}
               </p>
               <button
                 onClick={() => {
@@ -175,7 +151,7 @@ export default function ContactModal() {
                 }}
                 className="mt-6 text-sm font-semibold text-accent hover:text-accent-hover transition-colors cursor-pointer"
               >
-                Schließen
+                {t.contact.close}
               </button>
             </div>
           ) : (
@@ -183,54 +159,54 @@ export default function ContactModal() {
               <div className="space-y-6">
                 {/* Vorname */}
                 <FormField
-                  label="Vorname"
+                  label={t.contact.firstName}
                   required
                   value={form.vorname}
                   onChange={(v) => update("vorname", v)}
-                  placeholder="Vorname"
+                  placeholder={t.contact.firstName}
                 />
 
                 {/* Nachname */}
                 <FormField
-                  label="Nachname"
+                  label={t.contact.lastName}
                   required
                   value={form.nachname}
                   onChange={(v) => update("nachname", v)}
-                  placeholder="Nachname"
+                  placeholder={t.contact.lastName}
                 />
 
                 {/* Email */}
                 <FormField
-                  label="Email"
+                  label={t.contact.email}
                   required
                   type="email"
                   value={form.email}
                   onChange={(v) => update("email", v)}
-                  placeholder="Email"
+                  placeholder={t.contact.email}
                 />
 
                 {/* Beruf */}
                 <FormField
-                  label="Beruf"
+                  label={t.contact.profession}
                   required
                   value={form.beruf}
                   onChange={(v) => update("beruf", v)}
-                  placeholder="Beruf"
+                  placeholder={t.contact.profession}
                 />
 
                 {/* Unternehmen */}
                 <FormField
-                  label="Unternehmen"
+                  label={t.contact.company}
                   required
                   value={form.unternehmen}
                   onChange={(v) => update("unternehmen", v)}
-                  placeholder="Unternehmen"
+                  placeholder={t.contact.company}
                 />
 
                 {/* Land */}
                 <div className="flex items-start gap-6">
                   <label className="w-32 shrink-0 text-xs font-bold uppercase tracking-[0.1em] text-ink pt-3">
-                    Land<span className="text-accent ml-0.5">*</span>
+                    {t.contact.country}<span className="text-accent ml-0.5">*</span>
                   </label>
                   <select
                     required
@@ -241,9 +217,9 @@ export default function ContactModal() {
                     }`}
                   >
                     <option value="" disabled>
-                      Bitte auswählen
+                      {t.contact.selectPlaceholder}
                     </option>
-                    {countries.map((c) => (
+                    {t.contact.countries.map((c) => (
                       <option key={c} value={c}>
                         {c}
                       </option>
@@ -254,14 +230,14 @@ export default function ContactModal() {
                 {/* Nachricht */}
                 <div className="flex items-start gap-6">
                   <label className="w-32 shrink-0 text-xs font-bold uppercase tracking-[0.1em] text-ink pt-3">
-                    Nachricht<span className="text-accent ml-0.5">*</span>
+                    {t.contact.message}<span className="text-accent ml-0.5">*</span>
                   </label>
                   <textarea
                     required
                     rows={3}
                     value={form.nachricht}
                     onChange={(e) => update("nachricht", e.target.value)}
-                    placeholder="Ihre Nachricht hier …"
+                    placeholder={t.contact.messagePlaceholder}
                     className="flex-1 border-b border-border bg-transparent py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors resize-y"
                   />
                 </div>
@@ -269,20 +245,17 @@ export default function ContactModal() {
 
               {/* Privacy notice */}
               <p className="mt-8 text-xs text-muted leading-relaxed">
-                Mit dem Absenden des Kontaktformulars erklären Sie sich damit
-                einverstanden, dass Ihre Daten zur Bearbeitung Ihres Anliegens
-                verwendet werden. Weitere Informationen und Widerrufshinweise
-                finden Sie in unserer{" "}
+                {t.contact.privacyText}{" "}
                 <Link
                   to="/datenschutz"
                   className="underline hover:text-ink transition-colors"
                   onClick={() => setOpen(false)}
                 >
-                  Datenschutzerklärung
+                  {t.contact.privacyLink}
                 </Link>
                 .
                 <br />
-                Mit einem Sternchen (*) markierte Felder sind Pflichtangaben.
+                {t.contact.requiredNote}
               </p>
 
               {/* Actions */}
@@ -292,14 +265,14 @@ export default function ContactModal() {
                   onClick={reset}
                   className="text-sm font-semibold text-ink uppercase tracking-wide hover:text-muted transition-colors cursor-pointer"
                 >
-                  Zurücksetzen
+                  {t.contact.reset}
                 </button>
                 <button
                   type="submit"
                   disabled={sending}
                   className="inline-flex items-center gap-2 bg-surface text-muted hover:bg-accent hover:text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer disabled:opacity-50"
                 >
-                  {sending ? "Wird gesendet…" : "Senden"}
+                  {sending ? t.contact.sending : t.contact.send}
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

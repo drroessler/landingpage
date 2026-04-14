@@ -1,91 +1,70 @@
 import LegalLayout from "../components/LegalLayout";
+import { useI18n } from "../i18n/LanguageContext";
 
 export default function Impressum() {
+  const { t } = useI18n();
+
   return (
-    <LegalLayout title="Impressum">
+    <LegalLayout title={t.impressum.title}>
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Angaben gemäß § 5 TMG</h2>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.tmg}</h2>
         <p>
-          Dr. Richard Rößler Management Advisory<br />
-          Flensburger Straße 92<br />
-          01157 Dresden<br />
-          Deutschland
+          {t.impressum.company}<br />
+          {t.impressum.street}<br />
+          {t.impressum.city}<br />
+          {t.impressum.country}
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Inhaber</h2>
-        <p>Dr. Richard Rößler</p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.owner}</h2>
+        <p>{t.impressum.ownerName}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Kontakt</h2>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.contact}</h2>
         <p>
-          E-Mail:{" "}
+          {t.impressum.emailLabel}{" "}
           <a href="mailto:contact@narratec.io" className="text-accent hover:underline">
-            contact@narratec.io
+            {t.impressum.emailValue}
           </a>
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Registereintrag</h2>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.register}</h2>
+        <p>{t.impressum.registerText}</p>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.vatTitle}</h2>
         <p>
-          Kein Eintrag im Handelsregister.
+          {t.impressum.vatDesc}<br />
+          {t.impressum.vatId}
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Umsatzsteuer-ID</h2>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.responsible}</h2>
         <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-          DE408433294
+          {t.impressum.ownerName}<br />
+          {t.impressum.street}<br />
+          {t.impressum.city}<br />
+          {t.impressum.country}
         </p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">
-          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
-        </h2>
-        <p>
-          Dr. Richard Rößler<br />
-          Flensburger Straße 92<br />
-          01157 Dresden<br />
-          Deutschland
-        </p>
-      </section>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.impressum.disclaimer}</h2>
 
-      <section>
-        <h2 className="font-display text-2xl text-ink mb-4">Haftungsausschluss</h2>
+        <h3 className="font-semibold text-ink mt-6 mb-2">{t.impressum.contentLiability}</h3>
+        <p>{t.impressum.contentLiabilityText}</p>
 
-        <h3 className="font-semibold text-ink mt-6 mb-2">Haftung für Inhalte</h3>
-        <p>
-          Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die
-          Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch
-          keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG
-          für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
-          verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch
-          nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-          überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-          Tätigkeit hinweisen.
-        </p>
+        <h3 className="font-semibold text-ink mt-6 mb-2">{t.impressum.linkLiability}</h3>
+        <p>{t.impressum.linkLiabilityText}</p>
 
-        <h3 className="font-semibold text-ink mt-6 mb-2">Haftung für Links</h3>
-        <p>
-          Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte
-          wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
-          keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der
-          jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-        </p>
-
-        <h3 className="font-semibold text-ink mt-6 mb-2">Urheberrecht</h3>
-        <p>
-          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-          unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
-          Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-          Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors
-          bzw. Erstellers.
-        </p>
+        <h3 className="font-semibold text-ink mt-6 mb-2">{t.impressum.copyright_}</h3>
+        <p>{t.impressum.copyrightText}</p>
       </section>
     </LegalLayout>
   );

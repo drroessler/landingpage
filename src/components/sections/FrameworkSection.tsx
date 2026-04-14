@@ -6,76 +6,47 @@ import {
   Gavel,
   Rocket,
 } from "lucide-react";
+import { useI18n } from "../../i18n/LanguageContext";
 
-const steps = [
-  {
-    num: 1,
-    icon: UsersRound,
-    title: "Vorbereiten",
-    text: "Zu Beginn fixieren wir gemeinsam Motivation, Vision und Rollen. Ein kompaktes Methoden-Training befähigt Ihre Fachexperten zur sofortigen selbstständigen Arbeit.",
-    accent: "bg-muted",
-  },
-  {
-    num: 2,
-    icon: PenLine,
-    title: "Verstehen & Konzipieren",
-    text: "Ein kleines Kernteam analysiert das Problem ganzheitlich nach dem Prinzip Mensch-Technik-Organisation. Wir trennen dabei strikt Problem von Lösung, um echte Ursachen zu finden.",
-    accent: "bg-ink-light",
-  },
-  {
-    num: 3,
-    icon: MessageSquare,
-    title: "Validieren & Schärfen",
-    text: 'Stakeholder lesen still ("Silent Reads") und geben schriftliches Feedback. Das schafft gemeinsames Verständnis und deckt blinde Flecken frühzeitig auf.',
-    accent: "bg-accent",
-  },
-  {
-    num: 4,
-    icon: Gavel,
-    title: "Evidenzbasiert Entscheiden",
-    text: "Das Management entscheidet auf Basis einer logisch fundierten und gemeinschaftlich getragenen Vorlage und beauftragt die Umsetzung.",
-    accent: "bg-accent-hover",
-  },
-  {
-    num: 5,
-    icon: Rocket,
-    title: "Systematisch Umsetzen",
-    text: "Lösungsbausteine werden in messbare Arbeitsaufgaben übersetzt. Ein strukturiertes Vorgehen sichert die Integrität bei der Übergabe an die Teams.",
-    accent: "bg-emerald-600",
-    highlight: true,
-  },
+const stepMeta = [
+  { icon: UsersRound, accent: "bg-muted", highlight: false },
+  { icon: PenLine, accent: "bg-ink-light", highlight: false },
+  { icon: MessageSquare, accent: "bg-accent", highlight: false },
+  { icon: Gavel, accent: "bg-accent-hover", highlight: false },
+  { icon: Rocket, accent: "bg-emerald-600", highlight: true },
 ];
 
 export default function FrameworkSection() {
+  const { t } = useI18n();
+
   return (
     <section id="framework" className="py-20 lg:py-28 bg-surface border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <AnimatedContent>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              Der Prozess
+              {t.framework.label}
             </span>
             <h2 className="font-display text-3xl md:text-5xl text-ink mt-3">
-              Das Narrative to Action Framework
+              {t.framework.heading}
             </h2>
             <p className="text-lg text-ink-light mt-4">
-              Vom diffusen Problem zur klaren Umsetzung. Ein wissenschaftlich
-              fundiertes Vorgehensmodell in fünf Schritten.
+              {t.framework.desc}
             </p>
           </div>
         </AnimatedContent>
 
         {/* Progress track */}
         <div className="hidden md:flex items-center max-w-5xl mx-auto mb-8 px-8">
-          {steps.map((s, i) => (
-            <div key={`track-${s.num}`} className="contents">
+          {stepMeta.map((s, i) => (
+            <div key={`track-${i}`} className="contents">
               <div className="flex flex-col items-center gap-1.5">
                 <div className={`w-3 h-3 rounded-full ${s.accent}`} />
                 <span className="text-[10px] font-semibold text-muted uppercase tracking-wider whitespace-nowrap">
-                  Schritt {s.num}
+                  {t.framework.stepLabel} {i + 1}
                 </span>
               </div>
-              {i < steps.length - 1 && (
+              {i < stepMeta.length - 1 && (
                 <div className="flex-1 h-px bg-gradient-to-r from-border to-border mx-1 mt-[-10px]" />
               )}
             </div>
@@ -83,36 +54,40 @@ export default function FrameworkSection() {
         </div>
 
         <div className="grid md:grid-cols-5 gap-5">
-          {steps.map((s, i) => (
-            <AnimatedContent key={s.num} delay={i * 0.12}>
-              <div
-                className={`relative p-6 rounded-xl border transition group h-full ${
-                  s.highlight
-                    ? "bg-emerald-50 border-emerald-200 hover:shadow-md"
-                    : "bg-white border-border hover:shadow-md"
-                }`}
-              >
+          {t.framework.steps.map((step, i) => {
+            const meta = stepMeta[i];
+            const Icon = meta.icon;
+            return (
+              <AnimatedContent key={i} delay={i * 0.12}>
                 <div
-                  className={`absolute -top-3.5 left-6 ${s.accent} text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold`}
+                  className={`relative p-6 rounded-xl border transition group h-full ${
+                    meta.highlight
+                      ? "bg-emerald-50 border-emerald-200 hover:shadow-md"
+                      : "bg-white border-border hover:shadow-md"
+                  }`}
                 >
-                  {s.num}
+                  <div
+                    className={`absolute -top-3.5 left-6 ${meta.accent} text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold`}
+                  >
+                    {i + 1}
+                  </div>
+                  <div className="mt-3">
+                    <Icon
+                      className={`w-6 h-6 mb-4 ${
+                        meta.highlight ? "text-emerald-600" : "text-muted"
+                      }`}
+                    />
+                    <h3 className="text-base font-bold text-ink mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-ink-light leading-relaxed">
+                      {step.text}
+                    </p>
+                  </div>
                 </div>
-                <div className="mt-3">
-                  <s.icon
-                    className={`w-6 h-6 mb-4 ${
-                      s.highlight ? "text-emerald-600" : "text-muted"
-                    }`}
-                  />
-                  <h3 className="text-base font-bold text-ink mb-2">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-ink-light leading-relaxed">
-                    {s.text}
-                  </p>
-                </div>
-              </div>
-            </AnimatedContent>
-          ))}
+              </AnimatedContent>
+            );
+          })}
         </div>
       </div>
     </section>

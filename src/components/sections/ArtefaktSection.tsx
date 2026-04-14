@@ -6,50 +6,26 @@ import {
   MessageCircle,
   Ruler,
 } from "lucide-react";
+import { useI18n } from "../../i18n/LanguageContext";
 
-const features = [
-  {
-    icon: ListChecks,
-    title: "Logische Kausalität",
-    text: "Kein Springen zwischen Themen. Die Struktur zwingt dazu, das Problem vollständig zu beschreiben, bevor die Lösung präsentiert wird.",
-  },
-  {
-    icon: Database,
-    title: "Ort der Wahrheit",
-    text: 'Schluss mit veralteten E-Mails und PPT-Versionen "Final_v3". Alle Stakeholder arbeiten im selben, lebenden Dokument.',
-  },
-  {
-    icon: PieChart,
-    title: "Informationsdichte",
-    text: "Sätze statt Stichpunkte. Daten werden nicht dekorativ, sondern beweisend eingebettet. Jeder Abschnitt bringt Mehrwert.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Kontextuelles Feedback",
-    text: "Kommentare stehen direkt an der Textstelle. Diskussionen werden präzise geführt und aufgelöst, statt in Meetings zu zerfasern.",
-  },
-  {
-    icon: Ruler,
-    title: "Messbare Bausteine",
-    text: "Das Ende des Narrativs ist der Anfang der Arbeit. Lösungsbausteine bereiten die Umsetzung und Nachverfolgung vor.",
-  },
-];
+const featureIcons = [ListChecks, Database, PieChart, MessageCircle, Ruler];
 
 export default function ArtefaktSection() {
+  const { t } = useI18n();
+
   return (
     <section id="artefakt" className="py-20 lg:py-28 bg-paper overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedContent>
           <div className="text-center mb-16">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              Entscheidungsgrundlage
+              {t.artefakt.label}
             </span>
             <h2 className="font-display text-3xl md:text-5xl text-ink mt-3">
-              Mehr als nur Text: Ein Werkzeug für Klarheit
+              {t.artefakt.heading}
             </h2>
             <p className="mt-4 text-ink-light max-w-2xl mx-auto">
-              Wir ersetzen statische Folien durch ein lebendes Dokument. Jeder
-              Abschnitt erfüllt eine präzise Funktion im Entscheidungsprozess.
+              {t.artefakt.desc}
             </p>
           </div>
         </AnimatedContent>
@@ -57,21 +33,24 @@ export default function ArtefaktSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Feature List */}
           <div className="space-y-8">
-            {features.map((f, i) => (
-              <AnimatedContent key={f.title} delay={i * 0.1}>
-                <div className="flex gap-4 group">
-                  <div className="shrink-0 w-12 h-12 rounded-lg bg-paper border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:border-accent/30 transition-colors">
-                    <f.icon className="w-5 h-5" />
+            {t.artefakt.features.map((f, i) => {
+              const Icon = featureIcons[i];
+              return (
+                <AnimatedContent key={f.title} delay={i * 0.1}>
+                  <div className="flex gap-4 group">
+                    <div className="shrink-0 w-12 h-12 rounded-lg bg-paper border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:border-accent/30 transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-ink text-lg">{f.title}</h4>
+                      <p className="text-ink-light text-sm mt-1 leading-relaxed">
+                        {f.text}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-ink text-lg">{f.title}</h4>
-                    <p className="text-ink-light text-sm mt-1 leading-relaxed">
-                      {f.text}
-                    </p>
-                  </div>
-                </div>
-              </AnimatedContent>
-            ))}
+                </AnimatedContent>
+              );
+            })}
           </div>
 
           {/* Right: Document Visualization */}
@@ -83,11 +62,11 @@ export default function ArtefaktSection() {
                 {/* Document Header */}
                 <div className="flex justify-between items-center mb-8 border-b border-border pb-4">
                   <h3 className="text-lg font-bold text-ink">
-                    Performance-Optimierung
+                    {t.artefakt.docTitle}
                   </h3>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-violet-100 text-violet-800">
                     <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mr-1.5 animate-pulse" />
-                    Live Doc
+                    {t.artefakt.docBadge}
                   </span>
                 </div>
 
@@ -95,7 +74,7 @@ export default function ArtefaktSection() {
                   {/* Section 1 */}
                   <div className="relative">
                     <h5 className="text-[10px] font-bold uppercase text-muted tracking-wider mb-3">
-                      1. Status Quo
+                      {t.artefakt.docSection1}
                     </h5>
                     <div className="space-y-2">
                       <div className="h-2 w-full bg-surface rounded" />
@@ -109,11 +88,11 @@ export default function ArtefaktSection() {
                           CO
                         </div>
                         <span className="font-bold text-[10px] text-rose-800">
-                          Controlling
+                          {t.artefakt.commentControlling}
                         </span>
                       </div>
                       <span className="text-[10px] leading-tight block text-ink-light">
-                        "Sind die OPEX-Einsparungen für Q3 bereits validiert?"
+                        {t.artefakt.commentControllingText}
                       </span>
                     </div>
                   </div>
@@ -121,7 +100,7 @@ export default function ArtefaktSection() {
                   {/* Section 2 */}
                   <div className="relative">
                     <h5 className="text-[10px] font-bold uppercase text-muted tracking-wider mb-3">
-                      2. Anforderungen
+                      {t.artefakt.docSection2}
                     </h5>
                     <div className="space-y-2">
                       <div className="h-2 w-full bg-surface rounded" />
@@ -146,11 +125,11 @@ export default function ArtefaktSection() {
                           IT
                         </div>
                         <span className="font-bold text-[10px] text-blue-800">
-                          CTO
+                          {t.artefakt.commentCTO}
                         </span>
                       </div>
                       <span className="text-[10px] leading-tight block text-ink-light">
-                        "Synergien zur Cloud-Strategie prüfen."
+                        {t.artefakt.commentCTOText}
                       </span>
                     </div>
                   </div>
@@ -158,7 +137,7 @@ export default function ArtefaktSection() {
                   {/* Section 3 */}
                   <div>
                     <h5 className="text-[10px] font-bold uppercase text-muted tracking-wider mb-3">
-                      3. Lösungsbausteine
+                      {t.artefakt.docSection3}
                     </h5>
                     <div className="bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-r-md shadow-sm">
                       <div className="flex justify-between items-start mb-2">
@@ -179,7 +158,7 @@ export default function ArtefaktSection() {
                 </div>
 
                 <div className="absolute bottom-4 right-8 text-[10px] text-muted/50">
-                  6 Seiten
+                  {t.artefakt.docPages}
                 </div>
               </div>
 

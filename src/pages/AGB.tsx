@@ -1,152 +1,72 @@
 import LegalLayout from "../components/LegalLayout";
+import { useI18n } from "../i18n/LanguageContext";
 
 export default function AGB() {
+  const { t } = useI18n();
+
   return (
-    <LegalLayout title="Allgemeine Geschäftsbedingungen">
+    <LegalLayout title={t.agb.title}>
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 1 Geltungsbereich</h2>
-        <p>
-          Diese Allgemeinen Geschäftsbedingungen (nachfolgend „AGB") gelten für alle
-          Geschäftsbeziehungen zwischen Dr. Richard Rößler Management Advisory,
-          Flensburger Straße 92, 01157 Dresden (nachfolgend „NarraTec" oder „wir")
-          und ihren Kunden (nachfolgend „Auftraggeber"). Maßgeblich ist die jeweils
-          zum Zeitpunkt des Vertragsschlusses gültige Fassung.
-        </p>
-        <p className="mt-4">
-          Abweichende, entgegenstehende oder ergänzende AGB des Auftraggebers werden
-          nur dann Vertragsbestandteil, wenn und soweit NarraTec ihrer Geltung
-          ausdrücklich schriftlich zugestimmt hat.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s1}</h2>
+        <p>{t.agb.s1_p1}</p>
+        <p className="mt-4">{t.agb.s1_p2}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 2 Leistungen</h2>
-        <p>
-          NarraTec erbringt Beratungsleistungen im Bereich der narrativen Strukturierung
-          von Technologieprojekten, insbesondere:
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s2}</h2>
+        <p>{t.agb.s2_intro}</p>
         <ul className="list-disc pl-6 mt-3 space-y-2">
-          <li>Narrative Discovery Workshops</li>
-          <li>Erstellung von Narrative Briefings und Stakeholder-Maps</li>
-          <li>Advisory-Begleitung für laufende IT- und Transformationsprojekte</li>
-          <li>Framework-Implementierung und Backlog-Überführung</li>
+          {t.agb.s2_items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
-        <p className="mt-4">
-          Art und Umfang der Leistungen ergeben sich aus dem jeweiligen Angebot bzw. der
-          individuellen Leistungsvereinbarung.
-        </p>
+        <p className="mt-4">{t.agb.s2_closing}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 3 Vertragsschluss</h2>
-        <p>
-          Angebote von NarraTec sind freibleibend und unverbindlich. Ein Vertrag kommt
-          erst durch schriftliche Auftragsbestätigung von NarraTec oder durch
-          tatsächliche Leistungserbringung zustande.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s3}</h2>
+        <p>{t.agb.s3_text}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 4 Vergütung und Zahlung</h2>
-        <p>
-          Die Vergütung richtet sich nach der individuellen Leistungsvereinbarung. Alle
-          Preise verstehen sich zuzüglich der gesetzlichen Umsatzsteuer.
-        </p>
-        <p className="mt-4">
-          Rechnungen sind innerhalb von 14 Tagen nach Rechnungsstellung ohne Abzug
-          zahlbar, sofern nicht anders vereinbart. Bei Zahlungsverzug gelten die
-          gesetzlichen Regelungen.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s4}</h2>
+        <p>{t.agb.s4_p1}</p>
+        <p className="mt-4">{t.agb.s4_p2}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">
-          § 5 Mitwirkungspflichten des Auftraggebers
-        </h2>
-        <p>
-          Der Auftraggeber stellt sicher, dass alle für die Leistungserbringung
-          notwendigen Informationen, Unterlagen und Zugänge rechtzeitig und
-          vollständig bereitgestellt werden. Verzögerungen, die auf mangelnde
-          Mitwirkung zurückzuführen sind, gehen nicht zulasten von NarraTec.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s5}</h2>
+        <p>{t.agb.s5_text}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 6 Vertraulichkeit</h2>
-        <p>
-          Beide Parteien verpflichten sich, sämtliche im Rahmen der Zusammenarbeit
-          erlangten vertraulichen Informationen der jeweils anderen Partei streng
-          vertraulich zu behandeln und nur für die vertraglich vereinbarten Zwecke zu
-          verwenden. Diese Verpflichtung gilt auch nach Beendigung des Vertrags fort.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s6}</h2>
+        <p>{t.agb.s6_text}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">
-          § 7 Geistiges Eigentum und Nutzungsrechte
-        </h2>
-        <p>
-          Methoden, Frameworks und Tools von NarraTec (insbesondere das NarraTec
-          Framework) verbleiben im geistigen Eigentum von NarraTec. Der Auftraggeber
-          erhält ein einfaches, nicht übertragbares Nutzungsrecht an den im Rahmen des
-          Auftrags erstellten Arbeitsergebnissen.
-        </p>
-        <p className="mt-4">
-          Die im Auftrag erstellten projektspezifischen Dokumente (Narrative Briefings,
-          Stakeholder-Maps etc.) gehen mit vollständiger Bezahlung in das Eigentum des
-          Auftraggebers über.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s7}</h2>
+        <p>{t.agb.s7_p1}</p>
+        <p className="mt-4">{t.agb.s7_p2}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">§ 8 Haftung</h2>
-        <p>
-          NarraTec haftet unbeschränkt für Schäden aus der Verletzung des Lebens, des
-          Körpers oder der Gesundheit sowie für Vorsatz und grobe Fahrlässigkeit. Bei
-          leichter Fahrlässigkeit haftet NarraTec nur bei Verletzung wesentlicher
-          Vertragspflichten, begrenzt auf den vertragstypischen, vorhersehbaren Schaden.
-        </p>
-        <p className="mt-4">
-          Die Haftung für mittelbare Schäden, insbesondere entgangenen Gewinn, ist bei
-          leichter Fahrlässigkeit ausgeschlossen.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s8}</h2>
+        <p>{t.agb.s8_p1}</p>
+        <p className="mt-4">{t.agb.s8_p2}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">
-          § 9 Vertragslaufzeit und Kündigung
-        </h2>
-        <p>
-          Die Vertragslaufzeit ergibt sich aus der jeweiligen Leistungsvereinbarung.
-          Beide Parteien können den Vertrag aus wichtigem Grund ohne Einhaltung einer
-          Frist kündigen. Eine Kündigung bedarf der Schriftform.
-        </p>
-        <p className="mt-4">
-          Bei vorzeitiger Kündigung ohne wichtigen Grund durch den Auftraggeber sind
-          bereits erbrachte Leistungen sowie nachweislich entstandene Aufwendungen zu
-          vergüten.
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s9}</h2>
+        <p>{t.agb.s9_p1}</p>
+        <p className="mt-4">{t.agb.s9_p2}</p>
       </section>
 
       <section>
-        <h2 className="font-display text-2xl text-ink mb-4">
-          § 10 Schlussbestimmungen
-        </h2>
-        <p>
-          Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand für alle
-          Streitigkeiten aus diesem Vertrag ist Dresden, sofern der Auftraggeber
-          Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches
-          Sondervermögen ist.
-        </p>
-        <p className="mt-4">
-          Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt
-          die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der
-          unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen
-          Zweck der unwirksamen Bestimmung am nächsten kommt.
-        </p>
-        <p className="mt-6 text-muted text-sm">
-          Stand: April 2026
-        </p>
+        <h2 className="font-display text-2xl text-ink mb-4">{t.agb.s10}</h2>
+        <p>{t.agb.s10_p1}</p>
+        <p className="mt-4">{t.agb.s10_p2}</p>
+        <p className="mt-6 text-muted text-sm">{t.agb.date}</p>
       </section>
     </LegalLayout>
   );

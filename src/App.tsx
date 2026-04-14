@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import ScrollToTop from "./components/ScrollToTop";
 import ContactModal from "./components/ContactModal";
 import Navbar from "./components/Navbar";
@@ -46,15 +47,15 @@ function LandingPage() {
 
 export default function App() {
   return (
-    <>
-    <ScrollToTop />
-    <ContactModal />
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/impressum" element={<Impressum />} />
-      <Route path="/datenschutz" element={<Datenschutz />} />
-      <Route path="/agb" element={<AGB />} />
-    </Routes>
-    </>
+    <LanguageProvider>
+      <ScrollToTop />
+      <ContactModal />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/datenschutz" element={<Datenschutz />} />
+        <Route path="/agb" element={<AGB />} />
+      </Routes>
+    </LanguageProvider>
   );
 }

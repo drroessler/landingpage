@@ -1,4 +1,6 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
+import { useI18n } from "../../i18n/LanguageContext";
+
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -7,64 +9,55 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-const team = [
-  {
-    name: "Dr. Richard Rößler",
-    role: "Entwickler der NarraTec-Methodik",
-    photo: "Roessler.jpeg",
-    bio: "Ich habe die Methodik strukturierter Narrative als Instrument evidenzbasierter Entscheidungsfindung entwickelt, in komplexen Unternehmensvorhaben als Narrative Owner und Methodenexperte erprobt und in wissenschaftlichen Beiträgen publiziert. Mit über 10 Jahren Erfahrung in der Steuerung komplexer IT-Vorhaben liegt meine Arbeit an der Schnittstelle von Managementforschung und konkreter Projektpraxis – mit dem Ziel, Entscheidungsqualität systematisch messbar zu machen.",
-    linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/",
-  },
-  {
-    name: "Prof. Dr. Uwe Wieland",
-    role: "Experte für digitale Transformation & Prozessoptimierung",
-    photo: "Wieland.jpeg",
-    bio: "Ich verbinde langjährige Führungserfahrung in der digitalen Transformation mit einer Leidenschaft für klare Strukturen in komplexen Vorhaben. Als Mitgründer von NarraTec bringe ich die Perspektive der Entscheidungsverantwortlichen ein – und weiß, was es bedeutet, mit unzureichenden Informationen weitreichende Entscheidungen treffen zu müssen.",
-    linkedin: "https://www.linkedin.com/in/praxisprofwieland/",
-  },
+const teamPhotos = ["Roessler.jpeg", "Wieland.jpeg"];
+const teamLinkedIn = [
+  "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/",
+  "https://www.linkedin.com/in/praxisprofwieland/",
 ];
 
 export default function TeamSection() {
+  const { t } = useI18n();
+
   return (
     <section id="about" className="py-20 lg:py-28 bg-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedContent>
           <div className="text-center mb-16">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              Team
+              {t.team.label}
             </span>
             <h2 className="font-display text-3xl md:text-5xl text-ink mt-3">
-              Wer wir sind
+              {t.team.heading}
             </h2>
             <p className="mt-4 text-ink-light">
-              Experten für faktengestützte und wirksame Entscheidungen.
+              {t.team.desc}
             </p>
           </div>
         </AnimatedContent>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {team.map((t, i) => (
-            <AnimatedContent key={t.name} delay={i * 0.15}>
+          {t.team.members.map((member, i) => (
+            <AnimatedContent key={member.name} delay={i * 0.15}>
               <div className="flex flex-col items-center text-center bg-white rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow h-full">
                 <div className="w-36 h-36 mb-6 bg-surface rounded-full overflow-hidden border-4 border-paper shadow-lg">
                   <img
-                    src={t.photo}
-                    alt={t.name}
+                    src={teamPhotos[i]}
+                    alt={member.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <h3 className="text-2xl font-display text-ink mb-1">
-                  {t.name}
+                  {member.name}
                 </h3>
                 <p className="text-accent font-medium text-sm mb-4">
-                  {t.role}
+                  {member.role}
                 </p>
                 <p className="text-ink-light leading-relaxed mb-6 text-sm">
-                  {t.bio}
+                  {member.bio}
                 </p>
                 <div className="flex gap-4 mt-auto">
                   <a
-                    href={t.linkedin}
+                    href={teamLinkedIn[i]}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted hover:text-accent transition-colors"

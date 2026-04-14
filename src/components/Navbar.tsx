@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, Layers } from "lucide-react";
 import { openContactModal } from "./ContactModal";
+import { useI18n } from "../i18n/LanguageContext";
 
 function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -14,13 +15,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { lang, setLang, t } = useI18n();
 
   const links = [
-    { id: "methode", label: "Methode" },
-    { id: "framework", label: "Prozess" },
-    { id: "szenarien", label: "Cases" },
-    { id: "angebot", label: "Angebot" },
-    { id: "about", label: "Team" },
+    { id: "methode", label: t.nav.methode },
+    { id: "framework", label: t.nav.prozess },
+    { id: "szenarien", label: t.nav.cases },
+    { id: "angebot", label: t.nav.angebot },
+    { id: "about", label: t.nav.team },
   ];
 
   const handleNav = useCallback(
@@ -72,12 +74,35 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex">
+          <div className="hidden md:flex items-center gap-4">
+            {/* Language Toggle */}
+            <div className="flex items-center border border-border rounded-md overflow-hidden text-xs font-semibold">
+              <button
+                onClick={() => setLang("de")}
+                className={`px-2.5 py-1.5 transition-colors cursor-pointer ${
+                  lang === "de"
+                    ? "bg-ink text-white"
+                    : "text-muted hover:text-ink"
+                }`}
+              >
+                DE
+              </button>
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2.5 py-1.5 transition-colors cursor-pointer ${
+                  lang === "en"
+                    ? "bg-ink text-white"
+                    : "text-muted hover:text-ink"
+                }`}
+              >
+                EN
+              </button>
+            </div>
             <button
               onClick={openContactModal}
               className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer rounded-md"
             >
-              Erstgespräch vereinbaren
+              {t.nav.cta}
             </button>
           </div>
 
@@ -103,11 +128,36 @@ export default function Navbar() {
                 {l.label}
               </button>
             ))}
+            {/* Mobile Language Toggle */}
+            <div className="flex items-center gap-2 px-3 py-2.5">
+              <div className="flex items-center border border-border rounded-md overflow-hidden text-xs font-semibold">
+                <button
+                  onClick={() => setLang("de")}
+                  className={`px-3 py-1.5 transition-colors cursor-pointer ${
+                    lang === "de"
+                      ? "bg-ink text-white"
+                      : "text-muted hover:text-ink"
+                  }`}
+                >
+                  DE
+                </button>
+                <button
+                  onClick={() => setLang("en")}
+                  className={`px-3 py-1.5 transition-colors cursor-pointer ${
+                    lang === "en"
+                      ? "bg-ink text-white"
+                      : "text-muted hover:text-ink"
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
             <button
               onClick={() => { setOpen(false); openContactModal(); }}
               className="block w-full mt-3 text-center bg-accent text-white px-6 py-2.5 text-sm font-semibold cursor-pointer rounded-md"
             >
-              Erstgespräch vereinbaren
+              {t.nav.cta}
             </button>
           </div>
         </div>

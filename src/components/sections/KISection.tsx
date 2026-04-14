@@ -8,41 +8,13 @@ import {
   SlidersHorizontal,
   User,
 } from "lucide-react";
+import { useI18n } from "../../i18n/LanguageContext";
 
-const phases = [
-  {
-    icon: Mic,
-    phase: "Vorbereiten",
-    title: "Workshop-Dokumentation",
-    text: "KI-gestützte Transkription und Zusammenfassung von Workshops – oder klassische Arbeit am Whiteboard mit Protokoll. Was für das Team und den Anwendungsfall adäquat ist, entscheidet der Narrative Owner.",
-  },
-  {
-    icon: PenLine,
-    phase: "Verstehen & Konzipieren",
-    title: "Narrativ-Erstellung",
-    text: "Überwindung des leeren Blatts: Lose Gedanken werden in stichhaltige Formulierungen überführt, Inhalte gestrafft und Füllsätze eliminiert. KI liefert Entwürfe, die Ihre Experten direkt veredeln.",
-  },
-  {
-    icon: SearchCheck,
-    phase: "Validieren & Schärfen",
-    title: "Qualitätssicherung",
-    text: "KI prüft die Root-Cause-Analyse auf Effektivität, die Argumentationen auf Stichhaltigkeit und die Anforderungsdefinitionen auf Vollständigkeit – als zweite Perspektive neben dem Stakeholder-Review.",
-  },
-  {
-    icon: BrainCircuit,
-    phase: "Entscheiden",
-    title: "Entscheidungsvorbereitung",
-    text: "KI-basierte Konsistenzprüfung der Entscheidungsvorlage über alle Abschnitte hinweg: Passen Zielbild, Lösungsbausteine und Finanzierung zusammen? Gibt es Widersprüche oder Lücken?",
-  },
-  {
-    icon: ListChecks,
-    phase: "Umsetzen",
-    title: "Ableitung der Arbeitspakete",
-    text: "KI erstellt Aufgabenbeschreibungen und Akzeptanzkriterien aus den Analyseergebnissen. Lösungsbausteine werden in strukturierte Epics und User Stories überführt.",
-  },
-];
+const phaseIcons = [Mic, PenLine, SearchCheck, BrainCircuit, ListChecks];
 
 export default function KISection() {
+  const { t } = useI18n();
+
   return (
     <section id="ki" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,17 +22,15 @@ export default function KISection() {
         <AnimatedContent>
           <div className="text-center mb-16">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              KI im Prozess
+              {t.ki.label}
             </span>
             <h2 className="font-display text-3xl md:text-5xl text-ink mt-3">
-              Intelligente Unterstützung.{" "}
+              {t.ki.headingA}{" "}
               <br className="hidden md:block" />
-              Menschliche Entscheidung.
+              {t.ki.headingB}
             </h2>
             <p className="mt-4 text-lg text-ink-light max-w-2xl mx-auto">
-              Generative KI beschleunigt jeden Schritt des Frameworks – genau
-              dort, wo sie Mehrwert stiftet. Intensität und Einsatz richten sich
-              nach Ihrem Anwendungsfall und Ihrem Team.
+              {t.ki.desc}
             </p>
           </div>
         </AnimatedContent>
@@ -71,53 +41,52 @@ export default function KISection() {
             <div className="flex items-center gap-3 mb-5">
               <SlidersHorizontal className="w-5 h-5 text-accent shrink-0" />
               <p className="text-sm font-semibold text-ink">
-                KI-Intensität nach Bedarf
+                {t.ki.intensityTitle}
               </p>
             </div>
             <div className="relative">
               <div className="h-2 rounded-full bg-border" />
               <div className="h-2 rounded-full bg-gradient-to-r from-border via-accent/40 to-accent absolute inset-0" style={{ clipPath: "inset(0 25% 0 0)" }} />
               <div className="flex justify-between mt-3">
-                <span className="text-xs text-muted">Klassisch</span>
-                <span className="text-xs text-muted">Hybrid</span>
-                <span className="text-xs text-muted">KI-gestützt</span>
+                <span className="text-xs text-muted">{t.ki.scaleClassic}</span>
+                <span className="text-xs text-muted">{t.ki.scaleHybrid}</span>
+                <span className="text-xs text-muted">{t.ki.scaleAI}</span>
               </div>
             </div>
             <p className="text-sm text-ink-light mt-5 leading-relaxed">
-              Manche Teams arbeiten am liebsten am Whiteboard mit klassischem
-              Protokoll. Andere nutzen KI von der ersten Minute an. Der Prozess
-              ist bewusst als Teilautomatisierung konzipiert – an definierten
-              Quality Gates fließt immer das Feedback und das Wissen Ihrer
-              Experten ein.
+              {t.ki.intensityDesc}
             </p>
           </div>
         </AnimatedContent>
 
         {/* Phase Cards + Human-in-the-Loop as 6th card */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {phases.map((p, i) => (
-            <AnimatedContent key={p.phase} delay={i * 0.1}>
-              <div className="bg-paper rounded-xl border border-border p-6 md:p-8 h-full group hover:border-accent/20 transition-colors duration-300">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
-                    <p.icon className="w-4 h-4 text-accent" />
+          {t.ki.phases.map((p, i) => {
+            const Icon = phaseIcons[i];
+            return (
+              <AnimatedContent key={i} delay={i * 0.1}>
+                <div className="bg-paper rounded-xl border border-border p-6 md:p-8 h-full group hover:border-accent/20 transition-colors duration-300">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/15 transition-colors">
+                      <Icon className="w-4 h-4 text-accent" />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                      {p.phase}
+                    </span>
                   </div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-muted">
-                    {p.phase}
-                  </span>
+                  <h3 className="font-semibold text-ink text-lg mb-3">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-ink-light leading-relaxed">
+                    {p.text}
+                  </p>
                 </div>
-                <h3 className="font-semibold text-ink text-lg mb-3">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-ink-light leading-relaxed">
-                  {p.text}
-                </p>
-              </div>
-            </AnimatedContent>
-          ))}
+              </AnimatedContent>
+            );
+          })}
 
           {/* 6th card: Human-in-the-Loop */}
-          <AnimatedContent delay={phases.length * 0.1}>
+          <AnimatedContent delay={t.ki.phases.length * 0.1}>
             <div className="bg-navy rounded-xl p-6 md:p-8 h-full flex flex-col">
               <div className="flex items-center gap-1 mb-4 shrink-0">
                 <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
@@ -128,14 +97,10 @@ export default function KISection() {
                 </div>
               </div>
               <h3 className="font-semibold text-white text-lg mb-3">
-                Ihre Experten bleiben im Lead.
+                {t.ki.humanTitle}
               </h3>
               <p className="text-navy-muted text-sm leading-relaxed">
-                KI generiert Entwürfe, prüft Konsistenz und beschleunigt
-                Routineaufgaben. Aber jede inhaltliche Entscheidung, jede
-                Priorisierung und jede Freigabe liegt bei Ihren Fachexperten
-                und Stakeholdern. Technologie ersetzt kein Urteilsvermögen –
-                sie macht es wirksamer.
+                {t.ki.humanText}
               </p>
             </div>
           </AnimatedContent>

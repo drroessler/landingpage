@@ -1,8 +1,11 @@
 import { Layers, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { openContactModal } from "../ContactModal";
+import { useI18n } from "../../i18n/LanguageContext";
 
 export default function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer id="kontakt" className="bg-navy text-navy-muted py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,8 +16,7 @@ export default function Footer() {
               <span className="font-display text-xl text-white">NarraTec</span>
             </div>
             <p className="mb-6 max-w-md leading-relaxed">
-              Lassen Sie uns darüber sprechen, wie wir Ihre nächste
-              Herausforderung strukturiert lösen.
+              {t.footer.text}
             </p>
             <button
               onClick={openContactModal}
@@ -25,28 +27,28 @@ export default function Footer() {
             </button>
           </div>
           <div className="md:text-right">
-            <h4 className="text-white font-semibold mb-4">Rechtliches</h4>
+            <h4 className="text-white font-semibold mb-4">{t.footer.legal}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/impressum" className="hover:text-white transition-colors text-sm">
-                  Impressum
+                  {t.footer.impressum}
                 </Link>
               </li>
               <li>
                 <Link to="/datenschutz" className="hover:text-white transition-colors text-sm">
-                  Datenschutz
+                  {t.footer.datenschutz}
                 </Link>
               </li>
               <li>
                 <Link to="/agb" className="hover:text-white transition-colors text-sm">
-                  AGB
+                  {t.footer.agb}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
         <div className="border-t border-white/10 mt-12 pt-8 text-sm text-center md:text-left">
-          &copy; {new Date().getFullYear()} NarraTec. Alle Rechte vorbehalten.
+          &copy; {new Date().getFullYear()} NarraTec. {t.footer.copyright}
         </div>
       </div>
     </footer>
