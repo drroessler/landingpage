@@ -13,7 +13,7 @@ export const en: Translations = {
   hero: {
     h1a: "Your experts have the answers.",
     h1b: "We give them the structure.",
-    sub: "Your next technology initiative gets approved, supported, and delivered — because everyone truly understood the problem.",
+    sub: "Your next technology initiative gets approved, supported, and delivered. Because everyone truly understood the problem.",
     cta: "Book a Call",
     proofLabel: "Scientifically grounded",
     hmdAlt: "HMD Business Information Systems",
@@ -23,6 +23,11 @@ export const en: Translations = {
     prereadTitle: "\"Narrative-to-Action: A framework for translating into agile backlog items\"",
     prereadAction: "Read pre-print",
     prereadBadge: "Pre-Read",
+    phases: [
+      { text: "Their knowledge stays unheard.", label: "Problem" },
+      { text: "We give it structure.", label: "Solution" },
+      { text: "You create business value.", label: "Outcome" },
+    ],
   },
 
   problem: {

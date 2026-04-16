@@ -1,4 +1,4 @@
-import NetworkBackground from "../NetworkBackground";
+import MorphingHeadline from "../MorphingHeadline";
 import { ArrowRight } from "lucide-react";
 import { openContactModal } from "../ContactModal";
 import { useI18n } from "../../i18n/LanguageContext";
@@ -8,25 +8,19 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 overflow-hidden">
-      {/* Network Background */}
-      <div className="absolute inset-0 -z-10">
-        <NetworkBackground
-          nodeCount={70}
-          connectionDistance={140}
-          speed={0.25}
-        />
-      </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-paper/30 via-transparent to-paper" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1>
           <span className="block font-display text-4xl md:text-6xl lg:text-7xl text-ink tracking-tight leading-[1.1]">
             {t.hero.h1a}
           </span>
-          <span className="block font-display text-4xl md:text-6xl lg:text-7xl text-accent tracking-tight leading-[1.1] mt-2">
-            {t.hero.h1b}
-          </span>
         </h1>
+
+        <div className="mt-3">
+          <MorphingHeadline
+            phases={t.hero.phases}
+            className="font-display text-3xl md:text-6xl lg:text-7xl text-accent tracking-tight leading-[1.1]"
+          />
+        </div>
 
         <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-ink-light leading-relaxed">
           {t.hero.sub}

@@ -5,14 +5,14 @@ export const de = {
     cases: "Cases",
     angebot: "Angebot",
     team: "Team",
-    cta: "Erstgespräch vereinbaren",
+    cta: "Gespräch vereinbaren",
   },
 
   hero: {
     h1a: "Ihre Experten haben die Antworten.",
     h1b: "Wir geben ihnen die Struktur.",
-    sub: "Ihr nächstes Technologieprojekt wird genehmigt, getragen und umgesetzt — weil alle das Problem wirklich verstanden haben.",
-    cta: "Erstgespräch vereinbaren",
+    sub: "Ihr nächstes Technologieprojekt wird genehmigt, getragen und umgesetzt. Weil alle das Problem wirklich verstanden haben.",
+    cta: "Gespräch vereinbaren",
     proofLabel: "Wissenschaftlich fundiert",
     hmdAlt: "HMD Praxis der Wirtschaftsinformatik",
     studyTitle: "\"Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative\"",
@@ -21,6 +21,11 @@ export const de = {
     prereadTitle: "\"Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items\"",
     prereadAction: "Vorabversion lesen",
     prereadBadge: "Pre-Read",
+    phases: [
+      { text: "Ihr Wissen bleibt ungehört.", label: "Problem" },
+      { text: "Wir geben ihnen Struktur.", label: "Lösung" },
+      { text: "Sie schaffen Unternehmenswert.", label: "Ergebnis" },
+    ],
   },
 
   problem: {
