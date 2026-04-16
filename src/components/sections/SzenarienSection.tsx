@@ -1,28 +1,9 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
 import SpotlightCard from "../react-bits/SpotlightCard";
-import { Crown, Handshake, Ambulance, Check } from "lucide-react";
+import { Compass, Handshake, LifeBuoy, Check } from "lucide-react";
 import { useI18n } from "../../i18n/LanguageContext";
 
-const caseMeta = [
-  {
-    icon: Crown,
-    iconBg: "bg-blue-50",
-    iconColor: "text-blue-600",
-    hoverIconBg: "group-hover:bg-blue-600 group-hover:text-white",
-  },
-  {
-    icon: Handshake,
-    iconBg: "bg-indigo-50",
-    iconColor: "text-indigo-600",
-    hoverIconBg: "group-hover:bg-indigo-600 group-hover:text-white",
-  },
-  {
-    icon: Ambulance,
-    iconBg: "bg-rose-50",
-    iconColor: "text-rose-600",
-    hoverIconBg: "group-hover:bg-rose-600 group-hover:text-white",
-  },
-];
+const caseIcons = [Compass, Handshake, LifeBuoy];
 
 export default function SzenarienSection() {
   const { t } = useI18n();
@@ -46,19 +27,16 @@ export default function SzenarienSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {t.szenarien.cases.map((c, i) => {
-            const meta = caseMeta[i];
-            const Icon = meta.icon;
+            const Icon = caseIcons[i];
             return (
               <AnimatedContent key={c.title} delay={i * 0.15}>
                 <SpotlightCard
-                  className="rounded-2xl border border-border bg-surface p-8 h-full group"
+                  className="rounded-2xl border border-border bg-surface p-8 h-full group transition-colors hover:border-accent/40"
                   spotlightColor="rgba(185, 28, 28, 0.08)"
                 >
                   <div className="relative z-10">
-                    <div
-                      className={`w-14 h-14 ${meta.iconBg} ${meta.iconColor} rounded-xl flex items-center justify-center mb-6 transition-colors ${meta.hoverIconBg}`}
-                    >
-                      <Icon className="w-6 h-6" />
+                    <div className="w-14 h-14 bg-accent-light text-accent rounded-xl flex items-center justify-center mb-6 transition-colors group-hover:bg-accent group-hover:text-white">
+                      <Icon className="w-6 h-6" strokeWidth={1.75} />
                     </div>
                     <h3 className="text-xl font-bold text-ink mb-3">{c.title}</h3>
                     <p className="text-ink-light text-sm leading-relaxed mb-4">
@@ -66,9 +44,9 @@ export default function SzenarienSection() {
                     </p>
                     <ul className="text-sm text-muted space-y-2">
                       {c.checks.map((ch) => (
-                        <li key={ch} className="flex items-center">
-                          <Check className="w-4 h-4 text-emerald-500 mr-2 shrink-0" />
-                          {ch}
+                        <li key={ch} className="flex items-start">
+                          <Check className="w-4 h-4 text-accent/80 mr-2 mt-0.5 shrink-0" strokeWidth={2.5} />
+                          <span>{ch}</span>
                         </li>
                       ))}
                     </ul>

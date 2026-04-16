@@ -5,9 +5,9 @@ export default function PullQuote() {
   const { t } = useI18n();
 
   return (
-    <section className="py-16 lg:py-24 bg-paper relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-surface relative overflow-hidden border-y border-border">
       {/* Decorative oversized quote mark */}
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-border/40 font-display text-[12rem] leading-none select-none pointer-events-none" aria-hidden="true">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-accent/15 font-display text-[14rem] leading-none select-none pointer-events-none" aria-hidden="true">
         {"\u201E"}
       </div>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

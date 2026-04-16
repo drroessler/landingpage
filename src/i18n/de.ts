@@ -47,7 +47,7 @@ export const de = {
       {
         num: "03",
         title: "Death by PowerPoint",
-        text: "Meetings verkommen zu Frontalbeschallung. Komplexe Probleme werden durch Stichpunkte trivialisiert, kritisches Denken wird unterdrückt.",
+        text: "Meetings bieten keinen Raum für echten Diskurs. Komplexe Probleme werden durch Stichpunkte trivialisiert, kritisches Denken wird unterdrückt.",
         result: "Scheinentscheidungen statt Klarheit",
       },
       {
@@ -127,8 +127,8 @@ export const de = {
         text: "Kein Springen zwischen Themen. Die Struktur zwingt dazu, das Problem vollständig zu beschreiben, bevor die Lösung präsentiert wird.",
       },
       {
-        title: "Ort der Wahrheit",
-        text: "Schluss mit veralteten E-Mails und PPT-Versionen \"Final_v3\". Alle Stakeholder arbeiten im selben, lebenden Dokument.",
+        title: "Single Source of Truth",
+        text: "Macht unübersichtlichen E-Mail-Ketten und redundanten Versionsverläufen ein Ende. Alle Stakeholder arbeiten im selben, lebenden Dokument.",
       },
       {
         title: "Informationsdichte",
@@ -263,30 +263,30 @@ export const de = {
   szenarien: {
     label: "Einsatzgebiete",
     heading: "Wo die Methode wirkt",
-    desc: "Nicht jedes Problem braucht ein Narrativ. Aber dort, wo Komplexität auf Umsetzungsdruck trifft, ist unser Vorgehen unschlagbar.",
+    desc: "Überall dort, wo Komplexität auf Umsetzungsdruck trifft und Entscheidungen breit getragen werden müssen.",
     cases: [
       {
         title: "Strategische Transformation",
-        text: "Große Veränderungen scheitern oft an unklaren Zielen. Nutzen Sie die Methode, um komplexe Vorhaben (z.B. Reorganisationen, neue Geschäftsmodelle) wasserdicht zu planen.",
+        text: "Reorganisationen, neue Geschäftsmodelle oder Plattformwechsel scheitern selten an der Technologie – sondern an unklaren Zielen und mangelndem Alignment. Das Narrativ schafft die gemeinsame Entscheidungsgrundlage vor dem ersten Investitionsschritt.",
         checks: [
-          "Stakeholder-Alignment vor Projektstart",
-          "Sicherung von Budget & Ressourcen",
+          "Belastbares Stakeholder-Alignment vor Projektstart",
+          "Tragfähige Grundlage für Budget- und Ressourcenfreigaben",
         ],
       },
       {
         title: "Technical Sales",
-        text: "Ersetzen Sie Standard-Pitches durch Co-Creation. Erarbeiten Sie gemeinsam mit dem Kunden ein Narrativ, das dessen Problem besser beschreibt, als er es selbst könnte.",
+        text: "Im komplexen Lösungsvertrieb entscheidet die Tiefe des Problemverständnisses über den Abschluss. Statt eines Standard-Pitches entsteht im Co-Creation-Format mit dem Kunden ein Narrativ, das seine Situation präziser beschreibt als jede vorbereitete Präsentation.",
         checks: [
-          "Vertrauen durch tiefes Verständnis",
-          "Maßgeschneiderte Lösungsbausteine",
+          "Vertrauen durch nachweisliches Tiefenverständnis",
+          "Lösungsarchitektur entlang realer Anforderungen",
         ],
       },
       {
-        title: "Task-Forces & Krisen",
-        text: "Wenn es brennt, hilft kein Aktionismus, sondern kühle Analyse. Das Format zwingt das Krisenteam, einen Schritt zurückzutreten und die wahre Root-Cause zu finden.",
+        title: "Task-Forces & kritische Lagen",
+        text: "In Krisensituationen dominiert oft der Reflex zur sofortigen Maßnahme. Die strukturierte Analyse zwingt das Team, vor der Reaktion die tatsächliche Ursache zu identifizieren und Handlungsoptionen sauber zu bewerten.",
         checks: [
-          "Systematische Ursachenforschung",
-          "Fokussierung auf wirksame Maßnahmen",
+          "Belastbare Ursachenanalyse statt Symptombehandlung",
+          "Priorisierte, wirksame Gegenmaßnahmen",
         ],
       },
     ],
@@ -311,8 +311,8 @@ export const de = {
 
   praxis: {
     label: "Aus der Praxis",
-    heading: "Drei echte Anwendungsfälle.",
-    desc: "Die Methode wird regelmäßig in anspruchsvollen Unternehmenssettings eingesetzt.",
+    heading: "Drei Beispiele aus realen Unternehmensvorhaben.",
+    desc: "Eingesetzt in Fachbereichen bis hin zu komplexen Konzernumfeldern – über Hierarchien und Bereichsgrenzen hinweg.",
     ausgangslageLabel: "Ausgangslage",
     vorgehenLabel: "Vorgehen",
     ergebnisLabel: "Ergebnis",
@@ -320,25 +320,25 @@ export const de = {
       {
         tag: "Fall 1 · Transformation",
         title: "Reorganisation Shopfloor-IT",
-        ausgangslage: "Teams aus Werks-IT, Marken-IT, zentraler IT und Fachbereichen sollten IT-Architektur und IT-Organisation im Produktionsumfeld gemeinsam neu ausrichten – arbeiteten aber mit unterschiedlichen Prioritäten, Zeithorizonten und Fachsprachen.",
-        vorgehen: "Die Methode erzwang eine konsequente Ursachenanalyse aus menschlicher, organisatorischer und technischer Perspektive. Strikte Trennung von Problem und Lösung verhinderte vorschnelle Fixierung auf isolierte Ansätze. Ein Nordstern-Narrativ schuf teamübergreifende Orientierung, abgeleitete Fokus-Narrative machten die Arbeit in den einzelnen Bereichen steuerbar. Die Umstellung auf das Scaled Agile Framework (SAFe) führte zur Neuformation von Teams und geänderten Arbeitsweisen. Das Narrativ wurde nach ersten Feedbackschleifen iterativ angepasst.",
-        ergebnis: "Gemeinsam getragene Zielarchitektur. Umsetzung in agiler Produktorganisation mit zweistelliger Anzahl an Teams. Risikoreduzierte, phasenweise Budgetierung.",
-        outcome: "Risikoreduzierte Budgetierung",
+        ausgangslage: "IT-Architektur und Organisation im Produktionsumfeld sollten gemeinsam von IT und Fachbereichen neu ausgerichtet werden – bei unterschiedlichen Prioritäten, Zeithorizonten und Fachsprachen der Beteiligten.",
+        vorgehen: "Konsequente Ursachenanalyse aus menschlicher, organisatorischer und technischer Perspektive. Die strikte Trennung von Problem und Lösung verhinderte vorschnelle Festlegungen. Ein übergeordnetes Nordstern-Narrativ schuf teamübergreifende Orientierung, abgeleitete Fokus-Narrative machten die Arbeit in den einzelnen Bereichen steuerbar. Auf dieser Grundlage erfolgte die Umstellung auf das Scaled Agile Framework (SAFe) mit zugehöriger Budgetierung.",
+        ergebnis: "Gemeinsam getragene Zielarchitektur. Umsetzung in einer agilen Produktorganisation mit zweistelliger Teamanzahl. Phasenweise Budgetierung mit klar definierten Entscheidungspunkten.",
+        outcome: "Phasenweise Budgetierung",
       },
       {
         tag: "Fall 2 · Governance",
         title: "Open-Source-Freigabeprozess",
-        ausgangslage: "Ein träges Open-Source-Freigabeverfahren bremste die Softwarelieferung. Drei Teams – Rechtswesen, Entwicklung und Open Source Office – optimierten jeweils lokal, ohne ein gemeinsames Problemverständnis zu entwickeln.",
-        vorgehen: "Die Methode brachte alle drei Gruppen gleichberechtigt an einen Tisch. Das strukturierte Narrativ deckte neben technischen auch organisatorische und menschliche Ursachen auf – Zusammenhänge, die bei isolierter Betrachtung unsichtbar geblieben wären.",
-        ergebnis: "Ganzheitliches Zielbild statt Insellösungen. Die gemeinschaftlich getragene Lösung führte zu erheblicher Beschleunigung der Freigabedauern.",
-        outcome: "Erhebliche Beschleunigung",
+        ausgangslage: "Ein langsamer Freigabeprozess bremste die Softwareauslieferung spürbar. Rechtswesen, Entwicklung und Open Source Office optimierten jeweils isoliert – ohne gemeinsames Verständnis der eigentlichen Engpässe.",
+        vorgehen: "Die Methode brachte alle drei Bereiche gleichberechtigt zusammen. Das strukturierte Narrativ machte neben technischen auch organisatorische und prozessuale Ursachen sichtbar – Wechselwirkungen, die bei isolierter Betrachtung verborgen geblieben wären.",
+        ergebnis: "Ein bereichsübergreifendes Zielbild ersetzte die zuvor parallelen Insellösungen. Die gemeinsam erarbeitete Lösung verkürzte die Freigabedauern erheblich.",
+        outcome: "Verkürzte Freigabedauer",
       },
       {
         tag: "Fall 3 · Strategische IT",
-        title: "KI-Liefermodell",
-        ausgangslage: "Zentrale IT, mehrere Markendomänen und Business Partner Management sollten gemeinsam ein Liefermodell für KI-Softwareprodukte entwickeln – über Hierarchieebenen hinweg, mit teils widersprüchlichen Anforderungen.",
-        vorgehen: "Die Methode strukturierte das Narrativ entlang der Phasen des Produktlebenszyklus und machte den Zielkonflikt zwischen Gründlichkeit und Geschwindigkeit bei hoher Stakeholderanzahl steuerbar. Die Komplexität führte zu thematisch heterogenen Lösungsbausteinen – von technischen Implementierungen bis zum Community-Aufbau.",
-        ergebnis: "Transparenz über erforderliche Handlungsfelder bei hoher Organisationskomplexität. Modulare Umsetzung der heterogenen Lösungsbausteine.",
+        title: "Liefermodell für KI-Produkte",
+        ausgangslage: "Zentrale IT, mehrere Markendomänen und Business Partner Management sollten ein gemeinsames Liefermodell für KI-Softwareprodukte etablieren – über Hierarchieebenen hinweg und mit teils widersprüchlichen Anforderungen.",
+        vorgehen: "Strukturierung des Narrativs entlang des Produktlebenszyklus. Der Zielkonflikt zwischen Gründlichkeit und Liefergeschwindigkeit wurde bei hoher Stakeholder-Anzahl steuerbar. Aus der Analyse leiteten sich heterogene Lösungsbausteine ab – von technischer Plattformentwicklung bis zum Aufbau einer fachlichen Community.",
+        ergebnis: "Transparenz über die erforderlichen Handlungsfelder bei hoher Organisationskomplexität. Modulare Umsetzung der Lösungsbausteine entlang priorisierter Wirkungspfade.",
         outcome: "Konsensfähiges Zielmodell",
       },
     ],
