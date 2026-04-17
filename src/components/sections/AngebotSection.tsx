@@ -62,7 +62,7 @@ export default function AngebotSection() {
                   </ul>
                   <button
                     onClick={openContactModal}
-                    className={`block w-full text-center py-2.5 text-sm font-semibold transition mt-auto cursor-pointer ${
+                    className={`block w-full text-center py-2.5 text-sm font-semibold transition mt-auto cursor-pointer rounded-md ${
                       meta.highlight
                         ? "bg-accent text-white hover:bg-accent-hover"
                         : "border border-border text-ink hover:border-ink/30 hover:bg-surface"

@@ -318,6 +318,9 @@ export const en: Translations = {
     ausgangslageLabel: "Starting Point",
     vorgehenLabel: "Approach",
     ergebnisLabel: "Result",
+    contactHeading: "Want deeper insight into these cases or a comparable use case?",
+    contactDesc: "We're happy to share further detail on the cases above and discuss how the method transfers to your initiative.",
+    contactCta: "Get in touch",
     cases: [
       {
         tag: "Case 1 · Transformation",

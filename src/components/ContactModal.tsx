@@ -212,7 +212,7 @@ export default function ContactModal() {
                     required
                     value={form.land}
                     onChange={(e) => update("land", e.target.value)}
-                    className={`flex-1 border-b border-border bg-transparent py-2.5 text-sm focus:outline-none focus:border-ink transition-colors appearance-none cursor-pointer ${
+                    className={`flex-1 border border-border rounded-md bg-transparent px-3 py-2.5 text-sm focus:outline-none focus:border-ink transition-colors appearance-none cursor-pointer ${
                       form.land ? "text-ink" : "text-muted"
                     }`}
                   >
@@ -238,7 +238,7 @@ export default function ContactModal() {
                     value={form.nachricht}
                     onChange={(e) => update("nachricht", e.target.value)}
                     placeholder={t.contact.messagePlaceholder}
-                    className="flex-1 border-b border-border bg-transparent py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors resize-y"
+                    className="flex-1 border border-border rounded-md bg-transparent px-3 py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors resize-y"
                   />
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function ContactModal() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="inline-flex items-center gap-2 bg-surface text-muted hover:bg-accent hover:text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-2 bg-surface text-muted hover:bg-accent hover:text-white px-6 py-2.5 text-sm font-semibold tracking-wide transition-colors cursor-pointer disabled:opacity-50 rounded-md"
                 >
                   {sending ? t.contact.sending : t.contact.send}
                   <ArrowRight className="w-4 h-4" />
@@ -311,7 +311,7 @@ function FormField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 border-b border-border bg-transparent py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors"
+        className="flex-1 border border-border rounded-md bg-transparent px-3 py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none focus:border-ink transition-colors"
       />
     </div>
   );

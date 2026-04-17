@@ -23,7 +23,7 @@ export const de = {
     prereadBadge: "Pre-Read",
     phases: [
       { text: "Ihr Wissen bleibt ungehört.", label: "Problem" },
-      { text: "Wir geben ihnen Struktur.", label: "Lösung" },
+      { text: "Wir geben ihnen die Struktur.", label: "Lösung" },
       { text: "Sie schaffen Unternehmenswert.", label: "Ergebnis" },
     ],
   },
@@ -316,6 +316,9 @@ export const de = {
     ausgangslageLabel: "Ausgangslage",
     vorgehenLabel: "Vorgehen",
     ergebnisLabel: "Ergebnis",
+    contactHeading: "Weitere Details oder einen vergleichbaren Anwendungsfall besprechen?",
+    contactDesc: "Wir geben Ihnen gerne tiefere Einblicke in die genannten Fälle und diskutieren, wie die Methode auf Ihr Vorhaben übertragbar ist.",
+    contactCta: "Kontakt aufnehmen",
     cases: [
       {
         tag: "Fall 1 · Transformation",

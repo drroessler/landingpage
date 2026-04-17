@@ -1,6 +1,7 @@
 import AnimatedContent from "../react-bits/AnimatedContent";
-import { GitBranch, Bot, Factory, ArrowUpRight } from "lucide-react";
+import { GitBranch, Bot, Factory, ArrowUpRight, ArrowRight } from "lucide-react";
 import { useI18n } from "../../i18n/LanguageContext";
+import { openContactModal } from "../ContactModal";
 
 const caseIcons = [Factory, GitBranch, Bot];
 
@@ -80,6 +81,26 @@ export default function PraxisSection() {
             );
           })}
         </div>
+
+        <AnimatedContent delay={0.2}>
+          <div className="mt-12 bg-paper rounded-xl border border-border px-6 py-8 sm:px-10 sm:py-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+            <div className="flex-1">
+              <h3 className="font-display text-xl md:text-2xl text-ink leading-snug">
+                {t.praxis.contactHeading}
+              </h3>
+              <p className="mt-2 text-sm text-ink-light leading-relaxed">
+                {t.praxis.contactDesc}
+              </p>
+            </div>
+            <button
+              onClick={openContactModal}
+              className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 text-sm font-semibold hover:bg-accent-hover transition cursor-pointer shrink-0 rounded-md"
+            >
+              {t.praxis.contactCta}
+              <ArrowRight className="w-4 h-4" strokeWidth={2} />
+            </button>
+          </div>
+        </AnimatedContent>
       </div>
     </section>
   );
