@@ -11,7 +11,7 @@ export const de = {
   hero: {
     h1a: "Ihre Experten haben die Antworten.",
     h1b: "Wir geben ihnen die Struktur.",
-    sub: "Ihr nächstes Technologieprojekt wird genehmigt, getragen und umgesetzt. Weil alle das Problem wirklich verstanden haben.",
+    sub: "Ihr nächstes Technologieprojekt wird genehmigt, getragen und umgesetzt. Weil alle Beteiligten das Problem vollständig durchdrungen haben.",
     cta: "Gespräch vereinbaren",
     proofLabel: "Wissenschaftlich fundiert",
     hmdAlt: "HMD Praxis der Wirtschaftsinformatik",
@@ -54,7 +54,7 @@ export const de = {
         num: "04",
         title: "Implementierungslücke",
         text: "Getroffene Entscheidungen versanden. Es gibt keine klare Übersetzung in operative Maßnahmenlisten oder Finanzierungsmodelle.",
-        result: "Investitionen verpuffen wirkungslos",
+        result: "Investitionen bleiben ohne Wirkung",
       },
     ],
   },
@@ -62,12 +62,12 @@ export const de = {
   methode: {
     label: "Unser Ansatz",
     headingA: "Das Narrativ:",
-    headingB: "Fakten statt Bauchgefühl.",
+    headingB: "Evidenz statt Vermutung.",
     desc: "Ein Narrativ im Sinne von NarraTec ist ein strukturiertes Analysedokument, das Ursachen, Entscheidungslogik und Maßnahmen in einem gemeinsam erarbeiteten, nachvollziehbaren Dokument verbindet – als Grundlage für Entscheidungen, die intern getragen werden.",
     features: [
       {
         title: "Interne Aktivierung",
-        text: "Wir liefern das Werkzeug, das es Ihren Experten ermöglicht, ihr Wissen niederschwellig einzubringen und direkt an der Lösung mitzuwirken, statt auf externe Beratung zu hoffen.",
+        text: "Wir liefern das Werkzeug, mit dem Ihre Experten ihr Wissen gezielt einbringen und direkt an der Lösung mitwirken – statt sich auf externe Beratung zu verlassen.",
       },
       {
         title: "Tiefe Ursachenanalyse",
@@ -128,7 +128,7 @@ export const de = {
       },
       {
         title: "Single Source of Truth",
-        text: "Macht unübersichtlichen E-Mail-Ketten und redundanten Versionsverläufen ein Ende. Alle Stakeholder arbeiten im selben, lebenden Dokument.",
+        text: "Ersetzt unübersichtliche E-Mail-Ketten und redundante Versionsstände. Alle Stakeholder arbeiten im selben, lebenden Dokument.",
       },
       {
         title: "Informationsdichte",
@@ -223,7 +223,7 @@ export const de = {
     scaleClassic: "Klassisch",
     scaleHybrid: "Hybrid",
     scaleAI: "KI-gestützt",
-    intensityDesc: "Manche Teams arbeiten am liebsten am Whiteboard mit klassischem Protokoll. Andere nutzen KI von der ersten Minute an. Der Prozess ist bewusst als Teilautomatisierung konzipiert – an definierten Quality Gates fließt immer das Feedback und das Wissen Ihrer Experten ein.",
+    intensityDesc: "Manche Teams bevorzugen das klassische Vorgehen am Whiteboard mit Protokoll, andere setzen KI von Beginn an ein. Der Prozess ist bewusst als Teilautomatisierung konzipiert – an definierten Quality Gates fließen stets Feedback und Wissen Ihrer Experten ein.",
     phases: [
       {
         phase: "Vorbereiten",
@@ -252,11 +252,11 @@ export const de = {
       },
     ],
     humanTitle: "Ihre Experten bleiben im Lead.",
-    humanText: "KI generiert Entwürfe, prüft Konsistenz und beschleunigt Routineaufgaben. Aber jede inhaltliche Entscheidung, jede Priorisierung und jede Freigabe liegt bei Ihren Fachexperten und Stakeholdern. Technologie ersetzt kein Urteilsvermögen – sie macht es wirksamer.",
+    humanText: "KI generiert Entwürfe, prüft Konsistenz und beschleunigt Routineaufgaben. Jede inhaltliche Entscheidung, jede Priorisierung und jede Freigabe liegt jedoch bei Ihren Fachexperten und Stakeholdern. Technologie ersetzt kein Urteilsvermögen – sie macht es wirksamer.",
   },
 
   pullquote: {
-    text: "Nicht die Technologie entscheidet über den Erfolg eines Vorhabens — sondern ob alle Beteiligten das Problem wirklich verstanden haben.",
+    text: "Nicht die Technologie entscheidet über den Erfolg eines Vorhabens — sondern ob alle Beteiligten das Problem vollständig durchdrungen haben.",
     attribution: "Die NarraTec-Überzeugung",
   },
 

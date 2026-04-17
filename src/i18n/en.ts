@@ -13,7 +13,7 @@ export const en: Translations = {
   hero: {
     h1a: "Your experts have the answers.",
     h1b: "We give them the structure.",
-    sub: "Your next technology initiative gets approved, supported, and delivered. Because everyone truly understood the problem.",
+    sub: "Your next technology initiative gets approved, supported, and delivered. Because every stakeholder has fully grasped the problem.",
     cta: "Book a Call",
     proofLabel: "Scientifically grounded",
     hmdAlt: "HMD Business Information Systems",
@@ -56,7 +56,7 @@ export const en: Translations = {
         num: "04",
         title: "Implementation Gap",
         text: "Decisions that were made fizzle out. There is no clear translation into operational action items or funding models.",
-        result: "Investments evaporate without impact",
+        result: "Investments fail to deliver impact",
       },
     ],
   },
@@ -64,7 +64,7 @@ export const en: Translations = {
   methode: {
     label: "Our Approach",
     headingA: "The Narrative:",
-    headingB: "Facts over gut feeling.",
+    headingB: "Evidence over assumption.",
     desc: "A narrative in the NarraTec sense is a structured analysis document that connects root causes, decision logic, and actions in a jointly developed, traceable document — as the foundation for decisions that are carried internally.",
     features: [
       {
@@ -130,7 +130,7 @@ export const en: Translations = {
       },
       {
         title: "Source of Truth",
-        text: "No more outdated emails and PPT versions. All stakeholders work in the same living document.",
+        text: "Replaces scattered email threads and redundant document versions. All stakeholders work in the same living document.",
       },
       {
         title: "Information Density",
@@ -225,7 +225,7 @@ export const en: Translations = {
     scaleClassic: "Classic",
     scaleHybrid: "Hybrid",
     scaleAI: "AI-powered",
-    intensityDesc: "Some teams prefer working at the whiteboard with a classic protocol. Others use AI from minute one. The process is deliberately designed as partial automation — at defined quality gates, your experts' feedback and knowledge always flows in.",
+    intensityDesc: "Some teams prefer the classic approach at the whiteboard with a protocol; others deploy AI from the outset. The process is deliberately designed as partial automation — at defined quality gates, your experts' feedback and knowledge always flow in.",
     phases: [
       {
         phase: "Prepare",
@@ -254,11 +254,11 @@ export const en: Translations = {
       },
     ],
     humanTitle: "Your experts stay in the lead.",
-    humanText: "AI generates drafts, checks consistency, and accelerates routine tasks. But every substantive decision, every prioritization, and every approval rests with your subject-matter experts and stakeholders. Technology doesn't replace judgment — it makes it more effective.",
+    humanText: "AI generates drafts, checks consistency, and accelerates routine tasks. Every substantive decision, every prioritization, and every approval, however, rests with your subject-matter experts and stakeholders. Technology doesn't replace judgment — it makes it more effective.",
   },
 
   pullquote: {
-    text: "It's not the technology that determines an initiative's success — it's whether everyone involved truly understood the problem.",
+    text: "It's not the technology that determines an initiative's success — it's whether every stakeholder has fully grasped the problem.",
     attribution: "The NarraTec Conviction",
   },
 
