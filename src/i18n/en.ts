@@ -61,6 +61,47 @@ export const en: Translations = {
     ],
   },
 
+  outcome: {
+    label: "Decision & Execution Architecture",
+    heading: "What we enable you to achieve.",
+    thesis:
+      "Not a technology problem — a translation problem between insight and execution. Three hard levers your organization masters afterwards:",
+    kpis: [
+      {
+        metric: "",
+        title: "Fewer Failed Projects",
+        text: "Misguided investments surface early — before budget flows.",
+      },
+      {
+        metric: "",
+        title: "Faster Decision-Making",
+        text: "Complex decisions in days, not months — with full alignment.",
+      },
+      {
+        metric: "",
+        title: "Accelerated Delivery",
+        text: "Decided means delivered — no translation gap.",
+      },
+    ],
+    shiftLabel: "Before / After",
+    beforeLabel: "Before",
+    beforeSub: "Insight without execution",
+    beforeItems: [
+      "Discussions without clarity",
+      "Projects start without a real problem",
+      "Budget is approved in bulk",
+      "Implementation loses context",
+    ],
+    afterLabel: "After",
+    afterSub: "Insight that carries — down to the work package",
+    afterItems: [
+      "Evidence-based problem definition",
+      "Logically grounded decisions",
+      "Budget follows demonstrated value",
+      "Every work item knows its \u201Ewhy\u201C",
+    ],
+  },
+
   methode: {
     label: "Our Approach",
     headingA: "The Narrative:",

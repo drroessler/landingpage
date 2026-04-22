@@ -5,6 +5,7 @@ import ContactModal from "./components/ContactModal";
 import Navbar from "./components/Navbar";
 import Hero from "./components/sections/Hero";
 import ProblemSection from "./components/sections/ProblemSection";
+import OutcomeSection from "./components/sections/OutcomeSection";
 import MethodeSection from "./components/sections/MethodeSection";
 import FrameworkSection from "./components/sections/FrameworkSection";
 import KISection from "./components/sections/KISection";
@@ -28,6 +29,7 @@ function LandingPage() {
       <main>
         <Hero />
         <ProblemSection />
+        <OutcomeSection />
         <MethodeSection />
         <FrameworkSection />
         <ArtefaktSection />

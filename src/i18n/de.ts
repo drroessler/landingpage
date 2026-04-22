@@ -59,6 +59,47 @@ export const de = {
     ],
   },
 
+  outcome: {
+    label: "Decision & Execution Architecture",
+    heading: "Wozu wir Sie befähigen.",
+    thesis:
+      "Kein Technologieproblem – ein Übersetzungsproblem zwischen Erkenntnis und Umsetzung. Drei harte Hebel, die Ihre Organisation danach beherrscht:",
+    kpis: [
+      {
+        metric: "",
+        title: "Weniger Fehlprojekte",
+        text: "Fehlinvestitionen werden früh erkannt – bevor Budget fließt.",
+      },
+      {
+        metric: "",
+        title: "Höheres Entscheidungstempo",
+        text: "Komplexe Entscheidungen in Tagen, nicht Monaten – mit vollem Alignment.",
+      },
+      {
+        metric: "",
+        title: "Schnellere Umsetzungsgeschwindigkeit",
+        text: "Entschieden heißt geliefert – ohne Übersetzungslücke.",
+      },
+    ],
+    shiftLabel: "Vorher / Nachher",
+    beforeLabel: "Vorher",
+    beforeSub: "Erkenntnis ohne Umsetzung",
+    beforeItems: [
+      "Diskussionen ohne Klarheit",
+      "Projekte starten ohne echtes Problem",
+      "Budget wird pauschal freigegeben",
+      "Umsetzung verliert Kontext",
+    ],
+    afterLabel: "Nachher",
+    afterSub: "Erkenntnis, die trägt – bis ins Arbeitspaket",
+    afterItems: [
+      "Evidenzbasierte Problemdefinition",
+      "Logisch begründete Entscheidungen",
+      "Budget folgt nachgewiesenem Nutzen",
+      "Jede Arbeitsaufgabe kennt ihr „Warum“",
+    ],
+  },
+
   methode: {
     label: "Unser Ansatz",
     headingA: "Das Narrativ:",
