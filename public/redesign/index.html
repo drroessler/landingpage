@@ -1,0 +1,2320 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NarraTec — Evidenzbasierte IT-Entscheidungen</title>
+<meta name="description" content="NarraTec übersetzt komplexe IT-Entscheidungen in strukturierte Narrative — evidenzbasiert, in Tagen statt Monaten, intern getragen bis ins Arbeitspaket." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* NarraTec — Editorial B2B Landing */
+
+:root {
+  --paper: oklch(98% 0.005 85);
+  --paper-2: oklch(96% 0.008 85);
+  --ink: oklch(18% 0.01 85);
+  --ink-2: oklch(32% 0.01 85);
+  --ink-3: oklch(48% 0.008 85);
+  --rule: oklch(87% 0.005 85);
+  --rule-strong: oklch(72% 0.008 85);
+  --accent: oklch(52% 0.18 25);
+  --accent-ink: oklch(38% 0.16 25);
+  --accent-wash: oklch(95% 0.03 25);
+
+  --f-display: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --f-sans: "Inter Tight", -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --max: 1240px;
+  --gutter: clamp(20px, 4vw, 48px);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection { background: var(--accent); color: var(--paper); }
+
+/* ---------- Layout primitives ---------- */
+
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.rule { border-top: 1px solid var(--rule); }
+.rule-b { border-bottom: 1px solid var(--rule); }
+
+/* ---------- Rubric marker ---------- */
+
+.rubric {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.rubric::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--ink-3);
+}
+.rubric.no-line::before { display: none; }
+
+.rubric-num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+/* ---------- Display type ---------- */
+
+.display {
+  font-family: var(--f-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+  color: var(--ink);
+  margin: 0;
+}
+.display em {
+  font-style: italic;
+  color: var(--accent-ink);
+}
+
+h1.display { font-size: clamp(44px, 7.4vw, 104px); }
+h2.display { font-size: clamp(36px, 5.2vw, 72px); line-height: 1.02; }
+h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
+
+.lede {
+  font-family: var(--f-sans);
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 58ch;
+  font-weight: 400;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .12s ease, background .15s ease, border-color .15s ease;
+  min-height: 48px;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-primary:hover { background: var(--accent-ink); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+.btn-ghost:hover { border-color: var(--ink); }
+
+.btn-arrow::after {
+  content: "→";
+  font-family: var(--f-mono);
+  font-weight: 400;
+  transition: transform .15s ease;
+}
+.btn:hover .btn-arrow::after,
+.btn-arrow:hover::after { transform: translateX(3px); }
+
+.linklike {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-sans);
+  font-size: 14px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: color .15s, border-color .15s;
+}
+.linklike:hover { color: var(--accent); border-color: var(--accent); }
+.linklike .arr { font-family: var(--f-mono); transition: transform .15s; }
+.linklike:hover .arr { transform: translateX(3px); }
+
+/* ---------- Nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
+}
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--f-display);
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+.logo-mark {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 1px;
+  transform: translateY(-1px);
+}
+.nav-links { display: flex; gap: 26px; align-items: center; }
+.nav-link {
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: color .15s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-cta { padding: 10px 16px; min-height: 0; font-size: 14px; }
+
+@media (max-width: 760px) {
+  .nav-links .nav-link { display: none; }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-top: clamp(48px, 7vw, 96px);
+  padding-bottom: clamp(48px, 6vw, 88px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  gap: clamp(32px, 4vw, 72px);
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+.hero-kicker {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.hero-kicker .dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--accent);
+  box-shadow: none;
+}
+.hero h1 .line { display: block; }
+.hero-sub {
+  margin-top: 28px;
+  max-width: 54ch;
+}
+.hero-actions {
+  margin-top: 36px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 4px;
+}
+.hero-meta .stat-n {
+  font-family: var(--f-display);
+  font-size: 56px;
+  line-height: 0.95;
+  color: var(--ink);
+}
+.hero-meta .stat-n em { font-style: italic; color: var(--accent-ink); }
+.hero-meta .stat-label {
+  font-family: var(--f-sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+.hero-meta .meta-divider {
+  height: 1px; background: var(--rule); margin: 4px 0;
+}
+.hero-meta .meta-source {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Value props strip ---------- */
+
+.value-props {
+  background: var(--ink);
+  border-top: 1px solid oklch(24% 0.008 85);
+  border-bottom: 1px solid oklch(24% 0.008 85);
+}
+.value-props-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+@media (max-width: 1060px) { .value-props-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px)  { .value-props-grid { grid-template-columns: 1fr 1fr; } }
+.value-prop {
+  padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 28px);
+  border-right: 1px solid oklch(26% 0.008 85);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.value-prop:last-child { border-right: none; }
+@media (max-width: 1060px) {
+  .value-prop:nth-child(3n) { border-right: none; }
+  .value-prop { border-bottom: 1px solid oklch(26% 0.008 85); }
+}
+.value-prop-n {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.value-prop-t {
+  font-family: var(--f-display);
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.2;
+  color: var(--paper);
+  letter-spacing: -0.005em;
+}
+.value-prop-d {
+  font-size: 13px;
+  line-height: 1.65;
+  color: oklch(72% 0.008 85);
+  margin: 0;
+}
+
+/* ---------- Peer logos ---------- */
+
+.peers {
+  padding: 36px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.peers-inner {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .peers-inner { grid-template-columns: 1fr; gap: 18px; }
+}
+.peer-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+@media (max-width: 900px) { .peer-grid { grid-template-columns: repeat(3, 1fr); } }
+.peer {
+  padding: 14px 10px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 2px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 6px,
+      color-mix(in oklab, var(--rule) 70%, transparent) 6px 7px
+    );
+}
+
+/* Trust grid (methodical provenance, no logos) */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin: 0;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 900px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .trust-grid { grid-template-columns: 1fr; } }
+.trust-item {
+  padding: 14px 18px;
+  border-right: 1px solid var(--rule);
+}
+.trust-item dt {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.trust-item dd {
+  font-family: var(--f-sans);
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ---------- Section scaffolding ---------- */
+
+.section {
+  padding: clamp(72px, 9vw, 128px) 0;
+  border-top: 1px solid var(--rule);
+}
+.section-head {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  margin-bottom: clamp(40px, 5vw, 72px);
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .section-head { grid-template-columns: 1fr; gap: 18px; }
+}
+.section-head .rubric { padding-top: 6px; }
+.section-head h2 { max-width: 18ch; }
+.section-head .lede { margin-top: 20px; }
+
+/* ---------- Problem patterns ---------- */
+
+.patterns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 820px) { .patterns { grid-template-columns: 1fr; } }
+.pattern {
+  padding: 36px 32px 40px;
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  position: relative;
+  background: var(--paper);
+  transition: background .2s;
+}
+.pattern:nth-child(2n) { border-right: none; }
+@media (max-width: 820px) { .pattern { border-right: none; } }
+.pattern:hover { background: var(--paper-2); }
+.pattern-num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+}
+.pattern-title {
+  font-family: var(--f-display);
+  font-size: 32px;
+  line-height: 1.05;
+  margin: 10px 0 14px;
+}
+.pattern-body {
+  color: var(--ink-2);
+  max-width: 48ch;
+  margin-bottom: 18px;
+}
+.pattern-cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--accent-ink);
+  letter-spacing: 0.02em;
+  padding: 8px 12px;
+  background: var(--accent-wash);
+  border-radius: 2px;
+}
+.pattern-cost .arrow { font-family: var(--f-mono); }
+
+/* ---------- Method / Narrative artifact ---------- */
+
+.method {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+}
+@media (max-width: 900px) { .method { grid-template-columns: 1fr; } }
+
+.method-copy p { color: var(--ink-2); max-width: 48ch; margin-bottom: 18px; }
+.method-steps {
+  list-style: none; padding: 0; margin: 28px 0 0;
+  display: flex; flex-direction: column; gap: 0;
+}
+.method-step {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.method-step:last-child { border-bottom: 1px solid var(--rule); }
+.method-step .n {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--ink-3);
+  padding-top: 2px;
+}
+.method-step .t { font-family: var(--f-display); font-size: 22px; }
+.method-step .d { font-size: 14px; color: var(--ink-2); margin-top: 4px; }
+
+/* Narrative document mock */
+.doc {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 32px 36px;
+  box-shadow:
+    0 1px 0 var(--rule),
+    0 24px 48px -24px oklch(18% 0.01 85 / 0.12);
+  font-family: var(--f-sans);
+  position: relative;
+  overflow: hidden;
+}
+.doc::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--accent);
+}
+.doc-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.doc h4 {
+  font-family: var(--f-display);
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 0 0 6px;
+  font-weight: 400;
+}
+.doc .doc-sub { font-size: 13px; color: var(--ink-3); margin-bottom: 18px; }
+.doc-section {
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+}
+.doc-section .k {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-top: 2px;
+}
+.doc-section .v {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.doc-section .v .hl {
+  background: color-mix(in oklab, var(--accent-wash) 100%, transparent);
+  padding: 0 3px;
+  border-radius: 1px;
+}
+.doc-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------- Outcomes ---------- */
+
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+@media (max-width: 820px) { .outcomes { grid-template-columns: 1fr; } }
+.outcome {
+  padding: 36px 28px 32px;
+  border-right: 1px solid var(--rule);
+  background: var(--paper);
+}
+.outcome:last-child { border-right: none; }
+@media (max-width: 820px) {
+  .outcome { border-right: none; border-bottom: 1px solid var(--rule); }
+  .outcome:last-child { border-bottom: none; }
+}
+.outcome-n {
+  font-family: var(--f-display);
+  font-size: clamp(56px, 7vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.outcome-n em { font-style: italic; color: var(--accent-ink); }
+.outcome-n .unit {
+  font-family: var(--f-sans);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-2);
+  margin-left: 4px;
+}
+.outcome-label {
+  margin-top: 16px;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.outcome-body {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--ink-2);
+  max-width: 32ch;
+}
+.outcome-src {
+  margin-top: 20px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Use cases ---------- */
+
+.usecases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--paper);
+}
+@media (max-width: 900px) { .usecases { grid-template-columns: 1fr; } }
+
+.usecase {
+  padding: 36px 30px 32px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.usecase:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .usecase { border-right: none; border-bottom: 1px solid var(--rule); }
+  .usecase:last-child { border-bottom: none; }
+}
+
+.usecase-icon {
+  width: 44px; height: 44px;
+  border-radius: 6px;
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--accent-ink) 14%, transparent);
+}
+.usecase-title {
+  font-family: var(--f-display);
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 0;
+}
+.usecase-body {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 0;
+}
+.usecase-outs {
+  list-style: none;
+  margin: auto 0 0 0;
+  padding: 16px 0 0 0;
+  border-top: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.usecase-outs li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.usecase-outs .check {
+  color: var(--accent-ink);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ---------- Team ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--paper);
+}
+@media (max-width: 900px) { .team-grid { grid-template-columns: 1fr; } }
+
+.person {
+  padding: 40px 36px 36px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.person:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .person { border-right: none; border-bottom: 1px solid var(--rule); }
+  .person:last-child { border-bottom: none; }
+}
+
+.person-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.person-avatar {
+  width: 72px; height: 72px;
+  border-radius: 999px;
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-display); font-size: 22px;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in oklab, var(--accent-ink) 18%, transparent);
+  overflow: hidden;
+}
+.person-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.person-id .person-name {
+  font-family: var(--f-display);
+  font-size: 24px;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.person-id .person-role {
+  margin-top: 4px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.person-bio {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+.person-creds {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0 0 0;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.person-creds li {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-2, transparent);
+}
+
+/* ---------- Case study ---------- */
+
+.case {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+@media (max-width: 900px) { .case { grid-template-columns: 1fr; } }
+
+.case-quote {
+  font-family: var(--f-display);
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 28px;
+  position: relative;
+}
+.case-quote::before {
+  content: "„";
+  position: absolute;
+  left: -0.55em; top: -0.1em;
+  color: var(--accent);
+  font-size: 1.2em;
+}
+.case-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+.case-avatar {
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, oklch(88% 0.02 70), oklch(70% 0.04 50));
+  border: 1px solid var(--rule-strong);
+  display: grid; place-items: center;
+  font-family: var(--f-display); font-size: 18px; color: var(--ink);
+}
+.case-author-meta .n { font-weight: 500; font-size: 15px; }
+.case-author-meta .r { font-size: 13px; color: var(--ink-3); }
+
+.case-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+.case-metrics > div {
+  padding: 22px 22px 20px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.case-metrics > div:nth-child(2n) { border-right: none; }
+.case-metrics > div:nth-last-child(-n+2) { border-bottom: none; }
+.case-metrics .k {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.case-metrics .before {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+.case-metrics .after {
+  margin-top: 2px;
+  font-family: var(--f-display);
+  font-size: 30px;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.case-metrics .after em { color: var(--accent-ink); font-style: italic; }
+
+/* ---------- Evidence / research ---------- */
+
+.evidence {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 820px) { .evidence { grid-template-columns: 1fr; } }
+.paper {
+  display: block;
+  padding: 28px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+  transition: border-color .15s, transform .15s;
+}
+.paper:hover { border-color: var(--ink); transform: translateY(-2px); }
+.paper .badge {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--accent-ink);
+  text-transform: uppercase;
+}
+.paper h4 {
+  font-family: var(--f-display);
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 10px 0 8px;
+  font-weight: 400;
+}
+.paper .src {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+.paper .cta {
+  display: inline-flex; gap: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
+.paper .cta .arr { font-family: var(--f-mono); }
+
+/* ---------- Process timeline ---------- */
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+@media (max-width: 820px) { .process { grid-template-columns: 1fr; } }
+.proc {
+  padding: 28px 24px;
+  border-right: 1px solid var(--rule);
+  position: relative;
+}
+.proc:last-child { border-right: none; }
+@media (max-width: 820px) {
+  .proc { border-right: none; border-bottom: 1px solid var(--rule); }
+  .proc:last-child { border-bottom: none; }
+}
+.proc .when {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--accent-ink);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.proc .what {
+  font-family: var(--f-display);
+  font-size: 22px;
+  line-height: 1.15;
+  margin: 10px 0 8px;
+}
+.proc .desc { font-size: 14px; color: var(--ink-2); }
+
+/* ---------- FAQ ---------- */
+
+.faq {
+  border-top: 1px solid var(--rule);
+}
+.faq-item {
+  border-bottom: 1px solid var(--rule);
+  padding: 22px 0;
+  cursor: pointer;
+}
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  color: var(--ink);
+}
+.faq-q .chev {
+  font-family: var(--f-mono);
+  font-size: 16px;
+  color: var(--ink-3);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.faq-item[open] .faq-q .chev { transform: rotate(45deg); color: var(--accent); }
+.faq-a {
+  padding-top: 14px;
+  color: var(--ink-2);
+  max-width: 70ch;
+  font-size: 15px;
+}
+
+/* ---------- Final CTA ---------- */
+
+.final {
+  padding: clamp(72px, 10vw, 140px) 0;
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+.final .rubric { color: oklch(72% 0.008 85); }
+.final .rubric::before { background: oklch(72% 0.008 85); }
+.final h2 { color: var(--paper); }
+.final h2 em { color: oklch(72% 0.14 25); }
+.final .lede { color: oklch(82% 0.008 85); }
+
+.final .btn-primary {
+  background: var(--paper);
+  color: var(--ink);
+}
+.final .btn-primary:hover { background: oklch(92% 0.02 25); }
+.final .btn-ghost {
+  color: var(--paper);
+  border-color: oklch(42% 0.01 85);
+}
+.final .btn-ghost:hover { border-color: var(--paper); }
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--ink);
+  color: oklch(72% 0.008 85);
+  padding: 36px 0 44px;
+  border-top: 1px solid oklch(28% 0.008 85);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.footer a { color: oklch(72% 0.008 85); }
+.footer a:hover { color: var(--paper); }
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+
+/* ---------- Tweaks panel ---------- */
+
+.tweaks-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 200;
+  width: 280px;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 4px;
+  box-shadow: 0 24px 64px -16px oklch(18% 0.01 85 / 0.25);
+  font-family: var(--f-sans);
+  font-size: 13px;
+}
+.tweaks-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.tweaks-body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 14px; }
+.tweak-row { display: flex; flex-direction: column; gap: 6px; }
+.tweak-row label {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.tweak-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+.tweak-opt {
+  padding: 6px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--paper);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--ink-2);
+  transition: all .12s;
+}
+.tweak-opt:hover { border-color: var(--ink); color: var(--ink); }
+.tweak-opt.on {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+.tweak-note {
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.4;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+/* reveal on scroll */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .linklike .arr, .faq-q .chev { transition: none; }
+}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* global React, ReactDOM */
+const { useState, useEffect, useRef } = React;
+
+// ---------- Tweaks panel ----------
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "ctaVariant": "A",
+  "accentHue": 25,
+  "showTweaksByDefault": false
+} /*EDITMODE-END*/;
+
+const CTA_COPY = {
+  A: { primary: "Projekt auf Fehlallokation prüfen", secondary: "30 Min · kostenfrei" },
+  B: { primary: "Entscheidungs-Diagnose starten", secondary: "Erster Schritt · kostenfrei" }
+};
+
+// ---------- Sections ----------
+
+function Nav({ onTweaks }) {
+  return (
+    <header className="nav">
+      <div className="container nav-inner">
+        <a href="#top" className="logo" aria-label="NarraTec Startseite">
+          <span className="logo-mark" aria-hidden="true"></span>
+          <span>NarraTec</span>
+        </a>
+        <nav className="nav-links" aria-label="Hauptnavigation">
+          <a className="nav-link" href="#problem">Problem</a>
+          <a className="nav-link" href="#einsatz">Einsatz</a>
+          <a className="nav-link" href="#methode">Methode</a>
+          <a className="nav-link" href="#team">Team</a>
+          <a className="nav-link" href="#ergebnis">Ergebnis</a>
+          <a className="btn btn-primary nav-cta" href="#final">
+            Projekt auf Fehlallokation prüfen <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+        </nav>
+      </div>
+    </header>);
+
+}
+
+function Hero({ cta }) {
+  return (
+    <section className="hero container" id="top" data-screen-label="01 Hero">
+      <div className="hero-kicker">
+        <span className="dot" aria-hidden="true"></span>
+        <span className="rubric no-line">DER ENTSCHEIDUNGS-STANDARD FÜR KRITISCHE IT-INVESTITIONEN</span>
+      </div>
+
+      {/* Full-width oversized headline */}
+      <h1 className="display" style={{ fontSize: 'clamp(52px, 8.5vw, 118px)', lineHeight: 1.06, marginBottom: 0, marginTop: 24 }}>
+        <span className="line">Schützen Sie strategische</span>
+        <span className="line">Investments <em>vor Fehlallokation</em></span>
+        <span className="line">— in 4 Wochen.</span>
+      </h1>
+
+      <div style={{ borderTop: '1px solid var(--rule)', margin: '36px 0 0' }} />
+
+      <div style={{ paddingTop: 36 }}>
+        <p className="lede" style={{ maxWidth: '52ch', marginTop: 0 }}>
+          Lösen Sie bereichsübergreifende Konflikte und vermeiden Sie kostspielige Fehlallokationen bei Ihren Großprojekten. Wir verdichten komplexe Ausgangslagen zu einem signierten, verbindlichen Umsetzungsmandat — direkt übersetzt in operative Arbeitspakete.
+        </p>
+        <div className="hero-actions" style={{ marginTop: 28 }}>
+          <a className="btn btn-primary" href="#final">
+            {cta.primary} <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+          <a className="btn btn-ghost" href="#methode">
+            Methode ansehen
+          </a>
+        </div>
+        <div style={{ marginTop: 16, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
+          30 Min · Kein Sales-Pitch. Direktes Sparring mit den Gründern.
+        </div>
+      </div>
+    </section>);
+
+}
+
+function TrustBar() {
+  const proofs = [
+  {
+    icon:
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="10" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>,
+
+    label: "Festpreis",
+    meta: "15k–35k € · Kein Scope-Creep",
+    desc: "Preis wird vor Auftragserteilung vertraglich fixiert."
+  },
+  {
+    icon:
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="9" y1="15" x2="15" y2="15" />
+          <line x1="9" y1="11" x2="11" y2="11" />
+        </svg>,
+
+    label: "NDA",
+    meta: "Auf Wunsch vor dem ersten Gespräch",
+    desc: "Vollständige Vertraulichkeit ab dem ersten Austausch."
+  },
+  {
+    icon:
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 2 L15 9 L22 10 L17 15 L18.5 22 L12 18.5 L5.5 22 L7 15 L2 10 L9 9 Z" />
+        </svg>,
+
+    label: "Wissenschaftlich publiziert",
+    meta: "HMD · Springer · Peer-reviewed · 2025",
+    desc: "Methodik ist akademisch validiert, Open Access verfügbar."
+  }];
+
+
+  return (
+    <div
+      data-screen-label="01b TrustBar"
+      style={{
+        borderTop: '1px solid var(--rule)',
+        borderBottom: '1px solid var(--rule)',
+        background: 'var(--paper-2)'
+      }}>
+      
+      <div style={{
+        maxWidth: 'var(--max)',
+        margin: '0 auto',
+        padding: '0 var(--gutter)',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)'
+      }}>
+        {proofs.map((p, i) =>
+        <div key={i} style={{
+          padding: 'clamp(18px, 2.2vw, 26px) clamp(16px, 2.5vw, 32px)',
+          borderRight: i < proofs.length - 1 ? '1px solid var(--rule)' : 'none',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 14
+        }}>
+            <div style={{
+            width: 36, height: 36,
+            borderRadius: 2,
+            background: 'var(--accent-wash)',
+            border: '1px solid color-mix(in oklab, var(--accent-ink) 16%, transparent)',
+            color: 'var(--accent-ink)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0
+          }}>
+              {p.icon}
+            </div>
+            <div>
+              <div style={{
+              fontFamily: 'var(--f-display)',
+              fontSize: 'clamp(15px, 1.3vw, 19px)',
+              lineHeight: 1.15,
+              color: 'var(--ink)',
+              letterSpacing: '-0.005em'
+            }}>{p.label}</div>
+              <div style={{
+              fontFamily: 'var(--f-mono)',
+              fontSize: 10,
+              letterSpacing: '.09em',
+              textTransform: 'uppercase',
+              color: 'var(--ink-3)',
+              marginTop: 4,
+              lineHeight: 1.4
+            }}>{p.meta}</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>);
+
+}
+
+function ValueProps() {
+  const items = [
+  { n: '01', t: 'Garantierte Geschwindigkeit', d: 'Vom offenen Problem zum entscheidungsreifen Backlog in 4 Wochen.' },
+  { n: '02', t: 'Messbares Ergebnis', d: 'Wir messen unseren Erfolg an harten, vorab vereinbarten KPIs.' },
+  { n: '03', t: 'Kein Risiko', d: 'NDA-Bereitschaft und Festpreis-Garantie.' },
+  { n: '04', t: 'Das 6-Seiten-Limit', d: 'Ein fokussiertes Dokument statt endloser Folienschlachten. Der Zwang zur Verschriftlichung beendet Meinungsdebatten und erzwingt faktenbasierte Entscheidungen.' },
+  { n: '05', t: 'Striktes Quality Gate', d: 'Kein Umsetzungs-Budget im Blindflug. Jeder Lösungsbaustein wird erst freigegeben, wenn er rückverfolgbar, messbar und klar zugewiesen ist.' }];
+
+  return (
+    <section className="value-props" aria-label="Warum NarraTec">
+      <div style={{ maxWidth: 'var(--max)', margin: '0 auto', padding: 'clamp(32px, 4vw, 52px) var(--gutter) 0', borderBottom: '1px solid oklch(26% 0.008 85)' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, flexWrap: 'wrap' }}>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'oklch(52% 0.008 85)', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ display: 'inline-block', width: 18, height: 1, background: 'oklch(52% 0.008 85)' }}></span>
+            Warum NarraTec
+          </span>
+          <h2 className="display" style={{ fontSize: 'clamp(28px, 3.6vw, 44px)', color: 'var(--paper)', margin: 0, lineHeight: 1.05 }}>
+            Fünf Prinzipien. <em style={{ color: 'oklch(72% 0.14 25)' }}>Vertraglich verankert.</em>
+          </h2>
+        </div>
+      </div>
+      <div className="value-props-grid">
+        {items.map((it) =>
+        <div className="value-prop" key={it.n}>
+            <div className="value-prop-n">{it.n}</div>
+            <div className="value-prop-t">{it.t}</div>
+            <p className="value-prop-d">{it.d}</p>
+          </div>
+        )}
+      </div>
+    </section>);
+}
+
+function Peers() {
+  const items = [
+  { k: "Publikation", v: "HMD Praxis der Wirtschaftsinformatik · 2025" },
+  { k: "Review", v: "Peer-reviewed · Open Access" },
+  { k: "Zusammenarbeit", v: "NDA-ready · Festpreis" },
+  { k: "Compliance", v: "DSGVO · ISO-27001-konform" },
+  { k: "Standort", v: "Dresden · DACH" }];
+
+  return (
+    <section className="peers" aria-label="Methodische Herkunft">
+      <div className="container peers-inner">
+        <div className="rubric">Methodische Herkunft</div>
+        <dl className="trust-grid">
+          {items.map((it, i) =>
+          <div className="trust-item" key={i}>
+              <dt>{it.k}</dt>
+              <dd>{it.v}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    </section>);
+
+}
+
+function Problem() {
+  const items = [
+  { n: "01", t: "Vorschnelle Lösungen", b: "Teams diskutieren Lösungen, bevor das Problem verstanden ist. Symptombehandlung statt Ursachenforschung.", cost: "Fehlgeleitete Aktivitäten ab Tag 1" },
+  { n: "02", t: "Silo-Denken", b: "Fachbereiche und Management sprechen unterschiedliche Sprachen. Es fehlt das verbindende Element.", cost: "Kein Alignment, kein Fortschritt" },
+  { n: "03", t: "Trivialisierung durch Stichpunkte", b: "Meetings und Präsentationen bieten keinen Raum für Diskurs. Komplexe Probleme werden durch Stichpunkte trivialisiert.", cost: "Scheinentscheidungen statt Klarheit" },
+  { n: "04", t: "Execution-Falle", b: "Getroffene Entscheidungen versanden. Die Umsetzung stagniert.", cost: "Investitionen ohne Wirkung" }];
+
+  return (
+    <section className="section" id="problem" data-screen-label="02 Problem">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 01 · Diagnose</div>
+          <div>
+            <h2 className="display">Vier Muster, die <em>jedes</em> Großprojekt gefährden.</h2>
+            <p className="lede">Nicht Technologie scheitert — Übersetzung scheitert. Die vier Muster, die in der Praxis immer wieder auftauchen:</p>
+          </div>
+        </div>
+        <div className="patterns">
+          {items.map((it) =>
+          <article className="pattern" key={it.n}>
+              <div className="pattern-num">{it.n}</div>
+              <h3 className="pattern-title">{it.t}</h3>
+              <p className="pattern-body">{it.b}</p>
+              <div className="pattern-cost"><span className="arrow">↳</span>{it.cost}</div>
+            </article>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Team() {
+  const people = [
+  {
+    photo: "assets/Roessler.jpeg",
+    initials: "RR",
+    name: "Dr. Richard Rößler",
+    role: "Entwickler der NarraTec-Methodik",
+    bio: "10+ Jahre IT-Steuerung in komplexen Vorhaben — an der Schnittstelle von Managementforschung und Projektpraxis. Als Entwickler der NarraTec-Methodik setze ich strukturierte Analysen als Instrument ein, das Entscheidungsqualität systematisch messbar macht und Fehlallokationen vor Projektstart verhindert.",
+    credentials: ["10+ Jahre IT-Steuerung", "Methodenexperte in komplexen Vorhaben", "NarraTec-Gründer"]
+  },
+  {
+    photo: "assets/Wieland.jpeg",
+    initials: "UW",
+    name: "Prof. Dr. Uwe Wieland",
+    role: "Digitale Transformation & Prozessoptimierung",
+    bio: "Führungserfahrung in der digitalen Transformation: ich weiß, was es bedeutet, mit unzureichenden Informationen weitreichende Entscheidungen treffen zu müssen. Als Mitgründer von NarraTec bringe ich die Perspektive der Entscheidungsverantwortlichen ein — und stelle sicher, dass unsere Methodik an den realen Anforderungen von Führungskräften in komplexen Transformationsvorhaben ausgerichtet bleibt.",
+    credentials: ["Führungserfahrung Digitale Transformation", "Perspektive der Entscheidungsverantwortlichen", "Professur"]
+  }];
+
+  return (
+    <section className="section" id="team" data-screen-label="06 Team">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 06 · Wer dahinter steht</div>
+          <div>
+            <h2 className="display">Zwei Perspektiven. <em>Ein</em> Anspruch.</h2>
+            <p className="lede">Beide Gründer haben selbst komplexe IT-Entscheidungen verantwortet. Die Methodik ist das Ergebnis — nicht die Grundlage.</p>
+          </div>
+        </div>
+
+        <div className="team-grid">
+          {people.map((p, i) =>
+          <article className="person" key={i}>
+              <div className="person-head">
+                <div className="person-avatar" aria-hidden="true">
+                  {p.photo ?
+                <img src={p.photo} alt={p.name} /> :
+                p.initials}
+                </div>
+                <div className="person-id">
+                  <div className="person-name">{p.name}</div>
+                  <div className="person-role">{p.role}</div>
+                </div>
+              </div>
+              <p className="person-bio">{p.bio}</p>
+              <ul className="person-creds" aria-label="Qualifikationen">
+                {p.credentials.map((c, j) => <li key={j}>{c}</li>)}
+              </ul>
+            </article>
+          )}
+        </div>
+
+        {/* ── Trust badge: Wissenschaftliche Fundierung ── */}
+        <div style={{
+          marginTop: 28,
+          border: '1px solid var(--rule)',
+          borderRadius: 3,
+          background: 'var(--paper)',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 280px) minmax(0, 1fr)',
+          gap: 0,
+          overflow: 'hidden'
+        }}>
+          {/* Left: provenance label */}
+          <div style={{
+            padding: '28px 30px',
+            borderRight: '1px solid var(--rule)',
+            background: 'var(--paper-2)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 14,
+            justifyContent: 'space-between'
+          }}>
+            <div>
+              <div style={{
+                fontFamily: 'var(--f-mono)',
+                fontSize: 10.5,
+                letterSpacing: '.1em',
+                textTransform: 'uppercase',
+                color: 'var(--accent-ink)',
+                marginBottom: 14,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 2 L15 9 L22 10 L17 15 L18.5 22 L12 18.5 L5.5 22 L7 15 L2 10 L9 9 Z" />
+                </svg>
+                Wissenschaftlich publiziert
+              </div>
+              <div style={{
+                fontFamily: 'var(--f-display)',
+                fontSize: 28,
+                lineHeight: 1.1,
+                color: 'var(--ink)',
+                letterSpacing: '-0.01em'
+              }}>
+                HMD <span style={{ color: 'var(--ink-3)' }}>—</span> Praxis der Wirtschaftsinformatik
+              </div>
+            </div>
+            <div style={{
+              fontFamily: 'var(--f-mono)',
+              fontSize: 10.5,
+              letterSpacing: '.06em',
+              color: 'var(--ink-3)',
+              textTransform: 'uppercase',
+              borderTop: '1px solid var(--rule)',
+              paddingTop: 14
+            }}>
+              Peer-reviewed · Springer
+            </div>
+          </div>
+
+          {/* Right: papers list */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {[
+            {
+              status: 'Veröffentlicht',
+              statusColor: 'var(--accent-ink)',
+              statusBg: 'var(--accent-wash)',
+              title: 'Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative',
+              meta: 'HMD · 2025'
+            },
+            {
+              status: 'Pre-Read',
+              statusColor: 'var(--ink-2)',
+              statusBg: 'var(--paper-2)',
+              title: 'Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items',
+              meta: 'In Begutachtung · Manuskript verfügbar'
+            }].
+            map((paper, i, arr) =>
+            <a key={i} href="#"
+            style={{
+              padding: '22px 28px',
+              borderBottom: i < arr.length - 1 ? '1px solid var(--rule)' : 'none',
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1fr) auto',
+              gap: 20,
+              alignItems: 'center',
+              transition: 'background .15s',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {e.currentTarget.style.background = 'var(--paper-2)';}}
+            onMouseLeave={(e) => {e.currentTarget.style.background = 'transparent';}}>
+                <div>
+                  <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  padding: '4px 10px',
+                  background: paper.statusBg,
+                  color: paper.statusColor,
+                  fontFamily: 'var(--f-mono)',
+                  fontSize: 10,
+                  letterSpacing: '.1em',
+                  textTransform: 'uppercase',
+                  borderRadius: 2,
+                  marginBottom: 10,
+                  border: `1px solid ${paper.statusColor === 'var(--accent-ink)' ? 'color-mix(in oklab, var(--accent-ink) 18%, transparent)' : 'var(--rule)'}`
+                }}>
+                    <span style={{ width: 5, height: 5, borderRadius: 999, background: paper.statusColor }}></span>
+                    {paper.status}
+                  </div>
+                  <div style={{
+                  fontFamily: 'var(--f-display)',
+                  fontSize: 19,
+                  lineHeight: 1.25,
+                  color: 'var(--ink)',
+                  letterSpacing: '-0.005em',
+                  marginBottom: 6
+                }}>
+                    „{paper.title}"
+                  </div>
+                  <div style={{
+                  fontFamily: 'var(--f-mono)',
+                  fontSize: 11,
+                  letterSpacing: '.04em',
+                  color: 'var(--ink-3)'
+                }}>
+                    {paper.meta}
+                  </div>
+                </div>
+                <span style={{
+                fontFamily: 'var(--f-mono)',
+                fontSize: 13,
+                color: 'var(--ink-3)',
+                transition: 'transform .15s, color .15s'
+              }}>→</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+function UseCases() {
+  const cases = [
+  {
+    icon: "compass",
+    t: "Strategische Transformation",
+    b: "Reorganisationen, neue Geschäftsmodelle oder Plattformwechsel scheitern selten an der Technologie — sondern an unklaren Zielen und mangelndem Alignment. Gemeinsam schaffen wir die gemeinsame Entscheidungsgrundlage vor dem ersten Investitionsschritt.",
+    outs: ["Belastbares Stakeholder-Alignment vor Projektstart", "Tragfähige Grundlage für Budget- und Ressourcenfreigaben"]
+  },
+  {
+    icon: "handshake",
+    t: "Technical Sales",
+    b: "Im komplexen Lösungsvertrieb entscheidet die Tiefe des Problemverständnisses über den Abschluss. Statt eines Standard-Pitches entsteht im Co-Creation-Format mit dem Kunden ein Zielbild, das seine Situation präziser beschreibt als jede vorbereitete Präsentation.",
+    outs: ["Vertrauen durch nachweisliches Tiefenverständnis", "Lösungsarchitektur entlang realer Anforderungen"]
+  },
+  {
+    icon: "target",
+    t: "Task-Forces & kritische Lagen",
+    b: "In Krisensituationen dominiert oft der Reflex zur sofortigen Maßnahme. Die strukturierte Analyse zwingt das Team, vor der Reaktion die tatsächliche Ursache zu identifizieren und Handlungsoptionen sauber zu bewerten.",
+    outs: ["Belastbare Ursachenanalyse statt Symptombehandlung", "Priorisierte, wirksame Gegenmaßnahmen"]
+  }];
+
+  const Icon = ({ name }) => {
+    const common = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round" };
+    if (name === "compass") return <svg {...common}><circle cx="12" cy="12" r="9" /><polygon points="15,9 11,11 9,15 13,13" fill="currentColor" /></svg>;
+    if (name === "handshake") return <svg {...common}><path d="M3 12l4-4 3 3 5-5 6 6-4 4-2-2-3 3-2-2-3 3-4-4z" /><path d="M14 14l2 2" /></svg>;
+    if (name === "target") return <svg {...common}><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.5" fill="currentColor" /></svg>;
+    return null;
+  };
+  return (
+    <section className="section" id="einsatz" data-screen-label="02 Einsatz">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 02 · Einsatzgebiete</div>
+          <div>
+            <h2 className="display">Wo die Methode <em>wirkt.</em></h2>
+            <p className="lede">Überall dort, wo Komplexität auf Umsetzungsdruck trifft und Entscheidungen breit getragen werden müssen.</p>
+          </div>
+        </div>
+        <div className="usecases">
+          {cases.map((c, i) =>
+          <article className="usecase" key={i}>
+              <div className="usecase-icon" aria-hidden="true"><Icon name={c.icon} /></div>
+              <h3 className="usecase-title">{c.t}</h3>
+              <p className="usecase-body">{c.b}</p>
+              <ul className="usecase-outs">
+                {c.outs.map((o, j) => <li key={j}><span className="check" aria-hidden="true">✓</span>{o}</li>)}
+              </ul>
+            </article>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Position() {
+  const cols = [
+  {
+    label: 'Strategieberatung',
+    phase: 'Vor der Entscheidung',
+    q: '„Wohin sollen wir gehen?“',
+    output: 'Zielbild, Roadmap, Business Case',
+    buyer: 'Vorstand, CEO',
+    time: '3–12 Monate',
+    kpi: 'Übernahme der Empfehlung'
+  },
+  {
+    label: 'NarraTec',
+    phase: 'Beim Schließen der Entscheidung',
+    q: '„Wie genau – und mit welchen Voraussetzungen?“',
+    output: 'Umsetzungsmandat, Arbeitspakete mit Verantwortlichkeit und Akzeptanzkriterien',
+    buyer: 'Investitionsverantwortlicher: CIO, CFO, Geschäftsführer',
+    time: '4 Wochen',
+    kpi: 'Signaturreife und Budgetfreigabe'
+  },
+  {
+    label: 'Umsetzungspartner',
+    phase: 'Nach der Entscheidung',
+    q: '„Wir bauen es.“',
+    output: 'Lauffähiges System, Prozess, Organisation',
+    buyer: 'Linienverantwortliche: IT, Operations',
+    time: '6–36 Monate',
+    kpi: 'Liefertermin, Funktion, Qualität'
+  }];
+
+
+  const rows = [
+  { k: 'Phase', f: 'phase' },
+  { k: 'Leitfrage', f: 'q' },
+  { k: 'Output', f: 'output' }];
+
+
+  return (
+    <section className="section" id="position" data-screen-label="03 Position">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 03 · POSITION</div>
+          <div>
+            <h2 className="display">Zwischen Strategie <em>und Umsetzung.</em></h2>
+            <p className="lede">NarraTec ersetzt weder Strategieberatung noch Umsetzungspartner. Wir schließen eine spezifische Lücke: den Moment, in dem aus einer strategischen Absicht eine tragfähige, signaturreife Investitionsentscheidung werden muss.</p>
+          </div>
+        </div>
+
+        {/* Three equal columns */}
+        <div style={{
+          border: '1px solid var(--rule)',
+          borderRadius: 3,
+          overflow: 'hidden',
+          background: 'var(--paper)'
+        }}>
+          {/* Column headers */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 140px) repeat(3, minmax(0, 1fr))', borderBottom: '1px solid var(--rule)', background: 'var(--paper-2)' }}>
+            <div style={{ padding: '20px 22px', borderRight: '1px solid var(--rule)', fontFamily: 'var(--f-mono)', fontSize: 10.5, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Vergleich</div>
+            {cols.map((c, i) =>
+            <div key={c.label} style={{
+              padding: '20px 22px',
+              borderRight: i < cols.length - 1 ? '1px solid var(--rule)' : 'none',
+              fontFamily: 'var(--f-display)',
+              fontSize: 22,
+              lineHeight: 1.15,
+              color: 'var(--ink)',
+              letterSpacing: '-0.005em'
+            }}>
+                {c.label}
+              </div>
+            )}
+          </div>
+
+          {/* Rows */}
+          {rows.map((r, ri) =>
+          <div key={r.k} style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 140px) repeat(3, minmax(0, 1fr))',
+            borderBottom: ri < rows.length - 1 ? '1px solid var(--rule)' : 'none'
+          }}>
+              <div style={{
+              padding: '18px 22px',
+              borderRight: '1px solid var(--rule)',
+              background: 'var(--paper-2)',
+              fontFamily: 'var(--f-mono)',
+              fontSize: 10.5,
+              letterSpacing: '.1em',
+              textTransform: 'uppercase',
+              color: 'var(--ink-3)'
+            }}>{r.k}</div>
+              {cols.map((c, ci) =>
+            <div key={c.label + r.k} style={{
+              padding: '18px 22px',
+              borderRight: ci < cols.length - 1 ? '1px solid var(--rule)' : 'none',
+              fontSize: 14.5,
+              lineHeight: 1.5,
+              color: 'var(--ink)'
+            }}>
+                  {c[r.f]}
+                </div>
+            )}
+            </div>
+          )}
+        </div>
+
+
+      </div>
+    </section>);
+}
+
+function Method() {
+  return (
+    <section className="section" id="methode" data-screen-label="04 Methode">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 04 · Methode</div>
+          <div>
+            <h2 className="display">Von der Hypothese ins Backlog: <em>So erzwingen wir</em> die Entscheidung.</h2>
+            <p className="lede">Ein strukturierte Analyse, die Ursachen, Entscheidungslogik und Maßnahmen in einem gemeinsam erarbeiteten Dokument verbindet — und damit Entscheidungen trägt, die intern halten.</p>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid var(--rule)', marginTop: 48 }}>
+          {[
+          { n: '01', when: 'Tag 0', t: 'Kick-off', d: 'Problem, Ziel, Stakeholder festlegen.', icon: '○' },
+          { n: '02', when: 'Woche 1–2', t: 'Faktenbasis schaffen', d: 'Interviews, Datenaudit, Second-Opinion-Review. Wir hören zuerst zu, bevor wir eine Hypothese formulieren.', icon: '□' },
+          { n: '03', when: 'Woche 3', t: 'Optionen aufzeigen', d: 'Kriterien, Trade-offs und Entscheidungslogik schriftlich argumentiert. Redigiertes Dokument, intern tragfähig.', icon: '△' },
+          { n: '04', when: 'Woche 4', t: 'In Arbeitspakete übersetzen', d: 'Freigabe, Arbeitspakete, Verantwortlichkeiten. Die Entscheidung endet nicht mit der Freigabe.', icon: '○' }].
+          map((s, i, arr) =>
+          <div key={s.n} style={{ padding: '40px 28px', borderRight: i < arr.length - 1 ? '1px solid var(--rule)' : 'none', position: 'relative' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 20, gap: 12 }}>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--accent-ink)' }}>{s.n}</div>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10.5, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>{s.when}</div>
+              </div>
+              <div style={{ fontFamily: 'var(--f-display)', fontSize: 24, lineHeight: 1.15, color: 'var(--ink)', marginBottom: 14, letterSpacing: '-0.005em' }}>{s.t}</div>
+              <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0 }}>{s.d}</p>
+            </div>
+          )}
+        </div>
+        <div style={{
+          marginTop: 48,
+          background: 'var(--ink)',
+          color: 'var(--paper)',
+          borderRadius: 3,
+          padding: 'clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 180px) minmax(0, 1fr)',
+          gap: 'clamp(24px, 4vw, 56px)',
+          alignItems: 'start',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* accent rail */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: 'var(--accent)' }} />
+
+          {/* Label column */}
+          <div>
+            <div style={{
+              fontFamily: 'var(--f-mono)',
+              fontSize: 11,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              color: 'oklch(72% 0.008 85)',
+              marginBottom: 14,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 10
+            }}>
+              <span style={{ display: 'inline-block', width: 18, height: 1, background: 'oklch(72% 0.008 85)' }}></span>
+              Grundsatz
+            </div>
+            <div style={{
+              fontFamily: 'var(--f-display)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(20px, 1.8vw, 26px)',
+              lineHeight: 1.15,
+              color: 'oklch(72% 0.14 25)',
+              letterSpacing: '-0.005em'
+            }}>
+              KI &amp;<br />Verantwortung
+            </div>
+          </div>
+
+          {/* Statement column */}
+          <div>
+            <p style={{
+              fontFamily: 'var(--f-display)',
+              fontSize: 'clamp(24px, 2.6vw, 36px)',
+              lineHeight: 1.25,
+              color: 'oklch(92% 0.008 85)',
+              margin: '0 0 18px',
+              letterSpacing: '-0.01em',
+              maxWidth: '24ch'
+            }}>
+              KI unterstützt bei Verdichtung, Recherche und der Übersetzung in Arbeitspakete. <span style={{ color: 'oklch(82% 0.008 85)' }}>Nie bei der Entscheidung.</span>
+            </p>
+            <p style={{
+              fontFamily: 'var(--f-display)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(28px, 3.2vw, 44px)',
+              lineHeight: 1.1,
+              margin: 0,
+              letterSpacing: '-0.015em',
+              color: 'var(--paper)'
+            }}>
+              Verantwortung bleibt <span style={{ color: 'oklch(72% 0.14 25)' }}>menschlich.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Disqualify() {
+  const items = [
+  {
+    n: '01',
+    t: 'Sie haben bereits entschieden und suchen Legitimation.',
+    b: 'Unsere Analyse kann zu Ergebnissen führen, die der intern bereits getroffenen Entscheidung widersprechen. Wer ein nachträgliches Argument sucht, ist bei uns falsch.'
+  },
+  {
+    n: '02',
+    t: 'Die Umsetzung läuft bereits.',
+    b: 'Wir arbeiten vor der Investitionsentscheidung, nicht während der Implementierung. Ist der Vertrag mit dem Umsetzungspartner unterschrieben und das Projekt im Lauf, bringen wir keinen Hebel mehr, sondern stiften Reibung.'
+  },
+  {
+    n: '03',
+    t: 'Sie suchen jemanden, der den Job für Sie macht.',
+    b: 'Der Erfolg von NarraTec beruht auf dem Wissen und dem Enablement Ihrer Experten. Wir führen die Analyse, aber die Substanz kommt aus Ihrem Haus — wer eine Bearbeitung ohne eigene Beteiligung erwartet, ist bei uns nicht richtig.'
+  },
+  {
+    n: '04',
+    t: 'Das Investitionsvolumen rechtfertigt unser Vorgehen nicht.',
+    b: 'Unsere Methodik ist auf strategisch tragende Investments ausgelegt. Bei kleineren Vorhaben übersteigt unser Aufwand den möglichen Wertbeitrag — einfachere Formate führen schneller zum Ziel. Die Schwelle benennen wir offen im Erstgespräch.'
+  }];
+
+
+  return (
+    <section className="section" id="abgrenzung" data-screen-label="05 Abgrenzung">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 05 · ABGRENZUNG</div>
+          <div>
+            <h2 className="display">Wann wir <em>absagen.</em></h2>
+            <p className="lede">Ein präzises Werkzeug erkennt seine Grenzen. Es gibt Konstellationen, in denen NarraTec nicht der richtige Schritt ist. Wenn Sie sich in einem der folgenden Fälle wiederfinden, verweisen wir Sie gerne an Partner aus unserem Netzwerk.</p>
+          </div>
+        </div>
+
+        {/* Five rejection cards */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, borderTop: '1px solid var(--rule)' }}>
+          {items.map((it) =>
+          <article key={it.n} style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 200px) minmax(0, 1fr)',
+            gap: 'clamp(24px, 4vw, 64px)',
+            padding: '32px 0 32px',
+            borderBottom: '1px solid var(--rule)',
+            alignItems: 'baseline'
+          }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                <div style={{
+                fontFamily: 'var(--f-mono)',
+                fontSize: 11,
+                letterSpacing: '.1em',
+                color: 'var(--ink-3)',
+                textTransform: 'uppercase'
+              }}>Nicht passend</div>
+                <div style={{
+                fontFamily: 'var(--f-mono)',
+                fontSize: 11,
+                letterSpacing: '.1em',
+                color: 'var(--accent-ink)'
+              }}>{it.n}</div>
+              </div>
+              <div>
+                <h3 style={{
+                fontFamily: 'var(--f-display)',
+                fontWeight: 400,
+                fontSize: 'clamp(22px, 2.4vw, 32px)',
+                lineHeight: 1.15,
+                letterSpacing: '-0.01em',
+                color: 'var(--ink)',
+                margin: '0 0 14px',
+                maxWidth: '32ch'
+              }}>{it.t}</h3>
+                <p style={{
+                fontSize: 15,
+                lineHeight: 1.65,
+                color: 'var(--ink-2)',
+                margin: 0,
+                maxWidth: '60ch'
+              }}>{it.b}</p>
+              </div>
+            </article>
+          )}
+        </div>
+
+        {/* Closing line */}
+        <p style={{
+          marginTop: 32,
+          fontFamily: 'var(--f-display)',
+          fontStyle: 'italic',
+          fontSize: 'clamp(22px, 2.2vw, 30px)',
+          lineHeight: 1.3,
+          color: 'var(--ink-2)',
+          maxWidth: '58ch',
+          letterSpacing: '-0.01em'
+        }}>
+          Unsicher, ob Ihr Vorhaben passt? Das 30-minütige Erstgespräch klärt <span style={{ color: 'var(--accent-ink)' }}>genau diese Frage</span> — ohne Folgekosten, ohne Verpflichtung.
+        </p>
+        <div style={{ marginTop: 24, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+          <a className="btn btn-primary" href="#final">
+            Erstgespräch anfragen <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+          <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
+            30 Min · kostenfrei · NDA auf Wunsch
+          </span>
+        </div>
+      </div>
+    </section>);
+}
+
+function Outcomes() {
+  const items = [
+  { n: "01", label: "Reallokationsvolumen", unit: "", body: "Differenz zwischen ursprünglich geplanter Budgetallokation und signiertem Beschluss. Wir berichten Bewegungsrichtung und -höhe." },
+  { n: "02", label: "Entscheidungszeit", unit: "", body: "Vom offenen Problem bis zur signierten Entscheidung." },
+  { n: "03", label: "Time-to-Backlog", unit: "", body: "Zeit von der signierten Entscheidung bis zum ersten umsetzungsfähigen Arbeitspaket." }];
+
+  return (
+    <section className="section" id="ergebnis" data-screen-label="07 Ergebnis">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 07 · Messversprechen</div>
+          <div>
+            <h2 className="display">Drei Kennzahlen. <em>Vor Projektstart vereinbart.</em></h2>
+            <p className="lede">Wir liefern keine Versprechen — wir vereinbaren Messgrößen. Drei Kennzahlen, auf die wir uns mit Ihnen festlegen, bevor die Analyse beginnt. Am Ende berichten wir offen, was sich bewegt hat.</p>
+          </div>
+        </div>
+        <div className="outcomes">
+          {items.map((o, i) =>
+          <div className="outcome" key={i}>
+              <div className="outcome-src" style={{ marginTop: 0, marginBottom: 14 }}> {o.n}</div>
+              <div className="outcome-n" style={{ fontSize: 'clamp(32px, 3.6vw, 48px)', lineHeight: 1.05 }}><em>{o.label}</em></div>
+              {o.unit && <div className="outcome-label" style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)', fontWeight: 400, marginTop: 14 }}>Einheit: {o.unit}</div>}
+              <div className="outcome-body" style={{ marginTop: 10 }}>{o.body}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Case() {
+  const phases = [
+  {
+    n: "Ausgangslage",
+    t: "Entscheidung schien klar.",
+    d: "Dashboard zur Produktkosten-Steuerung. Budget reserviert. Dienstleister vorselektiert. Intern bereits kommuniziert."
+  },
+  {
+    n: "Was wir gefunden haben",
+    t: "Die Datengrundlage hätte das Projekt scheitern lassen.",
+    d: "9 Interviews mit Fachexperten aus Controlling, Produktion und IT legten offen, was intern nie artikuliert worden war: kritische Datenlücken, Quellkonflikte und fehlende Systemanbindungen — die das Dashboard entweder nutzlos gemacht oder zu unplanbaren Verzögerungen geführt hätten."
+  },
+  {
+    n: "Ergebnis",
+    t: "Eine bessere Entscheidung.",
+    d: "Statt eines generischen Dashboards: ein verbindliches Umsetzungsmandat mit definierten Datenanforderungen, klaren Quellsystemen und messbaren Akzeptanzkriterien. Die Umsetzung startete ohne Architekturschleifen."
+  }];
+
+
+  return (
+    <section className="section" data-screen-label="08 Case">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 08 · Case Study</div>
+          <div>
+            <h2 className="display">Das Dashboard wäre gebaut worden — <em>auf falscher Grundlage.</em></h2>
+            <p className="lede">Anonymisierter Realfall · Industrieunternehmen · DACH · 2025</p>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.4fr)', gap: 0, borderTop: '1px solid var(--rule)', marginTop: 48 }}>
+          {/* Left: phases + metrics */}
+          <div style={{ borderRight: '1px solid var(--rule)', display: 'flex', flexDirection: 'column' }}>
+            {phases.map((p) =>
+            <div key={p.n} style={{ padding: '28px 36px 28px 0', borderBottom: '1px solid var(--rule)' }}>
+                <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--accent-ink)', marginBottom: 8 }}>{p.n}</div>
+                <div style={{ fontFamily: 'var(--f-display)', fontSize: 18, lineHeight: 1.25, color: 'var(--ink)', marginBottom: 10 }}>{p.t}</div>
+                <p style={{ fontSize: 13.5, color: 'var(--ink-2)', lineHeight: 1.65, margin: 0 }}>{p.d}</p>
+              </div>
+            )}
+            <div style={{ padding: '28px 36px 0 0', display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {[
+              { label: 'Sprint-Dauer', val: '4 Wochen' },
+              { label: 'Stakeholder einbezogen', val: '9' },
+              { label: 'Arbeitspakete im Ergebnis', val: '7' }].
+              map(({ label, val }, i, arr) =>
+              <div key={label} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 16, borderBottom: i < arr.length - 1 ? '1px solid var(--rule)' : 'none', padding: '18px 0' }}>
+                  <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>{label}</div>
+                  <div style={{ fontFamily: 'var(--f-display)', fontSize: 28, color: 'var(--ink)', textAlign: 'right' }}>{val}</div>
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Right: doc excerpt */}
+          <div style={{ padding: '40px 0 40px 40px', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 16 }}>Das entstandene Narrativ (Auszug)</div>
+            <figure className="doc" aria-label="Beispiel eines NarraTec-Narrativs" style={{ margin: 0, flex: 1 }}>
+              <div className="doc-meta">
+                <span>Narrativ · v1.2</span>
+                <span>Status: entschieden</span>
+              </div>
+              <h4>Dashboard Produktkosten-Steuerung: Beauftragen oder Voraussetzungen schaffen?</h4>
+              <div className="doc-sub">Vorhaben 2025-Q3 · Verantwortlich: IT-Leitung · Beteiligt: Controlling, Produktion, Data Engineering</div>
+              <div className="doc-section"><span className="k">Hypothese</span><span className="v">Die fehlende Kostentransparenz ist nicht durch ein Dashboard lösbar, solange die Datengrundlage unbereinigt ist. <span className="hl">Ein sofortiger Dashboardbau würde das Budget fehlallokieren</span> — die eigentlichen Probleme blieben unsichtbar.</span></div>
+              <div className="doc-section"><span className="k">Evidenz</span><span className="v">9 Interviews mit Fachexperten aus Controlling, Produktion und IT. <span className="hl">Mehrere kritische Datenlücken und Quellkonflikte</span> identifiziert. Fehlende Anbindung von 3 Quellsystemen dokumentiert.</span></div>
+              <div className="doc-section"><span className="k">Entscheidung</span><span className="v">Feingranulares Umsetzungsmandat statt generischem Dashboard. Klare Datenanforderungen, definierte Quellsysteme, priorisierte Kostenträger und messbare Akzeptanzkriterien.</span></div>
+              <div className="doc-section"><span className="k">Backlog</span><span className="v">7 Arbeitspakete, 3 Owner, Akzeptanzkriterien je Arbeitspaket definiert.</span></div>
+              <div className="doc-footer">
+                <span>Signatur:
+IT-Leitung · Controlling · Data Engineering</span>
+                <span>22.09.2025</span>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+
+
+function Process() {
+  const steps = [
+  { w: "Tag 0", t: "Kick-off", d: "Problem, Ziel, Stakeholder." },
+  { w: "Woche 1-2", t: "Analyse-Sprint", d: "Interviews, Daten, Hypothesen." },
+  { w: "Woche 3", t: "Narrativ v1", d: "Redigiertes Dokument, intern tragfähig." },
+  { w: "Woche 4", t: "Entscheidung & Backlog", d: "Freigabe, Arbeitspakete, (Finanzierungsmodell)." }];
+
+  return (
+    <section className="section" id="ablauf" data-screen-label="09 Ablauf">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 09 · ABLAUF</div>
+          <div>
+            <h2 className="display">Vier Wochen von offener <em>Frage</em> zu signiertem Backlog.</h2>
+          </div>
+        </div>
+        <div className="process">
+          {steps.map((s, i) =>
+          <div className="proc" key={i}>
+              <div className="when">{s.w}</div>
+              <div className="what">{s.t}</div>
+              <div className="desc">{s.d}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function FAQ() {
+  const items = [
+  { q: "Was kostet ein Vorhaben?", a: "Festpreis, abhängig von Scope und Stakeholderzahl. Typische Range 15k - 35k€. Das Briefing selbst ist kostenfrei und unverbindlich." },
+  { q: "Wer ist im Briefing dabei?", a: "Ein Partner. Kein Vertrieb. NDA auf Wunsch vor dem Gespräch." },
+  { q: "Wie lange dauert ein Narrativ?", a: "4–6 Wochen von Auftrag bis signierter Entscheidung. Die Dauer hängt von Stakeholderzahl und Datenverfügbarkeit ab, nicht von unserem Kalender." },
+  { q: "Ersetzt das unsere Strategieberatung?", a: "Nein. NarraTec arbeitet für die Entscheidung, wir sind der Schritt zwischen Strategie und Umsetzung." },
+  { q: "Was passiert mit unseren Daten?", a: "Alle Materialien bleiben Ihr Eigentum. Ergebnisdokumente werden übergeben, interne Arbeitsdaten auf Wunsch binnen 30 Tagen gelöscht." },
+  { q: "Nutzen Sie KI in der Erstellung?", a: "Ja — bei Verdichtung, Recherche und Backlog-Übersetzung. Nie bei Hypothesenbildung, Entscheidungsempfehlung oder Signatur. Wir dokumentieren transparent, wo KI eingesetzt wurde." }];
+
+  return (
+    <section className="section" data-screen-label="09 FAQ">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 09 · FAQ</div>
+          <div>
+            <h2 className="display">Die sechs Fragen, die <em>C-Level</em> zuerst stellt.</h2>
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0, borderTop: '1px solid var(--rule)', marginTop: 0 }}>
+          {items.map((it, i) =>
+          <div key={i} style={{
+            padding: '32px 36px',
+            borderBottom: '1px solid var(--rule)',
+            borderRight: i % 2 === 0 ? '1px solid var(--rule)' : 'none'
+          }}>
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--accent-ink)', marginBottom: 10 }}>
+                {String(i + 1).padStart(2, '0')}
+              </div>
+              <div style={{ fontFamily: 'var(--f-display)', fontSize: 19, lineHeight: 1.25, color: 'var(--ink)', marginBottom: 14 }}>{it.q}</div>
+              <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.7, margin: 0 }}>{it.a}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Final({ cta }) {
+  return (
+    <section className="final" id="final" data-screen-label="10 Final CTA">
+      <div className="container">
+        <div className="section-head">
+          <div className="rubric">§ 10 · NÄCHSTER SCHRITT</div>
+          <div>
+            <h2 className="display">30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</h2>
+            <p className="lede" style={{ marginTop: 20 }}>Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.
+
+            </p>
+            <div className="hero-actions" style={{ marginTop: 36 }}>
+              <a className="btn btn-primary" href="mailto:contact@narratec.io">
+                {cta.primary} <span className="btn-arrow" aria-hidden="true"></span>
+              </a>
+              <a className="btn btn-ghost" href="#methode">Methode ansehen</a>
+            </div>
+            <div style={{ marginTop: 22, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'oklch(72% 0.008 85)' }}>
+              contact@narratec.io · {cta.secondary}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container footer-inner">
+        <div>© 2026 NarraTec GmbH. Alle Rechte vorbehalten.</div>
+        <div className="footer-links">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">AGB</a>
+          <a href="mailto:contact@narratec.io">contact@narratec.io</a>
+        </div>
+      </div>
+    </footer>);
+
+}
+
+// ---------- Tweaks ----------
+
+function Tweaks({ state, setState, visible, onClose }) {
+  if (!visible) return null;
+  const set = (k, v) => {
+    const next = { ...state, [k]: v };
+    setState(next);
+    window.parent?.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
+  };
+  return (
+    <div className="tweaks-panel" role="dialog" aria-label="Tweaks">
+      <div className="tweaks-head">
+        <span>Tweaks</span>
+        <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', fontFamily: 'var(--f-mono)', fontSize: 14 }}>×</button>
+      </div>
+      <div className="tweaks-body">
+        <div className="tweak-row">
+          <label>CTA-Variante (A/B)</label>
+          <div className="tweak-opts">
+            {["A", "B"].map((v) =>
+            <button key={v} className={"tweak-opt " + (state.ctaVariant === v ? "on" : "")} onClick={() => set('ctaVariant', v)}>
+                {v} · {CTA_COPY[v].primary.split(' ').slice(0, 2).join(' ')}…
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="tweak-row">
+          <label>Akzent-Hue ({state.accentHue}°)</label>
+          <input
+            type="range" min="0" max="360" step="1"
+            value={state.accentHue}
+            onChange={(e) => set('accentHue', +e.target.value)}
+            style={{ accentColor: 'var(--accent)' }} />
+          
+          <div className="tweak-opts">
+            {[{ n: "Tinte-Rot", v: 25 }, { n: "Waldgrün", v: 150 }, { n: "Preußisch", v: 255 }, { n: "Ocker", v: 75 }].map((p) =>
+            <button key={p.v} className={"tweak-opt " + (state.accentHue === p.v ? "on" : "")} onClick={() => set('accentHue', p.v)}>{p.n}</button>
+            )}
+          </div>
+        </div>
+        <div className="tweak-note">
+          A/B-Test: beide Varianten produktionsbereit. Schaltbar über Tweaks-Toggle (Toolbar).
+        </div>
+      </div>
+    </div>);
+
+}
+
+// ---------- App ----------
+
+function App() {
+  const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS);
+  const [tweaksOpen, setTweaksOpen] = useState(TWEAK_DEFAULTS.showTweaksByDefault);
+
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === '__activate_edit_mode') setTweaksOpen(true);
+      if (e.data.type === '__deactivate_edit_mode') setTweaksOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent?.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--accent', `oklch(52% 0.18 ${tweaks.accentHue})`);
+    root.style.setProperty('--accent-ink', `oklch(38% 0.16 ${tweaks.accentHue})`);
+    root.style.setProperty('--accent-wash', `oklch(95% 0.03 ${tweaks.accentHue})`);
+  }, [tweaks.accentHue]);
+
+  // reveal on scroll
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {if (e.isIntersecting) e.target.classList.add('in');});
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const cta = CTA_COPY[tweaks.ctaVariant] || CTA_COPY.A;
+
+  return (
+    <>
+      <Nav />
+      <main>
+        <Hero cta={cta} />
+        <Problem />
+        <UseCases />
+        <Position />
+        <Method />
+        <Disqualify />
+        <Team />
+        <Outcomes />
+        <Case />
+        <FAQ />
+        <Final cta={cta} />
+      </main>
+      <Footer />
+      <Tweaks state={tweaks} setState={setTweaks} visible={tweaksOpen} onClose={() => {
+        setTweaksOpen(false);
+        window.parent?.postMessage({ type: '__deactivate_edit_mode' }, '*');
+      }} />
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+
+
+</script>
+</body>
+</html>
