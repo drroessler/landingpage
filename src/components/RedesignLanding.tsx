@@ -1,4 +1,4 @@
-import { type MouseEvent, type CSSProperties, type ReactNode } from "react";
+import { type MouseEvent, type CSSProperties, type ReactNode, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Layers } from "lucide-react";
 import { useI18n } from "../i18n/LanguageContext";
@@ -897,6 +897,46 @@ function Footer() {
   );
 }
 
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Zurück nach oben"
+      style={{
+        position: "fixed",
+        bottom: 32,
+        right: 32,
+        zIndex: 100,
+        width: 44,
+        height: 44,
+        borderRadius: "50%",
+        border: "1px solid var(--rule-strong)",
+        background: "var(--paper)",
+        color: "var(--ink)",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontFamily: "var(--f-mono)",
+        fontSize: 16,
+        boxShadow: "0 4px 16px oklch(18% 0.01 85 / 0.12)",
+        transition: "background .15s, border-color .15s, transform .15s",
+      }}
+      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "var(--ink)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--paper)"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "var(--paper)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)"; }}
+    >
+      ↑
+    </button>
+  );
+}
+
 function RedesignLanding() {
   const { lang } = useI18n();
   const L = LANDING[lang];
@@ -918,6 +958,7 @@ function RedesignLanding() {
         <Final c={L.final} cta={L.cta} />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
