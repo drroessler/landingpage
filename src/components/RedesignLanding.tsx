@@ -508,7 +508,7 @@ function Position({ c }: { c: LandingCopy["position"] }) {
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 140px) repeat(3, minmax(0, 1fr))", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
             <div style={{ padding: "20px 22px", borderRight: "1px solid var(--rule)", fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)" }}>{c.compareLabel}</div>
             {c.cols.map((col, i) => (
-              <div key={col.label} style={{ padding: "20px 22px", borderRight: i < c.cols.length - 1 ? "1px solid var(--rule)" : "none", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, color: "var(--ink)", letterSpacing: "-0.005em" }}>
+              <div key={col.label} style={{ padding: "20px 22px", borderRight: i < c.cols.length - 1 ? "1px solid var(--rule)" : "none", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, color: i === 1 ? "var(--accent-ink)" : "var(--ink)", fontStyle: i === 1 ? "italic" : "normal", letterSpacing: "-0.005em" }}>
                 {col.label}
               </div>
             ))}
@@ -532,7 +532,7 @@ function Position({ c }: { c: LandingCopy["position"] }) {
             const highlight = i === 1;
             return (
               <div key={col.label} style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
-                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--rule)", background: highlight ? "var(--accent-wash)" : "var(--paper-2)", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.005em", color: highlight ? "var(--accent-ink)" : "var(--ink)" }}>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.005em", color: highlight ? "var(--accent-ink)" : "var(--ink)", fontStyle: highlight ? "italic" : "normal" }}>
                   {col.label}
                 </div>
                 <div style={{ padding: "6px 20px 12px" }}>
