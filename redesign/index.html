@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer src="https://cdn.meetergo.com/v4/integration.js"></script>
 
 <style>
 /* NarraTec — Editorial B2B Landing */
@@ -463,6 +464,7 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
 }
 .pattern-title {
   font-family: var(--f-display);
+  font-weight: 400;
   font-size: 32px;
   line-height: 1.05;
   margin: 10px 0 14px;
@@ -480,9 +482,10 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   font-size: 12px;
   color: var(--accent-ink);
   letter-spacing: 0.02em;
-  padding: 8px 12px;
-  background: var(--accent-wash);
-  border-radius: 2px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  font-style: italic;
 }
 .pattern-cost .arrow { font-family: var(--f-mono); }
 
@@ -1163,7 +1166,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 } /*EDITMODE-END*/;
 
 const CTA_COPY = {
-  A: { primary: "Projekt auf Fehlallokation prüfen", secondary: "30 Min · kostenfrei" },
+  A: { primary: "30 Min Sparring mit den Gründern", secondary: "30 Min · kostenfrei" },
   B: { primary: "Entscheidungs-Diagnose starten", secondary: "Erster Schritt · kostenfrei" }
 };
 
@@ -1183,8 +1186,8 @@ function Nav({ onTweaks }) {
           <a className="nav-link" href="#methode">Methode</a>
           <a className="nav-link" href="#team">Team</a>
           <a className="nav-link" href="#ergebnis">Ergebnis</a>
-          <a className="btn btn-primary nav-cta" href="#final">
-            Projekt auf Fehlallokation prüfen <span className="btn-arrow" aria-hidden="true"></span>
+          <a className="btn btn-primary nav-cta" href="#final" data-meetergo-link="https://cal.meetergo.com/richard-rossler/narratec">
+            Erstgespräch anfragen <span className="btn-arrow" aria-hidden="true"></span>
           </a>
         </nav>
       </div>
@@ -1202,22 +1205,22 @@ function Hero({ cta }) {
 
       {/* Full-width oversized headline */}
       <h1 className="display" style={{ fontSize: 'clamp(52px, 8.5vw, 118px)', lineHeight: 1.06, marginBottom: 0, marginTop: 24 }}>
-        <span className="line">Schützen Sie strategische</span>
-        <span className="line">Investments <em>vor Fehlallokation</em></span>
-        <span className="line">— in 4 Wochen.</span>
+        <span className="line">Strategische IT-Investments</span>
+        <span className="line">in 4 Wochen <em>tragfähig</em></span>
+        <span className="line"> entschieden.</span>
       </h1>
 
       <div style={{ borderTop: '1px solid var(--rule)', margin: '36px 0 0' }} />
 
       <div style={{ paddingTop: 36 }}>
         <p className="lede" style={{ maxWidth: '52ch', marginTop: 0 }}>
-          Lösen Sie bereichsübergreifende Konflikte und vermeiden Sie kostspielige Fehlallokationen bei Ihren Großprojekten. Wir verdichten komplexe Ausgangslagen zu einem signierten, verbindlichen Umsetzungsmandat — direkt übersetzt in operative Arbeitspakete.
+          In vier Wochen verdichten wir Ihre komplexe Ausgangslage zu einem signierten, verbindlichen Umsetzungsmandat — direkt übersetzt in operative Arbeitspakete. So gewinnen Sie Investitionssicherheit, bevor der erste Euro fließt.
         </p>
         <p style={{ maxWidth: '52ch', marginTop: 16, marginBottom: 0, fontFamily: 'var(--f-display)', fontStyle: 'italic', fontSize: 'clamp(18px, 1.6vw, 22px)', lineHeight: 1.4, color: 'var(--ink-2)', letterSpacing: '-0.005em' }}>
-          Sie wissen am Ende nicht nur, was zu tun ist — Sie haben das Budget vor einer Fehlallokation geschützt, bevor der erste Euro fließt.
+          Am Ende wissen Sie nicht nur, was zu tun ist — Sie haben Monate an Umwegen gespart, bevor das Projekt überhaupt startet.
         </p>
         <div className="hero-actions" style={{ marginTop: 28 }}>
-          <a className="btn btn-primary" href="#final">
+          <a className="btn btn-primary" href="#final" data-meetergo-link="https://cal.meetergo.com/richard-rossler/narratec">
             {cta.primary} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <a className="btn btn-ghost" href="#methode">
@@ -1225,7 +1228,7 @@ function Hero({ cta }) {
           </a>
         </div>
         <div style={{ marginTop: 16, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
-          30 Min · Kein Sales-Pitch. Direktes Sparring mit den Gründern.
+          30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch
         </div>
       </div>
     </section>);
@@ -1233,41 +1236,11 @@ function Hero({ cta }) {
 }
 
 function TrustBar() {
+  const hl = { color: 'var(--accent-ink)', fontStyle: 'italic' };
   const proofs = [
-  {
-    icon:
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="3" y="11" width="18" height="10" rx="2" />
-          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-        </svg>,
-
-    label: "Festpreis",
-    meta: "15k–35k € · Kein Scope-Creep",
-    desc: "Preis wird vor Auftragserteilung vertraglich fixiert."
-  },
-  {
-    icon:
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="9" y1="15" x2="15" y2="15" />
-          <line x1="9" y1="11" x2="11" y2="11" />
-        </svg>,
-
-    label: "NDA",
-    meta: "Auf Wunsch vor dem ersten Gespräch",
-    desc: "Vollständige Vertraulichkeit ab dem ersten Austausch."
-  },
-  {
-    icon:
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M12 2 L15 9 L22 10 L17 15 L18.5 22 L12 18.5 L5.5 22 L7 15 L2 10 L9 9 Z" />
-        </svg>,
-
-    label: "Wissenschaftlich publiziert",
-    meta: "HMD · Springer · Peer-reviewed · 2025",
-    desc: "Methodik ist akademisch validiert, Open Access verfügbar."
-  }];
+  { label: <>In mehreren Vorhaben im <span style={hl}>DAX-Konzern</span> erprobt.</> },
+  { label: <>Sie beauftragen uns zum <span style={hl}>Festpreis</span>, ohne Risiko.</> },
+  { label: <>Ihre sensiblen Informationen geschützt durch ein <span style={hl}>NDA</span>.</> }];
 
 
   return (
@@ -1278,7 +1251,7 @@ function TrustBar() {
         borderBottom: '1px solid var(--rule)',
         background: 'var(--paper-2)'
       }}>
-      
+
       <div style={{
         maxWidth: 'var(--max)',
         margin: '0 auto',
@@ -1292,37 +1265,17 @@ function TrustBar() {
           borderRight: i < proofs.length - 1 ? '1px solid var(--rule)' : 'none',
           display: 'flex',
           alignItems: 'center',
-          gap: 14
+          justifyContent: 'center'
         }}>
             <div style={{
-            width: 36, height: 36,
-            borderRadius: 2,
-            background: 'var(--accent-wash)',
-            border: '1px solid color-mix(in oklab, var(--accent-ink) 16%, transparent)',
-            color: 'var(--accent-ink)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            flexShrink: 0
-          }}>
-              {p.icon}
-            </div>
-            <div>
-              <div style={{
-              fontFamily: 'var(--f-display)',
-              fontSize: 'clamp(15px, 1.3vw, 19px)',
-              lineHeight: 1.15,
-              color: 'var(--ink)',
-              letterSpacing: '-0.005em'
-            }}>{p.label}</div>
-              <div style={{
-              fontFamily: 'var(--f-mono)',
-              fontSize: 10,
-              letterSpacing: '.09em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-3)',
-              marginTop: 4,
-              lineHeight: 1.4
-            }}>{p.meta}</div>
-            </div>
+            fontFamily: 'var(--f-display)',
+            fontSize: 'clamp(15px, 1.3vw, 19px)',
+            lineHeight: 1.3,
+            color: 'var(--ink)',
+            letterSpacing: '-0.005em',
+            textAlign: 'center',
+            maxWidth: '30ch'
+          }}>{p.label}</div>
           </div>
         )}
       </div>
@@ -1333,10 +1286,10 @@ function TrustBar() {
 function ValueProps() {
   const items = [
   { n: '01', t: 'Garantierte Geschwindigkeit', d: 'Vom offenen Problem zum entscheidungsreifen Backlog in 4 Wochen.' },
-  { n: '02', t: 'Messbares Ergebnis', d: 'Wir messen unseren Erfolg an harten, vorab vereinbarten KPIs.' },
+  { n: '02', t: 'Messversprechen, kein Versprechen', d: 'Drei Kennzahlen, vor Projektstart gemeinsam vereinbart. Wir binden uns an messbare Bewegung, bevor die Analyse beginnt — nicht an Versprechen.' },
   { n: '03', t: 'Kein Risiko', d: 'NDA-Bereitschaft und Festpreis-Garantie.' },
-  { n: '04', t: 'Das 6-Seiten-Limit', d: 'Ein fokussiertes Dokument statt endloser Folienschlachten. Der Zwang zur Verschriftlichung beendet Meinungsdebatten und erzwingt faktenbasierte Entscheidungen.' },
-  { n: '05', t: 'Striktes Quality Gate', d: 'Kein Umsetzungs-Budget im Blindflug. Jeder Lösungsbaustein wird erst freigegeben, wenn er rückverfolgbar, messbar und klar zugewiesen ist.' }];
+  { n: '04', t: 'Das 6-Seiten-Limit', d: 'Weniger Meetings, schnellere Freigabe: Ein fokussiertes Sechs-Seiten-Dokument ersetzt endlose Foliendebatten und bringt alle Beteiligten in einem Termin auf denselben Stand.' },
+  { n: '05', t: 'Striktes Quality Gate', d: 'Kein Budget im Blindflug: Jeder Baustein wird erst freigegeben, wenn er messbar, rückverfolgbar und klar zugewiesen ist. Sie zahlen nie für Umsetzung auf vagem Fundament.' }];
 
   return (
     <section className="value-props" aria-label="Warum NarraTec">
@@ -1415,17 +1368,6 @@ function Problem() {
             </article>
           )}
         </div>
-        <p style={{
-          marginTop: 'clamp(32px, 4vw, 48px)',
-          maxWidth: '64ch',
-          fontFamily: 'var(--f-display)',
-          fontSize: 'clamp(20px, 2vw, 26px)',
-          lineHeight: 1.4,
-          color: 'var(--ink-2)',
-          letterSpacing: '-0.005em'
-        }}>
-          Die vier Muster teilen eine Wurzel: Die Entscheidung wird nie umsetzungsfest gemacht. Genau hier setzen wir an. Eine Entscheidung, die mit klarer Verantwortlichkeit, prüfbaren Akzeptanzkriterien und übersetzbaren Arbeitspaketen konstruiert ist, versandet nicht in der Umsetzung — sie trägt. <span style={{ color: 'var(--accent-ink)' }}>Wir bauen nicht selbst. Aber wir liefern Ihnen das Werkzeug für Ihre Experten.</span>
-        </p>
       </div>
     </section>);
 
@@ -1454,7 +1396,7 @@ function Team() {
     <section className="section" id="team" data-screen-label="06 Team">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 06 · Wer dahinter steht</div>
+          <div className="rubric">§ 07 · Wer dahinter steht</div>
           <div>
             <h2 className="display">Zwei Perspektiven. <em>Ein</em> Anspruch.</h2>
             <p className="lede">Beide Gründer haben selbst komplexe IT-Entscheidungen verantwortet. Die Methodik ist das Ergebnis — nicht die Grundlage.</p>
@@ -1660,7 +1602,7 @@ function UseCases() {
     <section className="section" id="einsatz" data-screen-label="02 Einsatz">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 02 · Einsatzgebiete</div>
+          <div className="rubric">§ 06 · Einsatzgebiete</div>
           <div>
             <h2 className="display">Wo die Methode <em>wirkt.</em></h2>
             <p className="lede">Überall dort, wo Komplexität auf Umsetzungsdruck trifft und Entscheidungen breit getragen werden müssen.</p>
@@ -1669,8 +1611,7 @@ function UseCases() {
         <div className="usecases">
           {cases.map((c, i) =>
           <article className="usecase" key={i}>
-              <div className="usecase-icon" aria-hidden="true"><Icon name={c.icon} /></div>
-              <h3 className="usecase-title">{c.t}</h3>
+              <h3 className="usecase-title" style={{ fontWeight: 500 }}>{c.t}</h3>
               <p className="usecase-body">{c.b}</p>
               <ul className="usecase-outs">
                 {c.outs.map((o, j) => <li key={j}><span className="check" aria-hidden="true">✓</span>{o}</li>)}
@@ -1724,7 +1665,7 @@ function Position() {
     <section className="section" id="position" data-screen-label="03 Position">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 03 · POSITION</div>
+          <div className="rubric">§ 02 · POSITION</div>
           <div>
             <h2 className="display">Zwischen Strategie <em>und Umsetzung.</em></h2>
             <p className="lede">NarraTec ersetzt weder Strategieberatung noch Umsetzungspartner. Wir schließen eine spezifische Lücke: den Moment, in dem aus einer strategischen Absicht eine tragfähige, signaturreife Investitionsentscheidung werden muss.</p>
@@ -1918,10 +1859,10 @@ function Method() {
     <section className="section" id="methode" data-screen-label="04 Methode">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 04 · Methode</div>
+          <div className="rubric">§ 05 · Methode</div>
           <div>
-            <h2 className="display">Von der Hypothese ins Backlog: <em>So erzwingen wir</em> die Entscheidung.</h2>
-            <p className="lede">Ein strukturierte Analyse, die Ursachen, Entscheidungslogik und Maßnahmen in einem gemeinsam erarbeiteten Dokument verbindet — und damit Entscheidungen trägt, die intern halten.</p>
+            <h2 className="display">Von der Hypothese ins Backlog: So wird die Entscheidung <em>tragfähig.</em></h2>
+            <p className="lede">Eine strukturierte Analyse, die Ursachen, Entscheidungslogik und Maßnahmen in einem gemeinsam erarbeiteten Dokument verbindet — und damit Entscheidungen trägt, die intern halten.</p>
           </div>
         </div>
 
@@ -2029,7 +1970,7 @@ function Disqualify() {
     <section className="section" id="abgrenzung" data-screen-label="05 Abgrenzung">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 05 · ABGRENZUNG</div>
+          <div className="rubric">§ 08 · ABGRENZUNG</div>
           <div>
             <h2 className="display">Wann wir <em>absagen.</em></h2>
             <p className="lede">Ein präzises Werkzeug erkennt seine Grenzen. Es gibt Konstellationen, in denen NarraTec nicht der richtige Schritt ist. Wenn Sie sich in einem der folgenden Fälle wiederfinden, verweisen wir Sie gerne an Partner aus unserem Netzwerk.</p>
@@ -2099,11 +2040,11 @@ function Disqualify() {
           Unsicher, ob Ihr Vorhaben passt? Das 30-minütige Erstgespräch klärt <span style={{ color: 'var(--accent-ink)' }}>genau diese Frage</span> — ohne Folgekosten, ohne Verpflichtung.
         </p>
         <div style={{ marginTop: 24, display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-          <a className="btn btn-primary" href="#final">
+          <a className="btn btn-primary" href="#final" data-meetergo-link="https://cal.meetergo.com/richard-rossler/narratec">
             Erstgespräch anfragen <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
-            30 Min · kostenfrei · NDA auf Wunsch
+            30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch
           </span>
         </div>
       </div>
@@ -2120,7 +2061,7 @@ function Outcomes() {
     <section className="section" id="ergebnis" data-screen-label="07 Ergebnis">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 07 · Messversprechen</div>
+          <div className="rubric">§ 04 · Messversprechen</div>
           <div>
             <h2 className="display">Drei Kennzahlen. <em>Vor Projektstart vereinbart.</em></h2>
             <p className="lede">Wir liefern keine Versprechen — wir vereinbaren Messgrößen. Drei Kennzahlen, auf die wir uns mit Ihnen festlegen, bevor die Analyse beginnt. Am Ende berichten wir offen, was sich bewegt hat.</p>
@@ -2130,7 +2071,7 @@ function Outcomes() {
           {items.map((o, i) =>
           <div className="outcome" key={i}>
               <div className="outcome-src" style={{ marginTop: 0, marginBottom: 14 }}> {o.n}</div>
-              <div className="outcome-n" style={{ fontSize: 'clamp(32px, 3.6vw, 48px)', lineHeight: 1.05 }}><em>{o.label}</em></div>
+              <div className="outcome-n" style={{ fontSize: 'clamp(32px, 3.6vw, 48px)', lineHeight: 1.05, color: 'var(--ink)', fontStyle: 'italic' }}>{o.label}</div>
               {o.unit && <div className="outcome-label" style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ink-3)', fontWeight: 400, marginTop: 14 }}>Einheit: {o.unit}</div>}
               <div className="outcome-body" style={{ marginTop: 10 }}>{o.body}</div>
             </div>
@@ -2164,7 +2105,7 @@ function Case() {
     <section className="section" data-screen-label="08 Case">
       <div className="container">
         <div className="section-head">
-          <div className="rubric">§ 08 · Case Study</div>
+          <div className="rubric">§ 03 · Case Study</div>
           <div>
             <h2 className="display">Das Dashboard wäre gebaut worden — <em>auf falscher Grundlage.</em></h2>
             <p className="lede">Anonymisierter Realfall · Industrieunternehmen · DACH · 2025</p>
@@ -2262,7 +2203,7 @@ function FAQ() {
   const items = [
   { q: "Was kostet ein Vorhaben?", a: "Festpreis, abhängig von Scope und Stakeholderzahl. Typische Range 15k - 35k€. Das Briefing selbst ist kostenfrei und unverbindlich." },
   { q: "Wer ist im Briefing dabei?", a: "Ein Partner. Kein Vertrieb. NDA auf Wunsch vor dem Gespräch." },
-  { q: "Wie lange dauert ein Narrativ?", a: "4–6 Wochen von Auftrag bis signierter Entscheidung. Die Dauer hängt von Stakeholderzahl und Datenverfügbarkeit ab, nicht von unserem Kalender." },
+  { q: "Wie lange dauert die Zusammenarbeit?", a: "4–6 Wochen von Auftrag bis signierter Entscheidung sind ein typischer Rahmen. Die Dauer hängt von Stakeholderzahl und Datenverfügbarkeit ab, nicht von unserem Kalender." },
   { q: "Ersetzt das unsere Strategieberatung?", a: "Nein. NarraTec arbeitet für die Entscheidung, wir sind der Schritt zwischen Strategie und Umsetzung." },
   { q: "Was passiert mit unseren Daten?", a: "Alle Materialien bleiben Ihr Eigentum. Ergebnisdokumente werden übergeben, interne Arbeitsdaten auf Wunsch binnen 30 Tagen gelöscht." },
   { q: "Nutzen Sie KI in der Erstellung?", a: "Ja — bei Verdichtung, Recherche und Backlog-Übersetzung. Nie bei Hypothesenbildung, Entscheidungsempfehlung oder Signatur. Wir dokumentieren transparent, wo KI eingesetzt wurde." }];
@@ -2308,13 +2249,13 @@ function Final({ cta }) {
 
             </p>
             <div className="hero-actions" style={{ marginTop: 36 }}>
-              <a className="btn btn-primary" href="mailto:contact@narratec.io">
+              <a className="btn btn-primary" href="mailto:contact@narratec.io" data-meetergo-link="https://cal.meetergo.com/richard-rossler/narratec">
                 {cta.primary} <span className="btn-arrow" aria-hidden="true"></span>
               </a>
               <a className="btn btn-ghost" href="#methode">Methode ansehen</a>
             </div>
             <div style={{ marginTop: 22, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: 'oklch(72% 0.008 85)' }}>
-              contact@narratec.io · {cta.secondary}
+              contact@narratec.io · 30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch
             </div>
           </div>
         </div>
@@ -2427,14 +2368,15 @@ function App() {
       <Nav />
       <main>
         <Hero cta={cta} />
+        <TrustBar />
         <Problem />
-        <UseCases />
         <Position />
-        <Method />
-        <Disqualify />
-        <Team />
-        <Outcomes />
         <Case />
+        <Outcomes />
+        <Method />
+        <UseCases />
+        <Team />
+        <Disqualify />
         <FAQ />
         <Final cta={cta} />
       </main>
