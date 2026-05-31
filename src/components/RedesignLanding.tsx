@@ -450,7 +450,7 @@ function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
 function TrustBar({ items }: { items: LandingCopy["trust"] }) {
   return (
     <div data-screen-label="01b TrustBar" style={{ borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
-      <div style={{ maxWidth: "var(--max)", margin: "0 auto", padding: "0 var(--gutter)", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+      <div className="trust-strip" style={{ maxWidth: "var(--max)", margin: "0 auto", padding: "0 var(--gutter)", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
         {items.map((label, i) => (
           <div key={i} style={{ padding: "clamp(18px, 2.2vw, 26px) clamp(16px, 2.5vw, 32px)", borderRight: i < items.length - 1 ? "1px solid var(--rule)" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ fontFamily: "var(--f-display)", fontSize: "clamp(15px, 1.3vw, 19px)", lineHeight: 1.3, color: "var(--ink)", letterSpacing: "-0.005em", textAlign: "center", maxWidth: "30ch" }}>{label}</div>
@@ -504,7 +504,7 @@ function Position({ c }: { c: LandingCopy["position"] }) {
           </div>
         </div>
 
-        <div style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
+        <div className="pos-table" style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 140px) repeat(3, minmax(0, 1fr))", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
             <div style={{ padding: "20px 22px", borderRight: "1px solid var(--rule)", fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)" }}>{c.compareLabel}</div>
             {c.cols.map((col, i) => (
@@ -524,6 +524,28 @@ function Position({ c }: { c: LandingCopy["position"] }) {
               ))}
             </div>
           ))}
+        </div>
+
+        {/* Mobile: one card per provider (the table is unreadable in 3 columns) */}
+        <div className="pos-cards" style={{ flexDirection: "column", gap: 16 }}>
+          {c.cols.map((col, i) => {
+            const highlight = i === 1;
+            return (
+              <div key={col.label} style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--rule)", background: highlight ? "var(--accent-wash)" : "var(--paper-2)", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.005em", color: highlight ? "var(--accent-ink)" : "var(--ink)" }}>
+                  {col.label}
+                </div>
+                <div style={{ padding: "6px 20px 12px" }}>
+                  {rows.map((r) => (
+                    <div key={r.k} style={{ padding: "12px 0", borderTop: "1px solid var(--rule)" }}>
+                      <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 6 }}>{r.k}</div>
+                      <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)" }}>{col[r.f]}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -567,7 +589,7 @@ function Method({ c }: { c: LandingCopy["method"] }) {
         </div>
 
         <DecisionBridge steps={c.steps} />
-        <div style={{ marginTop: 48, background: "var(--ink)", color: "var(--paper)", borderRadius: 3, padding: "clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)", display: "grid", gridTemplateColumns: "minmax(0, 180px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 56px)", alignItems: "start", position: "relative", overflow: "hidden" }}>
+        <div className="method-principle" style={{ marginTop: 48, background: "var(--ink)", color: "var(--paper)", borderRadius: 3, padding: "clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)", display: "grid", gridTemplateColumns: "minmax(0, 180px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 56px)", alignItems: "start", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
           <div>
             <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "oklch(72% 0.008 85)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
@@ -651,7 +673,7 @@ function Team({ c }: { c: LandingCopy["team"] }) {
           ))}
         </div>
 
-        <div style={{ marginTop: 28, border: "1px solid var(--rule)", borderRadius: 3, background: "var(--paper)", display: "grid", gridTemplateColumns: "minmax(0, 280px) minmax(0, 1fr)", gap: 0, overflow: "hidden" }}>
+        <div className="team-badge" style={{ marginTop: 28, border: "1px solid var(--rule)", borderRadius: 3, background: "var(--paper)", display: "grid", gridTemplateColumns: "minmax(0, 280px) minmax(0, 1fr)", gap: 0, overflow: "hidden" }}>
           <div style={{ padding: "28px 30px", borderRight: "1px solid var(--rule)", background: "var(--paper-2)", display: "flex", flexDirection: "column", gap: 14, justifyContent: "space-between" }}>
             <div>
               <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
@@ -716,7 +738,7 @@ function Disqualify({ c, cta }: { c: LandingCopy["disqualify"]; cta: LandingCopy
 
         <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--rule)" }}>
           {c.items.map((it) => (
-            <article key={it.n} style={{ display: "grid", gridTemplateColumns: "minmax(0, 200px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 64px)", padding: "32px 0 32px", borderBottom: "1px solid var(--rule)", alignItems: "baseline" }}>
+            <article key={it.n} className="dq-item" style={{ display: "grid", gridTemplateColumns: "minmax(0, 200px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 64px)", padding: "32px 0 32px", borderBottom: "1px solid var(--rule)", alignItems: "baseline" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
                 <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--ink-3)", textTransform: "uppercase" }}>{c.notLabel}</div>
                 <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--accent-ink)" }}>{it.n}</div>
@@ -782,8 +804,8 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1.4fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 48 }}>
-          <div style={{ borderRight: "1px solid var(--rule)", display: "flex", flexDirection: "column" }}>
+        <div className="case-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1.4fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 48 }}>
+          <div className="case-col-left" style={{ borderRight: "1px solid var(--rule)", display: "flex", flexDirection: "column" }}>
             {c.phases.map((p) => (
               <div key={p.n} style={{ padding: "28px 36px 28px 0", borderBottom: "1px solid var(--rule)" }}>
                 <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 8 }}>{p.n}</div>
@@ -805,7 +827,7 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
               </dl>
             </div>
           </div>
-          <div style={{ padding: "40px 0 40px 40px", display: "flex", flexDirection: "column" }}>
+          <div className="case-doc-col" style={{ padding: "40px 0 40px 40px", display: "flex", flexDirection: "column" }}>
             <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 16 }}>{c.docLabel}</div>
             <figure className="doc" style={{ margin: 0, flex: 1 }}>
               <div className="doc-meta">
@@ -839,7 +861,7 @@ function FAQ({ c }: { c: LandingCopy["faq"] }) {
             <h2 className="display">{c.h2}</h2>
           </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 0 }}>
+        <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 0 }}>
           {c.items.map((it, i) => (
             <div key={i} style={{ padding: "32px 36px", borderBottom: "1px solid var(--rule)", borderRight: i % 2 === 0 ? "1px solid var(--rule)" : "none" }}>
               <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 10 }}>

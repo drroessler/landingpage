@@ -1120,3 +1120,48 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   .btn, .linklike .arr, .faq-q .chev { transition: none; }
 }
 
+/* ---------- Mobile optimisation for inline-styled grids ---------- */
+/* Position: table on desktop, stacked provider cards on phones */
+.pos-cards { display: none; }
+
+@media (max-width: 760px) {
+  /* Nav: restore side inset (the .nav-inner shorthand zeroes container padding)
+     and drop the long CTA — the hero CTA sits right below the fold */
+  .nav-inner { padding-left: var(--gutter); padding-right: var(--gutter); }
+  .nav-cta { display: none !important; }
+
+  .pos-table { display: none !important; }
+  .pos-cards { display: flex !important; }
+
+  /* TrustBar: stack the three claims */
+  .trust-strip { grid-template-columns: 1fr !important; }
+  .trust-strip > div { border-right: none !important; }
+  .trust-strip > div + div { border-top: 1px solid var(--rule); }
+
+  /* Case study: stack phases above the document excerpt */
+  .case-grid { grid-template-columns: 1fr !important; }
+  .case-col-left { border-right: none !important; }
+  .case-doc-col { padding: 0 0 8px 0 !important; border-top: 1px solid var(--rule); }
+  .case-col-left > div:first-child { padding-right: 0 !important; }
+  .case-col-left > div[style*="margin-right"] { margin-right: 0 !important; }
+
+  /* Narrative document: stack key/value rows */
+  .doc { padding: 24px 22px; }
+  .doc-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .doc-section { grid-template-columns: 1fr; gap: 4px; }
+
+  /* Team provenance badge */
+  .team-badge { grid-template-columns: 1fr !important; }
+  .team-badge > div:first-child { border-right: none !important; border-bottom: 1px solid var(--rule); }
+
+  /* Method principle block */
+  .method-principle { grid-template-columns: 1fr !important; gap: 20px !important; }
+
+  /* Disqualify rows */
+  .dq-item { grid-template-columns: 1fr !important; gap: 8px !important; }
+
+  /* FAQ: single column */
+  .faq-grid { grid-template-columns: 1fr !important; }
+  .faq-grid > div { border-right: none !important; }
+}
+
