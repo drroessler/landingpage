@@ -536,8 +536,8 @@ function Position({ c }: { c: LandingCopy["position"] }) {
                   {col.label}
                 </div>
                 <div style={{ padding: "6px 20px 12px" }}>
-                  {rows.map((r) => (
-                    <div key={r.k} style={{ padding: "12px 0", borderTop: "1px solid var(--rule)" }}>
+                  {rows.map((r, idx) => (
+                    <div key={r.k} style={{ padding: "12px 0", borderTop: idx === 0 ? "none" : "1px solid var(--rule)" }}>
                       <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 6 }}>{r.k}</div>
                       <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)" }}>{col[r.f]}</div>
                     </div>
@@ -828,7 +828,7 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
             </div>
           </div>
           <div className="case-doc-col" style={{ padding: "40px 0 40px 40px", display: "flex", flexDirection: "column" }}>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 16 }}>{c.docLabel}</div>
+            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 16 }}>{c.docLabel}</div>
             <figure className="doc" style={{ margin: 0, flex: 1 }}>
               <div className="doc-meta">
                 <span>{c.docMetaLeft}</span>

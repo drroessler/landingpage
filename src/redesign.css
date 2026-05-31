@@ -1141,7 +1141,7 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   /* Case study: stack phases above the document excerpt */
   .case-grid { grid-template-columns: 1fr !important; }
   .case-col-left { border-right: none !important; }
-  .case-doc-col { padding: 0 0 8px 0 !important; border-top: 1px solid var(--rule); }
+  .case-doc-col { padding: 28px 0 8px 0 !important; margin-top: 28px; border-top: 1px solid var(--rule); }
   .case-col-left > div:first-child { padding-right: 0 !important; }
   .case-col-left > div[style*="margin-right"] { margin-right: 0 !important; }
 
