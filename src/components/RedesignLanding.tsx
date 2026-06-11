@@ -22,6 +22,7 @@ const landingDe = {
     spar: "30 Min Sparring mit den Gründern",
     seeMethod: "Methode ansehen",
     micro: "30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
+    microShort: "30 Min · kostenfrei · NDA auf Wunsch",
     finalMicro: "contact@narratec.io · 30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
   },
   nav: [
@@ -32,7 +33,7 @@ const landingDe = {
     { label: "Ergebnis", id: "ergebnis" },
   ],
   hero: {
-    kicker: "DER ENTSCHEIDUNGS-STANDARD FÜR STRATEGISCH TRAGENDE IT-INVESTMENTS",
+    kicker: "ENTSCHEIDUNGSSICHERHEIT FÜR STRATEGISCH TRAGENDE IT-INVESTMENTS",
     headline: (
       <>
         <span className="line">Strategische IT-Investments</span>
@@ -40,7 +41,7 @@ const landingDe = {
         <span className="line"> entschieden.</span>
       </>
     ) as ReactNode,
-    lede: "In vier Wochen verdichten wir Ihre komplexe Ausgangslage zu einem signierten, verbindlichen Umsetzungsmandat — direkt übersetzt in operative Arbeitspakete. So gewinnen Sie Investitionssicherheit, bevor der erste Euro fließt.",
+    lede: "Bevor der erste Euro fließt, wissen Sie, ob Ihre Investition trägt — oder was vorher fehlen würde. In vier Wochen verdichten wir Ihre komplexe Ausgangslage zu einem signierten, verbindlichen Umsetzungsmandat, direkt übersetzt in operative Arbeitspakete.",
     italic: "Am Ende wissen Sie nicht nur, was zu tun ist — Sie haben Monate an Umwegen gespart, bevor das Projekt überhaupt startet.",
   },
   trust: [
@@ -101,16 +102,22 @@ const landingDe = {
     ],
     docSig: "Signatur:\nIT-Leitung · Controlling · Data Engineering",
     docDate: "22.09.2025",
+    ongoing: {
+      kicker: "LAUFENDES ENGAGEMENT",
+      title: "Drei Organisationen. Ein neues Geschäftsfeld.",
+      body: "Aktuell begleiten wir ein Vorhaben zwischen einem Konzern, einem Startup und einem Forschungsinstitut: der Aufbau eines anspruchsvollen technischen Produkts als Grundlage eines neuen Geschäftsfelds. Drei Organisationen, drei Arbeitslogiken, ein gemeinsames Mandat — exakt die Konstellation, für die unsere Methodik entwickelt wurde. Status: in Umsetzung.",
+    },
   },
   outcomes: {
     rubric: "§ 04 · Messversprechen",
     h2: (<>Drei Kennzahlen. <em>Vor Projektstart vereinbart.</em></>) as ReactNode,
     lede: "Wir liefern keine Versprechen — wir vereinbaren Messgrößen. Drei Kennzahlen, auf die wir uns mit Ihnen festlegen, bevor die Analyse beginnt. Am Ende berichten wir offen, was sich bewegt hat.",
     items: [
-      { n: "01", label: "Reallokationsvolumen", body: "Differenz zwischen ursprünglich geplanter Budgetallokation und signiertem Beschluss. Wir berichten Bewegungsrichtung und -höhe." },
-      { n: "02", label: "Entscheidungszeit", body: "Vom offenen Problem bis zur signierten Entscheidung." },
-      { n: "03", label: "Time-to-Backlog", body: "Zeit von der signierten Entscheidung bis zum ersten umsetzungsfähigen Arbeitspaket." },
+      { n: "01", label: "Vor Fehlallokation geschütztes Budget", body: "Differenz zwischen ursprünglich geplanter Budgetallokation und signiertem Beschluss. Auch eine bestätigte Ausgangsplanung ist ein Ergebnis — dann mit dokumentierter Evidenz statt Bauchgefühl." },
+      { n: "02", label: "Entscheidungszeit", body: "Vom offenen Problem bis zur signierten Entscheidung. Typisch: vier Wochen." },
+      { n: "03", label: "Entscheidungsstabilität", body: "Startet die Umsetzung ohne Revisionsschleifen? Wir messen, ob die Entscheidung hält — in der Organisation und im Backlog." },
     ],
+    closing: "Jede dieser Kennzahlen adressiert eines der Muster, an denen Großprojekte scheitern. Zur Einordnung: Unser Honorar liegt typischerweise unter 3 % des Investitionsvolumens, das es absichert. Im dokumentierten Referenzfall stand einem fünfstelligen Festpreis ein vor Fehlallokation geschütztes Budget von 1,3 Mio € gegenüber.",
   },
   method: {
     rubric: "§ 05 · Methode",
@@ -142,8 +149,16 @@ const landingDe = {
     h2: (<>Zwei Perspektiven. <em>Ein</em> Anspruch.</>) as ReactNode,
     lede: "Beide Gründer haben selbst komplexe IT-Entscheidungen verantwortet. Die Methodik ist das Ergebnis — nicht die Grundlage.",
     people: [
-      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Entwickler der NarraTec-Methodik", bio: "10+ Jahre IT-Steuerung in komplexen Vorhaben — an der Schnittstelle von Managementforschung und Projektpraxis. Als Entwickler der NarraTec-Methodik setze ich strukturierte Analysen als Instrument ein, das Entscheidungsqualität systematisch messbar macht und Fehlallokationen vor Projektstart verhindert.", credentials: ["10+ Jahre IT-Steuerung", "Methodenexperte in komplexen Vorhaben", "NarraTec-Gründer"] },
-      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Digitale Transformation & Prozessoptimierung", bio: "Führungserfahrung in der digitalen Transformation: ich weiß, was es bedeutet, mit unzureichenden Informationen weitreichende Entscheidungen treffen zu müssen. Als Mitgründer von NarraTec bringe ich die Perspektive der Entscheidungsverantwortlichen ein — und stelle sicher, dass unsere Methodik an den realen Anforderungen von Führungskräften in komplexen Transformationsvorhaben ausgerichtet bleibt.", credentials: ["Führungserfahrung Digitale Transformation", "Perspektive der Entscheidungsverantwortlichen", "Professur"] },
+      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Entwickler der NarraTec-Methodik", bio: (<>
+        <p style={{ margin: "0 0 12px" }}>Richard ist Entwickler der NarraTec-Methodik und seit über zehn Jahren in der Steuerung komplexer IT-Vorhaben tätig — aktuell als Technical Lead für Data & AI Delivery in einem DAX-Konzern, wo er Entscheidungsnarrative in umsetzbare Anforderungen und Arbeitspakete überführt.</p>
+        <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf messbarer Entscheidungsqualität: Die Methodik strukturierter Narrative hat er in realen Konzernvorhaben entwickelt, erprobt und wissenschaftlich publiziert — an der Schnittstelle von Managementforschung und Projektpraxis.</p>
+        <p style={{ margin: 0 }}>Als technischer Programm-Manager verantwortete er unter anderem eine konzernweite digitale Produktionsplattform (SAFe), die in enger Zusammenarbeit mit Partnern wie Amazon Web Services entstand, sowie Vorhaben zu Open-Source-Compliance und Industrie 4.0 und wirkte an der Neuausrichtung einer Softwareentwicklungsorganisation mit über 500 Mitarbeitenden mit.</p>
+      </>) as ReactNode, credentials: ["10+ Jahre IT-Steuerung", "Methodenexperte in komplexen Vorhaben"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "aka PraxisProf", bio: (<>
+        <p style={{ margin: "0 0 12px" }}>Uwe ist ein sehr praxisorientierter Professor für Wirtschaftsinformatik, Gründer der gemeinnützigen Initiative matchIO und Mitentwickler des Decision & Execution Engineering Ansatzes von NarraTec.</p>
+        <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf der Verwendungsfähigkeit von Technologie und der Frage, wie Unternehmen komplexe Herausforderungen in belastbare Entscheidungen, wirksame Organisationen und nachhaltige Umsetzung überführen können.</p>
+        <p style={{ margin: 0 }}>Als Mitglied des acatech Forschungsbeirats Industrie 4.0, Aufsichtsratsmitglied des DFKI sowie Gestalter zahlreicher Industrie- und Transformationsvorhaben verbindet er wissenschaftliche Erkenntnisse mit langjähriger Erfahrung aus Digitalisierung, AI, Plattformökonomie und organisatorischer Transformation.</p>
+      </>) as ReactNode, credentials: ["Führungserfahrung Digitale Transformation", "Perspektive der Entscheidungsverantwortlichen"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Wissenschaftlich publiziert",
     badgeTitle: (<>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>) as ReactNode,
@@ -170,9 +185,9 @@ const landingDe = {
     rubric: "§ 09 · FAQ",
     h2: (<>Die sechs Fragen, die <em>C-Level</em> zuerst stellt.</>) as ReactNode,
     items: [
-      { q: "Was kostet ein Vorhaben?", a: "Festpreis, abhängig von Scope und Stakeholderzahl. Typische Range 15k - 35k€. Das Briefing selbst ist kostenfrei und unverbindlich." },
+      { q: "Was kostet ein Vorhaben?", a: "Festpreis, abhängig von Scope und Stakeholderzahl. Typische Range 15k - 35k€. Das Briefing selbst ist kostenfrei und unverbindlich. Zur Einordnung: Das Honorar liegt typischerweise unter 3 % des Investitionsvolumens, über das entschieden wird." },
       { q: "Wer ist im Briefing dabei?", a: "Ein Partner. Kein Vertrieb. NDA auf Wunsch vor dem Gespräch." },
-      { q: "Wie lange dauert die Zusammenarbeit?", a: "4–6 Wochen von Auftrag bis signierter Entscheidung sind ein typischer Rahmen. Die Dauer hängt von Stakeholderzahl und Datenverfügbarkeit ab, nicht von unserem Kalender." },
+      { q: "Wie lange dauert die Zusammenarbeit?", a: "Vier Wochen bis zur signierten Entscheidung sind der Standardfall — darauf ist die Methode ausgelegt. Bei hoher Stakeholderzahl oder eingeschränkter Datenverfügbarkeit können es bis zu sechs Wochen werden; das benennen wir im Erstgespräch, nicht danach." },
       { q: "Ersetzt das unsere Strategieberatung?", a: "Nein. NarraTec arbeitet für die Entscheidung, wir sind der Schritt zwischen Strategie und Umsetzung." },
       { q: "Was passiert mit unseren Daten?", a: "Alle Materialien bleiben Ihr Eigentum. Ergebnisdokumente werden übergeben, interne Arbeitsdaten auf Wunsch binnen 30 Tagen gelöscht." },
       { q: "Nutzen Sie KI in der Erstellung?", a: "Ja — bei Verdichtung, Recherche und Backlog-Übersetzung. Nie bei Hypothesenbildung, Entscheidungsempfehlung oder Signatur. Wir dokumentieren transparent, wo KI eingesetzt wurde." },
@@ -193,6 +208,7 @@ const landingEn: LandingCopy = {
     spar: "30-min sparring with the founders",
     seeMethod: "See the method",
     micro: "30 min · free · no sales · NDA on request",
+    microShort: "30 min · free · NDA on request",
     finalMicro: "contact@narratec.io · 30 min · free · no sales · NDA on request",
   },
   nav: [
@@ -203,7 +219,7 @@ const landingEn: LandingCopy = {
     { label: "Results", id: "ergebnis" },
   ],
   hero: {
-    kicker: "THE DECISION STANDARD FOR STRATEGICALLY CRITICAL IT INVESTMENTS",
+    kicker: "DECISION CONFIDENCE FOR STRATEGICALLY CRITICAL IT INVESTMENTS",
     headline: (
       <>
         <span className="line">Strategic IT investments,</span>
@@ -211,7 +227,7 @@ const landingEn: LandingCopy = {
         <span className="line"> in 4 weeks.</span>
       </>
     ),
-    lede: "In four weeks, we distill your complex starting position into a signed, binding implementation mandate — translated directly into operational work packages. You gain investment certainty before the first euro is spent.",
+    lede: "Before the first euro is spent, you know whether your investment will hold — or what would need to be in place first. In four weeks, we distill your complex starting position into a signed, binding implementation mandate, translated directly into operational work packages.",
     italic: "In the end you don't just know what to do — you've saved months of detours before the project even starts.",
   },
   trust: [
@@ -272,16 +288,22 @@ const landingEn: LandingCopy = {
     ],
     docSig: "Signed off:\nHead of IT · Controlling · Data Engineering",
     docDate: "Sep 22, 2025",
+    ongoing: {
+      kicker: "ONGOING ENGAGEMENT",
+      title: "Three organizations. One new business field.",
+      body: "We are currently supporting an initiative between a corporation, a startup and a research institute: building a demanding technical product as the foundation of a new business field. Three organizations, three working logics, one shared mandate — exactly the constellation our method was built for. Status: in implementation.",
+    },
   },
   outcomes: {
     rubric: "§ 04 · Measurement Promise",
     h2: <>Three metrics. <em>Agreed before the project starts.</em></>,
     lede: "We don't make promises — we agree on metrics. Three figures we commit to with you before the analysis begins. In the end, we report openly on what moved.",
     items: [
-      { n: "01", label: "Reallocation volume", body: "Difference between the originally planned budget allocation and the signed decision. We report the direction and magnitude of the shift." },
-      { n: "02", label: "Decision time", body: "From the open problem to the signed decision." },
-      { n: "03", label: "Time-to-backlog", body: "Time from the signed decision to the first implementation-ready work package." },
+      { n: "01", label: "Budget protected from misallocation", body: "Difference between the originally planned budget allocation and the signed decision. A confirmed initial plan is a result, too — then backed by documented evidence instead of gut feeling." },
+      { n: "02", label: "Decision time", body: "From the open problem to the signed decision. Typically: four weeks." },
+      { n: "03", label: "Decision stability", body: "Does implementation start without revision loops? We measure whether the decision holds — in the organization and in the backlog." },
     ],
+    closing: "Each of these metrics addresses one of the patterns that make major projects fail. For perspective: our fee is typically below 3% of the investment volume it safeguards. In the documented reference case, a five-figure fixed price stood against €1.3M of budget protected from misallocation.",
   },
   method: {
     rubric: "§ 05 · Method",
@@ -313,8 +335,16 @@ const landingEn: LandingCopy = {
     h2: <>Two perspectives. <em>One</em> standard.</>,
     lede: "Both founders have owned complex IT decisions themselves. The method is the result — not the premise.",
     people: [
-      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Creator of the NarraTec method", bio: "10+ years of IT governance in complex initiatives — at the intersection of management research and project practice. As the creator of the NarraTec method, I use structured analysis as an instrument that makes decision quality systematically measurable and prevents misallocations before a project starts.", credentials: ["10+ years of IT governance", "Method expert in complex initiatives", "NarraTec founder"] },
-      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Digital transformation & process optimization", bio: "Leadership experience in digital transformation: I know what it means to make far-reaching decisions with insufficient information. As co-founder of NarraTec, I bring the perspective of the decision-maker — and make sure our method stays aligned with the real demands on executives in complex transformation programs.", credentials: ["Leadership in digital transformation", "Decision-maker's perspective", "Professorship"] },
+      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Creator of the NarraTec method", bio: (<>
+        <p style={{ margin: "0 0 12px" }}>Richard is the creator of the NarraTec method and has spent more than ten years steering complex IT initiatives — currently as Technical Lead for Data & AI Delivery at a DAX corporation, where he translates decision narratives into actionable requirements and work packages.</p>
+        <p style={{ margin: "0 0 12px" }}>His focus is on measurable decision quality: he developed the method of structured narratives in real corporate initiatives, proved it in practice, and published it academically — at the intersection of management research and project practice.</p>
+        <p style={{ margin: 0 }}>As technical program manager, he was responsible for a group-wide digital production platform (SAFe), built in close partnership with companies such as Amazon Web Services, as well as initiatives on open-source compliance and Industry 4.0, and contributed to the realignment of a software development organization with more than 500 employees.</p>
+      </>) as ReactNode, credentials: ["10+ years of IT governance", "Method expert in complex initiatives"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "aka PraxisProf", bio: (<>
+        <p style={{ margin: "0 0 12px" }}>Uwe is a highly practice-oriented professor of business informatics, founder of the non-profit initiative matchIO, and co-developer of the Decision & Execution Engineering approach at NarraTec.</p>
+        <p style={{ margin: "0 0 12px" }}>His focus is on the usability of technology and the question of how organizations can translate complex challenges into sound decisions, effective structures, and sustainable implementation.</p>
+        <p style={{ margin: 0 }}>As a member of the acatech Research Advisory Board on Industry 4.0, supervisory board member of the DFKI, and shaper of numerous industry and transformation initiatives, he combines academic insight with many years of experience in digitalization, AI, platform economics, and organizational transformation.</p>
+      </>) as ReactNode, credentials: ["Leadership in digital transformation", "Decision-maker's perspective"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Academically published",
     badgeTitle: <>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>,
@@ -341,9 +371,9 @@ const landingEn: LandingCopy = {
     rubric: "§ 09 · FAQ",
     h2: <>The six questions <em>C-level</em> asks first.</>,
     items: [
-      { q: "What does an engagement cost?", a: "Fixed price, depending on scope and number of stakeholders. Typical range €15k–35k. The briefing itself is free and non-binding." },
+      { q: "What does an engagement cost?", a: "Fixed price, depending on scope and number of stakeholders. Typical range €15k–35k. The briefing itself is free and non-binding. For perspective: the fee is typically below 3% of the investment volume being decided on." },
       { q: "Who's in the briefing?", a: "One partner. No sales. NDA on request before the call." },
-      { q: "How long does the engagement take?", a: "4–6 weeks from engagement to signed decision is a typical range. Duration depends on the number of stakeholders and data availability, not on our calendar." },
+      { q: "How long does the engagement take?", a: "Four weeks to a signed decision is the standard case — the method is designed for it. With a high number of stakeholders or limited data availability, it can take up to six weeks; we name that in the intro call, not afterwards." },
       { q: "Does this replace our strategy consulting?", a: "No. NarraTec works for the decision — we're the step between strategy and delivery." },
       { q: "What happens to our data?", a: "All materials remain your property. Result documents are handed over; internal working data is deleted within 30 days on request." },
       { q: "Do you use AI in the work?", a: "Yes — for synthesis, research and backlog translation. Never for forming hypotheses, decision recommendations or sign-off. We transparently document where AI was used." },
@@ -665,10 +695,25 @@ function Team({ c }: { c: LandingCopy["team"] }) {
                   <div className="person-role">{p.role}</div>
                 </div>
               </div>
-              <p className="person-bio">{p.bio}</p>
+              <div className="person-bio">{p.bio}</div>
               <ul className="person-creds">
                 {p.credentials.map((cr, j) => <li key={j}>{cr}</li>)}
               </ul>
+              {p.linkedin && (
+                <a
+                  href={p.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 7, marginTop: 16, fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)", textDecoration: "none", transition: "color .15s" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "var(--accent-ink)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "var(--ink-3)")}
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                  LinkedIn
+                </a>
+              )}
             </article>
           ))}
         </div>
@@ -756,10 +801,11 @@ function Disqualify({ c, cta }: { c: LandingCopy["disqualify"]; cta: LandingCopy
         </p>
         <div style={{ marginTop: 24, display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
           <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
-            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+            {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
+          <a className="btn btn-ghost" href="#methode" onClick={onJump("methode")}>{cta.seeMethod}</a>
           <span style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)" }}>
-            {cta.micro}
+            {cta.microShort}
           </span>
         </div>
       </div>
@@ -787,6 +833,9 @@ function Outcomes({ c }: { c: LandingCopy["outcomes"] }) {
             </div>
           ))}
         </div>
+        <p style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid var(--rule)", fontSize: 15, lineHeight: 1.7, color: "var(--ink-2)", maxWidth: "72ch", marginBottom: 0 }}>
+          {c.closing}
+        </p>
       </div>
     </section>
   );
@@ -845,6 +894,13 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
               </div>
             </figure>
           </div>
+        </div>
+
+        <div style={{ marginTop: 48, border: "1px solid var(--rule)", borderRadius: 3, background: "var(--paper-2)", padding: "28px 32px", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
+          <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 12 }}>{c.ongoing.kicker}</div>
+          <div style={{ fontFamily: "var(--f-display)", fontSize: "clamp(20px, 2vw, 26px)", lineHeight: 1.2, color: "var(--ink)", letterSpacing: "-0.005em", marginBottom: 12 }}>{c.ongoing.title}</div>
+          <p style={{ fontSize: 14.5, lineHeight: 1.7, color: "var(--ink-2)", margin: 0, maxWidth: "72ch" }}>{c.ongoing.body}</p>
         </div>
       </div>
     </section>
