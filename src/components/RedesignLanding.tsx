@@ -102,11 +102,6 @@ const landingDe = {
     ],
     docSig: "Signatur:\nIT-Leitung · Controlling · Data Engineering",
     docDate: "22.09.2025",
-    ongoing: {
-      kicker: "LAUFENDES ENGAGEMENT",
-      title: "Drei Organisationen. Ein neues Geschäftsfeld.",
-      body: "Aktuell begleiten wir ein Vorhaben zwischen einem Konzern, einem Startup und einem Forschungsinstitut: der Aufbau eines anspruchsvollen technischen Produkts als Grundlage eines neuen Geschäftsfelds. Drei Organisationen, drei Arbeitslogiken, ein gemeinsames Mandat — exakt die Konstellation, für die unsere Methodik entwickelt wurde. Status: in Umsetzung.",
-    },
   },
   outcomes: {
     rubric: "§ 04 · Messversprechen",
@@ -288,11 +283,6 @@ const landingEn: LandingCopy = {
     ],
     docSig: "Signed off:\nHead of IT · Controlling · Data Engineering",
     docDate: "Sep 22, 2025",
-    ongoing: {
-      kicker: "ONGOING ENGAGEMENT",
-      title: "Three organizations. One new business field.",
-      body: "We are currently supporting an initiative between a corporation, a startup and a research institute: building a demanding technical product as the foundation of a new business field. Three organizations, three working logics, one shared mandate — exactly the constellation our method was built for. Status: in implementation.",
-    },
   },
   outcomes: {
     rubric: "§ 04 · Measurement Promise",
@@ -894,13 +884,6 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
               </div>
             </figure>
           </div>
-        </div>
-
-        <div style={{ marginTop: 48, border: "1px solid var(--rule)", borderRadius: 3, background: "var(--paper-2)", padding: "28px 32px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
-          <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 12 }}>{c.ongoing.kicker}</div>
-          <div style={{ fontFamily: "var(--f-display)", fontSize: "clamp(20px, 2vw, 26px)", lineHeight: 1.2, color: "var(--ink)", letterSpacing: "-0.005em", marginBottom: 12 }}>{c.ongoing.title}</div>
-          <p style={{ fontSize: 14.5, lineHeight: 1.7, color: "var(--ink-2)", margin: 0, maxWidth: "72ch" }}>{c.ongoing.body}</p>
         </div>
       </div>
     </section>
