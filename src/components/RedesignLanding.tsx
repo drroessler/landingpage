@@ -1,6 +1,6 @@
 import { type MouseEvent, type CSSProperties, type ReactNode, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Layers } from "lucide-react";
+import { Layers, Menu, X } from "lucide-react";
 import { useI18n } from "../i18n/LanguageContext";
 import "../redesign.css";
 
@@ -13,6 +13,9 @@ const BOOK_URL = "https://cal.meetergo.com/richard-rossler/narratec";
 const PAPER_PUBLISHED_URL = "https://link.springer.com/epdf/10.1365/s40702-025-01234-z?sharing_token=2GcSA2NwyHc5ZFVHNLOokX2kjFioqY_JoFJDVSa1602aUYkWxEZ0qDiq0nqKya3TVcFpFlMJ-w6U_3aV089ye1tk2LK8kCB7LXf3vW4rNlkuQzP6Iv71lk5qIUaz2KuVMlxU-loa0RJZ4qvO6c6UaS6fnPhQeXqYPV8neYP5xbM%3D";
 const PAPER_PREREAD_URL = "/Pre-Read%20Narrative%20To%20Action.pdf";
 const hl: CSSProperties = { color: "var(--accent-ink)", fontStyle: "italic" };
+const numRubric = (num: string, label: string): ReactNode => (
+  <><span style={{ color: "var(--accent-ink)" }}>{num}</span> {label}</>
+);
 
 // ---------- Bilingual content ----------
 
@@ -23,26 +26,26 @@ const landingDe = {
     seeMethod: "Methode ansehen",
     micro: "30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
     microShort: "30 Min · kostenfrei · NDA auf Wunsch",
-    finalMicro: "contact@narratec.io · 30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
+    finalMicro: "30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
   },
   nav: [
     { label: "Problem", id: "problem" },
+    { label: "Methode", id: "zielbild" },
     { label: "Einsatz", id: "einsatz" },
-    { label: "Methode", id: "methode" },
+    { label: "Leistungen", id: "bausteine" },
+    { label: "Praxis", id: "case-study" },
     { label: "Team", id: "team" },
-    { label: "Ergebnis", id: "ergebnis" },
   ],
   hero: {
-    kicker: "ENTSCHEIDUNGSSICHERHEIT FÜR STRATEGISCH TRAGENDE IT-INVESTMENTS",
+    kicker: numRubric("01", "MOTIVATION & ZIELSETZUNG"),
     headline: (
       <>
-        <span className="line">Strategische IT-Investments</span>
-        <span className="line">in 4 Wochen <em>tragfähig</em></span>
-        <span className="line"> entschieden.</span>
+        <span className="line">Vom Problem zur <em>Entscheidung.</em></span>
+        <span className="line">Von der Entscheidung in die <em>Umsetzung.</em></span>
       </>
     ) as ReactNode,
-    lede: "Bevor der erste Euro fließt, wissen Sie, ob Ihre Investition trägt — oder was vorher fehlen würde. In vier Wochen verdichten wir Ihre komplexe Ausgangslage zu einem signierten, verbindlichen Umsetzungsmandat, direkt übersetzt in operative Arbeitspakete.",
-    italic: "Am Ende wissen Sie nicht nur, was zu tun ist — Sie haben Monate an Umwegen gespart, bevor das Projekt überhaupt startet.",
+    lede: "Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
+    close: "Wir befähigen Ihre Leute, statt sie zu ersetzen.",
   },
   trust: [
     (<>In mehreren Vorhaben im <span style={hl}>DAX-Konzern</span> erprobt.</>) as ReactNode,
@@ -50,87 +53,111 @@ const landingDe = {
     (<>Ihre sensiblen Informationen geschützt durch ein <span style={hl}>NDA</span>.</>) as ReactNode,
   ],
   problem: {
-    rubric: "§ 01 · Diagnose",
-    h2: (<>Vier Muster, die <em>jedes</em> Großprojekt gefährden.</>) as ReactNode,
-    lede: "Nicht Technologie scheitert — Übersetzung scheitert. Die vier Muster, die in der Praxis immer wieder auftauchen:",
+    rubric: numRubric("02", "IST-ZUSTAND"),
+    h2: (<>Strategien scheitern<br />selten an der Konzeption —<br />sondern <em>am Übergang.</em></>) as ReactNode,
+    lede: "Zwischen Entscheidung und Umsetzung reißt die Kette: Die Begründung bleibt in den Folien zurück, das Warum erreicht die Teams nicht — und die Arbeitsstrukturen wachsen aus Gewohnheit statt mit Absicht.",
     items: [
-      { n: "01", t: "Vorschnelle Lösungen", b: "Teams diskutieren Lösungen, bevor das Problem verstanden ist. Symptombehandlung statt Ursachenforschung.", cost: "Fehlgeleitete Aktivitäten ab Tag 1" },
-      { n: "02", t: "Silo-Denken", b: "Fachbereiche und Management sprechen unterschiedliche Sprachen. Es fehlt das verbindende Element.", cost: "Kein Alignment, kein Fortschritt" },
-      { n: "03", t: "Trivialisierung durch Stichpunkte", b: "Meetings und Präsentationen bieten keinen Raum für Diskurs. Komplexe Probleme werden durch Stichpunkte trivialisiert.", cost: "Scheinentscheidungen statt Klarheit" },
-      { n: "04", t: "Execution-Falle", b: "Getroffene Entscheidungen versanden. Die Umsetzung stagniert.", cost: "Investitionen ohne Wirkung" },
+      { n: "Befund A", t: "Entscheidungen ohne Tiefe", b: "Teams diskutieren Lösungen, bevor das Problem verstanden ist — Symptombehandlung statt Ursachenforschung. Folien machen schwierige Fragen flacher, als sie sind: Annahmen werden nicht ausgesprochen, Widersprüche bleiben unsichtbar. Am Ende entscheidet Redekunst statt Faktenlage.", cost: "Scheinentscheidungen statt Klarheit" },
+      { n: "Befund B", t: "Übergabe ohne System", b: "Der Weg von der Entscheidung zu den Aufgaben der Teams bleibt dem Zufall überlassen. Fachbereiche und Management sprechen unterschiedliche Sprachen; bei der Übergabe gehen die Fakten und das Warum verloren — Teams setzen um, ohne das Problem wirklich zu kennen, und getroffene Entscheidungen versanden.", cost: "Investitionen ohne Wirkung" },
+      { n: "Befund C", t: "Strukturen ohne Maß", b: "Wie Teams zusammenarbeiten, ist historisch gewachsen: zu viel Verwaltungsaufwand an einer Stelle, fehlende Abstimmung an der anderen. Ob die Umsetzung vorankommt, lässt sich kaum prüfen.", cost: "Kein Alignment, kein Fortschritt" },
     ],
   },
-  position: {
-    rubric: "§ 02 · POSITION",
-    h2: (<>Zwischen Strategie <em>und Umsetzung.</em></>) as ReactNode,
-    lede: "NarraTec ersetzt weder Strategieberatung noch Umsetzungspartner. Wir schließen eine spezifische Lücke: den Moment, in dem aus einer strategischen Absicht eine tragfähige, signaturreife Investitionsentscheidung werden muss.",
-    compareLabel: "Vergleich",
-    rowPhase: "Phase",
-    rowQuestion: "Leitfrage",
-    rowOutput: "Output",
-    cols: [
-      { label: "Strategieberatung", phase: "Vor der Entscheidung", q: "„Wohin sollen wir gehen?“", output: "Zielbild, Roadmap, Business Case" },
-      { label: "NarraTec", phase: "Beim Schließen der Entscheidung", q: "„Wie genau – und mit welchen Voraussetzungen?“", output: "Umsetzungsmandat, Arbeitspakete mit Verantwortlichkeit und Akzeptanzkriterien" },
-      { label: "Umsetzungspartner", phase: "Nach der Entscheidung", q: "„Wir bauen es.“", output: "Lauffähiges System, Prozess, Organisation" },
+  zielbild: {
+    rubric: numRubric("03", "ZIELBILD · METHODE"),
+    h2: (<>Eine Kette, drei Glieder — <em>lückenlos.</em></>) as ReactNode,
+    lede: "Die NarraTec-Methode verbindet drei Schritte zu einem durchgängigen, nachvollziehbaren Vorgehen: verstehen, übersetzen, liefern.",
+    callout: {
+      term: "Narrativ, das",
+      tag: "[Kernbegriff der Methode]",
+      body: (<>Ein kurzes, sorgfältig aufgebautes <strong>Entscheidungspapier</strong> — meist nur wenige Seiten. Es beschreibt ein Problem mit belegten Fakten, begründet den Lösungsweg und hält fest, wer was bis wann tut. Alle Beteiligten lesen es in Ruhe, <strong>bevor</strong> diskutiert und entschieden wird. <strong>Warum das hilft:</strong> Wer schreibt, muss zu Ende denken. Lücken und Widersprüche fallen auf dem Papier auf — nicht erst Monate später in der Umsetzung.</>) as ReactNode,
+    },
+    steps: [
+      { label: "Verstehen", n: "01", title: "Das Entscheidungspapier", sub: (<>Vom Problem zur begründeten Entscheidung<sup className="zb-fn"><a href={PAPER_PUBLISHED_URL} target="_blank" rel="noopener noreferrer" title="HMD Praxis der Wirtschaftsinformatik">1</a></sup></>) as ReactNode, body: "Ihre Fachleute erarbeiten gemeinsam das Narrativ: erst das Problem sauber verstehen, dann — strikt getrennt — die Lösung entwickeln. Jede Annahme wird ausgesprochen, jeder Widerspruch sichtbar. Ergebnis ist eine Entscheidung, die dem ruhigen, prüfenden Lesen aller Beteiligten standhält." },
+      { label: "Übersetzen", n: "02", title: "Vom Papier zum Arbeitspaket", sub: (<>Die Methode „Narrative-to-Action“<sup className="zb-fn"><a href={PAPER_PREREAD_URL} target="_blank" rel="noopener noreferrer" title="Pre-Read: Narrative-to-Action">2</a></sup></>) as ReactNode, body: "Schritt für Schritt wird jeder Baustein der Lösung in konkrete Arbeitspakete übersetzt — mit klaren Zuständigkeiten und Kriterien, an denen sich prüfen lässt, ob ein Paket fertig ist. Eine feste Qualitätsprüfung stellt sicher: Das Warum kommt bei den Teams an, nicht nur das Was." },
+      { label: "Liefern", n: "03", title: "Die Arbeitsstruktur", sub: (<>Fester Rhythmus, klare Rollen &amp; Schnittstellen</>) as ReactNode, body: "So viel Struktur wie nötig, so wenig wie möglich: Die Teams entscheiden selbst, wie sie arbeiten — vereinheitlicht wird nur die Abstimmung untereinander. Ein fester Rhythmus aus Planung und Ergebnis-Vorführung macht Fortschritt prüfbar und Abweichungen früh sichtbar." },
     ],
+    principle: {
+      label: "Grundsatz",
+      title: (<>KI &amp;<br />Verantwortung</>) as ReactNode,
+      statement1: (<>KI unterstützt bei Verdichtung, Recherche und der Übersetzung in Arbeitspakete. <span style={{ color: "oklch(82% 0.008 85)" }}>Nie bei der Entscheidung.</span></>) as ReactNode,
+      statement2: (<>Verantwortung bleibt <span style={{ color: "oklch(72% 0.14 25)" }}>menschlich.</span></>) as ReactNode,
+    },
+  },
+  bausteine: {
+    rubric: numRubric("04", "LÖSUNGSBAUSTEINE"),
+    h2: (<>Feste Pakete. <em>Feste Preise.</em></>) as ReactNode,
+    lede: "Keine Abrechnung nach Tagen, keine offene Beratungsrechnung: klar umrissene Leistungen, klar benannte Ergebnisse, Preise vorab.",
+    note: "Alle Preise netto. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
+    cards: [
+      { badge: "Einstieg", title: "Narrative Sprint", body: "Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Entscheidungspapier geführt — in angeleiteten Arbeitsrunden, mit gemeinsamer Lesephase und abschließendem Entscheidungstermin.", price: "ab 15.000 €", meta: "Festpreis · mehrere Wochen · ein Ergebnis" },
+      { badge: "Umsetzung", title: "Struktur-Sprint", body: "Bestandsaufnahme, wie Ihre Teams heute zusammenarbeiten, dann ein Bauplan für Rhythmus, Rollen und Schnittstellen — samt Plan, der Ihre eigenen Leute zur Umsetzung befähigt. Sie bauen die Struktur selbst auf, wir zeigen wie.", price: "ab 12.000 €", meta: "Festpreis · Bestandsaufnahme + Bauplan" },
+      { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Entscheidungspapieren („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "ab 1.900 €", meta: "pro Teilnehmer:in · Ausbildung im eigenen Haus ab 12.000 €" },
+      { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Entscheidungspapiere und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "ab 8.000 €/Jahr", meta: "Lizenz · Begleitung ab 2.500 €/Monat" },
+    ],
+  },
+  nextSteps: {
+    rubric: numRubric("05", "NÄCHSTE SCHRITTE"),
+    h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
+    lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
   caseStudy: {
-    rubric: "§ 03 · Case Study",
-    h2: (<>Das Dashboard wäre gebaut worden — <em>auf falscher Grundlage.</em></>) as ReactNode,
-    lede: "Anonymisierter Realfall · Industrieunternehmen · DACH · 2025",
-    phases: [
-      { n: "Ausgangslage", t: "Entscheidung schien klar.", d: "Dashboard zur Produktkosten-Steuerung. Budget reserviert. Dienstleister vorselektiert. Intern bereits kommuniziert." },
-      { n: "Was wir gefunden haben", t: "Die Datengrundlage hätte das Projekt scheitern lassen.", d: "9 Interviews mit Fachexperten aus Controlling, Produktion und IT legten offen, was intern nie artikuliert worden war: kritische Datenlücken, Quellkonflikte und fehlende Systemanbindungen — die das Dashboard entweder nutzlos gemacht oder zu unplanbaren Verzögerungen geführt hätten." },
-      { n: "Ergebnis", t: "Eine bessere Entscheidung.", d: "Statt eines generischen Dashboards: ein verbindliches Umsetzungsmandat mit definierten Datenanforderungen, klaren Quellsystemen und messbaren Akzeptanzkriterien. Die Umsetzung startete ohne Architekturschleifen." },
+    rubric: numRubric("A", "ANHANG · BELEGE AUS DER PRAXIS"),
+    h2: (<>Keine Behauptungen. <em>Belegte</em> Praxis.</>) as ReactNode,
+    lede: "Drei Vorhaben aus dem Konzernumfeld zeigen die Methode im Einsatz — im Großen, im Kleinen und jenseits der reinen Software-Welt.",
+    primary: [
+      {
+        tag: "Fall 1 · Vollständiger Anwendungsfall",
+        title: "Die Digitalisierung einer Konzernmarke",
+        lede: "Alle drei Glieder der Kette — von der ersten Analyse bis zur laufenden Lieferung.",
+        steps: [
+          { t: "Ursachen verstehen", b: "Am Anfang stand keine Lösung, sondern eine gründliche Analyse: Was bremst die Digitalisierung wirklich?" },
+          { t: "Ein strategisches Entscheidungspapier", b: "Die Ergebnisse mündeten in ein übergreifendes Papier, das die wichtigsten Handlungsfelder ableitet — von allen Beteiligten gelesen, geprüft und getragen." },
+          { t: "Je Handlungsfeld ein vertieftes Papier", b: "Für jedes Handlungsfeld entstand ein eigenes Fokus-Papier mit konkreten Lösungsbausteinen — jeder Baustein begründet durch die Analyse, nichts hängt in der Luft." },
+          { t: "Umsetzung im festen Rhythmus", b: "15 Produktteams setzen die Bausteine um. Alle drei Monate wird gemeinsam geplant und werden Ergebnisse vorgeführt, vor über 50 Stakeholdern der Initiative. So bleiben Geldverwendung und Fortschritt jederzeit nachvollziehbar." },
+        ],
+        result: {
+          label: "Das Ergebnis",
+          body: "Die Konzernmarke gewinnt durchgängige Transparenz über die Effektivität des eingesetzten Budgets. Digitale Produkte werden kontinuierlich ausgeliefert, Bestandssysteme laufend und agil modernisiert — Planung und Umsetzung folgen einem produktorientierten, agilen Rhythmus statt starrer Jahreszyklen.",
+        },
+        stats: [
+          { v: "15", k: "Produktteams" },
+          { v: ">50", k: "involvierte Stakeholder" },
+          { v: "3", unit: "Mon.", k: "Planungsrhythmus" },
+        ],
+      },
+      {
+        tag: "Fall 2 · Klein, aber vollständig",
+        title: "Die Freigabe offener Software-Bausteine",
+        lede: "Dieselbe Methode im kleinen Maßstab — vom Papier bis zum laufenden Prozess, umgesetzt von einem einzigen Team.",
+        steps: [
+          { t: "Ursachen verstehen", b: "Bevor Entwickler frei verfügbare Software-Bausteine (Open Source) einsetzen dürfen, braucht es eine Freigabe. Die lief per E-Mail und dauerte mehrere Wochen — für harmlose Standardfälle genauso wie für rechtlich heikle." },
+          { t: "Ein gemeinsames Entscheidungspapier", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten auf dem Papier: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organistatorischen und technischen Soll-Zustands mit übergreifend abgestimmte Verfahrensregeln." },
+          { t: "Direkt in Arbeitspakete übersetzt", b: "Das Vorhaben war klar umrissen — die Lösungsbausteine ließen sich ohne Zwischenschritt in Arbeitspakete mit Prüfkriterien übersetzen, jedes rückverfolgbar bis zur Anforderung aus der Analyse." },
+          { t: "Umsetzung in einem Team", b: "Ein einzelnes Produktteam lieferte die Pakete in einem festen Zwei-Wochen-Rhythmus — Stück für Stück, jederzeit nachvollziehbar." },
+        ],
+        result: {
+          label: "Das Ergebnis",
+          body: "Der Prozess läuft heute deutlich schneller: Standardfälle erhalten ihre Freigabe sofort nach festen Regeln, heikle Fälle landen direkt bei den Rechtsexperten, und die Fachleute werden bei ihrer Entscheidung durch das System unterstützt — ohne Umwege über E-Mail und ohne Wechsel zwischen den Systemen.",
+        },
+        stats: [
+          { v: "~20", k: "Beteiligte" },
+          { v: "1", k: "Produktteam" },
+          { v: "14", unit: "Tage", k: "Lieferrhythmus" },
+        ],
+      },
     ],
-    metricsLabel: "Ergebnis in Zahlen",
-    metrics: [
-      { k: "Entscheidungszeit", v: "4 Wochen" },
-      { k: "Time-to-Backlog", v: "6 Wochen" },
-      { k: "Vor Fehlallokation geschütztes Budget", v: "1,3 Mio €" },
-    ],
-    docLabel: "Das entstandene Narrativ (Auszug)",
-    docMetaLeft: "Narrativ · v1.2",
-    docMetaRight: "Status: entschieden",
-    docH4: "Dashboard Produktkosten-Steuerung: Beauftragen oder Voraussetzungen schaffen?",
-    docSub: "Vorhaben 2025-Q3 · Verantwortlich: IT-Leitung · Beteiligt: Controlling, Produktion, Data Engineering",
-    docSections: [
-      { k: "Hypothese", v: (<>Die fehlende Kostentransparenz ist nicht durch ein Dashboard lösbar, solange die Datengrundlage unbereinigt ist. <span className="hl">Ein sofortiger Dashboardbau würde das Budget fehlallokieren</span> — die eigentlichen Probleme blieben unsichtbar.</>) as ReactNode },
-      { k: "Evidenz", v: (<>9 Interviews mit Fachexperten aus Controlling, Produktion und IT. <span className="hl">Mehrere kritische Datenlücken und Quellkonflikte</span> identifiziert. Fehlende Anbindung von 3 Quellsystemen dokumentiert.</>) as ReactNode },
-      { k: "Entscheidung", v: (<>Feingranulares Umsetzungsmandat statt generischem Dashboard. Klare Datenanforderungen, definierte Quellsysteme, priorisierte Kostenträger und messbare Akzeptanzkriterien.</>) as ReactNode },
-      { k: "Backlog", v: (<>7 Arbeitspakete, 3 Owner, Akzeptanzkriterien je Arbeitspaket definiert.</>) as ReactNode },
-    ],
-    docSig: "Signatur:\nIT-Leitung · Controlling · Data Engineering",
-    docDate: "22.09.2025",
-  },
-  outcomes: {
-    rubric: "§ 04 · Messversprechen",
-    h2: (<>Drei Kennzahlen. <em>Vor Projektstart vereinbart.</em></>) as ReactNode,
-    lede: "Wir liefern keine Versprechen — wir vereinbaren Messgrößen. Drei Kennzahlen, auf die wir uns mit Ihnen festlegen, bevor die Analyse beginnt. Am Ende berichten wir offen, was sich bewegt hat.",
-    items: [
-      { n: "01", label: "Vor Fehlallokation geschütztes Budget", body: "Differenz zwischen ursprünglich geplanter Budgetallokation und signiertem Beschluss. Auch eine bestätigte Ausgangsplanung ist ein Ergebnis — dann mit dokumentierter Evidenz statt Bauchgefühl." },
-      { n: "02", label: "Entscheidungszeit", body: "Vom offenen Problem bis zur signierten Entscheidung. Typisch: vier Wochen." },
-      { n: "03", label: "Entscheidungsstabilität", body: "Startet die Umsetzung ohne Revisionsschleifen? Wir messen, ob die Entscheidung hält — in der Organisation und im Backlog." },
-    ],
-    closing: "Jede dieser Kennzahlen adressiert eines der Muster, an denen Großprojekte scheitern. Zur Einordnung: Unser Honorar liegt typischerweise unter 3 % des Investitionsvolumens, das es absichert. Im dokumentierten Referenzfall stand einem fünfstelligen Festpreis ein vor Fehlallokation geschütztes Budget von 1,3 Mio € gegenüber.",
-  },
-  method: {
-    rubric: "§ 05 · Methode",
-    h2: (<>Von der Hypothese ins Backlog: So wird die Entscheidung <em>tragfähig.</em></>) as ReactNode,
-    lede: "Eine strukturierte Analyse, die Ursachen, Entscheidungslogik und Maßnahmen in einem gemeinsam erarbeiteten Dokument verbindet — und damit Entscheidungen trägt, die intern halten.",
-    steps: [
-      { phase: "Tag 0", title: "Kick-off", desc: "Problem, Ziel und Wert-Hypothese schärfen, Stakeholder und Erfolgskriterien festlegen. Wir definieren, woran sich eine gute Entscheidung am Ende messen lassen muss." },
-      { phase: "Woche 1–2", title: "Faktenbasis schaffen", desc: "Interviews, Datenaudit, Second-Opinion-Review. Wir hören zu, bevor wir eine Hypothese formulieren." },
-      { phase: "Woche 3", title: "Optionen aufzeigen", desc: "Kriterien, Trade-offs und Entscheidungslogik — schriftlich gegen die zuvor definierten Erfolgskriterien argumentiert." },
-      { phase: "Woche 4", title: "In Arbeitspakete übersetzen", desc: "Freigabe, Arbeitspakete, Verantwortlichkeiten. Die Entscheidung endet nicht mit der Signatur." },
-    ],
-    principleLabel: "Grundsatz",
-    principleTitle: (<>KI &amp;<br />Verantwortung</>) as ReactNode,
-    statement1: (<>KI unterstützt bei Verdichtung, Recherche und der Übersetzung in Arbeitspakete. <span style={{ color: "oklch(82% 0.008 85)" }}>Nie bei der Entscheidung.</span></>) as ReactNode,
-    statement2: (<>Verantwortung bleibt <span style={{ color: "oklch(72% 0.14 25)" }}>menschlich.</span></>) as ReactNode,
+    supplementary: {
+      tag: "Fall 3 · Multi-Partner, Hardware & Software",
+      title: "Sechs Organisationen, ein gemeinsames Papier",
+      body: [
+        "Sechs Partnerorganisationen aus Konzern, Forschung und jungen Unternehmen fanden über ein gemeinsam getragenes Entscheidungspapier zu einer Arbeitsweise: Es benennt die Handlungsfelder und leitet die Lösungsbausteine ab.",
+        "Weil hier Hardware und Software gemeinsam entstehen, verbindet die Umsetzung agiles Arbeiten mit klassischer, planbasierter Entwicklung — in engen, festen Liefer- und Planungszyklen.",
+        "Einzelheiten unterliegen der Vertraulichkeit. Der Fall zeigt vor allem eines: Die Methode trägt auch jenseits der reinen Software-Welt.",
+      ],
+    },
   },
   usecases: {
-    rubric: "§ 06 · Einsatzgebiete",
+    rubric: numRubric("03", "ZIELBILD · EINSATZGEBIETE"),
     h2: (<>Wo die Methode <em>wirkt.</em></>) as ReactNode,
     lede: "Überall dort, wo Komplexität auf Umsetzungsdruck trifft und Entscheidungen breit getragen werden müssen.",
     cases: [
@@ -140,16 +167,15 @@ const landingDe = {
     ],
   },
   team: {
-    rubric: "§ 07 · Wer dahinter steht",
+    rubric: numRubric("B", "ANHANG · PERSONEN"),
     h2: (<>Zwei Perspektiven. <em>Ein</em> Anspruch.</>) as ReactNode,
-    lede: "Beide Gründer haben selbst komplexe IT-Entscheidungen verantwortet. Die Methodik ist das Ergebnis — nicht die Grundlage.",
     people: [
-      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Entwickler der NarraTec-Methodik", bio: (<>
+      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Gründer · Entwicklung der Methode", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Richard ist Entwickler der NarraTec-Methodik und seit über zehn Jahren in der Steuerung komplexer IT-Vorhaben tätig — aktuell als Technical Lead für Data & AI Delivery in einem DAX-Konzern, wo er Entscheidungsnarrative in umsetzbare Anforderungen und Arbeitspakete überführt.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf messbarer Entscheidungsqualität: Die Methodik strukturierter Narrative hat er in realen Konzernvorhaben entwickelt, erprobt und wissenschaftlich publiziert — an der Schnittstelle von Managementforschung und Projektpraxis.</p>
         <p style={{ margin: 0 }}>Als technischer Programm-Manager verantwortete er unter anderem eine konzernweite digitale Produktionsplattform (SAFe), die in enger Zusammenarbeit mit Partnern wie Amazon Web Services entstand, sowie Vorhaben zu Open-Source-Compliance und Industrie 4.0 und wirkte an der Neuausrichtung einer Softwareentwicklungsorganisation mit über 500 Mitarbeitenden mit.</p>
       </>) as ReactNode, credentials: ["10+ Jahre IT-Steuerung", "Methodenexperte in komplexen Vorhaben"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
-      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "aka PraxisProf", bio: (<>
+      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Lehre & Beirat", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe ist ein sehr praxisorientierter Professor für Wirtschaftsinformatik, Gründer der gemeinnützigen Initiative matchIO und Mitentwickler des Decision & Execution Engineering Ansatzes von NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf der Verwendungsfähigkeit von Technologie und der Frage, wie Unternehmen komplexe Herausforderungen in belastbare Entscheidungen, wirksame Organisationen und nachhaltige Umsetzung überführen können.</p>
         <p style={{ margin: 0 }}>Als Mitglied des acatech Forschungsbeirats Industrie 4.0, Aufsichtsratsmitglied des DFKI sowie Gestalter zahlreicher Industrie- und Transformationsvorhaben verbindet er wissenschaftliche Erkenntnisse mit langjähriger Erfahrung aus Digitalisierung, AI, Plattformökonomie und organisatorischer Transformation.</p>
@@ -164,32 +190,17 @@ const landingDe = {
     ],
   },
   disqualify: {
-    rubric: "§ 08 · ABGRENZUNG",
+    rubric: numRubric("C", "ANHANG · ABGRENZUNG"),
     h2: (<>Wann wir <em>absagen.</em></>) as ReactNode,
     lede: "Ein präzises Werkzeug erkennt seine Grenzen. Es gibt Konstellationen, in denen NarraTec nicht der richtige Schritt ist. Wenn Sie sich in einem der folgenden Fälle wiederfinden, verweisen wir Sie gerne an Partner aus unserem Netzwerk.",
-    notLabel: "Nicht passend",
     items: [
-      { n: "01", t: "Sie haben bereits entschieden und suchen Legitimation.", b: "Unsere Analyse kann zu Ergebnissen führen, die der intern bereits getroffenen Entscheidung widersprechen. Wer ein nachträgliches Argument sucht, ist bei uns falsch." },
-      { n: "02", t: "Die Umsetzung läuft bereits.", b: "Wir arbeiten vor der Investitionsentscheidung, nicht während der Implementierung. Ist der Vertrag mit dem Umsetzungspartner unterschrieben und das Projekt im Lauf, bringen wir keinen Hebel mehr, sondern stiften Reibung." },
-      { n: "03", t: "Sie suchen jemanden, der den Job für Sie macht.", b: "Der Erfolg von NarraTec beruht auf dem Wissen und dem Enablement Ihrer Experten. Wir führen die Analyse, aber die Substanz kommt aus Ihrem Haus — wer eine Bearbeitung ohne eigene Beteiligung erwartet, ist bei uns nicht richtig." },
-      { n: "04", t: "Das Investitionsvolumen rechtfertigt unser Vorgehen nicht.", b: "Unsere Methodik ist auf strategisch tragende Investments ausgelegt. Bei kleineren Vorhaben übersteigt unser Aufwand den möglichen Wertbeitrag — einfachere Formate führen schneller zum Ziel. Die Schwelle benennen wir offen im Erstgespräch." },
-    ],
-    closing: (<>Unsicher, ob Ihr Vorhaben passt? Das 30-minütige Erstgespräch klärt <span style={{ color: "var(--accent-ink)" }}>genau diese Frage</span> — ohne Folgekosten, ohne Verpflichtung.</>) as ReactNode,
-  },
-  faq: {
-    rubric: "§ 09 · FAQ",
-    h2: (<>Die sechs Fragen, die <em>C-Level</em> zuerst stellt.</>) as ReactNode,
-    items: [
-      { q: "Was kostet ein Vorhaben?", a: "Festpreis, abhängig von Scope und Stakeholderzahl. Typische Range 15k - 35k€. Das Briefing selbst ist kostenfrei und unverbindlich. Zur Einordnung: Das Honorar liegt typischerweise unter 3 % des Investitionsvolumens, über das entschieden wird." },
-      { q: "Wer ist im Briefing dabei?", a: "Ein Partner. Kein Vertrieb. NDA auf Wunsch vor dem Gespräch." },
-      { q: "Wie lange dauert die Zusammenarbeit?", a: "Vier Wochen bis zur signierten Entscheidung sind der Standardfall — darauf ist die Methode ausgelegt. Bei hoher Stakeholderzahl oder eingeschränkter Datenverfügbarkeit können es bis zu sechs Wochen werden; das benennen wir im Erstgespräch, nicht danach." },
-      { q: "Ersetzt das unsere Strategieberatung?", a: "Nein. NarraTec arbeitet für die Entscheidung, wir sind der Schritt zwischen Strategie und Umsetzung." },
-      { q: "Was passiert mit unseren Daten?", a: "Alle Materialien bleiben Ihr Eigentum. Ergebnisdokumente werden übergeben, interne Arbeitsdaten auf Wunsch binnen 30 Tagen gelöscht." },
-      { q: "Nutzen Sie KI in der Erstellung?", a: "Ja — bei Verdichtung, Recherche und Backlog-Übersetzung. Nie bei Hypothesenbildung, Entscheidungsempfehlung oder Signatur. Wir dokumentieren transparent, wo KI eingesetzt wurde." },
+      { n: "01", kicker: "Suche nach Legitimation", t: "Sie haben bereits entschieden und suchen Legitimation.", b: "Unsere Analyse kann zu Ergebnissen führen, die der intern bereits getroffenen Entscheidung widersprechen. Wer ein nachträgliches Argument sucht, ist bei uns falsch." },
+      { n: "02", kicker: "Laufende Umsetzung", t: "Die Umsetzung läuft bereits.", b: "Wir arbeiten vor der Investitionsentscheidung, nicht während der Implementierung. Ist der Vertrag mit dem Umsetzungspartner unterschrieben und das Projekt im Lauf, bringen wir keinen Hebel mehr, sondern stiften Reibung." },
+      { n: "03", kicker: "Vollständige Fremdvergabe", t: "Sie suchen jemanden, der den Job für Sie macht.", b: "Der Erfolg von NarraTec beruht auf dem Wissen und dem Enablement Ihrer Experten. Wir führen die Analyse, aber die Substanz kommt aus Ihrem Haus — wer eine Bearbeitung ohne eigene Beteiligung erwartet, ist bei uns nicht richtig." },
     ],
   },
   final: {
-    rubric: "§ 10 · NÄCHSTER SCHRITT",
+    rubric: "NÄCHSTER SCHRITT",
     h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
     lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
@@ -208,22 +219,22 @@ const landingEn: LandingCopy = {
   },
   nav: [
     { label: "Problem", id: "problem" },
+    { label: "Method", id: "zielbild" },
     { label: "Use cases", id: "einsatz" },
-    { label: "Method", id: "methode" },
+    { label: "Packages", id: "bausteine" },
+    { label: "Evidence", id: "case-study" },
     { label: "Team", id: "team" },
-    { label: "Results", id: "ergebnis" },
   ],
   hero: {
-    kicker: "DECISION CONFIDENCE FOR STRATEGICALLY CRITICAL IT INVESTMENTS",
+    kicker: numRubric("01", "MOTIVATION & OBJECTIVES"),
     headline: (
       <>
-        <span className="line">Strategic IT investments,</span>
-        <span className="line">decided to <em>hold</em></span>
-        <span className="line"> in 4 weeks.</span>
+        <span className="line">From problem to <em>decision.</em></span>
+        <span className="line">From decision to <em>implementation.</em></span>
       </>
     ),
-    lede: "Before the first euro is spent, you know whether your investment will hold — or what would need to be in place first. In four weeks, we distill your complex starting position into a signed, binding implementation mandate, translated directly into operational work packages.",
-    italic: "In the end you don't just know what to do — you've saved months of detours before the project even starts.",
+    lede: "Your experts already have the answers. NarraTec gives them the structure: a proven path from the question to a well-founded decision — and from there to work packages and capable teams.",
+    close: "We enable your people, not replace them.",
   },
   trust: [
     <>Proven across several initiatives in a <span style={hl}>DAX corporation</span>.</>,
@@ -231,87 +242,111 @@ const landingEn: LandingCopy = {
     <>Your sensitive information protected by an <span style={hl}>NDA</span>.</>,
   ],
   problem: {
-    rubric: "§ 01 · Diagnosis",
-    h2: <>Four patterns that endanger <em>every</em> major project.</>,
-    lede: "Technology rarely fails — translation does. The four patterns that keep surfacing in practice:",
+    rubric: numRubric("02", "CURRENT STATE"),
+    h2: <>Strategies rarely fail<br />at the concept stage —<br />they fail <em>at the handover.</em></>,
+    lede: "Between decision and implementation, the chain breaks: the reasoning stays behind in the slides, the why never reaches the teams — and working structures grow out of habit rather than intent.",
     items: [
-      { n: "01", t: "Premature solutions", b: "Teams debate solutions before the problem is understood. Treating symptoms instead of finding root causes.", cost: "Misdirected activity from day 1" },
-      { n: "02", t: "Silo thinking", b: "Business units and management speak different languages. The connecting element is missing.", cost: "No alignment, no progress" },
-      { n: "03", t: "Trivialization by bullet points", b: "Meetings and slide decks leave no room for discourse. Complex problems get trivialized into bullet points.", cost: "Pseudo-decisions instead of clarity" },
-      { n: "04", t: "The execution trap", b: "Decisions that were made fizzle out. Implementation stalls.", cost: "Investments without impact" },
+      { n: "Finding A", t: "Decisions without depth", b: "Teams debate solutions before the problem is understood — treating symptoms instead of finding root causes. Slides make hard questions look flatter than they are: assumptions go unspoken, contradictions stay invisible. In the end, rhetoric decides instead of facts.", cost: "Pseudo-decisions instead of clarity" },
+      { n: "Finding B", t: "Handover without a system", b: "The path from decision to the teams' actual tasks is left to chance. Business units and management speak different languages; facts and the why get lost in the handover — teams execute without truly knowing the problem, and decisions that were made fizzle out.", cost: "Investments without impact" },
+      { n: "Finding C", t: "Structures without measure", b: "How teams work together has grown historically: too much administrative overhead in one place, missing coordination in another. Whether implementation is actually progressing is nearly impossible to verify.", cost: "No alignment, no progress" },
     ],
   },
-  position: {
-    rubric: "§ 02 · POSITION",
-    h2: <>Between strategy <em>and delivery.</em></>,
-    lede: "NarraTec replaces neither strategy consulting nor delivery partners. We close one specific gap: the moment a strategic intent has to become a viable, signature-ready investment decision.",
-    compareLabel: "Comparison",
-    rowPhase: "Phase",
-    rowQuestion: "Guiding question",
-    rowOutput: "Output",
-    cols: [
-      { label: "Strategy consulting", phase: "Before the decision", q: "“Where should we go?”", output: "Vision, roadmap, business case" },
-      { label: "NarraTec", phase: "Closing the decision", q: "“How exactly — and under what conditions?”", output: "Implementation mandate, work packages with ownership and acceptance criteria" },
-      { label: "Delivery partner", phase: "After the decision", q: "“We build it.”", output: "Working system, process, organization" },
+  zielbild: {
+    rubric: numRubric("03", "TARGET STATE"),
+    h2: <>One chain, three links — <em>seamless.</em></>,
+    lede: "The NarraTec method connects three steps into one coherent, traceable approach: understand, translate, deliver.",
+    callout: {
+      term: "Narrative, the",
+      tag: "[core concept of the method]",
+      body: <>A short, carefully built <strong>decision paper</strong> — usually just a few pages. It describes a problem with substantiated facts, justifies the chosen path, and records who does what by when. Everyone reads it calmly, <strong>before</strong> anything is discussed or decided. <strong>Why it helps:</strong> whoever writes has to think things through. Gaps and contradictions surface on paper — not months later during implementation.</>,
+    },
+    steps: [
+      { label: "Understand", n: "01", title: "The decision paper", sub: <>From problem to a justified decision<sup className="zb-fn"><a href={PAPER_PUBLISHED_URL} target="_blank" rel="noopener noreferrer" title="HMD Praxis der Wirtschaftsinformatik">1</a></sup></>, body: "Your experts develop the narrative together: first understand the problem cleanly, then — strictly separated — develop the solution. Every assumption is spoken out loud, every contradiction made visible. The result is a decision that holds up to the calm, scrutinizing reading of everyone involved." },
+      { label: "Translate", n: "02", title: "From paper to work package", sub: <>The “Narrative-to-Action” method<sup className="zb-fn"><a href={PAPER_PREREAD_URL} target="_blank" rel="noopener noreferrer" title="Pre-Read: Narrative-to-Action">2</a></sup></>, body: "Step by step, every building block of the solution is translated into concrete work packages — with clear responsibilities and criteria against which you can check whether a package is done. A fixed quality check ensures the why reaches the teams, not just the what." },
+      { label: "Deliver", n: "03", title: "The working structure", sub: <>Steady rhythm, clear roles &amp; interfaces</>, body: "As much structure as needed, as little as possible: teams decide for themselves how they work — only the coordination between them is standardized. A steady rhythm of planning and result demos makes progress verifiable and deviations visible early." },
     ],
+    principle: {
+      label: "Principle",
+      title: <>AI &amp;<br />accountability</>,
+      statement1: <>AI assists with synthesis, research and translation into work packages. <span style={{ color: "oklch(82% 0.008 85)" }}>Never with the decision.</span></>,
+      statement2: <>Accountability stays <span style={{ color: "oklch(72% 0.14 25)" }}>human.</span></>,
+    },
+  },
+  bausteine: {
+    rubric: numRubric("04", "SOLUTION BUILDING BLOCKS"),
+    h2: <>Fixed packages. <em>Fixed prices.</em></>,
+    lede: "No billing by the day, no open-ended consulting invoice: clearly defined services, clearly named outcomes, prices up front.",
+    note: "All prices net. Engagements usually begin with a Narrative Sprint.",
+    cards: [
+      { badge: "Entry", title: "Narrative Sprint", body: "A real, pending decision at your organization is taken to a finished decision paper together with your experts — in guided working rounds, with a shared reading phase and a concluding decision meeting.", price: "from €15,000", meta: "Fixed price · several weeks · one outcome" },
+      { badge: "Implementation", title: "Structure Sprint", body: "An assessment of how your teams work together today, then a blueprint for rhythm, roles and interfaces — including a plan that enables your own people to implement it. You build the structure yourselves, we show you how.", price: "from €12,000", meta: "Fixed price · assessment + blueprint" },
+      { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering decision papers (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "from €1,900", meta: "per participant · in-house training from €12,000" },
+      { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your decision papers and a quarterly review of your working structures.", price: "from €8,000/year", meta: "License · support from €2,500/month" },
+    ],
+  },
+  nextSteps: {
+    rubric: numRubric("05", "NEXT STEPS"),
+    h2: <>Right fit for your initiative? <em>Let's talk.</em></>,
+    lede: "Whether you already have a format in mind or just want to clarify open questions — a no-obligation conversation shows whether and how NarraTec can help.",
   },
   caseStudy: {
-    rubric: "§ 03 · Case Study",
-    h2: <>The dashboard would have been built — <em>on the wrong foundation.</em></>,
-    lede: "Anonymized real case · Industrial company · DACH · 2025",
-    phases: [
-      { n: "Starting point", t: "The decision seemed clear.", d: "A dashboard for product-cost control. Budget reserved. Vendor pre-selected. Already communicated internally." },
-      { n: "What we found", t: "The data foundation would have sunk the project.", d: "9 interviews with experts from controlling, production and IT exposed what had never been articulated internally: critical data gaps, source conflicts and missing system integrations — which would have rendered the dashboard useless or caused unplannable delays." },
-      { n: "Outcome", t: "A better decision.", d: "Instead of a generic dashboard: a binding implementation mandate with defined data requirements, clear source systems and measurable acceptance criteria. Delivery started without architecture loops." },
+    rubric: numRubric("A", "APPENDIX · EVIDENCE FROM PRACTICE"),
+    h2: <>No claims. <em>Proven</em> practice.</>,
+    lede: "Three initiatives from corporate settings show the method at work — at scale, at a small scale, and beyond the world of pure software.",
+    primary: [
+      {
+        tag: "Case 1 · Full application",
+        title: "Digitalizing a corporate brand",
+        lede: "All three links of the chain — from the first analysis to ongoing delivery.",
+        steps: [
+          { t: "Understanding the causes", b: "It didn't start with a solution, but with a thorough analysis: what is actually holding back digitalization?" },
+          { t: "A strategic decision paper", b: "The findings converged into an overarching paper that derived the key focus areas — read, reviewed and endorsed by everyone involved." },
+          { t: "One in-depth paper per focus area", b: "Each focus area produced its own dedicated paper with concrete solution building blocks — each one grounded in the analysis, nothing left unexplained." },
+          { t: "Delivery in a fixed rhythm", b: "15 product teams implement the building blocks — their key roles in product management and architecture were trained for it. Every three months, planning happens together and results are demoed, in front of more than 50 participants. That keeps spend and progress traceable at all times." },
+        ],
+        result: {
+          label: "The outcome",
+          body: "The corporate brand gains full transparency into how effectively its budget is being used. Digital products are delivered continuously, legacy systems are modernized on an ongoing, agile basis — planning and delivery follow a product-oriented, agile rhythm instead of rigid annual cycles.",
+        },
+        stats: [
+          { v: "15", k: "Product teams" },
+          { v: ">50", k: "Participants per session" },
+          { v: "3", unit: "mo.", k: "Planning rhythm" },
+        ],
+      },
+      {
+        tag: "Case 2 · Small, but complete",
+        title: "Approving open-source building blocks",
+        lede: "The same method at a small scale — from paper to a running process, delivered by a single team.",
+        steps: [
+          { t: "Understanding the causes", b: "Before developers can use freely available software building blocks (open source), an approval is required. It used to run by email and take several weeks — for harmless standard cases just as much as for legally sensitive ones." },
+          { t: "A shared decision paper", b: "Around 20 people from development, legal review and specialist departments clarified on paper: which cases are standard, and which need the scrutiny of legal experts? The result: jointly agreed procedural rules." },
+          { t: "Translated directly into work packages", b: "The initiative was clearly scoped — the solution building blocks translated directly into work packages with acceptance criteria, each traceable back to the requirement from the analysis." },
+          { t: "Delivery by a single team", b: "A single product team delivered the packages on a fixed two-week rhythm — piece by piece, always traceable." },
+        ],
+        result: {
+          label: "The outcome",
+          body: "The process now runs noticeably faster: standard cases get approved instantly under fixed rules, sensitive cases go straight to the legal experts, and specialists are supported by the system in their decisions — without detours through email and without switching between systems.",
+        },
+        stats: [
+          { v: "~20", k: "Participants" },
+          { v: "1", k: "Product team" },
+          { v: "14", unit: "days", k: "Delivery rhythm" },
+        ],
+      },
     ],
-    metricsLabel: "Outcome in numbers",
-    metrics: [
-      { k: "Decision time", v: "4 weeks" },
-      { k: "Time-to-backlog", v: "6 weeks" },
-      { k: "Budget protected from misallocation", v: "€1.3M" },
-    ],
-    docLabel: "The resulting narrative (excerpt)",
-    docMetaLeft: "Narrative · v1.2",
-    docMetaRight: "Status: decided",
-    docH4: "Product-cost dashboard: commission it, or create the conditions first?",
-    docSub: "Initiative 2025-Q3 · Owner: Head of IT · Involved: Controlling, Production, Data Engineering",
-    docSections: [
-      { k: "Hypothesis", v: <>The missing cost transparency cannot be solved by a dashboard while the data foundation is uncleaned. <span className="hl">Building the dashboard immediately would misallocate the budget</span> — the real problems would stay invisible.</> },
-      { k: "Evidence", v: <>9 interviews with experts from controlling, production and IT. <span className="hl">Several critical data gaps and source conflicts</span> identified. Missing integration of 3 source systems documented.</> },
-      { k: "Decision", v: <>A fine-grained implementation mandate instead of a generic dashboard. Clear data requirements, defined source systems, prioritized cost objects and measurable acceptance criteria.</> },
-      { k: "Backlog", v: <>7 work packages, 3 owners, acceptance criteria defined per package.</> },
-    ],
-    docSig: "Signed off:\nHead of IT · Controlling · Data Engineering",
-    docDate: "Sep 22, 2025",
-  },
-  outcomes: {
-    rubric: "§ 04 · Measurement Promise",
-    h2: <>Three metrics. <em>Agreed before the project starts.</em></>,
-    lede: "We don't make promises — we agree on metrics. Three figures we commit to with you before the analysis begins. In the end, we report openly on what moved.",
-    items: [
-      { n: "01", label: "Budget protected from misallocation", body: "Difference between the originally planned budget allocation and the signed decision. A confirmed initial plan is a result, too — then backed by documented evidence instead of gut feeling." },
-      { n: "02", label: "Decision time", body: "From the open problem to the signed decision. Typically: four weeks." },
-      { n: "03", label: "Decision stability", body: "Does implementation start without revision loops? We measure whether the decision holds — in the organization and in the backlog." },
-    ],
-    closing: "Each of these metrics addresses one of the patterns that make major projects fail. For perspective: our fee is typically below 3% of the investment volume it safeguards. In the documented reference case, a five-figure fixed price stood against €1.3M of budget protected from misallocation.",
-  },
-  method: {
-    rubric: "§ 05 · Method",
-    h2: <>From hypothesis to backlog: how the decision becomes <em>durable.</em></>,
-    lede: "A structured analysis that connects root causes, decision logic and actions in one jointly developed document — producing decisions that hold internally.",
-    steps: [
-      { phase: "Day 0", title: "Kick-off", desc: "Sharpen the problem, goal and value hypothesis; define stakeholders and success criteria. We define how a good decision must ultimately be measured." },
-      { phase: "Week 1–2", title: "Build the evidence base", desc: "Interviews, data audit, second-opinion review. We listen before we form a hypothesis." },
-      { phase: "Week 3", title: "Lay out the options", desc: "Criteria, trade-offs and decision logic — argued in writing against the success criteria defined earlier." },
-      { phase: "Week 4", title: "Translate into work packages", desc: "Sign-off, work packages, ownership. The decision doesn't end with the signature." },
-    ],
-    principleLabel: "Principle",
-    principleTitle: <>AI &amp;<br />accountability</>,
-    statement1: <>AI assists with synthesis, research and translation into work packages. <span style={{ color: "oklch(82% 0.008 85)" }}>Never with the decision.</span></>,
-    statement2: <>Accountability stays <span style={{ color: "oklch(72% 0.14 25)" }}>human.</span></>,
+    supplementary: {
+      tag: "Case 3 · Supplementary — confidential",
+      title: "Six organizations, one shared paper",
+      body: [
+        "A separate, independent initiative: six partner organizations from industry, research and young companies — more than 70 participants — converged through a jointly owned decision paper on one way of working: it names the focus areas and derives the solution building blocks.",
+        "Because hardware and software are being developed together here, delivery combines agile work with classic, plan-based development — in tight, fixed delivery and planning cycles.",
+        "Details remain confidential. Above all, this case shows one thing: the method holds up beyond the world of pure software.",
+      ],
+    },
   },
   usecases: {
-    rubric: "§ 06 · Where it applies",
+    rubric: numRubric("03", "TARGET STATE · WHERE IT APPLIES"),
     h2: <>Where the method <em>works.</em></>,
     lede: "Wherever complexity meets implementation pressure and decisions must be broadly supported.",
     cases: [
@@ -321,16 +356,15 @@ const landingEn: LandingCopy = {
     ],
   },
   team: {
-    rubric: "§ 07 · Who's behind it",
+    rubric: numRubric("B", "APPENDIX · PEOPLE"),
     h2: <>Two perspectives. <em>One</em> standard.</>,
-    lede: "Both founders have owned complex IT decisions themselves. The method is the result — not the premise.",
     people: [
-      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Creator of the NarraTec method", bio: (<>
+      { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Founder · Method development", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Richard is the creator of the NarraTec method and has spent more than ten years steering complex IT initiatives — currently as Technical Lead for Data & AI Delivery at a DAX corporation, where he translates decision narratives into actionable requirements and work packages.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on measurable decision quality: he developed the method of structured narratives in real corporate initiatives, proved it in practice, and published it academically — at the intersection of management research and project practice.</p>
         <p style={{ margin: 0 }}>As technical program manager, he was responsible for a group-wide digital production platform (SAFe), built in close partnership with companies such as Amazon Web Services, as well as initiatives on open-source compliance and Industry 4.0, and contributed to the realignment of a software development organization with more than 500 employees.</p>
       </>) as ReactNode, credentials: ["10+ years of IT governance", "Method expert in complex initiatives"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
-      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "aka PraxisProf", bio: (<>
+      { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Teaching & Advisory", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe is a highly practice-oriented professor of business informatics, founder of the non-profit initiative matchIO, and co-developer of the Decision & Execution Engineering approach at NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on the usability of technology and the question of how organizations can translate complex challenges into sound decisions, effective structures, and sustainable implementation.</p>
         <p style={{ margin: 0 }}>As a member of the acatech Research Advisory Board on Industry 4.0, supervisory board member of the DFKI, and shaper of numerous industry and transformation initiatives, he combines academic insight with many years of experience in digitalization, AI, platform economics, and organizational transformation.</p>
@@ -345,28 +379,13 @@ const landingEn: LandingCopy = {
     ],
   },
   disqualify: {
-    rubric: "§ 08 · BOUNDARIES",
+    rubric: numRubric("C", "APPENDIX · BOUNDARIES"),
     h2: <>When we <em>say no.</em></>,
     lede: "A precise tool knows its limits. There are situations where NarraTec is not the right step. If one of the following describes you, we're happy to refer you to partners in our network.",
-    notLabel: "Not a fit",
     items: [
-      { n: "01", t: "You've already decided and are looking for legitimacy.", b: "Our analysis can lead to results that contradict the decision already made internally. If you're looking for an after-the-fact argument, we're the wrong choice." },
-      { n: "02", t: "Implementation is already underway.", b: "We work before the investment decision, not during implementation. Once the contract with the delivery partner is signed and the project is running, we add no leverage — only friction." },
-      { n: "03", t: "You're looking for someone to do the job for you.", b: "NarraTec's success rests on the knowledge and enablement of your experts. We lead the analysis, but the substance comes from your organization — if you expect delivery without your own involvement, we're not the right fit." },
-      { n: "04", t: "The investment volume doesn't justify our approach.", b: "Our method is built for strategically critical investments. For smaller initiatives, our effort exceeds the possible value contribution — simpler formats get there faster. We name the threshold openly in the intro call." },
-    ],
-    closing: <>Unsure whether your initiative fits? The 30-minute intro call answers <span style={{ color: "var(--accent-ink)" }}>exactly that question</span> — no follow-up cost, no obligation.</>,
-  },
-  faq: {
-    rubric: "§ 09 · FAQ",
-    h2: <>The six questions <em>C-level</em> asks first.</>,
-    items: [
-      { q: "What does an engagement cost?", a: "Fixed price, depending on scope and number of stakeholders. Typical range €15k–35k. The briefing itself is free and non-binding. For perspective: the fee is typically below 3% of the investment volume being decided on." },
-      { q: "Who's in the briefing?", a: "One partner. No sales. NDA on request before the call." },
-      { q: "How long does the engagement take?", a: "Four weeks to a signed decision is the standard case — the method is designed for it. With a high number of stakeholders or limited data availability, it can take up to six weeks; we name that in the intro call, not afterwards." },
-      { q: "Does this replace our strategy consulting?", a: "No. NarraTec works for the decision — we're the step between strategy and delivery." },
-      { q: "What happens to our data?", a: "All materials remain your property. Result documents are handed over; internal working data is deleted within 30 days on request." },
-      { q: "Do you use AI in the work?", a: "Yes — for synthesis, research and backlog translation. Never for forming hypotheses, decision recommendations or sign-off. We transparently document where AI was used." },
+      { n: "01", kicker: "Looking for legitimacy", t: "You've already decided and are looking for legitimacy.", b: "Our analysis can lead to results that contradict the decision already made internally. If you're looking for an after-the-fact argument, we're the wrong choice." },
+      { n: "02", kicker: "Already underway", t: "Implementation is already underway.", b: "We work before the investment decision, not during implementation. Once the contract with the delivery partner is signed and the project is running, we add no leverage — only friction." },
+      { n: "03", kicker: "Full outsourcing expected", t: "You're looking for someone to do the job for you.", b: "NarraTec's success rests on the knowledge and enablement of your experts. We lead the analysis, but the substance comes from your organization — if you expect delivery without your own involvement, we're not the right fit." },
     ],
   },
   final: {
@@ -413,6 +432,24 @@ function LangToggle() {
 }
 
 function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth > 1040) setOpen(false); };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const jumpAndClose = (id: string) => (e: MouseEvent) => {
+    onJump(id)(e);
+    setOpen(false);
+  };
+
   return (
     <header className="nav">
       <div className="container nav-inner">
@@ -428,38 +465,77 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
           <a className="btn btn-primary nav-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
             {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
+          <button
+            type="button"
+            className="nav-burger"
+            aria-label={open ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={22} strokeWidth={1.8} /> : <Menu size={22} strokeWidth={1.8} />}
+          </button>
         </nav>
       </div>
+
+      {open && (
+        <div className="nav-mobile">
+          <nav className="nav-mobile-links" aria-label="Mobile Navigation">
+            {nav.map((l) => (
+              <a key={l.id} href={`#${l.id}`} onClick={jumpAndClose(l.id)}>{l.label}</a>
+            ))}
+          </nav>
+          <a className="btn btn-primary nav-mobile-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} onClick={() => setOpen(false)}>
+            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+        </div>
+      )}
     </header>
+  );
+}
+
+function RubricRow({ rubric }: { rubric: ReactNode }) {
+  return (
+    <div className="zb-rubric-row">
+      <span className="rubric no-line">{rubric}</span>
+      <span className="zb-rule" aria-hidden="true" />
+    </div>
+  );
+}
+
+function SectionHead({ rubric, h2, lede, children }: { rubric: ReactNode; h2: ReactNode; lede?: ReactNode; children?: ReactNode }) {
+  return (
+    <div className="zb-head">
+      <RubricRow rubric={rubric} />
+      <h2 className="display zb-h2">{h2}</h2>
+      {lede && <p className="lede zb-lede">{lede}</p>}
+      {children}
+    </div>
   );
 }
 
 function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
   return (
     <section className="hero container" id="top" data-screen-label="01 Hero">
-      <div className="hero-kicker">
-        <span className="dot" aria-hidden="true"></span>
-        <span className="rubric no-line">{c.kicker}</span>
-      </div>
+      <RubricRow rubric={c.kicker} />
 
-      <h1 className="display" style={{ fontSize: "clamp(52px, 8.5vw, 118px)", lineHeight: 1.06, marginBottom: 0, marginTop: 24 }}>
+      <h1 className="display" style={{ fontSize: "clamp(44px, 6.2vw, 78px)", lineHeight: 1.06, marginBottom: 0, marginTop: 16 }}>
         {c.headline}
       </h1>
 
-      <div style={{ borderTop: "1px solid var(--rule)", margin: "36px 0 0" }} />
+      <div style={{ borderTop: "1px solid var(--rule)", margin: "28px 0 0" }} />
 
-      <div style={{ paddingTop: 36 }}>
-        <p className="lede" style={{ maxWidth: "52ch", marginTop: 0 }}>{c.lede}</p>
-        <p style={{ maxWidth: "52ch", marginTop: 16, marginBottom: 0, fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(18px, 1.6vw, 22px)", lineHeight: 1.4, color: "var(--ink-2)", letterSpacing: "-0.005em" }}>
-          {c.italic}
+      <div style={{ paddingTop: 28 }}>
+        <p className="lede" style={{ maxWidth: "52ch", marginTop: 0, marginBottom: 0 }}>{c.lede}</p>
+        <p className="lede" style={{ maxWidth: "52ch", marginTop: 10, marginBottom: 0 }}>
+          {c.close}
         </p>
-        <div className="hero-actions" style={{ marginTop: 28 }}>
+        <div className="hero-actions" style={{ marginTop: 22 }}>
           <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
             {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
-          <a className="btn btn-ghost" href="#methode" onClick={onJump("methode")}>{cta.seeMethod}</a>
+          <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
         </div>
-        <div style={{ marginTop: 16, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)" }}>
+        <div style={{ marginTop: 12, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)" }}>
           {cta.micro}
         </div>
       </div>
@@ -485,13 +561,7 @@ function Problem({ c }: { c: LandingCopy["problem"] }) {
   return (
     <section className="section" id="problem" data-screen-label="02 Problem">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
         <div className="patterns">
           {c.items.map((it) => (
             <article className="pattern" key={it.n}>
@@ -507,126 +577,100 @@ function Problem({ c }: { c: LandingCopy["problem"] }) {
   );
 }
 
-function Position({ c }: { c: LandingCopy["position"] }) {
-  const rows = [
-    { k: c.rowPhase, f: "phase" as const },
-    { k: c.rowQuestion, f: "q" as const },
-    { k: c.rowOutput, f: "output" as const },
-  ];
+function Zielbild({ c }: { c: LandingCopy["zielbild"] }) {
   return (
-    <section className="section" id="position" data-screen-label="03 Position">
+    <section className="section" id="zielbild" data-screen-label="03 Zielbild">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
+
+        <div className="zb-callout">
+          <p className="zb-callout-term">
+            {c.callout.term} <span className="zb-callout-tag">{c.callout.tag}</span>
+          </p>
+          <p className="zb-callout-body">{c.callout.body}</p>
         </div>
 
-        <div className="pos-table" style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 140px) repeat(3, minmax(0, 1fr))", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
-            <div style={{ padding: "20px 22px", borderRight: "1px solid var(--rule)", fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)" }}>{c.compareLabel}</div>
-            {c.cols.map((col, i) => (
-              <div key={col.label} style={{ padding: "20px 22px", borderRight: i < c.cols.length - 1 ? "1px solid var(--rule)" : "none", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, color: i === 1 ? "var(--accent-ink)" : "var(--ink)", fontStyle: i === 1 ? "italic" : "normal", letterSpacing: "-0.005em" }}>
-                {col.label}
+        <div className="zb-steps">
+          {c.steps.map((s) => (
+            <article className="zb-step" key={s.n}>
+              <div className="zb-step-top">
+                <span className="zb-step-label">{s.label}</span>
+                <span className="zb-step-num" aria-hidden="true">{s.n}</span>
               </div>
-            ))}
-          </div>
-
-          {rows.map((r, ri) => (
-            <div key={r.k} style={{ display: "grid", gridTemplateColumns: "minmax(0, 140px) repeat(3, minmax(0, 1fr))", borderBottom: ri < rows.length - 1 ? "1px solid var(--rule)" : "none" }}>
-              <div style={{ padding: "18px 22px", borderRight: "1px solid var(--rule)", background: "var(--paper-2)", fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)" }}>{r.k}</div>
-              {c.cols.map((col, ci) => (
-                <div key={col.label + r.k} style={{ padding: "18px 22px", borderRight: ci < c.cols.length - 1 ? "1px solid var(--rule)" : "none", fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)" }}>
-                  {col[r.f]}
-                </div>
-              ))}
-            </div>
+              <h3 className="zb-step-title">{s.title}</h3>
+              <p className="zb-step-sub">{s.sub}</p>
+              <p className="zb-step-body">{s.body}</p>
+            </article>
           ))}
         </div>
 
-        {/* Mobile: one card per provider (the table is unreadable in 3 columns) */}
-        <div className="pos-cards" style={{ flexDirection: "column", gap: 16 }}>
-          {c.cols.map((col, i) => {
-            const highlight = i === 1;
-            return (
-              <div key={col.label} style={{ border: "1px solid var(--rule)", borderRadius: 3, overflow: "hidden", background: "var(--paper)" }}>
-                <div style={{ padding: "16px 20px", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.005em", color: highlight ? "var(--accent-ink)" : "var(--ink)", fontStyle: highlight ? "italic" : "normal" }}>
-                  {col.label}
-                </div>
-                <div style={{ padding: "6px 20px 12px" }}>
-                  {rows.map((r, idx) => (
-                    <div key={r.k} style={{ padding: "12px 0", borderTop: idx === 0 ? "none" : "1px solid var(--rule)" }}>
-                      <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--ink-3)", marginBottom: 6 }}>{r.k}</div>
-                      <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)" }}>{col[r.f]}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+        <div className="method-principle" style={{ marginTop: 48, background: "var(--ink)", color: "var(--paper)", borderRadius: 3, padding: "clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)", display: "grid", gridTemplateColumns: "minmax(0, 180px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 56px)", alignItems: "start", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
+          <div>
+            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "oklch(72% 0.008 85)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
+              <span style={{ display: "inline-block", width: 18, height: 1, background: "oklch(72% 0.008 85)" }}></span>
+              {c.principle.label}
+            </div>
+            <div style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(20px, 1.8vw, 26px)", lineHeight: 1.15, color: "oklch(72% 0.14 25)", letterSpacing: "-0.005em" }}>
+              {c.principle.title}
+            </div>
+          </div>
+          <div>
+            <p style={{ fontFamily: "var(--f-display)", fontSize: "clamp(24px, 2.6vw, 36px)", lineHeight: 1.25, color: "oklch(92% 0.008 85)", margin: "0 0 18px", letterSpacing: "-0.01em", maxWidth: "24ch" }}>
+              {c.principle.statement1}
+            </p>
+            <p style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(28px, 3.2vw, 44px)", lineHeight: 1.1, margin: 0, letterSpacing: "-0.015em", color: "var(--paper)" }}>
+              {c.principle.statement2}
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function DecisionBridge({ steps }: { steps: LandingCopy["method"]["steps"] }) {
+function Bausteine({ c }: { c: LandingCopy["bausteine"] }) {
   return (
-    <div style={{ "--nt-ink": "var(--ink)", "--nt-muted": "var(--ink-3)", "--nt-line": "var(--rule)", "--nt-accent": "var(--accent-ink)", "--nt-paper": "var(--paper)", marginTop: 48 } as CSSProperties}>
-      <div className="db-wrap" style={{ position: "relative" }}>
-        <span aria-hidden="true" className="db-rail" style={{ position: "absolute", left: "12.5%", right: "12.5%", top: 20, height: 1, background: "var(--nt-line)" }} />
-        <ol className="db-list" style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 24, listStyle: "none", margin: 0, padding: 0 }}>
-          {steps.map((s, i) => (
-            <li key={s.phase} className="db-item" style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
-              <span style={{ position: "relative", zIndex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", width: 40, height: 40, borderRadius: "50%", border: "1px solid var(--nt-accent)", background: "var(--nt-paper)", color: "var(--nt-accent)", fontFamily: "var(--f-mono)", fontSize: 13, fontWeight: 600, marginBottom: 20 }}>
-                {i + 1}
-              </span>
-              <div>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--nt-accent)" }}>{s.phase}</div>
-                <h3 style={{ margin: "6px 0 0", fontFamily: "var(--f-display)", fontSize: 22, lineHeight: 1.2, letterSpacing: "-0.005em", color: "var(--nt-ink)", fontWeight: 400 }}>{s.title}</h3>
-                <p style={{ margin: "10px auto 0", maxWidth: "22rem", fontSize: 14, lineHeight: 1.65, color: "var(--nt-muted)" }}>{s.desc}</p>
+    <section className="section" id="bausteine" data-screen-label="04 Lösungsbausteine">
+      <div className="container">
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
+
+        <div className="lb-grid">
+          {c.cards.map((card) => (
+            <article className="lb-card" key={card.title}>
+              <span className="lb-badge">{card.badge}</span>
+              <h3 className="lb-title">{card.title}</h3>
+              <p className="lb-body">{card.body}</p>
+              <div className="lb-foot">
+                <div className="lb-divider" aria-hidden="true" />
+                <div className="lb-price">{card.price}</div>
+                <div className="lb-meta">{card.meta}</div>
               </div>
-            </li>
+            </article>
           ))}
-        </ol>
+        </div>
+
+        <p className="lb-note"><span className="lb-star" aria-hidden="true">*</span> {c.note}</p>
       </div>
-    </div>
+    </section>
   );
 }
 
-function Method({ c }: { c: LandingCopy["method"] }) {
+function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["cta"] }) {
   return (
-    <section className="section" id="methode" data-screen-label="04 Methode">
+    <section className="ns" id="naechste-schritte" data-screen-label="05 Nächste Schritte">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
+        <div className="ns-cta">
+          <div className="ns-cta-copy">
+            <span className="rubric no-line">{c.rubric}</span>
+            <h2 className="display ns-cta-h2">{c.h2}</h2>
+            <p className="ns-cta-lede">{c.lede}</p>
           </div>
-        </div>
-
-        <DecisionBridge steps={c.steps} />
-        <div className="method-principle" style={{ marginTop: 48, background: "var(--ink)", color: "var(--paper)", borderRadius: 3, padding: "clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)", display: "grid", gridTemplateColumns: "minmax(0, 180px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 56px)", alignItems: "start", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
-          <div>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "oklch(72% 0.008 85)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 18, height: 1, background: "oklch(72% 0.008 85)" }}></span>
-              {c.principleLabel}
-            </div>
-            <div style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(20px, 1.8vw, 26px)", lineHeight: 1.15, color: "oklch(72% 0.14 25)", letterSpacing: "-0.005em" }}>
-              {c.principleTitle}
-            </div>
-          </div>
-          <div>
-            <p style={{ fontFamily: "var(--f-display)", fontSize: "clamp(24px, 2.6vw, 36px)", lineHeight: 1.25, color: "oklch(92% 0.008 85)", margin: "0 0 18px", letterSpacing: "-0.01em", maxWidth: "24ch" }}>
-              {c.statement1}
-            </p>
-            <p style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(28px, 3.2vw, 44px)", lineHeight: 1.1, margin: 0, letterSpacing: "-0.015em", color: "var(--paper)" }}>
-              {c.statement2}
-            </p>
+          <div className="ns-cta-action">
+            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
+              {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+            </a>
+            <div className="ns-cta-micro">{cta.microShort}</div>
           </div>
         </div>
       </div>
@@ -638,13 +682,7 @@ function UseCases({ c }: { c: LandingCopy["usecases"] }) {
   return (
     <section className="section" id="einsatz" data-screen-label="02 Einsatz">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
         <div className="usecases">
           {c.cases.map((uc, i) => (
             <article className="usecase" key={i}>
@@ -665,13 +703,7 @@ function Team({ c }: { c: LandingCopy["team"] }) {
   return (
     <section className="section" id="team" data-screen-label="06 Team">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} />
 
         <div className="team-grid">
           {c.people.map((p, i) => (
@@ -759,24 +791,18 @@ function Team({ c }: { c: LandingCopy["team"] }) {
   );
 }
 
-function Disqualify({ c, cta }: { c: LandingCopy["disqualify"]; cta: LandingCopy["cta"] }) {
+function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
   return (
     <section className="section" id="abgrenzung" data-screen-label="05 Abgrenzung">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
         <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--rule)" }}>
           {c.items.map((it) => (
             <article key={it.n} className="dq-item" style={{ display: "grid", gridTemplateColumns: "minmax(0, 200px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 64px)", padding: "32px 0 32px", borderBottom: "1px solid var(--rule)", alignItems: "baseline" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--ink-3)", textTransform: "uppercase" }}>{c.notLabel}</div>
                 <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--accent-ink)" }}>{it.n}</div>
+                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--ink-3)", textTransform: "uppercase" }}>{it.kicker}</div>
               </div>
               <div>
                 <h3 style={{ fontFamily: "var(--f-display)", fontWeight: 400, fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.15, letterSpacing: "-0.01em", color: "var(--ink)", margin: "0 0 14px", maxWidth: "32ch" }}>{it.t}</h3>
@@ -785,47 +811,6 @@ function Disqualify({ c, cta }: { c: LandingCopy["disqualify"]; cta: LandingCopy
             </article>
           ))}
         </div>
-
-        <p style={{ marginTop: 32, fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(22px, 2.2vw, 30px)", lineHeight: 1.3, color: "var(--ink-2)", maxWidth: "58ch", letterSpacing: "-0.01em" }}>
-          {c.closing}
-        </p>
-        <div style={{ marginTop: 24, display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-          <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
-            {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
-          </a>
-          <a className="btn btn-ghost" href="#methode" onClick={onJump("methode")}>{cta.seeMethod}</a>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)" }}>
-            {cta.microShort}
-          </span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Outcomes({ c }: { c: LandingCopy["outcomes"] }) {
-  return (
-    <section className="section" id="ergebnis" data-screen-label="07 Ergebnis">
-      <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
-        <div className="outcomes">
-          {c.items.map((o, i) => (
-            <div className="outcome" key={i}>
-              <div className="outcome-src" style={{ marginTop: 0, marginBottom: 14 }}> {o.n}</div>
-              <div className="outcome-n" style={{ fontSize: "clamp(32px, 3.6vw, 48px)", lineHeight: 1.05, color: "var(--ink)", fontStyle: "italic" }}>{o.label}</div>
-              <div className="outcome-body" style={{ marginTop: 10 }}>{o.body}</div>
-            </div>
-          ))}
-        </div>
-        <p style={{ marginTop: 40, paddingTop: 28, borderTop: "1px solid var(--rule)", fontSize: 15, lineHeight: 1.7, color: "var(--ink-2)", maxWidth: "72ch", marginBottom: 0 }}>
-          {c.closing}
-        </p>
       </div>
     </section>
   );
@@ -833,83 +818,58 @@ function Outcomes({ c }: { c: LandingCopy["outcomes"] }) {
 
 function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
   return (
-    <section className="section" data-screen-label="08 Case">
+    <section className="section" id="case-study" data-screen-label="08 Case">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede">{c.lede}</p>
-          </div>
-        </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
-        <div className="case-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1.4fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 48 }}>
-          <div className="case-col-left" style={{ borderRight: "1px solid var(--rule)", display: "flex", flexDirection: "column" }}>
-            {c.phases.map((p) => (
-              <div key={p.n} style={{ padding: "28px 36px 28px 0", borderBottom: "1px solid var(--rule)" }}>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 8 }}>{p.n}</div>
-                <div style={{ fontFamily: "var(--f-display)", fontSize: 18, lineHeight: 1.25, color: "var(--ink)", marginBottom: 10 }}>{p.t}</div>
-                <p style={{ fontSize: 13.5, color: "var(--ink-2)", lineHeight: 1.65, margin: 0 }}>{p.d}</p>
-              </div>
-            ))}
-            <div style={{ marginTop: 28, marginRight: 36, padding: "20px 22px", background: "var(--paper-2)", border: "1px solid var(--rule)", borderRadius: 3 }}>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 12 }}>
-                {c.metricsLabel}
-              </div>
-              <dl style={{ margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                {c.metrics.map(({ k, v }) => (
-                  <div key={k} style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "baseline" }}>
-                    <dt style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.4 }}>{k}</dt>
-                    <dd style={{ margin: 0, fontFamily: "var(--f-display)", fontSize: 17, color: "var(--ink)", textAlign: "right", letterSpacing: "-0.005em" }}>{v}</dd>
+        <div className="cs-grid">
+          <div className="cs-row-top">
+            {c.primary.map((cs) => (
+              <article className="cs-card" key={cs.title}>
+                <div className="cs-tag">{cs.tag}</div>
+                <h3 className="cs-title">{cs.title}</h3>
+                <p className="cs-card-lede">{cs.lede}</p>
+
+                <div className="cs-steps">
+                  {cs.steps.map((s, i) => (
+                    <div className="cs-step" key={i}>
+                      <div className="cs-step-num" aria-hidden="true">{i + 1}</div>
+                      <div>
+                        <h4 className="cs-step-title">{s.t}</h4>
+                        <p className="cs-step-body">{s.b}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {"result" in cs && cs.result && (
+                  <div className="cs-result">
+                    <div className="cs-result-label">{cs.result.label}</div>
+                    <p className="cs-result-body">{cs.result.body}</p>
                   </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-          <div className="case-doc-col" style={{ padding: "40px 0 40px 40px", display: "flex", flexDirection: "column" }}>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 16 }}>{c.docLabel}</div>
-            <figure className="doc" style={{ margin: 0, flex: 1 }}>
-              <div className="doc-meta">
-                <span>{c.docMetaLeft}</span>
-                <span>{c.docMetaRight}</span>
-              </div>
-              <h4>{c.docH4}</h4>
-              <div className="doc-sub">{c.docSub}</div>
-              {c.docSections.map((s) => (
-                <div className="doc-section" key={s.k}><span className="k">{s.k}</span><span className="v">{s.v}</span></div>
-              ))}
-              <div className="doc-footer">
-                <span style={{ whiteSpace: "pre-line" }}>{c.docSig}</span>
-                <span>{c.docDate}</span>
-              </div>
-            </figure>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+                )}
 
-function FAQ({ c }: { c: LandingCopy["faq"] }) {
-  return (
-    <section className="section" data-screen-label="09 FAQ">
-      <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
+                <div className="cs-stats">
+                  {cs.stats.map((s, i) => (
+                    <div className="cs-stat" key={i}>
+                      <div className="cs-stat-v">{s.v}{"unit" in s && s.unit && <span className="unit"> {s.unit}</span>}</div>
+                      <div className="cs-stat-k">{s.k}</div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
-        </div>
-        <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 0, borderTop: "1px solid var(--rule)", marginTop: 0 }}>
-          {c.items.map((it, i) => (
-            <div key={i} style={{ padding: "32px 36px", borderBottom: "1px solid var(--rule)", borderRight: i % 2 === 0 ? "1px solid var(--rule)" : "none" }}>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 10 }}>
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div style={{ fontFamily: "var(--f-display)", fontSize: 19, lineHeight: 1.25, color: "var(--ink)", marginBottom: 14 }}>{it.q}</div>
-              <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.7, margin: 0 }}>{it.a}</p>
+
+          <article className="cs-supp cs-supp-full">
+            <div className="cs-supp-head">
+              <div className="cs-tag">{c.supplementary.tag}</div>
+              <h3 className="cs-title">{c.supplementary.title}</h3>
             </div>
-          ))}
+            <div className="cs-supp-body">
+              {c.supplementary.body.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -920,22 +880,17 @@ function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] })
   return (
     <section className="final" id="final" data-screen-label="10 Final CTA">
       <div className="container">
-        <div className="section-head">
-          <div className="rubric">{c.rubric}</div>
-          <div>
-            <h2 className="display">{c.h2}</h2>
-            <p className="lede" style={{ marginTop: 20 }}>{c.lede}</p>
-            <div className="hero-actions" style={{ marginTop: 36 }}>
-              <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
-                {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
-              </a>
-              <a className="btn btn-ghost" href="#methode" onClick={onJump("methode")}>{cta.seeMethod}</a>
-            </div>
-            <div style={{ marginTop: 22, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "oklch(72% 0.008 85)" }}>
-              {cta.finalMicro}
-            </div>
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede}>
+          <div className="hero-actions" style={{ marginTop: 36 }}>
+            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
+              {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
+            </a>
+            <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
           </div>
-        </div>
+          <div style={{ marginTop: 22, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "oklch(72% 0.008 85)" }}>
+            {cta.finalMicro}
+          </div>
+        </SectionHead>
       </div>
     </section>
   );
@@ -946,7 +901,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <div>© 2026 NarraTec GmbH. {t.legalLayout.copyright}</div>
+        <div>NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden</div>
         <div className="footer-links">
           <Link to="/impressum">{t.legalLayout.impressum}</Link>
           <Link to="/datenschutz">{t.legalLayout.datenschutz}</Link>
@@ -1008,14 +963,13 @@ function RedesignLanding() {
         <Hero c={L.hero} cta={L.cta} />
         <TrustBar items={L.trust} />
         <Problem c={L.problem} />
-        <Position c={L.position} />
-        <CaseStudy c={L.caseStudy} />
-        <Outcomes c={L.outcomes} />
-        <Method c={L.method} />
+        <Zielbild c={L.zielbild} />
         <UseCases c={L.usecases} />
+        <Bausteine c={L.bausteine} />
+        <NextSteps c={L.nextSteps} cta={L.cta} />
+        <CaseStudy c={L.caseStudy} />
         <Team c={L.team} />
-        <Disqualify c={L.disqualify} cta={L.cta} />
-        <FAQ c={L.faq} />
+        <Disqualify c={L.disqualify} />
         <Final c={L.final} cta={L.cta} />
       </main>
       <Footer />
