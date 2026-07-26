@@ -1,4 +1,4 @@
-import { type MouseEvent, type CSSProperties, type ReactNode, useState, useEffect } from "react";
+import { type MouseEvent, type CSSProperties, type ReactNode, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Layers, Menu, X } from "lucide-react";
 import { useI18n } from "../i18n/LanguageContext";
@@ -24,9 +24,9 @@ const landingDe = {
     book: "Erstgespräch anfragen",
     spar: "30 Min Sparring mit den Gründern",
     seeMethod: "Methode ansehen",
-    micro: "30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
+    micro: "kostenfrei · kein Vertrieb · NDA auf Wunsch",
     microShort: "30 Min · kostenfrei · NDA auf Wunsch",
-    finalMicro: "30 Min · kostenfrei · kein Vertrieb · NDA auf Wunsch",
+    finalMicro: "kostenfrei · kein Vertrieb · NDA auf Wunsch",
   },
   nav: [
     { label: "Problem", id: "problem" },
@@ -64,7 +64,7 @@ const landingDe = {
   },
   zielbild: {
     rubric: numRubric("03", "ZIELBILD · METHODE"),
-    h2: (<>Eine Kette, drei Glieder — <em>lückenlos.</em></>) as ReactNode,
+    h2: (<>Unsere Methode: Eine Kette aus drei <em>lückenlosen</em> Gliedern.</>) as ReactNode,
     lede: "Die NarraTec-Methode verbindet drei Schritte zu einem durchgängigen, nachvollziehbaren Vorgehen: verstehen, übersetzen, liefern.",
     callout: {
       term: "Narrativ, das",
@@ -79,8 +79,8 @@ const landingDe = {
     principle: {
       label: "Grundsatz",
       title: (<>KI &amp;<br />Verantwortung</>) as ReactNode,
-      statement1: (<>KI unterstützt bei Verdichtung, Recherche und der Übersetzung in Arbeitspakete. <span style={{ color: "oklch(82% 0.008 85)" }}>Nie bei der Entscheidung.</span></>) as ReactNode,
-      statement2: (<>Verantwortung bleibt <span style={{ color: "oklch(72% 0.14 25)" }}>menschlich.</span></>) as ReactNode,
+      statement1: (<>KI unterstützt bei Verdichtung, Recherche und der Übersetzung in Arbeitspakete. <span style={{ color: "var(--on-ink-2)" }}>Nie bei der Entscheidung.</span></>) as ReactNode,
+      statement2: (<>Verantwortung bleibt <span style={{ color: "var(--accent-on-ink)" }}>menschlich.</span></>) as ReactNode,
     },
   },
   bausteine: {
@@ -131,7 +131,7 @@ const landingDe = {
         lede: "Dieselbe Methode im kleinen Maßstab — vom Papier bis zum laufenden Prozess, umgesetzt von einem einzigen Team.",
         steps: [
           { t: "Ursachen verstehen", b: "Bevor Entwickler frei verfügbare Software-Bausteine (Open Source) einsetzen dürfen, braucht es eine Freigabe. Die lief per E-Mail und dauerte mehrere Wochen — für harmlose Standardfälle genauso wie für rechtlich heikle." },
-          { t: "Ein gemeinsames Entscheidungspapier", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten auf dem Papier: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organistatorischen und technischen Soll-Zustands mit übergreifend abgestimmte Verfahrensregeln." },
+          { t: "Ein gemeinsames Entscheidungspapier", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten auf dem Papier: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organisatorischen und technischen Soll-Zustands mit übergreifend abgestimmten Verfahrensregeln." },
           { t: "Direkt in Arbeitspakete übersetzt", b: "Das Vorhaben war klar umrissen — die Lösungsbausteine ließen sich ohne Zwischenschritt in Arbeitspakete mit Prüfkriterien übersetzen, jedes rückverfolgbar bis zur Anforderung aus der Analyse." },
           { t: "Umsetzung in einem Team", b: "Ein einzelnes Produktteam lieferte die Pakete in einem festen Zwei-Wochen-Rhythmus — Stück für Stück, jederzeit nachvollziehbar." },
         ],
@@ -204,6 +204,7 @@ const landingDe = {
     h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
     lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
+  footerLegal: "NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden",
 };
 
 type LandingCopy = typeof landingDe;
@@ -213,9 +214,9 @@ const landingEn: LandingCopy = {
     book: "Book an intro call",
     spar: "30-min sparring with the founders",
     seeMethod: "See the method",
-    micro: "30 min · free · no sales · NDA on request",
+    micro: "free · no sales · NDA on request",
     microShort: "30 min · free · NDA on request",
-    finalMicro: "contact@narratec.io · 30 min · free · no sales · NDA on request",
+    finalMicro: "free · no sales · NDA on request",
   },
   nav: [
     { label: "Problem", id: "problem" },
@@ -252,8 +253,8 @@ const landingEn: LandingCopy = {
     ],
   },
   zielbild: {
-    rubric: numRubric("03", "TARGET STATE"),
-    h2: <>One chain, three links — <em>seamless.</em></>,
+    rubric: numRubric("03", "TARGET STATE · METHOD"),
+    h2: <>Our method: one chain of three <em>seamless</em> links.</>,
     lede: "The NarraTec method connects three steps into one coherent, traceable approach: understand, translate, deliver.",
     callout: {
       term: "Narrative, the",
@@ -268,8 +269,8 @@ const landingEn: LandingCopy = {
     principle: {
       label: "Principle",
       title: <>AI &amp;<br />accountability</>,
-      statement1: <>AI assists with synthesis, research and translation into work packages. <span style={{ color: "oklch(82% 0.008 85)" }}>Never with the decision.</span></>,
-      statement2: <>Accountability stays <span style={{ color: "oklch(72% 0.14 25)" }}>human.</span></>,
+      statement1: <>AI assists with synthesis, research and translation into work packages. <span style={{ color: "var(--on-ink-2)" }}>Never with the decision.</span></>,
+      statement2: <>Accountability stays <span style={{ color: "var(--accent-on-ink)" }}>human.</span></>,
     },
   },
   bausteine: {
@@ -286,8 +287,8 @@ const landingEn: LandingCopy = {
   },
   nextSteps: {
     rubric: numRubric("05", "NEXT STEPS"),
-    h2: <>Right fit for your initiative? <em>Let's talk.</em></>,
-    lede: "Whether you already have a format in mind or just want to clarify open questions — a no-obligation conversation shows whether and how NarraTec can help.",
+    h2: <>30 minutes. One partner. <em>Your</em> next decision.</>,
+    lede: "Bring an open question — we bring the method. No slides, no sales loop. In the end you'll know whether working together is the right next step.",
   },
   caseStudy: {
     rubric: numRubric("A", "APPENDIX · EVIDENCE FROM PRACTICE"),
@@ -302,7 +303,7 @@ const landingEn: LandingCopy = {
           { t: "Understanding the causes", b: "It didn't start with a solution, but with a thorough analysis: what is actually holding back digitalization?" },
           { t: "A strategic decision paper", b: "The findings converged into an overarching paper that derived the key focus areas — read, reviewed and endorsed by everyone involved." },
           { t: "One in-depth paper per focus area", b: "Each focus area produced its own dedicated paper with concrete solution building blocks — each one grounded in the analysis, nothing left unexplained." },
-          { t: "Delivery in a fixed rhythm", b: "15 product teams implement the building blocks — their key roles in product management and architecture were trained for it. Every three months, planning happens together and results are demoed, in front of more than 50 participants. That keeps spend and progress traceable at all times." },
+          { t: "Delivery in a fixed rhythm", b: "15 product teams implement the building blocks. Every three months, planning happens together and results are demoed, in front of more than 50 stakeholders of the initiative. That keeps spend and progress traceable at all times." },
         ],
         result: {
           label: "The outcome",
@@ -310,7 +311,7 @@ const landingEn: LandingCopy = {
         },
         stats: [
           { v: "15", k: "Product teams" },
-          { v: ">50", k: "Participants per session" },
+          { v: ">50", k: "involved stakeholders" },
           { v: "3", unit: "mo.", k: "Planning rhythm" },
         ],
       },
@@ -320,7 +321,7 @@ const landingEn: LandingCopy = {
         lede: "The same method at a small scale — from paper to a running process, delivered by a single team.",
         steps: [
           { t: "Understanding the causes", b: "Before developers can use freely available software building blocks (open source), an approval is required. It used to run by email and take several weeks — for harmless standard cases just as much as for legally sensitive ones." },
-          { t: "A shared decision paper", b: "Around 20 people from development, legal review and specialist departments clarified on paper: which cases are standard, and which need the scrutiny of legal experts? The result: jointly agreed procedural rules." },
+          { t: "A shared decision paper", b: "Around 20 people from development, legal review and specialist departments clarified on paper: how do we resolve the pain points in the status quo? Which cases are standard, and which need the scrutiny of legal experts? The result: a clear vision of the target state — organizational and technical — with jointly agreed procedural rules." },
           { t: "Translated directly into work packages", b: "The initiative was clearly scoped — the solution building blocks translated directly into work packages with acceptance criteria, each traceable back to the requirement from the analysis." },
           { t: "Delivery by a single team", b: "A single product team delivered the packages on a fixed two-week rhythm — piece by piece, always traceable." },
         ],
@@ -336,10 +337,10 @@ const landingEn: LandingCopy = {
       },
     ],
     supplementary: {
-      tag: "Case 3 · Supplementary — confidential",
+      tag: "Case 3 · Multi-partner, hardware & software",
       title: "Six organizations, one shared paper",
       body: [
-        "A separate, independent initiative: six partner organizations from industry, research and young companies — more than 70 participants — converged through a jointly owned decision paper on one way of working: it names the focus areas and derives the solution building blocks.",
+        "Six partner organizations from industry, research and young companies converged through a jointly owned decision paper on one way of working: it names the focus areas and derives the solution building blocks.",
         "Because hardware and software are being developed together here, delivery combines agile work with classic, plan-based development — in tight, fixed delivery and planning cycles.",
         "Details remain confidential. Above all, this case shows one thing: the method holds up beyond the world of pure software.",
       ],
@@ -389,10 +390,11 @@ const landingEn: LandingCopy = {
     ],
   },
   final: {
-    rubric: "§ 10 · NEXT STEP",
+    rubric: "NEXT STEP",
     h2: <>30 minutes. One partner. <em>Your</em> next decision.</>,
     lede: "Bring an open question — we bring the method. No slides, no sales loop. In the end you'll know whether working together is the right next step.",
   },
+  footerLegal: "NarraTec — a brand of Dr. Richard Rößler Management Advisory, Dresden",
 };
 
 const LANDING: Record<"de" | "en", LandingCopy> = { de: landingDe, en: landingEn };
@@ -402,28 +404,9 @@ const LANDING: Record<"de" | "en", LandingCopy> = { de: landingDe, en: landingEn
 function LangToggle() {
   const { lang, setLang } = useI18n();
   return (
-    <div
-      aria-label="Sprache / Language"
-      style={{ display: "inline-flex", border: "1px solid var(--rule-strong)", borderRadius: 2, overflow: "hidden" }}
-    >
+    <div className="lang-toggle" aria-label="Sprache / Language">
       {(["de", "en"] as const).map((l) => (
-        <button
-          key={l}
-          type="button"
-          onClick={() => setLang(l)}
-          aria-pressed={lang === l}
-          style={{
-            padding: "7px 10px",
-            cursor: "pointer",
-            border: "none",
-            background: lang === l ? "var(--ink)" : "transparent",
-            color: lang === l ? "var(--paper)" : "var(--ink-2)",
-            fontFamily: "var(--f-mono)",
-            fontSize: 11,
-            letterSpacing: ".08em",
-            textTransform: "uppercase",
-          }}
-        >
+        <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l}>
           {l}
         </button>
       ))}
@@ -433,6 +416,7 @@ function LangToggle() {
 
 function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] }) {
   const [open, setOpen] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onResize = () => { if (window.innerWidth > 1040) setOpen(false); };
@@ -443,6 +427,19 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  // Escape schließt das Menü und gibt den Fokus an den Burger zurück
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        burgerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
   const jumpAndClose = (id: string) => (e: MouseEvent) => {
@@ -466,10 +463,12 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
             {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <button
+            ref={burgerRef}
             type="button"
             className="nav-burger"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={open}
+            aria-controls="nav-mobile-panel"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X size={22} strokeWidth={1.8} /> : <Menu size={22} strokeWidth={1.8} />}
@@ -478,7 +477,7 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
       </div>
 
       {open && (
-        <div className="nav-mobile">
+        <div className="nav-mobile" id="nav-mobile-panel">
           <nav className="nav-mobile-links" aria-label="Mobile Navigation">
             {nav.map((l) => (
               <a key={l.id} href={`#${l.id}`} onClick={jumpAndClose(l.id)}>{l.label}</a>
@@ -518,26 +517,20 @@ function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
     <section className="hero container" id="top" data-screen-label="01 Hero">
       <RubricRow rubric={c.kicker} />
 
-      <h1 className="display" style={{ fontSize: "clamp(44px, 6.2vw, 78px)", lineHeight: 1.06, marginBottom: 0, marginTop: 16 }}>
-        {c.headline}
-      </h1>
+      <h1 className="display hero-headline">{c.headline}</h1>
 
-      <div style={{ borderTop: "1px solid var(--rule)", margin: "28px 0 0" }} />
+      <div className="hero-divider" />
 
-      <div style={{ paddingTop: 28 }}>
-        <p className="lede" style={{ maxWidth: "52ch", marginTop: 0, marginBottom: 0 }}>{c.lede}</p>
-        <p className="lede" style={{ maxWidth: "52ch", marginTop: 10, marginBottom: 0 }}>
-          {c.close}
-        </p>
-        <div className="hero-actions" style={{ marginTop: 22 }}>
+      <div className="hero-body">
+        <p className="lede">{c.lede}</p>
+        <p className="lede">{c.close}</p>
+        <div className="hero-actions">
           <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
             {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
         </div>
-        <div style={{ marginTop: 12, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)" }}>
-          {cta.micro}
-        </div>
+        <div className="micro">{cta.micro}</div>
       </div>
     </section>
   );
@@ -545,11 +538,11 @@ function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
 
 function TrustBar({ items }: { items: LandingCopy["trust"] }) {
   return (
-    <div data-screen-label="01b TrustBar" style={{ borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", background: "var(--paper-2)" }}>
-      <div className="trust-strip" style={{ maxWidth: "var(--max)", margin: "0 auto", padding: "0 var(--gutter)", display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+    <div className="trust-bar" data-screen-label="01b TrustBar">
+      <div className="trust-strip">
         {items.map((label, i) => (
-          <div key={i} style={{ padding: "clamp(18px, 2.2vw, 26px) clamp(16px, 2.5vw, 32px)", borderRight: i < items.length - 1 ? "1px solid var(--rule)" : "none", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ fontFamily: "var(--f-display)", fontSize: "clamp(15px, 1.3vw, 19px)", lineHeight: 1.3, color: "var(--ink)", letterSpacing: "-0.005em", textAlign: "center", maxWidth: "30ch" }}>{label}</div>
+          <div className="trust-cell" key={i}>
+            <div className="trust-claim">{label}</div>
           </div>
         ))}
       </div>
@@ -604,24 +597,14 @@ function Zielbild({ c }: { c: LandingCopy["zielbild"] }) {
           ))}
         </div>
 
-        <div className="method-principle" style={{ marginTop: 48, background: "var(--ink)", color: "var(--paper)", borderRadius: 3, padding: "clamp(40px, 5vw, 64px) clamp(32px, 4vw, 56px)", display: "grid", gridTemplateColumns: "minmax(0, 180px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 56px)", alignItems: "start", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "var(--accent)" }} />
+        <div className="method-principle">
           <div>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: "oklch(72% 0.008 85)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
-              <span style={{ display: "inline-block", width: 18, height: 1, background: "oklch(72% 0.008 85)" }}></span>
-              {c.principle.label}
-            </div>
-            <div style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(20px, 1.8vw, 26px)", lineHeight: 1.15, color: "oklch(72% 0.14 25)", letterSpacing: "-0.005em" }}>
-              {c.principle.title}
-            </div>
+            <div className="mp-label">{c.principle.label}</div>
+            <div className="mp-title">{c.principle.title}</div>
           </div>
           <div>
-            <p style={{ fontFamily: "var(--f-display)", fontSize: "clamp(24px, 2.6vw, 36px)", lineHeight: 1.25, color: "oklch(92% 0.008 85)", margin: "0 0 18px", letterSpacing: "-0.01em", maxWidth: "24ch" }}>
-              {c.principle.statement1}
-            </p>
-            <p style={{ fontFamily: "var(--f-display)", fontStyle: "italic", fontSize: "clamp(28px, 3.2vw, 44px)", lineHeight: 1.1, margin: 0, letterSpacing: "-0.015em", color: "var(--paper)" }}>
-              {c.principle.statement2}
-            </p>
+            <p className="mp-statement">{c.principle.statement1}</p>
+            <p className="mp-statement-strong">{c.principle.statement2}</p>
           </div>
         </div>
       </div>
@@ -662,7 +645,7 @@ function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["
       <div className="container">
         <div className="ns-cta">
           <div className="ns-cta-copy">
-            <span className="rubric no-line">{c.rubric}</span>
+            <RubricRow rubric={c.rubric} />
             <h2 className="display ns-cta-h2">{c.h2}</h2>
             <p className="ns-cta-lede">{c.lede}</p>
           </div>
@@ -680,13 +663,13 @@ function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["
 
 function UseCases({ c }: { c: LandingCopy["usecases"] }) {
   return (
-    <section className="section" id="einsatz" data-screen-label="02 Einsatz">
+    <section className="section" id="einsatz" data-screen-label="03b Einsatzgebiete">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
         <div className="usecases">
           {c.cases.map((uc, i) => (
             <article className="usecase" key={i}>
-              <h3 className="usecase-title" style={{ fontWeight: 500 }}>{uc.t}</h3>
+              <h3 className="usecase-title">{uc.t}</h3>
               <p className="usecase-body">{uc.b}</p>
               <ul className="usecase-outs">
                 {uc.outs.map((o, j) => <li key={j}><span className="check" aria-hidden="true">✓</span>{o}</li>)}
@@ -701,7 +684,7 @@ function UseCases({ c }: { c: LandingCopy["usecases"] }) {
 
 function Team({ c }: { c: LandingCopy["team"] }) {
   return (
-    <section className="section" id="team" data-screen-label="06 Team">
+    <section className="section" id="team" data-screen-label="B Personen">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} />
 
@@ -709,8 +692,9 @@ function Team({ c }: { c: LandingCopy["team"] }) {
           {c.people.map((p, i) => (
             <article className="person" key={i}>
               <div className="person-head">
-                <div className="person-avatar" aria-hidden="true">
-                  <img src={p.photo} alt={p.name} />
+                <div className="person-avatar">
+                  {/* dekorativ: der Name steht direkt daneben als Text */}
+                  <img src={p.photo} alt="" />
                 </div>
                 <div className="person-id">
                   <div className="person-name">{p.name}</div>
@@ -722,14 +706,7 @@ function Team({ c }: { c: LandingCopy["team"] }) {
                 {p.credentials.map((cr, j) => <li key={j}>{cr}</li>)}
               </ul>
               {p.linkedin && (
-                <a
-                  href={p.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 7, marginTop: 16, fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".08em", textTransform: "uppercase", color: "var(--ink-3)", textDecoration: "none", transition: "color .15s" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "var(--accent-ink)")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "var(--ink-3)")}
-                >
+                <a className="person-linkedin" href={p.linkedin} target="_blank" rel="noopener noreferrer">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>
@@ -740,50 +717,32 @@ function Team({ c }: { c: LandingCopy["team"] }) {
           ))}
         </div>
 
-        <div className="team-badge" style={{ marginTop: 28, border: "1px solid var(--rule)", borderRadius: 3, background: "var(--paper)", display: "grid", gridTemplateColumns: "minmax(0, 280px) minmax(0, 1fr)", gap: 0, overflow: "hidden" }}>
-          <div style={{ padding: "28px 30px", borderRight: "1px solid var(--rule)", background: "var(--paper-2)", display: "flex", flexDirection: "column", gap: 14, justifyContent: "space-between" }}>
+        <div className="team-badge">
+          <div className="team-badge-head">
             <div>
-              <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--accent-ink)", marginBottom: 14, display: "inline-flex", alignItems: "center", gap: 10 }}>
+              <div className="team-badge-label">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 2 L15 9 L22 10 L17 15 L18.5 22 L12 18.5 L5.5 22 L7 15 L2 10 L9 9 Z" />
                 </svg>
                 {c.badgeLabel}
               </div>
-              <div style={{ fontFamily: "var(--f-display)", fontSize: 28, lineHeight: 1.1, color: "var(--ink)", letterSpacing: "-0.01em" }}>
-                {c.badgeTitle}
-              </div>
+              <div className="team-badge-title">{c.badgeTitle}</div>
             </div>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, letterSpacing: ".06em", color: "var(--ink-3)", textTransform: "uppercase", borderTop: "1px solid var(--rule)", paddingTop: 14 }}>
-              {c.badgeSub}
-            </div>
+            <div className="team-badge-sub">{c.badgeSub}</div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {c.papers.map((paper, i, arr) => {
-              const accent = i === 0;
-              const statusColor = accent ? "var(--accent-ink)" : "var(--ink-2)";
-              const statusBg = accent ? "var(--accent-wash)" : "var(--paper-2)";
-              return (
-                <a key={i} href={paper.url} target="_blank" rel="noopener noreferrer"
-                  style={{ padding: "22px 28px", borderBottom: i < arr.length - 1 ? "1px solid var(--rule)" : "none", display: "grid", gridTemplateColumns: "minmax(0, 1fr) auto", gap: 20, alignItems: "center", transition: "background .15s", cursor: "pointer" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--paper-2)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}>
-                  <div>
-                    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "4px 10px", background: statusBg, color: statusColor, fontFamily: "var(--f-mono)", fontSize: 10, letterSpacing: ".1em", textTransform: "uppercase", borderRadius: 2, marginBottom: 10, border: `1px solid ${accent ? "color-mix(in oklab, var(--accent-ink) 18%, transparent)" : "var(--rule)"}` }}>
-                      <span style={{ width: 5, height: 5, borderRadius: 999, background: statusColor }}></span>
-                      {paper.status}
-                    </div>
-                    <div style={{ fontFamily: "var(--f-display)", fontSize: 19, lineHeight: 1.25, color: "var(--ink)", letterSpacing: "-0.005em", marginBottom: 6 }}>
-                      „{paper.title}"
-                    </div>
-                    <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".04em", color: "var(--ink-3)" }}>
-                      {paper.meta}
-                    </div>
-                  </div>
-                  <span style={{ fontFamily: "var(--f-mono)", fontSize: 13, color: "var(--ink-3)" }}>→</span>
-                </a>
-              );
-            })}
+          <div className="papers">
+            {c.papers.map((paper, i) => (
+              <a key={i} className={`paper-row${i === 0 ? " paper-row--accent" : ""}`}
+                 href={paper.url} target="_blank" rel="noopener noreferrer">
+                <div>
+                  <div className="paper-status">{paper.status}</div>
+                  <div className="paper-title">„{paper.title}"</div>
+                  <div className="paper-meta">{paper.meta}</div>
+                </div>
+                <span className="paper-arrow" aria-hidden="true">→</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -793,20 +752,20 @@ function Team({ c }: { c: LandingCopy["team"] }) {
 
 function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
   return (
-    <section className="section" id="abgrenzung" data-screen-label="05 Abgrenzung">
+    <section className="section" id="abgrenzung" data-screen-label="C Abgrenzung">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 0, borderTop: "1px solid var(--rule)" }}>
+        <div className="dq-list">
           {c.items.map((it) => (
-            <article key={it.n} className="dq-item" style={{ display: "grid", gridTemplateColumns: "minmax(0, 200px) minmax(0, 1fr)", gap: "clamp(24px, 4vw, 64px)", padding: "32px 0 32px", borderBottom: "1px solid var(--rule)", alignItems: "baseline" }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--accent-ink)" }}>{it.n}</div>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".1em", color: "var(--ink-3)", textTransform: "uppercase" }}>{it.kicker}</div>
+            <article className="dq-item" key={it.n}>
+              <div className="dq-marker">
+                <span className="dq-num">{it.n}</span>
+                <span className="dq-kicker">{it.kicker}</span>
               </div>
               <div>
-                <h3 style={{ fontFamily: "var(--f-display)", fontWeight: 400, fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.15, letterSpacing: "-0.01em", color: "var(--ink)", margin: "0 0 14px", maxWidth: "32ch" }}>{it.t}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--ink-2)", margin: 0, maxWidth: "60ch" }}>{it.b}</p>
+                <h3 className="dq-title">{it.t}</h3>
+                <p className="dq-body">{it.b}</p>
               </div>
             </article>
           ))}
@@ -818,7 +777,7 @@ function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
 
 function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
   return (
-    <section className="section" id="case-study" data-screen-label="08 Case">
+    <section className="section" id="case-study" data-screen-label="A Belege aus der Praxis">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -878,7 +837,7 @@ function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
 
 function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] }) {
   return (
-    <section className="final" id="final" data-screen-label="10 Final CTA">
+    <section className="final" id="final" data-screen-label="Nächster Schritt">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede}>
           <div className="hero-actions" style={{ marginTop: 36 }}>
@@ -887,9 +846,7 @@ function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] })
             </a>
             <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
           </div>
-          <div style={{ marginTop: 22, fontFamily: "var(--f-mono)", fontSize: 11, letterSpacing: ".08em", textTransform: "uppercase", color: "oklch(72% 0.008 85)" }}>
-            {cta.finalMicro}
-          </div>
+          <div className="micro" style={{ marginTop: 22 }}>{cta.finalMicro}</div>
         </SectionHead>
       </div>
     </section>
@@ -897,11 +854,11 @@ function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] })
 }
 
 function Footer() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <div>NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden</div>
+        <div>{LANDING[lang].footerLegal}</div>
         <div className="footer-links">
           <Link to="/impressum">{t.legalLayout.impressum}</Link>
           <Link to="/datenschutz">{t.legalLayout.datenschutz}</Link>
@@ -922,32 +879,8 @@ function ScrollToTop() {
   }, []);
   if (!visible) return null;
   return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Zurück nach oben"
-      style={{
-        position: "fixed",
-        bottom: 32,
-        right: 32,
-        zIndex: 100,
-        width: 44,
-        height: 44,
-        borderRadius: "50%",
-        border: "1px solid var(--rule-strong)",
-        background: "var(--paper)",
-        color: "var(--ink)",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "var(--f-mono)",
-        fontSize: 16,
-        boxShadow: "0 4px 16px oklch(18% 0.01 85 / 0.12)",
-        transition: "background .15s, border-color .15s, transform .15s",
-      }}
-      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "var(--ink)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--paper)"; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "var(--paper)"; (e.currentTarget as HTMLButtonElement).style.color = "var(--ink)"; }}
-    >
+    <button className="to-top" type="button" aria-label="Zurück nach oben"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
       ↑
     </button>
   );
