@@ -459,10 +459,11 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
 
 .zb-steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(16px, 2vw, 24px);
 }
-@media (max-width: 900px) { .zb-steps { grid-template-columns: 1fr; } }
+@media (max-width: 1040px) { .zb-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .zb-steps { grid-template-columns: 1fr; } }
 .zb-step {
   border: 1px solid var(--rule);
   border-radius: 3px;
@@ -516,15 +517,6 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   line-height: 1.62;
   color: var(--ink-2);
 }
-.zb-fn {
-  margin-left: 1px;
-  font-size: 0.7em;
-  vertical-align: super;
-  line-height: 0;
-  color: var(--accent-ink);
-}
-.zb-fn a { border-bottom: 1px solid color-mix(in oklab, var(--accent-ink) 40%, transparent); }
-.zb-fn a:hover { border-bottom-color: var(--accent-ink); }
 
 /* Grundsatz-Block (dunkle Fläche) */
 .method-principle {

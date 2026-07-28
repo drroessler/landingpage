@@ -64,17 +64,18 @@ const landingDe = {
   },
   zielbild: {
     rubric: numRubric("03", "ZIELBILD · METHODE"),
-    h2: (<>Unsere Methode: Eine Kette aus drei <em>lückenlosen</em> Gliedern.</>) as ReactNode,
-    lede: "Die NarraTec-Methode verbindet drei Schritte zu einem durchgängigen, nachvollziehbaren Vorgehen: verstehen, übersetzen, liefern.",
+    h2: (<>Unsere Methode: Ein <em>durchgängiges</em> System, vom Problem bis zum <em>prüfbaren</em> Ergebnis.</>) as ReactNode,
+    lede: "Die NarraTec-Methode verbindet vier Schritte zu einem durchgängigen, nachvollziehbaren Vorgehen: verstehen, entscheiden, übersetzen, liefern.",
     callout: {
       term: "Narrativ, das",
       tag: "[Kernbegriff der Methode]",
-      body: (<>Ein kurzes, sorgfältig aufgebautes <strong>Entscheidungspapier</strong> — meist nur wenige Seiten. Es beschreibt ein Problem mit belegten Fakten, begründet den Lösungsweg und hält fest, wer was bis wann tut. Alle Beteiligten lesen es in Ruhe, <strong>bevor</strong> diskutiert und entschieden wird. <strong>Warum das hilft:</strong> Wer schreibt, muss zu Ende denken. Lücken und Widersprüche fallen auf dem Papier auf — nicht erst Monate später in der Umsetzung.</>) as ReactNode,
+      body: (<>Eine kurze, sorgfältig aufgebaute <strong>Entscheidungsvorlage</strong> — meist nur wenige Seiten. Sie beschreibt ein Problem mit belegten Fakten, begründet den Lösungsweg und hält fest, wer was bis wann tut. Alle Beteiligten lesen sie in Ruhe, <strong>bevor</strong> diskutiert und entschieden wird. <strong>Warum das hilft:</strong> Wer schreibt, muss zu Ende denken. Lücken und Widersprüche fallen beim Schreiben auf — nicht erst Monate später in der Umsetzung.</>) as ReactNode,
     },
     steps: [
-      { label: "Verstehen", n: "01", title: "Das Entscheidungspapier", sub: (<>Vom Problem zur begründeten Entscheidung<sup className="zb-fn"><a href={PAPER_PUBLISHED_URL} target="_blank" rel="noopener noreferrer" title="HMD Praxis der Wirtschaftsinformatik">1</a></sup></>) as ReactNode, body: "Ihre Fachleute erarbeiten gemeinsam das Narrativ: erst das Problem sauber verstehen, dann — strikt getrennt — die Lösung entwickeln. Jede Annahme wird ausgesprochen, jeder Widerspruch sichtbar. Ergebnis ist eine Entscheidung, die dem ruhigen, prüfenden Lesen aller Beteiligten standhält." },
-      { label: "Übersetzen", n: "02", title: "Vom Papier zum Arbeitspaket", sub: (<>Die Methode „Narrative-to-Action“<sup className="zb-fn"><a href={PAPER_PREREAD_URL} target="_blank" rel="noopener noreferrer" title="Pre-Read: Narrative-to-Action">2</a></sup></>) as ReactNode, body: "Schritt für Schritt wird jeder Baustein der Lösung in konkrete Arbeitspakete übersetzt — mit klaren Zuständigkeiten und Kriterien, an denen sich prüfen lässt, ob ein Paket fertig ist. Eine feste Qualitätsprüfung stellt sicher: Das Warum kommt bei den Teams an, nicht nur das Was." },
-      { label: "Liefern", n: "03", title: "Die Arbeitsstruktur", sub: (<>Fester Rhythmus, klare Rollen &amp; Schnittstellen</>) as ReactNode, body: "So viel Struktur wie nötig, so wenig wie möglich: Die Teams entscheiden selbst, wie sie arbeiten — vereinheitlicht wird nur die Abstimmung untereinander. Ein fester Rhythmus aus Planung und Ergebnis-Vorführung macht Fortschritt prüfbar und Abweichungen früh sichtbar." },
+      { label: "Verstehen", n: "01", title: "Die Ursachenanalyse", sub: (<>Mensch · Technik · Organisation</>) as ReactNode, body: "Ihre Fachleute führen eine strukturierte Analyse des Ist-Zustands entlang der Perspektiven Mensch, Technik und Organisation durch. Ursachen statt Symptome: Die Ableitung von Anforderungen und Lösungsideen ist erst dann erlaubt, wenn das Problem verstanden ist." },
+      { label: "Entscheiden", n: "02", title: "Das Narrativ", sub: (<>Vom Problem zur begründeten Entscheidung</>) as ReactNode, body: "Ein Narrativ, so knapp wie möglich und in jedem Wort konkret, führt Ihre Stakeholder logisch von den Fakten zur Ist-Situation zum Zielbild. Stilles Lesen, präzises schriftliches Feedback durch die wichtigsten Stakeholder, echte Freigabe durch die Entscheider Ihres Unternehmens. Mit echter Verantwortung statt Scheinkonsens." },
+      { label: "Übersetzen", n: "03", title: "Vom Narrativ zum Arbeitspaket", sub: (<>Jedes Paket mit Zuständigkeit und Prüfkriterium</>) as ReactNode, body: "Schritt für Schritt wird jeder Baustein der Lösung in konkrete Arbeitspakete übersetzt — mit klaren Zuständigkeiten und Kriterien, an denen sich prüfen lässt, ob ein Paket fertig ist. Eine feste Qualitätsprüfung stellt sicher: Das Warum kommt bei den Umsetzungsteams an, nicht nur das Was." },
+      { label: "Liefern", n: "04", title: "Die Arbeitsstruktur", sub: (<>Fester Rhythmus, klare Rollen &amp; Schnittstellen</>) as ReactNode, body: "So viel Struktur wie nötig, so wenig wie möglich: Die Teams entscheiden selbst, wie sie arbeiten — vereinheitlicht wird nur die Abstimmung untereinander. Ein fester Rhythmus aus Planung und Ergebnis-Vorführung macht Fortschritt prüfbar und Abweichungen früh sichtbar." },
     ],
     principle: {
       label: "Grundsatz",
@@ -89,10 +90,10 @@ const landingDe = {
     lede: "Keine Abrechnung nach Tagen, keine offene Beratungsrechnung: klar umrissene Leistungen, klar benannte Ergebnisse, Preise vorab.",
     note: "Alle Preise netto. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
     cards: [
-      { badge: "Einstieg", title: "Narrative Sprint", body: "Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Entscheidungspapier geführt — in angeleiteten Arbeitsrunden, mit gemeinsamer Lesephase und abschließendem Entscheidungstermin.", price: "ab 15.000 €", meta: "Festpreis · mehrere Wochen · ein Ergebnis" },
+      { badge: "Einstieg", title: "Narrative Sprint", body: "Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Narrativ geführt — in angeleiteten Arbeitsrunden, mit gemeinsamer Lesephase und abschließendem Entscheidungstermin.", price: "ab 15.000 €", meta: "Festpreis · mehrere Wochen · ein Ergebnis" },
       { badge: "Umsetzung", title: "Struktur-Sprint", body: "Bestandsaufnahme, wie Ihre Teams heute zusammenarbeiten, dann ein Bauplan für Rhythmus, Rollen und Schnittstellen — samt Plan, der Ihre eigenen Leute zur Umsetzung befähigt. Sie bauen die Struktur selbst auf, wir zeigen wie.", price: "ab 12.000 €", meta: "Festpreis · Bestandsaufnahme + Bauplan" },
-      { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Entscheidungspapieren („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "ab 1.900 €", meta: "pro Teilnehmer:in · Ausbildung im eigenen Haus ab 12.000 €" },
-      { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Entscheidungspapiere und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "ab 8.000 €/Jahr", meta: "Lizenz · Begleitung ab 2.500 €/Monat" },
+      { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Narrativen („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "ab 1.900 €", meta: "pro Teilnehmer:in · Ausbildung im eigenen Haus ab 12.000 €" },
+      { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Narrative und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "ab 8.000 €/Jahr", meta: "Lizenz · Begleitung ab 2.500 €/Monat" },
     ],
   },
   nextSteps: {
@@ -111,8 +112,8 @@ const landingDe = {
         lede: "Alle drei Glieder der Kette — von der ersten Analyse bis zur laufenden Lieferung.",
         steps: [
           { t: "Ursachen verstehen", b: "Am Anfang stand keine Lösung, sondern eine gründliche Analyse: Was bremst die Digitalisierung wirklich?" },
-          { t: "Ein strategisches Entscheidungspapier", b: "Die Ergebnisse mündeten in ein übergreifendes Papier, das die wichtigsten Handlungsfelder ableitet — von allen Beteiligten gelesen, geprüft und getragen." },
-          { t: "Je Handlungsfeld ein vertieftes Papier", b: "Für jedes Handlungsfeld entstand ein eigenes Fokus-Papier mit konkreten Lösungsbausteinen — jeder Baustein begründet durch die Analyse, nichts hängt in der Luft." },
+          { t: "Ein strategisches Narrativ", b: "Die Ergebnisse mündeten in ein übergreifendes Narrativ, das die wichtigsten Handlungsfelder ableitet — von allen Beteiligten gelesen, geprüft und getragen." },
+          { t: "Je Handlungsfeld ein vertieftes Narrativ", b: "Für jedes Handlungsfeld entstand ein eigenes Fokus-Narrativ mit konkreten Lösungsbausteinen — jeder Baustein begründet durch die Analyse, nichts hängt in der Luft." },
           { t: "Umsetzung im festen Rhythmus", b: "15 Produktteams setzen die Bausteine um. Alle drei Monate wird gemeinsam geplant und werden Ergebnisse vorgeführt, vor über 50 Stakeholdern der Initiative. So bleiben Geldverwendung und Fortschritt jederzeit nachvollziehbar." },
         ],
         result: {
@@ -128,10 +129,10 @@ const landingDe = {
       {
         tag: "Fall 2 · Klein, aber vollständig",
         title: "Die Freigabe offener Software-Bausteine",
-        lede: "Dieselbe Methode im kleinen Maßstab — vom Papier bis zum laufenden Prozess, umgesetzt von einem einzigen Team.",
+        lede: "Dieselbe Methode im kleinen Maßstab — vom Narrativ bis zum laufenden Prozess, umgesetzt von einem einzigen Team.",
         steps: [
           { t: "Ursachen verstehen", b: "Bevor Entwickler frei verfügbare Software-Bausteine (Open Source) einsetzen dürfen, braucht es eine Freigabe. Die lief per E-Mail und dauerte mehrere Wochen — für harmlose Standardfälle genauso wie für rechtlich heikle." },
-          { t: "Ein gemeinsames Entscheidungspapier", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten auf dem Papier: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organisatorischen und technischen Soll-Zustands mit übergreifend abgestimmten Verfahrensregeln." },
+          { t: "Ein gemeinsames Narrativ", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten im Narrativ: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organisatorischen und technischen Soll-Zustands mit übergreifend abgestimmten Verfahrensregeln." },
           { t: "Direkt in Arbeitspakete übersetzt", b: "Das Vorhaben war klar umrissen — die Lösungsbausteine ließen sich ohne Zwischenschritt in Arbeitspakete mit Prüfkriterien übersetzen, jedes rückverfolgbar bis zur Anforderung aus der Analyse." },
           { t: "Umsetzung in einem Team", b: "Ein einzelnes Produktteam lieferte die Pakete in einem festen Zwei-Wochen-Rhythmus — Stück für Stück, jederzeit nachvollziehbar." },
         ],
@@ -148,9 +149,9 @@ const landingDe = {
     ],
     supplementary: {
       tag: "Fall 3 · Multi-Partner, Hardware & Software",
-      title: "Sechs Organisationen, ein gemeinsames Papier",
+      title: "Sechs Organisationen, ein gemeinsames Narrativ",
       body: [
-        "Sechs Partnerorganisationen aus Konzern, Forschung und jungen Unternehmen fanden über ein gemeinsam getragenes Entscheidungspapier zu einer Arbeitsweise: Es benennt die Handlungsfelder und leitet die Lösungsbausteine ab.",
+        "Sechs Partnerorganisationen aus Konzern, Forschung und jungen Unternehmen fanden über ein gemeinsam getragenes Narrativ zu einer Arbeitsweise: Es benennt die Handlungsfelder und leitet die Lösungsbausteine ab.",
         "Weil hier Hardware und Software gemeinsam entstehen, verbindet die Umsetzung agiles Arbeiten mit klassischer, planbasierter Entwicklung — in engen, festen Liefer- und Planungszyklen.",
         "Einzelheiten unterliegen der Vertraulichkeit. Der Fall zeigt vor allem eines: Die Methode trägt auch jenseits der reinen Software-Welt.",
       ],
@@ -254,17 +255,18 @@ const landingEn: LandingCopy = {
   },
   zielbild: {
     rubric: numRubric("03", "TARGET STATE · METHOD"),
-    h2: <>Our method: one chain of three <em>seamless</em> links.</>,
-    lede: "The NarraTec method connects three steps into one coherent, traceable approach: understand, translate, deliver.",
+    h2: <>Our method: one <em>continuous</em> system, from the problem to a <em>verifiable</em> outcome.</>,
+    lede: "The NarraTec method connects four steps into one coherent, traceable approach: understand, decide, translate, deliver.",
     callout: {
       term: "Narrative, the",
       tag: "[core concept of the method]",
-      body: <>A short, carefully built <strong>decision paper</strong> — usually just a few pages. It describes a problem with substantiated facts, justifies the chosen path, and records who does what by when. Everyone reads it calmly, <strong>before</strong> anything is discussed or decided. <strong>Why it helps:</strong> whoever writes has to think things through. Gaps and contradictions surface on paper — not months later during implementation.</>,
+      body: <>A short, carefully built <strong>decision brief</strong> — usually just a few pages. It describes a problem with substantiated facts, justifies the chosen path, and records who does what by when. Everyone reads it calmly, <strong>before</strong> anything is discussed or decided. <strong>Why it helps:</strong> whoever writes has to think things through. Gaps and contradictions surface as you write — not months later during implementation.</>,
     },
     steps: [
-      { label: "Understand", n: "01", title: "The decision paper", sub: <>From problem to a justified decision<sup className="zb-fn"><a href={PAPER_PUBLISHED_URL} target="_blank" rel="noopener noreferrer" title="HMD Praxis der Wirtschaftsinformatik">1</a></sup></>, body: "Your experts develop the narrative together: first understand the problem cleanly, then — strictly separated — develop the solution. Every assumption is spoken out loud, every contradiction made visible. The result is a decision that holds up to the calm, scrutinizing reading of everyone involved." },
-      { label: "Translate", n: "02", title: "From paper to work package", sub: <>The “Narrative-to-Action” method<sup className="zb-fn"><a href={PAPER_PREREAD_URL} target="_blank" rel="noopener noreferrer" title="Pre-Read: Narrative-to-Action">2</a></sup></>, body: "Step by step, every building block of the solution is translated into concrete work packages — with clear responsibilities and criteria against which you can check whether a package is done. A fixed quality check ensures the why reaches the teams, not just the what." },
-      { label: "Deliver", n: "03", title: "The working structure", sub: <>Steady rhythm, clear roles &amp; interfaces</>, body: "As much structure as needed, as little as possible: teams decide for themselves how they work — only the coordination between them is standardized. A steady rhythm of planning and result demos makes progress verifiable and deviations visible early." },
+      { label: "Understand", n: "01", title: "Root-cause analysis", sub: <>People · Technology · Organization</>, body: "Your experts run a structured analysis of the current state along the perspectives of people, technology and organization. Causes instead of symptoms: deriving requirements and solution ideas is only allowed once the problem is understood." },
+      { label: "Decide", n: "02", title: "The narrative", sub: <>From problem to a justified decision</>, body: "A narrative — as brief as possible and concrete in every word — leads your stakeholders logically from the facts of the current situation to the target picture. Silent reading, precise written feedback from the key stakeholders, genuine sign-off by your organization's decision-makers. With real accountability instead of pseudo-consensus." },
+      { label: "Translate", n: "03", title: "From narrative to work package", sub: <>Every package with an owner and an acceptance criterion</>, body: "Step by step, every building block of the solution is translated into concrete work packages — with clear responsibilities and criteria against which you can check whether a package is done. A fixed quality check ensures the why reaches the delivery teams, not just the what." },
+      { label: "Deliver", n: "04", title: "The working structure", sub: <>Steady rhythm, clear roles &amp; interfaces</>, body: "As much structure as needed, as little as possible: teams decide for themselves how they work — only the coordination between them is standardized. A steady rhythm of planning and result demos makes progress verifiable and deviations visible early." },
     ],
     principle: {
       label: "Principle",
@@ -279,10 +281,10 @@ const landingEn: LandingCopy = {
     lede: "No billing by the day, no open-ended consulting invoice: clearly defined services, clearly named outcomes, prices up front.",
     note: "All prices net. Engagements usually begin with a Narrative Sprint.",
     cards: [
-      { badge: "Entry", title: "Narrative Sprint", body: "A real, pending decision at your organization is taken to a finished decision paper together with your experts — in guided working rounds, with a shared reading phase and a concluding decision meeting.", price: "from €15,000", meta: "Fixed price · several weeks · one outcome" },
+      { badge: "Entry", title: "Narrative Sprint", body: "A real, pending decision at your organization is taken to a finished narrative together with your experts — in guided working rounds, with a shared reading phase and a concluding decision meeting.", price: "from €15,000", meta: "Fixed price · several weeks · one outcome" },
       { badge: "Implementation", title: "Structure Sprint", body: "An assessment of how your teams work together today, then a blueprint for rhythm, roles and interfaces — including a plan that enables your own people to implement it. You build the structure yourselves, we show you how.", price: "from €12,000", meta: "Fixed price · assessment + blueprint" },
-      { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering decision papers (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "from €1,900", meta: "per participant · in-house training from €12,000" },
-      { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your decision papers and a quarterly review of your working structures.", price: "from €8,000/year", meta: "License · support from €2,500/month" },
+      { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering narratives (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "from €1,900", meta: "per participant · in-house training from €12,000" },
+      { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your narratives and a quarterly review of your working structures.", price: "from €8,000/year", meta: "License · support from €2,500/month" },
     ],
   },
   nextSteps: {
@@ -301,8 +303,8 @@ const landingEn: LandingCopy = {
         lede: "All three links of the chain — from the first analysis to ongoing delivery.",
         steps: [
           { t: "Understanding the causes", b: "It didn't start with a solution, but with a thorough analysis: what is actually holding back digitalization?" },
-          { t: "A strategic decision paper", b: "The findings converged into an overarching paper that derived the key focus areas — read, reviewed and endorsed by everyone involved." },
-          { t: "One in-depth paper per focus area", b: "Each focus area produced its own dedicated paper with concrete solution building blocks — each one grounded in the analysis, nothing left unexplained." },
+          { t: "A strategic narrative", b: "The findings converged into an overarching narrative that derived the key focus areas — read, reviewed and endorsed by everyone involved." },
+          { t: "One in-depth narrative per focus area", b: "Each focus area produced its own dedicated focus narrative with concrete solution building blocks — each one grounded in the analysis, nothing left unexplained." },
           { t: "Delivery in a fixed rhythm", b: "15 product teams implement the building blocks. Every three months, planning happens together and results are demoed, in front of more than 50 stakeholders of the initiative. That keeps spend and progress traceable at all times." },
         ],
         result: {
@@ -318,10 +320,10 @@ const landingEn: LandingCopy = {
       {
         tag: "Case 2 · Small, but complete",
         title: "Approving open-source building blocks",
-        lede: "The same method at a small scale — from paper to a running process, delivered by a single team.",
+        lede: "The same method at a small scale — from narrative to a running process, delivered by a single team.",
         steps: [
           { t: "Understanding the causes", b: "Before developers can use freely available software building blocks (open source), an approval is required. It used to run by email and take several weeks — for harmless standard cases just as much as for legally sensitive ones." },
-          { t: "A shared decision paper", b: "Around 20 people from development, legal review and specialist departments clarified on paper: how do we resolve the pain points in the status quo? Which cases are standard, and which need the scrutiny of legal experts? The result: a clear vision of the target state — organizational and technical — with jointly agreed procedural rules." },
+          { t: "A shared narrative", b: "Around 20 people from development, legal review and specialist departments clarified in the narrative: how do we resolve the pain points in the status quo? Which cases are standard, and which need the scrutiny of legal experts? The result: a clear vision of the target state — organizational and technical — with jointly agreed procedural rules." },
           { t: "Translated directly into work packages", b: "The initiative was clearly scoped — the solution building blocks translated directly into work packages with acceptance criteria, each traceable back to the requirement from the analysis." },
           { t: "Delivery by a single team", b: "A single product team delivered the packages on a fixed two-week rhythm — piece by piece, always traceable." },
         ],
@@ -338,9 +340,9 @@ const landingEn: LandingCopy = {
     ],
     supplementary: {
       tag: "Case 3 · Multi-partner, hardware & software",
-      title: "Six organizations, one shared paper",
+      title: "Six organizations, one shared narrative",
       body: [
-        "Six partner organizations from industry, research and young companies converged through a jointly owned decision paper on one way of working: it names the focus areas and derives the solution building blocks.",
+        "Six partner organizations from industry, research and young companies converged through a jointly owned narrative on one way of working: it names the focus areas and derives the solution building blocks.",
         "Because hardware and software are being developed together here, delivery combines agile work with classic, plan-based development — in tight, fixed delivery and planning cycles.",
         "Details remain confidential. Above all, this case shows one thing: the method holds up beyond the world of pure software.",
       ],
