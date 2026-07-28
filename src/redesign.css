@@ -309,6 +309,18 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
 }
 .hero-body .micro { margin-top: 12px; }
 
+/* Mail-Alternative unter dem finalen CTA */
+.micro a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+.micro a:hover { color: var(--accent-ink); }
+.final .micro a { color: var(--paper); }
+.final .micro a:hover { color: var(--accent-on-ink); }
+
 /* ---------- Trust bar ---------- */
 
 .trust-bar {

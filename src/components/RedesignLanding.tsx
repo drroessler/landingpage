@@ -21,36 +21,36 @@ const numRubric = (num: string, label: string): ReactNode => (
 
 const landingDe = {
   cta: {
-    book: "Erstgespräch anfragen",
-    spar: "30 Min Sparring mit den Gründern",
+    book: "30 Min Erstgespräch buchen",
     seeMethod: "Methode ansehen",
-    micro: "kostenfrei · kein Vertrieb · NDA auf Wunsch",
-    microShort: "30 Min · kostenfrei · NDA auf Wunsch",
-    finalMicro: "kostenfrei · kein Vertrieb · NDA auf Wunsch",
+    micro: "kostenfrei · direkt mit den Gründern · kein Vertrieb · NDA auf Wunsch",
+    microShort: "30 Min · Termin direkt im Kalender · NDA auf Wunsch",
+    finalMicro: "kostenfrei · Sie wählen den Termin selbst · NDA auf Wunsch",
+    mail: { text: "Lieber erst eine Frage stellen?", addr: "contact@narratec.io" },
   },
   nav: [
     { label: "Problem", id: "problem" },
     { label: "Methode", id: "zielbild" },
     { label: "Einsatz", id: "einsatz" },
-    { label: "Leistungen", id: "bausteine" },
     { label: "Praxis", id: "case-study" },
     { label: "Team", id: "team" },
+    { label: "Leistungen", id: "bausteine" },
   ],
   hero: {
-    kicker: numRubric("01", "MOTIVATION & ZIELSETZUNG"),
+    kicker: numRubric("01", "FÜR ENTSCHEIDER IN KOMPLEXEN IT-VORHABEN"),
     headline: (
       <>
         <span className="line">Vom Problem zur <em>Entscheidung.</em></span>
         <span className="line">Von der Entscheidung in die <em>Umsetzung.</em></span>
       </>
     ) as ReactNode,
-    lede: "Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
+    lede: "Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten und wissenschaftlich publizierten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
     close: "Wir befähigen Ihre Leute, statt sie zu ersetzen.",
   },
   trust: [
     (<>In mehreren Vorhaben im <span style={hl}>DAX-Konzern</span> erprobt.</>) as ReactNode,
-    (<>Sie beauftragen uns zum <span style={hl}>Festpreis</span>, ohne Risiko.</>) as ReactNode,
-    (<>Ihre sensiblen Informationen geschützt durch ein <span style={hl}>NDA</span>.</>) as ReactNode,
+    (<>Sie beauftragen uns zum <span style={hl}>Festpreis</span> — keine Tagessätze, keine offene Rechnung.</>) as ReactNode,
+    (<>Peer-reviewed publiziert in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer).</>) as ReactNode,
   ],
   problem: {
     rubric: numRubric("02", "IST-ZUSTAND"),
@@ -85,7 +85,7 @@ const landingDe = {
     },
   },
   bausteine: {
-    rubric: numRubric("04", "LÖSUNGSBAUSTEINE"),
+    rubric: numRubric("07", "LÖSUNGSBAUSTEINE"),
     h2: (<>Feste Pakete. <em>Feste Preise.</em></>) as ReactNode,
     lede: "Keine Abrechnung nach Tagen, keine offene Beratungsrechnung: klar umrissene Leistungen, klar benannte Ergebnisse, Preise vorab.",
     note: "Alle Preise netto. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
@@ -97,12 +97,12 @@ const landingDe = {
     ],
   },
   nextSteps: {
-    rubric: numRubric("05", "NÄCHSTE SCHRITTE"),
+    rubric: numRubric("06", "NÄCHSTE SCHRITTE"),
     h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
     lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
   caseStudy: {
-    rubric: numRubric("A", "ANHANG · BELEGE AUS DER PRAXIS"),
+    rubric: numRubric("04", "BELEGE AUS DER PRAXIS"),
     h2: (<>Keine Behauptungen. <em>Belegte</em> Praxis.</>) as ReactNode,
     lede: "Drei Vorhaben aus dem Konzernumfeld zeigen die Methode im Einsatz — im Großen, im Kleinen und jenseits der reinen Software-Welt.",
     primary: [
@@ -131,18 +131,18 @@ const landingDe = {
         title: "Die Freigabe offener Software-Bausteine",
         lede: "Dieselbe Methode im kleinen Maßstab — vom Narrativ bis zum laufenden Prozess, umgesetzt von einem einzigen Team.",
         steps: [
-          { t: "Ursachen verstehen", b: "Bevor Entwickler frei verfügbare Software-Bausteine (Open Source) einsetzen dürfen, braucht es eine Freigabe. Die lief per E-Mail und dauerte mehrere Wochen — für harmlose Standardfälle genauso wie für rechtlich heikle." },
+          { t: "Ursachen verstehen", b: "Bevor Entwickler frei verfügbare Software-Bausteine (Open Source) einsetzen dürfen, braucht es eine Freigabe. Die lief per E-Mail und dauerte sechs Wochen — für harmlose Standardfälle genauso wie für rechtlich heikle." },
           { t: "Ein gemeinsames Narrativ", b: "Rund 20 Beteiligte aus Entwicklung, Rechtsprüfung und Fachstellen klärten im Narrativ: Wie beheben wir die Schmerzpunkte im Status Quo? Welche Fälle sind Standard, welche brauchen das prüfende Auge der Rechtsexperten? Das Ergebnis: eine klare Vision des organisatorischen und technischen Soll-Zustands mit übergreifend abgestimmten Verfahrensregeln." },
           { t: "Direkt in Arbeitspakete übersetzt", b: "Das Vorhaben war klar umrissen — die Lösungsbausteine ließen sich ohne Zwischenschritt in Arbeitspakete mit Prüfkriterien übersetzen, jedes rückverfolgbar bis zur Anforderung aus der Analyse." },
           { t: "Umsetzung in einem Team", b: "Ein einzelnes Produktteam lieferte die Pakete in einem festen Zwei-Wochen-Rhythmus — Stück für Stück, jederzeit nachvollziehbar." },
         ],
         result: {
           label: "Das Ergebnis",
-          body: "Der Prozess läuft heute deutlich schneller: Standardfälle erhalten ihre Freigabe sofort nach festen Regeln, heikle Fälle landen direkt bei den Rechtsexperten, und die Fachleute werden bei ihrer Entscheidung durch das System unterstützt — ohne Umwege über E-Mail und ohne Wechsel zwischen den Systemen.",
+          body: "Die Freigabe eines Standardfalls dauert heute zwei Tage statt sechs Wochen: Sie erfolgt nach festen Regeln, heikle Fälle landen direkt bei den Rechtsexperten, und die Fachleute werden bei ihrer Entscheidung durch das System unterstützt — ohne Umwege über E-Mail und ohne Wechsel zwischen den Systemen.",
         },
         stats: [
+          { v: "2", unit: "Tage", k: "Freigabe statt 6 Wochen" },
           { v: "~20", k: "Beteiligte" },
-          { v: "1", k: "Produktteam" },
           { v: "14", unit: "Tage", k: "Lieferrhythmus" },
         ],
       },
@@ -168,30 +168,30 @@ const landingDe = {
     ],
   },
   team: {
-    rubric: numRubric("B", "ANHANG · PERSONEN"),
+    rubric: numRubric("05", "WER DAHINTER STEHT"),
     h2: (<>Zwei Perspektiven. <em>Ein</em> Anspruch.</>) as ReactNode,
     people: [
       { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Gründer · Entwicklung der Methode", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Richard ist Entwickler der NarraTec-Methodik und seit über zehn Jahren in der Steuerung komplexer IT-Vorhaben tätig — aktuell als Technical Lead für Data & AI Delivery in einem DAX-Konzern, wo er Entscheidungsnarrative in umsetzbare Anforderungen und Arbeitspakete überführt.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf messbarer Entscheidungsqualität: Die Methodik strukturierter Narrative hat er in realen Konzernvorhaben entwickelt, erprobt und wissenschaftlich publiziert — an der Schnittstelle von Managementforschung und Projektpraxis.</p>
         <p style={{ margin: 0 }}>Als technischer Programm-Manager verantwortete er unter anderem eine konzernweite digitale Produktionsplattform (SAFe), die in enger Zusammenarbeit mit Partnern wie Amazon Web Services entstand, sowie Vorhaben zu Open-Source-Compliance und Industrie 4.0 und wirkte an der Neuausrichtung einer Softwareentwicklungsorganisation mit über 500 Mitarbeitenden mit.</p>
-      </>) as ReactNode, credentials: ["10+ Jahre IT-Steuerung", "Methodenexperte in komplexen Vorhaben"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX-Konzern", "Konzernweite Produktionsplattform mit AWS (SAFe)", "Publiziert in HMD · Springer"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Lehre & Beirat", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe ist ein sehr praxisorientierter Professor für Wirtschaftsinformatik, Gründer der gemeinnützigen Initiative matchIO und Mitentwickler des Decision & Execution Engineering Ansatzes von NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf der Verwendungsfähigkeit von Technologie und der Frage, wie Unternehmen komplexe Herausforderungen in belastbare Entscheidungen, wirksame Organisationen und nachhaltige Umsetzung überführen können.</p>
         <p style={{ margin: 0 }}>Als Mitglied des acatech Forschungsbeirats Industrie 4.0, Aufsichtsratsmitglied des DFKI sowie Gestalter zahlreicher Industrie- und Transformationsvorhaben verbindet er wissenschaftliche Erkenntnisse mit langjähriger Erfahrung aus Digitalisierung, AI, Plattformökonomie und organisatorischer Transformation.</p>
-      </>) as ReactNode, credentials: ["Führungserfahrung Digitale Transformation", "Perspektive der Entscheidungsverantwortlichen"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
+      </>) as ReactNode, credentials: ["acatech Forschungsbeirat Industrie 4.0", "Aufsichtsrat DFKI", "Professur Wirtschaftsinformatik"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Wissenschaftlich publiziert",
     badgeTitle: (<>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>) as ReactNode,
     badgeSub: "Peer-reviewed · Springer",
     papers: [
-      { status: "Veröffentlicht", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL },
-      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "In Begutachtung · Manuskript verfügbar", url: PAPER_PREREAD_URL },
+      { status: "Veröffentlicht", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
+      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "In Begutachtung · Manuskript verfügbar", url: PAPER_PREREAD_URL, event: "paper-preread" },
     ],
   },
   disqualify: {
-    rubric: numRubric("C", "ANHANG · ABGRENZUNG"),
+    rubric: numRubric("08", "WANN WIR ABSAGEN"),
     h2: (<>Wann wir <em>absagen.</em></>) as ReactNode,
     lede: "Ein präzises Werkzeug erkennt seine Grenzen. Es gibt Konstellationen, in denen NarraTec nicht der richtige Schritt ist. Wenn Sie sich in einem der folgenden Fälle wiederfinden, verweisen wir Sie gerne an Partner aus unserem Netzwerk.",
     items: [
@@ -212,36 +212,36 @@ type LandingCopy = typeof landingDe;
 
 const landingEn: LandingCopy = {
   cta: {
-    book: "Book an intro call",
-    spar: "30-min sparring with the founders",
+    book: "Book a 30-min intro call",
     seeMethod: "See the method",
-    micro: "free · no sales · NDA on request",
-    microShort: "30 min · free · NDA on request",
-    finalMicro: "free · no sales · NDA on request",
+    micro: "free · directly with the founders · no sales · NDA on request",
+    microShort: "30 min · pick a slot in the calendar · NDA on request",
+    finalMicro: "free · you pick the time · NDA on request",
+    mail: { text: "Prefer to ask a question first?", addr: "contact@narratec.io" },
   },
   nav: [
     { label: "Problem", id: "problem" },
     { label: "Method", id: "zielbild" },
     { label: "Use cases", id: "einsatz" },
-    { label: "Packages", id: "bausteine" },
     { label: "Evidence", id: "case-study" },
     { label: "Team", id: "team" },
+    { label: "Packages", id: "bausteine" },
   ],
   hero: {
-    kicker: numRubric("01", "MOTIVATION & OBJECTIVES"),
+    kicker: numRubric("01", "FOR DECISION-MAKERS IN COMPLEX IT INITIATIVES"),
     headline: (
       <>
         <span className="line">From problem to <em>decision.</em></span>
         <span className="line">From decision to <em>implementation.</em></span>
       </>
     ),
-    lede: "Your experts already have the answers. NarraTec gives them the structure: a proven path from the question to a well-founded decision — and from there to work packages and capable teams.",
+    lede: "Your experts already have the answers. NarraTec gives them the structure: a proven and academically published path from the question to a well-founded decision — and from there to work packages and capable teams.",
     close: "We enable your people, not replace them.",
   },
   trust: [
-    <>Proven across several initiatives in a <span style={hl}>DAX corporation</span>.</>,
-    <>You engage us at a <span style={hl}>fixed price</span>, without risk.</>,
-    <>Your sensitive information protected by an <span style={hl}>NDA</span>.</>,
+    <>Proven across several initiatives in a <span style={hl}>DAX-40 corporation</span> — Germany's largest listed companies.</>,
+    <>You engage us at a <span style={hl}>fixed price</span> — no day rates, no open-ended invoice.</>,
+    <>Peer-reviewed and published in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer).</>,
   ],
   problem: {
     rubric: numRubric("02", "CURRENT STATE"),
@@ -276,7 +276,7 @@ const landingEn: LandingCopy = {
     },
   },
   bausteine: {
-    rubric: numRubric("04", "SOLUTION BUILDING BLOCKS"),
+    rubric: numRubric("07", "SOLUTION BUILDING BLOCKS"),
     h2: <>Fixed packages. <em>Fixed prices.</em></>,
     lede: "No billing by the day, no open-ended consulting invoice: clearly defined services, clearly named outcomes, prices up front.",
     note: "All prices net. Engagements usually begin with a Narrative Sprint.",
@@ -288,12 +288,12 @@ const landingEn: LandingCopy = {
     ],
   },
   nextSteps: {
-    rubric: numRubric("05", "NEXT STEPS"),
+    rubric: numRubric("06", "NEXT STEPS"),
     h2: <>30 minutes. One partner. <em>Your</em> next decision.</>,
     lede: "Bring an open question — we bring the method. No slides, no sales loop. In the end you'll know whether working together is the right next step.",
   },
   caseStudy: {
-    rubric: numRubric("A", "APPENDIX · EVIDENCE FROM PRACTICE"),
+    rubric: numRubric("04", "EVIDENCE FROM PRACTICE"),
     h2: <>No claims. <em>Proven</em> practice.</>,
     lede: "Three initiatives from corporate settings show the method at work — at scale, at a small scale, and beyond the world of pure software.",
     primary: [
@@ -322,18 +322,18 @@ const landingEn: LandingCopy = {
         title: "Approving open-source building blocks",
         lede: "The same method at a small scale — from narrative to a running process, delivered by a single team.",
         steps: [
-          { t: "Understanding the causes", b: "Before developers can use freely available software building blocks (open source), an approval is required. It used to run by email and take several weeks — for harmless standard cases just as much as for legally sensitive ones." },
+          { t: "Understanding the causes", b: "Before developers can use freely available software building blocks (open source), an approval is required. It used to run by email and take six weeks — for harmless standard cases just as much as for legally sensitive ones." },
           { t: "A shared narrative", b: "Around 20 people from development, legal review and specialist departments clarified in the narrative: how do we resolve the pain points in the status quo? Which cases are standard, and which need the scrutiny of legal experts? The result: a clear vision of the target state — organizational and technical — with jointly agreed procedural rules." },
           { t: "Translated directly into work packages", b: "The initiative was clearly scoped — the solution building blocks translated directly into work packages with acceptance criteria, each traceable back to the requirement from the analysis." },
           { t: "Delivery by a single team", b: "A single product team delivered the packages on a fixed two-week rhythm — piece by piece, always traceable." },
         ],
         result: {
           label: "The outcome",
-          body: "The process now runs noticeably faster: standard cases get approved instantly under fixed rules, sensitive cases go straight to the legal experts, and specialists are supported by the system in their decisions — without detours through email and without switching between systems.",
+          body: "A standard case is now approved in two days instead of six weeks: approval follows fixed rules, sensitive cases go straight to the legal experts, and specialists are supported by the system in their decisions — without detours through email and without switching between systems.",
         },
         stats: [
+          { v: "2", unit: "days", k: "Approval, down from 6 weeks" },
           { v: "~20", k: "Participants" },
-          { v: "1", k: "Product team" },
           { v: "14", unit: "days", k: "Delivery rhythm" },
         ],
       },
@@ -359,30 +359,30 @@ const landingEn: LandingCopy = {
     ],
   },
   team: {
-    rubric: numRubric("B", "APPENDIX · PEOPLE"),
+    rubric: numRubric("05", "WHO IS BEHIND THIS"),
     h2: <>Two perspectives. <em>One</em> standard.</>,
     people: [
       { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Founder · Method development", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Richard is the creator of the NarraTec method and has spent more than ten years steering complex IT initiatives — currently as Technical Lead for Data & AI Delivery at a DAX corporation, where he translates decision narratives into actionable requirements and work packages.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on measurable decision quality: he developed the method of structured narratives in real corporate initiatives, proved it in practice, and published it academically — at the intersection of management research and project practice.</p>
         <p style={{ margin: 0 }}>As technical program manager, he was responsible for a group-wide digital production platform (SAFe), built in close partnership with companies such as Amazon Web Services, as well as initiatives on open-source compliance and Industry 4.0, and contributed to the realignment of a software development organization with more than 500 employees.</p>
-      </>) as ReactNode, credentials: ["10+ years of IT governance", "Method expert in complex initiatives"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX corporation", "Group-wide production platform with AWS (SAFe)", "Published in HMD · Springer"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Teaching & Advisory", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe is a highly practice-oriented professor of business informatics, founder of the non-profit initiative matchIO, and co-developer of the Decision & Execution Engineering approach at NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on the usability of technology and the question of how organizations can translate complex challenges into sound decisions, effective structures, and sustainable implementation.</p>
         <p style={{ margin: 0 }}>As a member of the acatech Research Advisory Board on Industry 4.0, supervisory board member of the DFKI, and shaper of numerous industry and transformation initiatives, he combines academic insight with many years of experience in digitalization, AI, platform economics, and organizational transformation.</p>
-      </>) as ReactNode, credentials: ["Leadership in digital transformation", "Decision-maker's perspective"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
+      </>) as ReactNode, credentials: ["acatech Industry 4.0 research board", "Supervisory board, DFKI", "Professor of business informatics"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Academically published",
     badgeTitle: <>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>,
     badgeSub: "Peer-reviewed · Springer",
     papers: [
-      { status: "Published", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL },
-      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "Under review · manuscript available", url: PAPER_PREREAD_URL },
+      { status: "Published", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
+      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "Under review · manuscript available", url: PAPER_PREREAD_URL, event: "paper-preread" },
     ],
   },
   disqualify: {
-    rubric: numRubric("C", "APPENDIX · BOUNDARIES"),
+    rubric: numRubric("08", "WHEN WE SAY NO"),
     h2: <>When we <em>say no.</em></>,
     lede: "A precise tool knows its limits. There are situations where NarraTec is not the right step. If one of the following describes you, we're happy to refer you to partners in our network.",
     items: [
@@ -461,7 +461,7 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
             <a key={l.id} className="nav-link" href={`#${l.id}`} onClick={onJump(l.id)}>{l.label}</a>
           ))}
           <LangToggle />
-          <a className="btn btn-primary nav-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
+          <a className="btn btn-primary nav-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-nav">
             {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <button
@@ -485,7 +485,7 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
               <a key={l.id} href={`#${l.id}`} onClick={jumpAndClose(l.id)}>{l.label}</a>
             ))}
           </nav>
-          <a className="btn btn-primary nav-mobile-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} onClick={() => setOpen(false)}>
+          <a className="btn btn-primary nav-mobile-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-nav-mobile" onClick={() => setOpen(false)}>
             {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
         </div>
@@ -527,8 +527,8 @@ function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
         <p className="lede">{c.lede}</p>
         <p className="lede">{c.close}</p>
         <div className="hero-actions">
-          <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
-            {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
+          <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-hero">
+            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
         </div>
@@ -616,7 +616,7 @@ function Zielbild({ c }: { c: LandingCopy["zielbild"] }) {
 
 function Bausteine({ c }: { c: LandingCopy["bausteine"] }) {
   return (
-    <section className="section" id="bausteine" data-screen-label="04 Lösungsbausteine">
+    <section className="section" id="bausteine" data-screen-label="07 Lösungsbausteine">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -643,7 +643,7 @@ function Bausteine({ c }: { c: LandingCopy["bausteine"] }) {
 
 function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["cta"] }) {
   return (
-    <section className="ns" id="naechste-schritte" data-screen-label="05 Nächste Schritte">
+    <section className="ns" id="naechste-schritte" data-screen-label="06 Nächste Schritte">
       <div className="container">
         <div className="ns-cta">
           <div className="ns-cta-copy">
@@ -652,7 +652,7 @@ function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["
             <p className="ns-cta-lede">{c.lede}</p>
           </div>
           <div className="ns-cta-action">
-            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
+            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-mid">
               {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
             </a>
             <div className="ns-cta-micro">{cta.microShort}</div>
@@ -686,7 +686,7 @@ function UseCases({ c }: { c: LandingCopy["usecases"] }) {
 
 function Team({ c }: { c: LandingCopy["team"] }) {
   return (
-    <section className="section" id="team" data-screen-label="B Personen">
+    <section className="section" id="team" data-screen-label="05 Wer dahinter steht">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} />
 
@@ -736,7 +736,7 @@ function Team({ c }: { c: LandingCopy["team"] }) {
           <div className="papers">
             {c.papers.map((paper, i) => (
               <a key={i} className={`paper-row${i === 0 ? " paper-row--accent" : ""}`}
-                 href={paper.url} target="_blank" rel="noopener noreferrer">
+                 href={paper.url} target="_blank" rel="noopener noreferrer" data-umami-event={paper.event}>
                 <div>
                   <div className="paper-status">{paper.status}</div>
                   <div className="paper-title">„{paper.title}"</div>
@@ -754,7 +754,7 @@ function Team({ c }: { c: LandingCopy["team"] }) {
 
 function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
   return (
-    <section className="section" id="abgrenzung" data-screen-label="C Abgrenzung">
+    <section className="section" id="abgrenzung" data-screen-label="08 Wann wir absagen">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -779,7 +779,7 @@ function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
 
 function CaseStudy({ c }: { c: LandingCopy["caseStudy"] }) {
   return (
-    <section className="section" id="case-study" data-screen-label="A Belege aus der Praxis">
+    <section className="section" id="case-study" data-screen-label="04 Belege aus der Praxis">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -843,12 +843,16 @@ function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] })
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede}>
           <div className="hero-actions" style={{ marginTop: 36 }}>
-            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL}>
-              {cta.spar} <span className="btn-arrow" aria-hidden="true"></span>
+            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-final">
+              {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
             </a>
             <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
           </div>
           <div className="micro" style={{ marginTop: 22 }}>{cta.finalMicro}</div>
+          <div className="micro" style={{ marginTop: 12 }}>
+            {cta.mail.text}{" "}
+            <a href={`mailto:${cta.mail.addr}`} data-umami-event="contact-mail">{cta.mail.addr}</a>
+          </div>
         </SectionHead>
       </div>
     </section>
@@ -900,10 +904,10 @@ function RedesignLanding() {
         <Problem c={L.problem} />
         <Zielbild c={L.zielbild} />
         <UseCases c={L.usecases} />
-        <Bausteine c={L.bausteine} />
-        <NextSteps c={L.nextSteps} cta={L.cta} />
         <CaseStudy c={L.caseStudy} />
         <Team c={L.team} />
+        <NextSteps c={L.nextSteps} cta={L.cta} />
+        <Bausteine c={L.bausteine} />
         <Disqualify c={L.disqualify} />
         <Final c={L.final} cta={L.cta} />
       </main>
