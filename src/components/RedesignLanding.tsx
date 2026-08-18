@@ -35,6 +35,7 @@ const landingDe = {
     { label: "Praxis", id: "case-study" },
     { label: "Team", id: "team" },
     { label: "Leistungen", id: "bausteine" },
+    { label: "Lehre", id: "lehre" },
   ],
   hero: {
     kicker: numRubric("01", "FÜR ENTSCHEIDER IN KOMPLEXEN IT-VORHABEN"),
@@ -86,14 +87,14 @@ const landingDe = {
   },
   bausteine: {
     rubric: numRubric("07", "LÖSUNGSBAUSTEINE"),
-    h2: (<>Feste Pakete. <em>Feste Preise.</em></>) as ReactNode,
-    lede: "Keine Abrechnung nach Tagen, keine offene Beratungsrechnung: klar umrissene Leistungen, klar benannte Ergebnisse, Preise vorab.",
-    note: "Alle Preise netto. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
+    h2: (<>Feste Pakete. <em>Feste Ergebnisse.</em></>) as ReactNode,
+    lede: "Klar umrissene Leistungen, klar benannte Ergebnisse und ein Festpreis, der vor Beginn feststeht: keine Abrechnung nach Tagen, keine offene Beratungsrechnung.",
+    note: "Zuschnitt und Festpreis auf Anfrage. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
     cards: [
-      { badge: "Einstieg", title: "Narrative Sprint", body: "Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Narrativ geführt — in angeleiteten Arbeitsrunden, mit gemeinsamer Lesephase und abschließendem Entscheidungstermin.", price: "ab 15.000 €", meta: "Festpreis · mehrere Wochen · ein Ergebnis" },
-      { badge: "Umsetzung", title: "Struktur-Sprint", body: "Bestandsaufnahme, wie Ihre Teams heute zusammenarbeiten, dann ein Bauplan für Rhythmus, Rollen und Schnittstellen — samt Plan, der Ihre eigenen Leute zur Umsetzung befähigt. Sie bauen die Struktur selbst auf, wir zeigen wie.", price: "ab 12.000 €", meta: "Festpreis · Bestandsaufnahme + Bauplan" },
-      { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Narrativen („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "ab 1.900 €", meta: "pro Teilnehmer:in · Ausbildung im eigenen Haus ab 12.000 €" },
-      { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Narrative und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "ab 8.000 €/Jahr", meta: "Lizenz · Begleitung ab 2.500 €/Monat" },
+      { badge: "Einstieg", title: "Narrative Sprint", body: "Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Narrativ geführt — in angeleiteten Arbeitsrunden, mit gemeinsamer Lesephase und abschließendem Entscheidungstermin.", price: "Festpreis", meta: "mehrere Wochen · ein Ergebnis" },
+      { badge: "Umsetzung", title: "Struktur-Sprint", body: "Bestandsaufnahme, wie Ihre Teams heute zusammenarbeiten, dann ein Bauplan für Rhythmus, Rollen und Schnittstellen — samt Plan, der Ihre eigenen Leute zur Umsetzung befähigt. Sie bauen die Struktur selbst auf, wir zeigen wie.", price: "Festpreis", meta: "Bestandsaufnahme + Bauplan" },
+      { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Narrativen („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "Festpreis je Teilnehmer:in", meta: "Grundkurs + Aufbaukurs · im eigenen Haus zum Paketpreis" },
+      { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Narrative und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "Jahreslizenz", meta: "Lizenz jährlich · Begleitung monatlich" },
     ],
   },
   nextSteps: {
@@ -190,8 +191,34 @@ const landingDe = {
       { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "In Begutachtung · Manuskript verfügbar", url: PAPER_PREREAD_URL, event: "paper-preread" },
     ],
   },
+  lehre: {
+    rubric: numRubric("08", "NACHWUCHS & LEHRE"),
+    h2: (<>Was wir können, <em>geben wir weiter.</em></>) as ReactNode,
+    lede: "Methodenkompetenz entsteht nicht in der Vorlesung, sondern an echten Fragestellungen. Deshalb arbeiten wir mit Studierenden an realen Fällen aus der Praxis — kostenfrei und aus Überzeugung.",
+    initiative: {
+      label: "Initiative",
+      name: "matchIO",
+      sub: "Transferplattform für Lebenslanges Lernen · Kooperation mit der Hochschule für Technik und Wirtschaft Dresden (HTW Dresden)",
+      link: "matchio.de",
+      body: [
+        "matchIO bringt Unternehmen, Expert:innen und angehende Fachkräfte an einen Tisch: Studierende arbeiten an realen Herausforderungen aus dem laufenden Betrieb — begleitet von Menschen, die diese Fragen im Beruf beantworten müssen. Seit rund drei Jahren arbeitet die Initiative so an der Schnittstelle von Hochschule, Schule und Wirtschaft.",
+        "Uwe Wieland hat die Initiative gegründet, Richard Rößler bringt die Narrative-Methode ein. Unser Beitrag ist die Methodenkompetenz: wie man ein Problem sauber fasst, bevor über Lösungen gesprochen wird — und wie aus einer Entscheidung nachvollziehbare Arbeit wird.",
+      ],
+    },
+    facts: [
+      { t: "Echte Fälle statt Fallstudien", b: "Die Fragestellungen kommen aus dem laufenden Betrieb von Unternehmen, nicht aus dem Lehrbuch. Studierende erleben Unschärfe, Zielkonflikte und Zeitdruck so, wie sie ihnen später begegnen." },
+      { t: "Kostenfrei für Studierende", b: "Unser Beitrag zur Nachwuchsförderung ist unentgeltlich, für die Studierenden ebenso wie für die Hochschule." },
+      { t: "Vorbereitung auf den Berufsalltag", b: "Wer früh übt, ein Problem zu fassen, bevor er es löst, stellt später die richtigen Fragen — im ersten Projekt ebenso wie im ersten Konflikt zwischen Fachbereich und Management." },
+    ],
+    invite: {
+      label: "Gastvorträge & Lehrformate",
+      title: "Sie lehren, forschen oder verantworten Weiterbildung?",
+      body: "Für Gastvorträge an Hochschulen und weiteren Bildungseinrichtungen sind wir sehr aufgeschlossen — als Vorlesung, Seminar oder Workshop an einem echten Fall. Schreiben Sie uns, wir finden ein passendes Format.",
+      cta: "Anfrage schreiben",
+    },
+  },
   disqualify: {
-    rubric: numRubric("08", "WANN WIR ABSAGEN"),
+    rubric: numRubric("09", "WANN WIR ABSAGEN"),
     h2: (<>Wann wir <em>absagen.</em></>) as ReactNode,
     lede: "Ein präzises Werkzeug erkennt seine Grenzen. Es gibt Konstellationen, in denen NarraTec nicht der richtige Schritt ist. Wenn Sie sich in einem der folgenden Fälle wiederfinden, verweisen wir Sie gerne an Partner aus unserem Netzwerk.",
     items: [
@@ -226,6 +253,7 @@ const landingEn: LandingCopy = {
     { label: "Evidence", id: "case-study" },
     { label: "Team", id: "team" },
     { label: "Packages", id: "bausteine" },
+    { label: "Teaching", id: "lehre" },
   ],
   hero: {
     kicker: numRubric("01", "FOR DECISION-MAKERS IN COMPLEX IT INITIATIVES"),
@@ -277,14 +305,14 @@ const landingEn: LandingCopy = {
   },
   bausteine: {
     rubric: numRubric("07", "SOLUTION BUILDING BLOCKS"),
-    h2: <>Fixed packages. <em>Fixed prices.</em></>,
-    lede: "No billing by the day, no open-ended consulting invoice: clearly defined services, clearly named outcomes, prices up front.",
-    note: "All prices net. Engagements usually begin with a Narrative Sprint.",
+    h2: <>Fixed packages. <em>Fixed outcomes.</em></>,
+    lede: "Clearly defined services, clearly named outcomes and a fixed price agreed before we start: no billing by the day, no open-ended consulting invoice.",
+    note: "Scope and fixed price on request. Engagements usually begin with a Narrative Sprint.",
     cards: [
-      { badge: "Entry", title: "Narrative Sprint", body: "A real, pending decision at your organization is taken to a finished narrative together with your experts — in guided working rounds, with a shared reading phase and a concluding decision meeting.", price: "from €15,000", meta: "Fixed price · several weeks · one outcome" },
-      { badge: "Implementation", title: "Structure Sprint", body: "An assessment of how your teams work together today, then a blueprint for rhythm, roles and interfaces — including a plan that enables your own people to implement it. You build the structure yourselves, we show you how.", price: "from €12,000", meta: "Fixed price · assessment + blueprint" },
-      { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering narratives (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "from €1,900", meta: "per participant · in-house training from €12,000" },
-      { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your narratives and a quarterly review of your working structures.", price: "from €8,000/year", meta: "License · support from €2,500/month" },
+      { badge: "Entry", title: "Narrative Sprint", body: "A real, pending decision at your organization is taken to a finished narrative together with your experts — in guided working rounds, with a shared reading phase and a concluding decision meeting.", price: "Fixed price", meta: "several weeks · one outcome" },
+      { badge: "Implementation", title: "Structure Sprint", body: "An assessment of how your teams work together today, then a blueprint for rhythm, roles and interfaces — including a plan that enables your own people to implement it. You build the structure yourselves, we show you how.", price: "Fixed price", meta: "assessment + blueprint" },
+      { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering narratives (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "Fixed price per participant", meta: "core course + advanced course · in-house at a package price" },
+      { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your narratives and a quarterly review of your working structures.", price: "Annual license", meta: "license annually · support monthly" },
     ],
   },
   nextSteps: {
@@ -381,8 +409,34 @@ const landingEn: LandingCopy = {
       { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "Under review · manuscript available", url: PAPER_PREREAD_URL, event: "paper-preread" },
     ],
   },
+  lehre: {
+    rubric: numRubric("08", "STUDENTS & TEACHING"),
+    h2: (<>What we know, <em>we pass on.</em></>) as ReactNode,
+    lede: "Methodological skill isn't built in lectures, it's built on real questions. That is why we work with students on actual cases from practice — free of charge, and out of conviction.",
+    initiative: {
+      label: "Initiative",
+      name: "matchIO",
+      sub: "Transfer platform for lifelong learning · in cooperation with Hochschule für Technik und Wirtschaft Dresden (HTW Dresden)",
+      link: "matchio.de",
+      body: [
+        "matchIO brings companies, experts and future professionals to the same table: students work on real challenges from live operations — alongside the people who have to answer those questions for a living. The initiative has been working at the intersection of higher education, schools and industry for about three years.",
+        "Uwe Wieland founded the initiative; Richard Rößler contributes the narrative method. What we bring is the methodological side: how to frame a problem properly before talking about solutions — and how a decision becomes traceable work.",
+      ],
+    },
+    facts: [
+      { t: "Real cases, not case studies", b: "The questions come from companies' live operations, not from a textbook. Students encounter ambiguity, conflicting goals and time pressure the way they will later meet them." },
+      { t: "Free of charge for students", b: "Our contribution to the next generation is unpaid, for the students as much as for the university." },
+      { t: "Preparation for working life", b: "Anyone who practises framing a problem before solving it asks the right questions later — in their first project as much as in their first clash between a business unit and management." },
+    ],
+    invite: {
+      label: "Guest lectures & teaching formats",
+      title: "Do you teach, research or run continuing education?",
+      body: "We are very open to guest lectures at universities and other educational institutions — as a lecture, a seminar or a workshop on a real case. Write to us and we will find a format that fits.",
+      cta: "Send an enquiry",
+    },
+  },
   disqualify: {
-    rubric: numRubric("08", "WHEN WE SAY NO"),
+    rubric: numRubric("09", "WHEN WE SAY NO"),
     h2: <>When we <em>say no.</em></>,
     lede: "A precise tool knows its limits. There are situations where NarraTec is not the right step. If one of the following describes you, we're happy to refer you to partners in our network.",
     items: [
@@ -752,9 +806,54 @@ function Team({ c }: { c: LandingCopy["team"] }) {
   );
 }
 
+function Lehre({ c, cta }: { c: LandingCopy["lehre"]; cta: LandingCopy["cta"] }) {
+  return (
+    <section className="section" id="lehre" data-screen-label="08 Nachwuchs & Lehre">
+      <div className="container">
+        <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
+
+        <article className="lehre-panel">
+          <div className="lehre-id">
+            <div className="lehre-id-label">{c.initiative.label}</div>
+            <h3 className="lehre-id-name">{c.initiative.name}</h3>
+            <div className="lehre-id-sub">{c.initiative.sub}</div>
+            <a className="lehre-id-link" href="https://www.matchio.de/"
+               target="_blank" rel="noopener noreferrer" data-umami-event="matchio-link">
+              {c.initiative.link} <span className="btn-arrow" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div className="lehre-id-body">
+            {c.initiative.body.map((p, i) => <p key={i}>{p}</p>)}
+          </div>
+        </article>
+
+        <div className="lehre-facts">
+          {c.facts.map((f) => (
+            <article className="lehre-fact" key={f.t}>
+              <h3 className="lehre-fact-title">{f.t}</h3>
+              <p className="lehre-fact-body">{f.b}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="lehre-invite">
+          <div className="lehre-invite-copy">
+            <div className="lehre-invite-label">{c.invite.label}</div>
+            <h3 className="lehre-invite-title">{c.invite.title}</h3>
+            <p className="lehre-invite-body">{c.invite.body}</p>
+          </div>
+          <a className="btn btn-ghost lehre-invite-cta" href={`mailto:${cta.mail.addr}`} data-umami-event="lehre-mail">
+            {c.invite.cta} <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Disqualify({ c }: { c: LandingCopy["disqualify"] }) {
   return (
-    <section className="section" id="abgrenzung" data-screen-label="08 Wann wir absagen">
+    <section className="section" id="abgrenzung" data-screen-label="09 Wann wir absagen">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -908,6 +1007,7 @@ function RedesignLanding() {
         <Team c={L.team} />
         <NextSteps c={L.nextSteps} cta={L.cta} />
         <Bausteine c={L.bausteine} />
+        <Lehre c={L.lehre} cta={L.cta} />
         <Disqualify c={L.disqualify} />
         <Final c={L.final} cta={L.cta} />
       </main>

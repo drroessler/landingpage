@@ -1177,6 +1177,137 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   .team-badge-head { border-right: none; border-bottom: 1px solid var(--rule); }
 }
 
+/* ---------- Nachwuchs & Lehre ---------- */
+
+.lehre-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.5fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: clamp(28px, 3.5vw, 44px) clamp(28px, 4vw, 52px);
+  margin-bottom: clamp(16px, 2vw, 24px);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+  background: var(--paper-2);
+}
+@media (max-width: 900px) { .lehre-panel { grid-template-columns: 1fr; gap: 22px; } }
+
+.lehre-id-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.lehre-id-name {
+  margin: 10px 0 12px;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(32px, 3.4vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.lehre-id-sub {
+  max-width: 34ch;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+.lehre-id-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.lehre-id-link:hover { color: var(--ink); }
+.lehre-id-body p {
+  margin: 0 0 16px;
+  max-width: 68ch;
+  line-height: 1.62;
+  color: var(--ink-2);
+}
+.lehre-id-body p:last-child { margin-bottom: 0; }
+
+.lehre-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--paper);
+}
+@media (max-width: 900px) { .lehre-facts { grid-template-columns: 1fr; } }
+.lehre-fact {
+  padding: clamp(26px, 3vw, 36px) clamp(22px, 2.4vw, 30px) clamp(24px, 2.8vw, 32px);
+  border-right: 1px solid var(--rule);
+}
+.lehre-fact:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .lehre-fact { border-right: none; border-bottom: 1px solid var(--rule); }
+  .lehre-fact:last-child { border-bottom: none; }
+}
+.lehre-fact-title {
+  margin: 0 0 14px;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.lehre-fact-body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.lehre-invite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: clamp(24px, 3vw, 36px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px dashed var(--rule-strong);
+}
+.lehre-invite-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.lehre-invite-title {
+  margin: 12px 0 10px;
+  max-width: 28ch;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.lehre-invite-body {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.lehre-invite-cta { flex-shrink: 0; }
+
 /* ---------- Abgrenzung ---------- */
 
 .dq-list { border-top: 1px solid var(--rule); }
