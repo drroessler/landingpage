@@ -33,8 +33,8 @@ const landingDe = {
     { label: "Methode", id: "zielbild" },
     { label: "Einsatz", id: "einsatz" },
     { label: "Praxis", id: "case-study" },
-    { label: "Team", id: "team" },
     { label: "Leistungen", id: "bausteine" },
+    { label: "Team", id: "team" },
     { label: "Lehre", id: "lehre" },
   ],
   hero: {
@@ -251,8 +251,8 @@ const landingEn: LandingCopy = {
     { label: "Method", id: "zielbild" },
     { label: "Use cases", id: "einsatz" },
     { label: "Evidence", id: "case-study" },
-    { label: "Team", id: "team" },
     { label: "Packages", id: "bausteine" },
+    { label: "Team", id: "team" },
     { label: "Teaching", id: "lehre" },
   ],
   hero: {
@@ -1004,9 +1004,9 @@ function RedesignLanding() {
         <Zielbild c={L.zielbild} />
         <UseCases c={L.usecases} />
         <CaseStudy c={L.caseStudy} />
-        <Team c={L.team} />
         <NextSteps c={L.nextSteps} cta={L.cta} />
         <Bausteine c={L.bausteine} />
+        <Team c={L.team} />
         <Lehre c={L.lehre} cta={L.cta} />
         <Disqualify c={L.disqualify} />
         <Final c={L.final} cta={L.cta} />
