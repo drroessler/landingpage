@@ -43,26 +43,19 @@ function firstName(full: string): string {
   return parts.length > 1 ? parts.slice(0, -1).join(" ") : full.trim();
 }
 
-/** Die Mail selbst bleibt schlicht. Das Dokument ist der Anhang, nicht die Mail. */
+/** Die Mail selbst bleibt schlicht. Das Dokument ist der Anhang, nicht die Mail:
+ *  die Mail kündigt an, die Auswertung steht im PDF. */
 function bodyText(contact: Contact, evaluation: Evaluation): string {
-  const schwaechste = evaluation.reife
-    .filter((a) => a.stufe === 1)
-    .map((a) => a.axis);
-  const hinweis =
-    schwaechste.length > 0
-      ? `Am weitesten offen ist bei Ihnen: ${schwaechste.join(", ")}.`
-      : "Keine der sechs Achsen steht auf der untersten Stufe.";
-
   return `Guten Tag ${firstName(contact.name)},
 
 anbei Ihre Auswertung des Reifechecks vom ${formatDate(evaluation.createdAt)}.
 
 Sie finden darin das Netzdiagramm Ihrer Entscheidungsreife und zu jeder Ihrer
-neun Antworten eine kurze Einordnung. ${hinweis}
+neun Antworten eine kurze Einordnung.
 
 Die Auswertung bewertet Ihr Vorhaben nicht und vergibt keine Punktzahl. Sie
 zeigt, wo Ihre Vorbereitung heute steht und welche Fragen sich vor der nächsten
-Festlegung stellen.
+Festlegung stellen könnten.
 
 Wenn Sie an einem der offenen Punkte weiterarbeiten wollen, sprechen wir darüber.
 Ein Erstgespräch dauert 30 Minuten:
