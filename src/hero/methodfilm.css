@@ -1,0 +1,28 @@
+/* Rahmen des Methoden-Films im Hero.
+   Die Bühne hat feste Maße (760×584) und wird per transform skaliert — der
+   Rahmen gibt über aspect-ratio nur die Fläche vor. */
+
+.mf-frame {
+  position: relative;
+  width: 100%;
+  /* 16:10 — entspricht STAGE_W/STAGE_VISIBLE_H (893/558) in MethodFilm.tsx.
+     Die unteren 26 px der Bühne sind leer und werden abgeschnitten. */
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+  overflow: hidden;
+  /* Der Film ist Dekoration mit Aussage, kein Bedienelement. */
+  user-select: none;
+}
+
+.mf-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  /* Eigene Ebene: der Browser muss den Rest der Seite nicht mitzeichnen,
+     wenn sich im Film etwas bewegt. */
+  will-change: transform;
+  contain: strict;
+}

@@ -2,16 +2,16 @@
 
 ## Goal
 Review and redesign the existing `index.html` into a professional,
-deployable React/Vite project for GitHub Pages.
+deployable React/Vite project, deployed on Vercel.
 
 ## Design Principles (Frontend Design Skill)
 Use the existing skill defined in `SKILL.md`
 
 ## Tech Stack
-- Vite + React (for GitHub Pages compatibility)
+- Vite + React
 - react-bits components via MCP where they add visual value
 - Tailwind CSS for utility styling
-- Deploy target: GitHub Pages via `gh-pages` branch or `/docs` folder
+- Deploy target: Vercel (site + `/api` serverless functions)
 
 ## react-bits Usage Rules
 - Use MCP to SEARCH available components before implementing anything
@@ -21,11 +21,48 @@ Use the existing skill defined in `SKILL.md`
 - Always fetch actual component source via MCP (don't guess props/API)
 - Adapt colors/fonts to match the chosen design system
 
-## GitHub Pages Requirements
-- `vite.config.ts`: set `base` to repo name, e.g. `/my-repo/`
-- Build output: `dist/` folder
-- All assets must use relative paths
-- Add `.nojekyll` file to dist
+## Deployment Requirements (Vercel)
+- `vite.config.ts`: `base` stays `/` (custom domain, no sub-path)
+- Build output: `dist/`
+- `vercel.json` rewrites everything except `/api/*` to `index.html` (BrowserRouter)
+- Serverless functions live in `api/`; secrets go in Vercel env vars, never in the repo
+
+## Hero
+- Two columns: copy left, the four-phase method film right (`src/hero/`), ported
+  from the Claude Design file "NarraTec Hero Methode.dc.html".
+- The stage is a fixed 893×584 coordinate space (visible 893×558 = 16:10) scaled
+  with `transform` — never reflow it, the camera path and all positions are
+  authored in those coordinates. The world (720×500) sits centred; the stage was
+  widened from the design's 760 to reach 16:10, because shortening it would cut
+  into the world, which extends to y=556.
+- `.hero-col-film` is capped at 465px: that is the measured point where the film
+  column becomes as tall as the copy column. Wider and the hero grows, pushing
+  the trust bar below the fold and reopening a gap above the buttons.
+- Times in `MethodFilm.tsx` are seconds on one 20.5 s axis; phase cues at
+  0 / 5 / 10.5 / 15.5. Labels are bilingual in `filmCopy.ts`.
+- The clock stops off-screen, in background tabs, and under
+  `prefers-reduced-motion` (static poster frame). Keep those guards.
+
+## Reifecheck
+- Lives as section 10 of the landing page (`#reifecheck`), not as its own route.
+  `ReifecheckSection.tsx` swaps intro → questions → contact → result in place;
+  all primary CTAs are anchor jumps to it. Keep the calendar and mail routes intact.
+- Questions, statements and document copy: `src/reifecheck/data.ts` + `copy.ts` — single source
+  for the web view, the PDF and the Notion entry. Source of truth for the wording is
+  `reifecheck_set1_v40.md`.
+- The evaluation is rule-based by design: one statement per chosen option, no scoring,
+  no weighting, no language model. That claim is printed in the document — keep it true.
+- The PDF must be **exactly three pages**: (1) title, preamble, Diagramm 1;
+  (2) F1–F3 *and* R1–R6; (3) Diagramm 2, next step, method note. Page breaks are
+  forced via `.nt-page-2` / `.nt-page-3`; overflow silently adds a fourth page.
+- The landing section shows a thumbnail of the real page 1
+  (`public/reifecheck-auswertung-seite1.jpg`) rendered from the same document.
+  Regenerate with `npm run preview:build` after document changes; `pdf:check`
+  warns when it is stale. Needs poppler.
+- After changing document copy or layout run `npm run pdf:check` — it verifies both
+  the design's answers and the measured worst-case answer set. Size lever is the
+  type scale `T` at the top of `api/_lib/document.ts`. Re-run `npm run pdf:worst`
+  after editing answer or statement texts in `data.ts`.
 
 ## Workflow
 1. Analyze existing index.html content and structure
@@ -33,5 +70,5 @@ Use the existing skill defined in `SKILL.md`
 3. Search react-bits MCP for suitable components
 4. Scaffold Vite+React project
 5. Implement design section by section
-6. Configure for GitHub Pages
+6. Configure for Vercel (vercel.json, env vars)
 7. Verify build succeeds with `npm run build`

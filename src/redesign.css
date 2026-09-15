@@ -275,9 +275,11 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
 
 /* ---------- Hero ---------- */
 
+/* Knapper gesetzt als die übrigen Sektionen: Hero, Schlagzeile und Film sollen
+   zusammen mit der Trust-Leiste ins erste Bild passen (gemessen bei 1500×830). */
 .hero {
-  padding-top: clamp(40px, 5vw, 72px);
-  padding-bottom: clamp(40px, 4vw, 64px);
+  padding-top: clamp(24px, 2vw, 30px);
+  padding-bottom: clamp(18px, 1.5vw, 22px);
 }
 .hero h1 .line { display: block; }
 .hero-actions {
@@ -286,15 +288,19 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   gap: 12px;
   flex-wrap: wrap;
 }
-.hero-headline {
+h1.hero-headline {
+  /* Selektor mit Element, sonst gewinnt h1.display (bis 78px). Eigene Skala,
+     weil zwei Zeilen bei 78px 165px Höhe kosten und die Trust-Leiste aus dem
+     ersten Bild drücken. */
+  font-size: clamp(42px, 5.4vw, 68px);
   line-height: 1.06;
-  margin: 16px 0 0;
+  margin: 12px 0 0;
 }
 .hero-divider {
   border-top: 1px solid var(--rule);
-  margin: 28px 0 0;
+  margin: 16px 0 0;
 }
-.hero-body { padding-top: 28px; }
+.hero-body { padding-top: 14px; }
 .hero-body .lede { max-width: 52ch; margin: 0; }
 .hero-body .lede + .lede { margin-top: 10px; }
 .hero-body .hero-actions { margin-top: 22px; }
@@ -339,7 +345,7 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(18px, 2.2vw, 26px) clamp(16px, 2.5vw, 32px);
+  padding: clamp(12px, 1.3vw, 15px) clamp(16px, 2.5vw, 32px);
   border-right: 1px solid var(--rule);
 }
 .trust-cell:last-child { border-right: none; }
@@ -1448,3 +1454,71 @@ h3.display { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; }
   .cs-card, .cs-supp { padding: 24px 22px; }
 }
 
+
+/* ---------- Hero: Schlagzeile voll breit, darunter Text links, Film rechts ---------- */
+
+.hero-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(32px, 4vw, 56px);
+  /* Gleiche Höhe statt bündigem Anfang: der Film hat ein festes Seitenverhältnis
+     und ist damit immer höher als die Copy. Über die Breite ließe sich das erst
+     bei einem Film von rund 335 px angleichen — dort wären seine Beschriftungen
+     nicht mehr lesbar. Also füllt die Copy die Höhe aus. */
+  align-items: stretch;
+}
+/* Beide Spalten mit gleicher, schmaler Basis — so bleiben sie bis hinunter zu
+   rund 900 px nebeneinander. Der zusätzliche Platz auf breiten Schirmen geht
+   an die Copy, weil der Film gedeckelt ist: dort passen dann die drei
+   Schaltflächen nebeneinander, statt dass eine allein umbricht. */
+.hero-col-copy {
+  flex: 1 1 420px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* Der Textblock verteilt sich über die volle Spaltenhöhe: die Schaltflächen
+   und die Micro-Zeile sitzen dadurch auf der Unterkante des Films auf,
+   statt eine leere Fläche unter sich zu lassen. */
+.hero-col-copy .hero-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-lede-group .lede + .lede { margin-top: 10px; }
+
+/* Der Film hat ein festes Seitenverhältnis und ist damit immer höher als zwei
+   kurze Absätze. Über die Spaltenbreite ließ sich das nicht angleichen — ein
+   breiterer Film wird auch höher, die Lücke wuchs dadurch. Was hilft, ist ein
+   schmaleres Satzmaß: mehr Zeilen bei kleinerer Schrift. */
+.hero-lede-group .lede {
+  font-size: clamp(19px, 1.6vw, 23px);
+  /* Schmaler als die 58ch der übrigen Lede: auf breiten Schirmen wird die
+     Copy-Spalte sonst so breit, dass der Text zu wenige Zeilen bekommt und
+     unter den Absätzen eine Lücke aufreißt. */
+  max-width: 38ch;
+}
+/* 465px ist die Schwelle, an der die Filmspalte genauso hoch wird wie die
+   Copy-Spalte (gemessen bei 1500px Breite, Seitenverhältnis 16:10). Darunter
+   bestimmt die Copy die Höhe des Hero — der Film wächst dort, ohne etwas zu
+   kosten. Darüber wird er zum Begrenzer: der Hero wird höher, die Trust-Leiste
+   rutscht aus dem Bild und zwischen Absätzen und Schaltflächen reißt eine
+   Lücke auf. Deshalb genau hier deckeln. */
+.hero-col-film {
+  flex: 1 1 420px;
+  min-width: 0;
+  max-width: 465px;
+}
+
+/* Beide Spalten setzen unter der Trennlinie auf derselben Höhe an:
+   links über das padding-top von .hero-body, rechts über dieses hier. */
+.hero-col-film { padding-top: 14px; }
+.hero-col-film .zb-rubric-row { margin-bottom: 18px; }
+
+/* Unterhalb der Tablet-Schwelle steht der Film unter dem Text. Er bleibt
+   sichtbar, wird aber nicht breiter als nötig — bei kleiner Darstellung sind
+   die Beschriftungen im Film ohnehin nur noch Struktur, nicht Text. */
+@media (max-width: 900px) {
+  .hero-col-film { flex: 1 1 100%; max-width: 560px; }
+}

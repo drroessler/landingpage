@@ -6,7 +6,8 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+    // api/_lib/fonts.ts ist erzeugt (npm run fonts) und enthält Base64-Schriftdaten
+  globalIgnores(['dist', 'api/_lib/fonts.ts']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

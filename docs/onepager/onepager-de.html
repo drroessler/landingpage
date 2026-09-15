@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>NarraTec — Die Methode</title>
+<style>
+/*__FONTS__*/
+
+:root{
+  --paper:#FAF8F5; --paper-2:#F4F1EC;
+  --ink:#14110D; --ink-2:#35332D; --ink-3:#605D59;
+  --rule:#D6D4D0; --rule-strong:#A7A49F;
+  --accent:#BA2B2E; --accent-ink:#83000D; --accent-wash:#FFE7E4;
+  --on-ink:#E7E4DF; --on-ink-2:#C6C4BE; --on-ink-3:#A7A49F;
+  --on-ink-rule:#504D47; --accent-on-ink:#F07F77;
+  --f-display:"Instrument Serif","Times New Roman",Georgia,serif;
+  --f-sans:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+}
+
+@page{ size:A4; margin:0; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ background:var(--paper); }
+body{
+  font-family:var(--f-sans); color:var(--ink);
+  font-size:7.8pt; line-height:1.42;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  font-feature-settings:"ss01","cv11";
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+img,svg{ display:block; max-width:100%; }
+
+.page{
+  position:relative; width:210mm; height:296.8mm; overflow:hidden;
+  padding:9mm 13mm 6mm; background:var(--paper);
+  display:flex; flex-direction:column;
+}
+.page + .page{ page-break-before:always; }
+
+/* ---------- Primitive ---------- */
+.rule-strong{ height:0; border-top:.7pt solid var(--ink); }
+
+.rubric{
+  font-family:var(--f-mono); font-size:6pt; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3);
+  display:flex; align-items:center; gap:6px; white-space:nowrap;
+}
+.rubric::before{ content:""; width:13px; height:.6pt; background:var(--ink-3); flex:none; }
+.rubric b{ color:var(--accent); font-weight:500; }
+
+h2{
+  font-family:var(--f-display); font-weight:400;
+  font-size:13.5pt; line-height:1.05; letter-spacing:-.01em;
+}
+h2 em{ color:var(--accent-ink); font-style:italic; }
+.lede{ color:var(--ink-2); font-size:7.8pt; line-height:1.46; }
+
+/* Kopf einer Sektion: Rubrik links, Schlagzeile rechts */
+.shead{ display:flex; align-items:flex-end; justify-content:space-between; gap:10mm; }
+.shead h2{ text-align:right; }
+
+/* ---------- Impressum-Kopf ---------- */
+.mast{ display:flex; align-items:baseline; justify-content:space-between; padding-bottom:2.6mm; }
+.mark{ display:flex; align-items:baseline; gap:7px; }
+.mark .wm{ font-family:var(--f-display); font-size:14pt; letter-spacing:-.015em; line-height:1; }
+.mark .wm span{ color:var(--accent); }
+.mark .tag,.mast .right{ font-family:var(--f-mono); font-size:5.6pt; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-3); }
+.mast .right{ text-align:right; line-height:1.5; }
+
+/* ---------- Hero ---------- */
+.hero{ padding:3.8mm 0 0; }
+.hero h1{
+  font-family:var(--f-display); font-weight:400; font-size:21pt; line-height:1.03;
+  letter-spacing:-.018em; margin:2mm 0 2.2mm;
+}
+.hero h1 em{ font-style:italic; color:var(--accent-ink); }
+.hero .lede{ max-width:146mm; font-size:7.9pt; }
+.hero .close{ margin-top:1.2mm; font-weight:600; font-size:8.1pt; }
+
+.trust{ display:grid; grid-template-columns:repeat(3,1fr); margin-top:3.4mm;
+        border-top:.4pt solid var(--rule); border-bottom:.4pt solid var(--rule); }
+.trust div{ padding:1.8mm 5mm 1.8mm 0; font-size:7.1pt; color:var(--ink-2); line-height:1.38; }
+.trust div + div{ border-left:.4pt solid var(--rule); padding-left:5mm; }
+.trust b{ color:var(--accent-ink); font-style:italic; font-weight:400; }
+
+/* ---------- Sektionen ---------- */
+.band{ padding-top:3mm; }
+
+.findings{ display:grid; grid-template-columns:repeat(3,1fr); gap:5mm; margin-top:2.4mm; }
+.finding .k{ font-family:var(--f-mono); font-size:5.6pt; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+.finding .t{ font-weight:600; font-size:7.6pt; margin:.7mm 0 .6mm; }
+.finding .b{ color:var(--ink-2); font-size:7pt; line-height:1.36; }
+.finding .c{ margin-top:1mm; font-family:var(--f-mono); font-size:5.6pt; letter-spacing:.05em; color:var(--ink-3); }
+
+.stat-note{
+  margin-top:2.2mm; padding:1.6mm 3mm; background:var(--paper-2);
+  border-left:1.4pt solid var(--accent); font-size:7pt; color:var(--ink-2); line-height:1.38;
+}
+.stat-note b{ font-family:var(--f-display); font-size:10.5pt; color:var(--ink); letter-spacing:-.01em; }
+.stat-note i{ font-style:italic; }
+
+/* ---------- Methode ---------- */
+.method{ margin-top:3mm; }
+.method .shead h2{ max-width:112mm; }
+.flow{ margin:2mm 0 2.2mm; }
+
+.phases{ display:grid; grid-template-columns:repeat(4,1fr); border-top:.7pt solid var(--ink); }
+.phase{ padding:2.2mm 4mm 0 0; }
+.phase + .phase{ border-left:.4pt solid var(--rule); padding-left:4mm; }
+.phase .n{ font-family:var(--f-display); font-size:11pt; color:var(--accent); line-height:1; }
+.phase .t{ font-weight:600; font-size:7.8pt; margin:1mm 0 .4mm; }
+.phase .s{ font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-bottom:1.3mm; line-height:1.35; }
+.phase .b{ color:var(--ink-2); font-size:7pt; line-height:1.36; }
+.phase .b b{ color:var(--ink); font-weight:600; }
+.phase .meta{ margin-top:1.5mm; padding-top:1.2mm; border-top:.4pt solid var(--rule); font-size:6.3pt; color:var(--ink-3); line-height:1.35; }
+.phase .meta em{ font-style:normal; color:var(--ink-2); font-weight:600; }
+
+/* ---------- Feedback-Schleife ---------- */
+.cycle{ margin-top:3.2mm; background:var(--ink); color:var(--on-ink); padding:3mm 4.5mm 3.2mm; }
+.cycle-head{ display:flex; align-items:baseline; justify-content:space-between; gap:8mm;
+             margin-bottom:2mm; padding-bottom:1.7mm; border-bottom:.4pt solid var(--on-ink-rule); }
+.cycle-head .l{ display:flex; align-items:baseline; gap:5px; }
+.cycle-head .rot{ font-size:9pt; color:var(--accent-on-ink); line-height:1; }
+.cycle-head h3{ font-family:var(--f-display); font-weight:400; font-size:12pt; letter-spacing:-.01em; }
+.cycle-head h3 em{ font-style:italic; color:var(--accent-on-ink); }
+.cycle-head .r{ font-family:var(--f-mono); font-size:5.6pt; letter-spacing:.11em; text-transform:uppercase; color:var(--on-ink-3); text-align:right; line-height:1.5; }
+.cycle-steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:4.5mm; }
+.cstep .h{ font-family:var(--f-mono); font-size:5.8pt; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-on-ink); margin-bottom:.9mm; }
+.cstep .b{ font-size:6.9pt; line-height:1.36; color:var(--on-ink-2); }
+.cstep .b b{ color:var(--on-ink); font-weight:600; }
+.cycle-foot{ margin-top:2mm; padding-top:1.5mm; border-top:.4pt solid var(--on-ink-rule);
+             font-size:6.3pt; color:var(--on-ink-3); line-height:1.4; }
+.cycle-foot em{ font-style:normal; color:var(--on-ink); }
+
+/* ---------- Seitenfuß ---------- */
+.pfoot{ margin-top:auto; padding-top:2.2mm; border-top:.4pt solid var(--rule);
+        display:flex; justify-content:space-between; align-items:baseline;
+        font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+
+/* ---------- Seite 2: Nachverfolgbarkeit ---------- */
+.chain{ display:grid; grid-template-columns:repeat(6,1fr); margin-top:2.2mm;
+        border-top:.7pt solid var(--ink); border-bottom:.4pt solid var(--rule); }
+.link{ padding:2mm 2.6mm 2.4mm 0; display:flex; flex-direction:column; }
+.link + .link{ border-left:.4pt solid var(--rule); padding-left:2.6mm; }
+.link .step{ font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.09em; color:var(--accent); margin-bottom:.8mm; }
+.link .t{ font-weight:600; font-size:6.8pt; line-height:1.22; margin-bottom:.8mm; }
+.link .b{ font-size:6.4pt; line-height:1.34; color:var(--ink-2); }
+.link .id{ align-self:flex-start; margin-top:auto; font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.05em;
+           background:var(--accent-wash); color:var(--accent-ink); padding:.4mm 1.1mm; }
+
+/* ---------- Seite 2: Belege ---------- */
+.cases{ display:grid; grid-template-columns:repeat(3,1fr); gap:5mm; margin-top:2.2mm; }
+.case .tag{ font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+.case .t{ font-family:var(--f-display); font-size:10pt; line-height:1.08; margin:.9mm 0 1.1mm; }
+.case .b{ font-size:6.8pt; line-height:1.34; color:var(--ink-2); }
+.case .stats{ display:flex; gap:4mm; margin-top:1.6mm; padding-top:1.4mm; border-top:.4pt solid var(--rule); }
+.case .stats .v{ font-family:var(--f-display); font-size:11pt; color:var(--accent-ink); letter-spacing:-.01em; line-height:1; }
+.case .stats .v small{ font-family:var(--f-sans); font-size:5.8pt; letter-spacing:0; color:var(--ink-2); }
+.case .stats .k{ font-family:var(--f-mono); font-size:5pt; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-3); margin-top:.6mm; }
+
+.pubs{ margin-top:2.4mm; border-top:.4pt solid var(--rule); padding-top:1.8mm;
+       display:grid; grid-template-columns:40mm 1fr; gap:6mm; align-items:start; }
+.pubs .lbl .t{ font-family:var(--f-display); font-size:10pt; line-height:1.1; }
+.pubs .lbl .s{ font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:.9mm; line-height:1.5; }
+.pubs ol{ list-style:none; display:grid; gap:1mm; }
+.pubs li{ display:grid; grid-template-columns:6mm 1fr 22mm; gap:2.5mm; align-items:baseline;
+          font-size:6.7pt; color:var(--ink-2); line-height:1.34; }
+.pubs li .num{ font-family:var(--f-mono); font-size:5.4pt; color:var(--accent); }
+.pubs li .ti{ color:var(--ink); font-weight:600; }
+.pubs li .st{ font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3); text-align:right; }
+
+/* ---------- Seite 2: Leistungen ---------- */
+.packs{ display:grid; grid-template-columns:repeat(4,1fr); margin-top:2.2mm; border-top:.7pt solid var(--ink); }
+.pack{ padding:2mm 4mm 0 0; }
+.pack + .pack{ border-left:.4pt solid var(--rule); padding-left:4mm; }
+.pack .badge{ font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+.pack .t{ font-weight:600; font-size:7.6pt; margin:.8mm 0 .8mm; }
+.pack .b{ font-size:6.6pt; line-height:1.34; color:var(--ink-2); }
+.pack .p{ margin-top:1.4mm; padding-top:1.1mm; border-top:.4pt solid var(--rule);
+          font-family:var(--f-mono); font-size:5.8pt; letter-spacing:.05em; color:var(--ink); }
+.note{ margin-top:1.5mm; font-size:6.4pt; color:var(--ink-3); line-height:1.4; }
+
+/* ---------- Seite 2: Grenzen + Team ---------- */
+.split{ display:grid; grid-template-columns:1fr 64mm; gap:8mm; margin-top:2.6mm; align-items:start; }
+.limits{ margin-top:2.4mm; }
+.limits li{ list-style:none; display:grid; grid-template-columns:6mm 1fr; gap:1mm;
+            font-size:6.8pt; line-height:1.38; color:var(--ink-2); padding:1.3mm 0;
+            border-top:.4pt solid var(--rule); }
+.limits li:first-child{ border-top:.7pt solid var(--ink); }
+.limits li .n{ font-family:var(--f-mono); font-size:5.4pt; color:var(--accent); }
+.limits li b{ color:var(--ink); font-weight:600; }
+
+.team{ margin-top:2.4mm; border-top:.7pt solid var(--ink); }
+.person{ display:grid; grid-template-columns:10mm 1fr; gap:3mm; align-items:start; padding:1.5mm 0; }
+.person + .person{ border-top:.4pt solid var(--rule); }
+.person img{ width:10mm; height:10mm; border-radius:50%; object-fit:cover; filter:grayscale(1) contrast(1.04); }
+.person .nm{ font-weight:600; font-size:7.4pt; }
+.person .rl{ font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); margin:.4mm 0 .7mm; }
+.person .bi{ font-size:6.4pt; line-height:1.36; color:var(--ink-2); }
+
+/* ---------- Seite 2: Abschluss-CTA ---------- */
+.cta{ margin-top:auto; background:var(--ink); color:var(--on-ink); padding:3.8mm 5.5mm;
+      display:grid; grid-template-columns:1fr 32mm; gap:8mm; align-items:center; }
+.cta .rubric{ color:var(--on-ink-3); }
+.cta .rubric::before{ background:var(--on-ink-3); }
+.cta h2{ font-size:15pt; line-height:1.04; margin:1.6mm 0 1.4mm; text-align:left; }
+.cta h2 em{ color:var(--accent-on-ink); }
+.cta .l{ font-size:7.4pt; color:var(--on-ink-2); line-height:1.4; max-width:110mm; }
+.cta .rows{ margin-top:2.4mm; padding-top:1.9mm; border-top:.4pt solid var(--on-ink-rule);
+            display:grid; grid-template-columns:auto auto; gap:1mm 7mm; justify-content:start; }
+.cta .rows .k{ font-family:var(--f-mono); font-size:5.4pt; letter-spacing:.11em; text-transform:uppercase; color:var(--on-ink-3); align-self:center; }
+.cta .rows .v{ font-size:7.4pt; color:var(--on-ink); }
+.cta .rows .v b{ color:var(--accent-on-ink); font-weight:500; }
+.cta .micro{ margin-top:2mm; font-family:var(--f-mono); font-size:5.6pt; letter-spacing:.07em; color:var(--on-ink-3); }
+.qr .box{ background:var(--paper); padding:2.2mm; }
+.qr .box svg{ width:100%; height:auto; }
+.qr .cap{ margin-top:1.6mm; font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.08em;
+          text-transform:uppercase; color:var(--on-ink-3); line-height:1.5; text-align:center; }
+.qr .cap b{ color:var(--on-ink); display:block; font-weight:500; }
+
+.legal{ padding-top:1.9mm; margin-top:2.2mm; border-top:.4pt solid var(--rule);
+        display:flex; justify-content:space-between; gap:6mm;
+        font-family:var(--f-mono); font-size:5.2pt; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ SEITE 1 ══════════════════════════ -->
+<section class="page">
+
+  <header class="mast">
+    <div class="mark">
+      <div class="wm">Narra<span>Tec</span></div>
+      <div class="tag">Decision &amp; Execution Engineering</div>
+    </div>
+    <div class="right">Die Methode — vollständiger Überblick<br>Seite 1 von 2</div>
+  </header>
+  <div class="rule-strong"></div>
+
+  <div class="hero">
+    <div class="rubric"><b>01</b>&nbsp;Für Entscheider in komplexen IT-Vorhaben</div>
+    <h1>Vom Problem zur <em>Entscheidung.</em><br>Von der Entscheidung in die <em>Umsetzung.</em></h1>
+    <p class="lede">Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten und
+      wissenschaftlich publizierten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu
+      Arbeitspaketen, leistungsfähigen Teams und einer Grundlage, die mitlernt.</p>
+    <p class="close">Wir befähigen Ihre Leute, statt sie zu ersetzen.</p>
+
+    <div class="trust">
+      <div>In mehreren Vorhaben im <b>DAX-Konzern</b> erprobt — vom Einzelteam bis zur Konzernmarke.</div>
+      <div>Sie beauftragen uns zum <b>Festpreis</b> — keine Tagessätze, keine offene Rechnung.</div>
+      <div>Peer-reviewed publiziert in <b>HMD — Praxis der Wirtschaftsinformatik</b> (Springer).</div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="shead">
+      <div class="rubric"><b>02</b>&nbsp;Ist-Zustand</div>
+      <h2>Strategien scheitern selten an der Konzeption —<br>sondern <em>am Übergang.</em></h2>
+    </div>
+    <div class="findings">
+      <div class="finding">
+        <div class="k">Befund A</div>
+        <div class="t">Entscheidungen ohne Tiefe</div>
+        <div class="b">Teams diskutieren Lösungen, bevor das Problem verstanden ist. Folien machen schwierige Fragen
+          flacher, als sie sind: Annahmen bleiben unausgesprochen, Widersprüche unsichtbar.</div>
+        <div class="c">→ Scheinentscheidungen statt Klarheit</div>
+      </div>
+      <div class="finding">
+        <div class="k">Befund B</div>
+        <div class="t">Übergabe ohne System</div>
+        <div class="b">Der Weg von der Entscheidung zu den Aufgaben der Teams bleibt dem Zufall überlassen. Faktenbasis
+          und das Warum gehen verloren — die Teams setzen um, ohne das Problem zu kennen.</div>
+        <div class="c">→ Investitionen ohne Wirkung</div>
+      </div>
+      <div class="finding">
+        <div class="k">Befund C</div>
+        <div class="t">Dokumente ohne Halbwertszeit</div>
+        <div class="b">Nach der Freigabe altert die Entscheidungsgrundlage. Erkenntnisse aus der Umsetzung fließen nicht
+          zurück — und der Informationsbedarf wird wieder mit Statusfolien gedeckt.</div>
+        <div class="c">→ Steuerung auf überholten Annahmen</div>
+      </div>
+    </div>
+    <div class="stat-note">
+      <b>50–90 %</b> — so hoch beziffern verbreitete Schätzungen den Anteil strategischer Initiativen, die scheitern.
+      Die empirische Basis dieser Spanne ist umstritten; der zugrunde liegende <i>Execution Gap</i> zwischen
+      strategischer Absicht und operativer Realität ist es nicht.
+    </div>
+  </div>
+
+  <div class="method">
+    <div class="shead">
+      <div class="rubric"><b>03</b>&nbsp;Die Methode</div>
+      <h2>Ein <em>durchgängiges</em> System — von der Ursache<br>bis zum <em>prüfbaren</em> Ergebnis.</h2>
+    </div>
+
+    <!--__FLOW__-->
+
+    <div class="phases">
+      <div class="phase">
+        <div class="n">01</div>
+        <div class="t">Analysieren</div>
+        <div class="s">Root-Cause-Analyse · M-T-O</div>
+        <div class="b">Ein kleines Kernteam aus Ihren Fachleuten analysiert den Ist-Zustand entlang der Perspektiven
+          <b>Mensch, Technik, Organisation</b>. Ursachen statt Symptome — Lösungen sind erst erlaubt, wenn das Problem
+          verstanden ist.</div>
+        <div class="meta"><em>Rollen:</em> Narrative Owner, Kernteam (ca. 5)<br><em>Start:</em> moderierter
+          Kick-off-Workshop</div>
+      </div>
+      <div class="phase">
+        <div class="n">02</div>
+        <div class="t">Entscheiden</div>
+        <div class="s">Das Narrativ · Freigabe</div>
+        <div class="b">Statt Folien ein Dokument mit fester Gliederung: Motivation → Ist-Zustand → abgeleitete
+          Anforderungen → Zielbild → nächste Schritte. Alle lesen still, kommentieren belegbar. Dann entscheidet das
+          Management.</div>
+        <div class="meta"><em>Artefakt:</em> Narrativ v1.0, rund sechs Seiten<br><em>Regel:</em> keine Lösung ohne
+          referenzierte Anforderung</div>
+      </div>
+      <div class="phase">
+        <div class="n">03</div>
+        <div class="t">Übersetzen</div>
+        <div class="s">Narrative-to-Action · Backlog</div>
+        <div class="b">Drei Indikatoren — Stakeholder-Heterogenität, organisatorische Durchdringung,
+          Lösungsunsicherheit — bestimmen den Pfad: direkt oder zweistufig über Fokus-Narrative. Jeder Lösungsbaustein
+          wird ein Epic, jede Anforderung ein Akzeptanzkriterium.</div>
+        <div class="meta"><em>Gate:</em> „Ready for Backlog“<br><em>Übergabe:</em> Narrative Walkthrough, moderiert vom
+          Narrative Steward</div>
+      </div>
+      <div class="phase">
+        <div class="n">04</div>
+        <div class="t">Liefern</div>
+        <div class="s">Arbeitsstruktur · Rhythmus</div>
+        <div class="b">So viel Struktur wie nötig, so wenig wie möglich: Die Teams entscheiden selbst, wie sie arbeiten
+          — vereinheitlicht wird nur die Abstimmung. Ein fester Rhythmus aus Planung und Ergebnisvorführung macht
+          Fortschritt prüfbar.</div>
+        <div class="meta"><em>Verantwortung:</em> ab dem Gate beim Product Owner<br><em>Sichtbar:</em>
+          Mittelverwendung und Fortschritt</div>
+      </div>
+    </div>
+
+    <div class="cycle">
+      <div class="cycle-head">
+        <div class="l">
+          <span class="rot">↺</span>
+          <h3>05 &nbsp;Lernen — der <em>Narrative Feedback Cycle</em></h3>
+        </div>
+        <div class="r">Das Narrativ als lernendes Artefakt —<br>nicht als eingefrorene Momentaufnahme</div>
+      </div>
+      <div class="cycle-steps">
+        <div class="cstep">
+          <div class="h">A — Erfassen</div>
+          <div class="b">Erkenntnisse aus Reviews, Metriken, Architektur&shy;entscheidungen und Stakeholder-Feedback
+            werden als <b>Learning Record</b> notiert: Beobachtung, Evidenz, Quelle, betroffene Annahme.</div>
+        </div>
+        <div class="cstep">
+          <div class="h">B — Bewerten</div>
+          <div class="b">Vier Typen mit abgestufter Folge: <b>bestätigend</b> (Vermerk), <b>präzisierend</b> (Minor),
+            <b>korrigierend</b> (Major), <b>invalidierend</b> (Richtungsentscheidung des Managements).</div>
+        </div>
+        <div class="cstep">
+          <div class="h">C — Fortschreiben</div>
+          <div class="b">Versionierung wie in der Software: 1.0 → 1.1 → 2.0, jede Fassung mit
+            <b>Änderungsvermerk</b>, ältere archiviert. Major-Versionen im <b>Delta-Read-out</b> — man liest nur das
+            Neue.</div>
+        </div>
+        <div class="cstep">
+          <div class="h">D — Rückkoppeln</div>
+          <div class="b">Abgleich mit dem Backlog: geänderte Anforderungen werden zu Akzeptanzkriterien. Das
+            <b>Annahmenregister</b> (AN-01, AN-02 …) wird zum Frühwarnsystem für wacklige Bereiche.</div>
+        </div>
+      </div>
+      <div class="cycle-foot">
+        <em>Aufwand:</em> wenige Minuten je Learning Record, wenige Stunden je Bewertungszyklus — gekoppelt an
+        bestehende agile Kadenzen, ohne zusätzliche Regeltermine und <em>ohne neue Rollen.</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="pfoot">
+    <div>NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden</div>
+    <div>www.narratec.io &nbsp;·&nbsp; 01 / 02</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SEITE 2 ══════════════════════════ -->
+<section class="page">
+
+  <header class="mast">
+    <div class="mark">
+      <div class="wm">Narra<span>Tec</span></div>
+      <div class="tag">Decision &amp; Execution Engineering</div>
+    </div>
+    <div class="right">Belege · Leistungen · nächster Schritt<br>Seite 2 von 2</div>
+  </header>
+  <div class="rule-strong"></div>
+
+  <div class="band">
+    <div class="shead">
+      <div class="rubric"><b>04</b>&nbsp;Nachverfolgbarkeit</div>
+      <h2>Von der Ursache bis ins Backlog — und <em>wieder zurück.</em></h2>
+    </div>
+    <div class="chain">
+      <div class="link">
+        <div class="step">01 IST-ZUSTAND</div>
+        <div class="t">Der Befund</div>
+        <div class="b">Freigabe läuft per E-Mail, Durchlaufzeit mehrere Wochen. Harmlose Standardfälle und rechtlich
+          heikle Fälle durchlaufen denselben Prozess.</div>
+      </div>
+      <div class="link">
+        <div class="step">02 ANFORDERUNG</div>
+        <div class="t">Was gelten muss</div>
+        <div class="b">Standardfälle ohne manuelle Einzelfallprüfung freigeben; rechtlich kritische Fälle weiterhin
+          durch Legal.</div>
+        <div class="id">A-03</div>
+      </div>
+      <div class="link">
+        <div class="step">03 LÖSUNGSBAUSTEIN</div>
+        <div class="t">Automatisierte Freigabe</div>
+        <div class="b">Sofortfreigabe über eine Lizenz-Whitelist, Routing kritischer Fälle an Legal. Benannt nach dem
+          Ergebnis, nicht der Tätigkeit.</div>
+        <div class="id">→ A-03</div>
+      </div>
+      <div class="link">
+        <div class="step">04 BACKLOG</div>
+        <div class="t">Feature + Kriterien</div>
+        <div class="b">Die Anforderung wird zum Akzeptanzkriterium: Whitelist-Lizenz → Freigabe ohne Prüfung; kritische
+          Lizenz → Routing; jede Entscheidung dokumentiert.</div>
+        <div class="id">Feature ← A-03</div>
+      </div>
+      <div class="link">
+        <div class="step">05 ERKENNTNIS</div>
+        <div class="t">Die Messung widerspricht</div>
+        <div class="b">Review und Prozessmetrik zeigen: nur 54 % der Anfragen sind regelbasiert freigabefähig, nicht die
+          erwartete Mehrheit. Annahme widerlegt.</div>
+        <div class="id">LR-07 → AN-02</div>
+      </div>
+      <div class="link">
+        <div class="step">06 FORTSCHREIBUNG</div>
+        <div class="t">Narrativ v2.0</div>
+        <div class="b">Logikkette angepasst, Baustein um eine Vorprüfung erweitert, Backlog abgeglichen —
+          Delta-Read-out mit allen Beteiligten in 30 Minuten.</div>
+        <div class="id">v1.0 → v2.0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="shead">
+      <div class="rubric"><b>05</b>&nbsp;Belege aus der Praxis</div>
+      <h2>Keine Behauptungen. <em>Belegte</em> Praxis.</h2>
+    </div>
+    <div class="cases">
+      <div class="case">
+        <div class="tag">Fall 1 · Vollständiger Anwendungsfall</div>
+        <div class="t">Die Digitalisierung einer Konzernmarke</div>
+        <div class="b">Analyse, ein strategisches Narrativ, je Handlungsfeld ein Fokus-Narrativ, Umsetzung im festen
+          Rhythmus. Planung und Ergebnisvorführung alle drei Monate vor der gesamten Initiative.</div>
+        <div class="stats">
+          <div><div class="v">15</div><div class="k">Produktteams</div></div>
+          <div><div class="v">&gt;50</div><div class="k">Stakeholder</div></div>
+          <div><div class="v">3<small> Mon.</small></div><div class="k">Rhythmus</div></div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="tag">Fall 2 · Klein, aber vollständig</div>
+        <div class="t">Die Freigabe offener Software-Bausteine</div>
+        <div class="b">Dieselbe Methode im kleinen Maßstab, umgesetzt von einem einzigen Team: rund 20 Beteiligte aus
+          Entwicklung, Rechtsprüfung und Fachstellen, direkter Pfad ins Backlog.</div>
+        <div class="stats">
+          <div><div class="v">2<small> Tage</small></div><div class="k">statt 6 Wochen</div></div>
+          <div><div class="v">~20</div><div class="k">Beteiligte</div></div>
+          <div><div class="v">14<small> Tage</small></div><div class="k">Lieferung</div></div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="tag">Fall 3 · Multi-Partner</div>
+        <div class="t">Sechs Organisationen, ein Narrativ</div>
+        <div class="b">Konzern, Forschung und junge Unternehmen finden über ein gemeinsames Narrativ zu einer
+          Arbeitsweise. Hardware und Software entstehen zusammen. Einzelheiten sind vertraulich.</div>
+        <div class="stats">
+          <div><div class="v">6</div><div class="k">Organisationen</div></div>
+          <div><div class="v">HW<small> + SW</small></div><div class="k">gemeinsam</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pubs">
+      <div class="lbl">
+        <div class="t">Wissenschaftlich fundiert, nicht nur behauptet.</div>
+        <div class="s">HMD — Praxis der Wirtschafts&shy;informatik · Springer</div>
+      </div>
+      <ol>
+        <li><span class="num">I</span><span><span class="ti">Evidenzbasierte IT-Entscheidungen durch strukturierte
+          Narrative.</span> Vorgehensmodell mit Rollen, Artefakten, Aktivitäten; Fallstudie über drei Anwendungsfälle.
+          DOI 10.1365/s40702-025-01234-z</span><span class="st">Peer-reviewed</span></li>
+        <li><span class="num">II</span><span><span class="ti">Narrative-to-Action.</span> Überführung analytischer
+          Narrative in agile Backlog-Items: Pfadwahl, Mapping, „Ready for Backlog“-Gate,
+          Walkthrough.</span><span class="st">Im Erscheinen</span></li>
+        <li><span class="num">III</span><span><span class="ti">Der Narrative Feedback Cycle.</span> Narrative als
+          lernende Artefakte: Erkenntnistypologie, Annahmenregister,
+          Versionierung.</span><span class="st">Manuskript</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="shead">
+      <div class="rubric"><b>06</b>&nbsp;Leistungen</div>
+      <h2>Feste Pakete. <em>Feste Ergebnisse.</em></h2>
+    </div>
+    <div class="packs">
+      <div class="pack">
+        <div class="badge">Einstieg</div>
+        <div class="t">Narrative Sprint</div>
+        <div class="b">Eine echte, anstehende Entscheidung Ihres Hauses wird mit Ihren Fachleuten zum fertigen Narrativ
+          geführt — angeleitete Arbeitsrunden, Lesephase, Entscheidungstermin.</div>
+        <div class="p">Festpreis · mehrere Wochen</div>
+      </div>
+      <div class="pack">
+        <div class="badge">Umsetzung</div>
+        <div class="t">Struktur-Sprint</div>
+        <div class="b">Bestandsaufnahme Ihrer heutigen Zusammenarbeit, dann ein Bauplan für Rhythmus, Rollen und
+          Schnittstellen. Sie bauen selbst auf, wir zeigen wie.</div>
+        <div class="p">Festpreis · Bauplan</div>
+      </div>
+      <div class="pack">
+        <div class="badge">Ausbildung</div>
+        <div class="t">Anwender-Ausbildung</div>
+        <div class="b">Ihre Leute lernen an eigenen Fällen: erst Narrative schreiben und steuern („Narrative Owner“),
+          im Aufbaukurs die Übersetzung ins Backlog („Narrative Steward“).</div>
+        <div class="p">Festpreis je Teilnehmer:in</div>
+      </div>
+      <div class="pack">
+        <div class="badge">Verstetigung</div>
+        <div class="t">Lizenz &amp; Begleitung</div>
+        <div class="b">Nutzungsrecht für Ihre ausgebildeten Anwender, feste Sprechstunden, Durchsicht Ihrer Narrative,
+          vierteljährliche Überprüfung der Strukturen.</div>
+        <div class="p">Jahreslizenz · monatlich begleitet</div>
+      </div>
+    </div>
+    <div class="note">Zuschnitt und Festpreis auf Anfrage; Einstieg über den Narrative Sprint. — Zwischen
+      Problemidentifikation und „Ready for Backlog“ lagen bisher vier bis zwölf Wochen.</div>
+  </div>
+
+  <div class="split">
+    <div>
+      <div class="rubric"><b>07</b>&nbsp;Wann wir absagen</div>
+      <ul class="limits">
+        <li><span class="n">01</span><span><b>Sie haben bereits entschieden und suchen Legitimation.</b> Unsere Analyse
+          kann der internen Entscheidung widersprechen.</span></li>
+        <li><span class="n">02</span><span><b>Die Umsetzung läuft bereits.</b> Wir arbeiten vor der
+          Investitionsentscheidung — danach stiften wir eher Reibung als Hebel.</span></li>
+        <li><span class="n">03</span><span><b>Sie suchen jemanden, der den Job für Sie macht.</b> Wir führen die
+          Analyse, die Substanz kommt aus Ihrem Haus.</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="rubric"><b>08</b>&nbsp;Wer dahinter steht</div>
+      <div class="team">
+        <div class="person">
+          <img src="__PHOTO_R__" alt="">
+          <div>
+            <div class="nm">Dr. Richard Rößler</div>
+            <div class="rl">Gründer · Entwicklung der Methode</div>
+            <div class="bi">Technical Lead Data &amp; AI Delivery in einem DAX-Konzern; über zehn Jahre Steuerung
+              komplexer IT-Vorhaben. Entwickler und Erstautor der Methodik.</div>
+          </div>
+        </div>
+        <div class="person">
+          <img src="__PHOTO_W__" alt="">
+          <div>
+            <div class="nm">Prof. Dr. Uwe Wieland</div>
+            <div class="rl">Partner · Lehre &amp; Beirat</div>
+            <div class="bi">Professor für Wirtschaftsinformatik, acatech Forschungsbeirat Industrie 4.0, Aufsichtsrat
+              DFKI, Gründer der Initiative matchIO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div>
+      <div class="rubric">Nächster Schritt</div>
+      <h2>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</h2>
+      <p class="l">Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife.
+        Am Ende wissen Sie, ob eine Zusammenarbeit der richtige Schritt ist — und wenn nicht, sagen wir das.</p>
+      <div class="rows">
+        <div class="k">Termin</div><div class="v"><b>www.narratec.io</b> — Slot direkt im Kalender wählen</div>
+        <div class="k">E-Mail</div><div class="v">contact@narratec.io</div>
+      </div>
+      <div class="micro">kostenfrei · direkt mit den Gründern · kein Vertrieb · NDA auf Wunsch</div>
+    </div>
+    <div class="qr">
+      <div class="box"><!--__QR__--></div>
+      <div class="cap"><b>Scannen &amp; Termin wählen</b>30 Min · Ihr Kalender</div>
+    </div>
+  </div>
+
+  <div class="legal">
+    <div>NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden · www.narratec.io ·
+      contact@narratec.io</div>
+    <div>02 / 02</div>
+  </div>
+</section>
+
+</body>
+</html>

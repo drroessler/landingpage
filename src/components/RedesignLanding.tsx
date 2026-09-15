@@ -2,6 +2,9 @@ import { type MouseEvent, type CSSProperties, type ReactNode, useState, useEffec
 import { Link } from "react-router-dom";
 import { Layers, Menu, X } from "lucide-react";
 import { useI18n } from "../i18n/LanguageContext";
+import ReifecheckSection from "../reifecheck/ReifecheckSection";
+import MethodFilm from "../hero/MethodFilm";
+import { FILM_DE, FILM_EN } from "../hero/filmCopy";
 import "../redesign.css";
 
 const onJump = (id: string) => (e: MouseEvent) => {
@@ -10,6 +13,7 @@ const onJump = (id: string) => (e: MouseEvent) => {
 };
 
 const BOOK_URL = "https://cal.meetergo.com/richard-rossler/narratec";
+const CHECK_ID = "reifecheck";
 const PAPER_PUBLISHED_URL = "https://link.springer.com/epdf/10.1365/s40702-025-01234-z?sharing_token=2GcSA2NwyHc5ZFVHNLOokX2kjFioqY_JoFJDVSa1602aUYkWxEZ0qDiq0nqKya3TVcFpFlMJ-w6U_3aV089ye1tk2LK8kCB7LXf3vW4rNlkuQzP6Iv71lk5qIUaz2KuVMlxU-loa0RJZ4qvO6c6UaS6fnPhQeXqYPV8neYP5xbM%3D";
 const PAPER_PREREAD_URL = "/Pre-Read%20Narrative%20To%20Action.pdf";
 const hl: CSSProperties = { color: "var(--accent-ink)", fontStyle: "italic" };
@@ -21,10 +25,10 @@ const numRubric = (num: string, label: string): ReactNode => (
 
 const landingDe = {
   cta: {
+    check: "Reifecheck starten",
+    checkNav: "Reifecheck",
     book: "30 Min Erstgespräch buchen",
-    seeMethod: "Methode ansehen",
-    micro: "kostenfrei · direkt mit den Gründern · kein Vertrieb · NDA auf Wunsch",
-    microShort: "30 Min · Termin direkt im Kalender · NDA auf Wunsch",
+    microShort: "neun Fragen · rund vier Minuten · Auswertung als PDF",
     finalMicro: "kostenfrei · Sie wählen den Termin selbst · NDA auf Wunsch",
     mail: { text: "Lieber erst eine Frage stellen?", addr: "contact@narratec.io" },
   },
@@ -36,6 +40,7 @@ const landingDe = {
     { label: "Leistungen", id: "bausteine" },
     { label: "Team", id: "team" },
     { label: "Lehre", id: "lehre" },
+    { label: "Reifecheck", id: "reifecheck" },
   ],
   hero: {
     kicker: numRubric("01", "FÜR ENTSCHEIDER IN KOMPLEXEN IT-VORHABEN"),
@@ -47,11 +52,13 @@ const landingDe = {
     ) as ReactNode,
     lede: "Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten und wissenschaftlich publizierten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
     close: "Wir befähigen Ihre Leute, statt sie zu ersetzen.",
+    filmRubric: (<><span style={{ color: "var(--accent-ink)" }}>Methode</span> in vier Phasen</>) as ReactNode,
+    filmLabel: "Die Methode in vier Phasen: Verstehen — die Ist-Analyse trennt Symptome von Ursachen. Entscheiden — aus der Analyse entsteht ein Narrativ als Entscheidungsvorlage, kommentiert und freigegeben. Übersetzen — die Absätze des Narrativs werden zu Arbeitspaketen mit Zuständigkeit und Prüfkriterium. Liefern — die Pakete durchlaufen eine Arbeitsstruktur von Planung über Umsetzung bis Ergebnis.",
   },
   trust: [
     (<>In mehreren Vorhaben im <span style={hl}>DAX-Konzern</span> erprobt.</>) as ReactNode,
-    (<>Sie beauftragen uns zum <span style={hl}>Festpreis</span> — keine Tagessätze, keine offene Rechnung.</>) as ReactNode,
-    (<>Peer-reviewed publiziert in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer).</>) as ReactNode,
+    (<>Peer-reviewed publiziert in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer Verlag).</>) as ReactNode,
+    (<>Sie beauftragen uns zum <span style={hl}>Festpreis</span>, gern von Anfang an mit <span style={hl}>Geheimhaltungsvereinbarung</span>.</>) as ReactNode,
   ],
   problem: {
     rubric: numRubric("02", "IST-ZUSTAND"),
@@ -176,7 +183,7 @@ const landingDe = {
         <p style={{ margin: "0 0 12px" }}>Richard ist Entwickler der NarraTec-Methodik und seit über zehn Jahren in der Steuerung komplexer IT-Vorhaben tätig — aktuell als Technical Lead für Data & AI Delivery in einem DAX-Konzern, wo er Entscheidungsnarrative in umsetzbare Anforderungen und Arbeitspakete überführt.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf messbarer Entscheidungsqualität: Die Methodik strukturierter Narrative hat er in realen Konzernvorhaben entwickelt, erprobt und wissenschaftlich publiziert — an der Schnittstelle von Managementforschung und Projektpraxis.</p>
         <p style={{ margin: 0 }}>Als technischer Programm-Manager verantwortete er unter anderem eine konzernweite digitale Produktionsplattform (SAFe), die in enger Zusammenarbeit mit Partnern wie Amazon Web Services entstand, sowie Vorhaben zu Open-Source-Compliance und Industrie 4.0 und wirkte an der Neuausrichtung einer Softwareentwicklungsorganisation mit über 500 Mitarbeitenden mit.</p>
-      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX-Konzern", "Konzernweite Produktionsplattform mit AWS (SAFe)", "Publiziert in HMD · Springer"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX-Konzern", "Konzernweite Produktionsplattform mit AWS (SAFe)", "Publiziert in HMD · Springer Verlag"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Lehre & Beirat", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe ist ein sehr praxisorientierter Professor für Wirtschaftsinformatik, Gründer der gemeinnützigen Initiative matchIO und Mitentwickler des Decision & Execution Engineering Ansatzes von NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf der Verwendungsfähigkeit von Technologie und der Frage, wie Unternehmen komplexe Herausforderungen in belastbare Entscheidungen, wirksame Organisationen und nachhaltige Umsetzung überführen können.</p>
@@ -185,7 +192,7 @@ const landingDe = {
     ],
     badgeLabel: "Wissenschaftlich publiziert",
     badgeTitle: (<>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>) as ReactNode,
-    badgeSub: "Peer-reviewed · Springer",
+    badgeSub: "Peer-reviewed · Springer Verlag",
     papers: [
       { status: "Veröffentlicht", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
       { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "In Begutachtung · Manuskript verfügbar", url: PAPER_PREREAD_URL, event: "paper-preread" },
@@ -227,8 +234,19 @@ const landingDe = {
       { n: "03", kicker: "Vollständige Fremdvergabe", t: "Sie suchen jemanden, der den Job für Sie macht.", b: "Der Erfolg von NarraTec beruht auf dem Wissen und dem Enablement Ihrer Experten. Wir führen die Analyse, aber die Substanz kommt aus Ihrem Haus — wer eine Bearbeitung ohne eigene Beteiligung erwartet, ist bei uns nicht richtig." },
     ],
   },
+  reifecheck: {
+    rubric: numRubric("10", "REIFECHECK"),
+    h2: (<>Wie belastbar ist die Grundlage <em>Ihrer</em> Entscheidung?</>) as ReactNode,
+    lede: "Neun Fragen, rund vier Minuten. Sie erhalten eine Auswertung Ihrer Entscheidungsreife als PDF per E-Mail.",
+    note: undefined as string | undefined,
+    start: "Reifecheck starten",
+    resume: "Reifecheck fortsetzen",
+    micro: "neun Fragen · rund vier Minuten · Auswertung als PDF",
+    previewCaption: "Seite 1 von 3 · Ihre Auswertung als PDF",
+    previewAlt: "Vorschau der Auswertung: die erste von drei A4-Seiten mit Einleitung und dem Netzdiagramm der sechs Reifedimensionen.",
+  },
   final: {
-    rubric: "NÄCHSTER SCHRITT",
+    rubric: "ODER DIREKT SPRECHEN",
     h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
     lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
@@ -239,10 +257,10 @@ type LandingCopy = typeof landingDe;
 
 const landingEn: LandingCopy = {
   cta: {
+    check: "Start the readiness check",
+    checkNav: "Readiness check",
     book: "Book a 30-min intro call",
-    seeMethod: "See the method",
-    micro: "free · directly with the founders · no sales · NDA on request",
-    microShort: "30 min · pick a slot in the calendar · NDA on request",
+    microShort: "nine questions · about four minutes · PDF evaluation · German only",
     finalMicro: "free · you pick the time · NDA on request",
     mail: { text: "Prefer to ask a question first?", addr: "contact@narratec.io" },
   },
@@ -254,6 +272,7 @@ const landingEn: LandingCopy = {
     { label: "Packages", id: "bausteine" },
     { label: "Team", id: "team" },
     { label: "Teaching", id: "lehre" },
+    { label: "Readiness check", id: "reifecheck" },
   ],
   hero: {
     kicker: numRubric("01", "FOR DECISION-MAKERS IN COMPLEX IT INITIATIVES"),
@@ -265,11 +284,13 @@ const landingEn: LandingCopy = {
     ),
     lede: "Your experts already have the answers. NarraTec gives them the structure: a proven and academically published path from the question to a well-founded decision — and from there to work packages and capable teams.",
     close: "We enable your people, not replace them.",
+    filmRubric: <><span style={{ color: "var(--accent-ink)" }}>Method</span> in four phases</>,
+    filmLabel: "The method in four phases. Understand — the situation analysis separates symptoms from root causes. Decide — the analysis becomes a narrative that serves as the decision paper, reviewed and approved. Translate — the paragraphs of the narrative turn into work packages with ownership and acceptance criteria. Deliver — the packages move through a working structure from planning via implementation to outcome.",
   },
   trust: [
     <>Proven across several initiatives in a <span style={hl}>DAX-40 corporation</span> — Germany's largest listed companies.</>,
-    <>You engage us at a <span style={hl}>fixed price</span> — no day rates, no open-ended invoice.</>,
-    <>Peer-reviewed and published in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer).</>,
+    <>Peer-reviewed and published in <span style={hl}>HMD — Praxis der Wirtschaftsinformatik</span> (Springer Verlag).</>,
+    <>You engage us at a <span style={hl}>fixed price</span>, with a <span style={hl}>non-disclosure agreement</span> from the outset if you prefer.</>,
   ],
   problem: {
     rubric: numRubric("02", "CURRENT STATE"),
@@ -394,7 +415,7 @@ const landingEn: LandingCopy = {
         <p style={{ margin: "0 0 12px" }}>Richard is the creator of the NarraTec method and has spent more than ten years steering complex IT initiatives — currently as Technical Lead for Data & AI Delivery at a DAX corporation, where he translates decision narratives into actionable requirements and work packages.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on measurable decision quality: he developed the method of structured narratives in real corporate initiatives, proved it in practice, and published it academically — at the intersection of management research and project practice.</p>
         <p style={{ margin: 0 }}>As technical program manager, he was responsible for a group-wide digital production platform (SAFe), built in close partnership with companies such as Amazon Web Services, as well as initiatives on open-source compliance and Industry 4.0, and contributed to the realignment of a software development organization with more than 500 employees.</p>
-      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX corporation", "Group-wide production platform with AWS (SAFe)", "Published in HMD · Springer"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX corporation", "Group-wide production platform with AWS (SAFe)", "Published in HMD · Springer Verlag"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Teaching & Advisory", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe is a highly practice-oriented professor of business informatics, founder of the non-profit initiative matchIO, and co-developer of the Decision & Execution Engineering approach at NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on the usability of technology and the question of how organizations can translate complex challenges into sound decisions, effective structures, and sustainable implementation.</p>
@@ -403,7 +424,7 @@ const landingEn: LandingCopy = {
     ],
     badgeLabel: "Academically published",
     badgeTitle: <>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>,
-    badgeSub: "Peer-reviewed · Springer",
+    badgeSub: "Peer-reviewed · Springer Verlag",
     papers: [
       { status: "Published", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
       { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "Under review · manuscript available", url: PAPER_PREREAD_URL, event: "paper-preread" },
@@ -445,8 +466,19 @@ const landingEn: LandingCopy = {
       { n: "03", kicker: "Full outsourcing expected", t: "You're looking for someone to do the job for you.", b: "NarraTec's success rests on the knowledge and enablement of your experts. We lead the analysis, but the substance comes from your organization — if you expect delivery without your own involvement, we're not the right fit." },
     ],
   },
+  reifecheck: {
+    rubric: numRubric("10", "READINESS CHECK"),
+    h2: <>How solid is the ground under <em>your</em> decision?</>,
+    lede: "Nine questions, about four minutes. You receive an evaluation of your decision readiness as a PDF by email.",
+    note: "The check itself is in German.",
+    start: "Start the readiness check",
+    resume: "Resume the readiness check",
+    micro: "nine questions · about four minutes · PDF evaluation",
+    previewCaption: "Page 1 of 3 · your evaluation as a PDF",
+    previewAlt: "Preview of the evaluation: the first of three A4 pages, with the introduction and the radar chart of the six maturity dimensions.",
+  },
   final: {
-    rubric: "NEXT STEP",
+    rubric: "OR TALK TO US DIRECTLY",
     h2: <>30 minutes. One partner. <em>Your</em> next decision.</>,
     lede: "Bring an open question — we bring the method. No slides, no sales loop. In the end you'll know whether working together is the right next step.",
   },
@@ -515,8 +547,8 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
             <a key={l.id} className="nav-link" href={`#${l.id}`} onClick={onJump(l.id)}>{l.label}</a>
           ))}
           <LangToggle />
-          <a className="btn btn-primary nav-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-nav">
-            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+          <a className="btn btn-primary nav-cta" href={`#${CHECK_ID}`} onClick={onJump(CHECK_ID)} data-umami-event="cta-nav-check">
+            {cta.checkNav} <span className="btn-arrow" aria-hidden="true"></span>
           </a>
           <button
             ref={burgerRef}
@@ -539,8 +571,11 @@ function Nav({ nav, cta }: { nav: LandingCopy["nav"]; cta: LandingCopy["cta"] })
               <a key={l.id} href={`#${l.id}`} onClick={jumpAndClose(l.id)}>{l.label}</a>
             ))}
           </nav>
-          <a className="btn btn-primary nav-mobile-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-nav-mobile" onClick={() => setOpen(false)}>
-            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+          <a className="btn btn-primary nav-mobile-cta" href={`#${CHECK_ID}`} onClick={jumpAndClose(CHECK_ID)} data-umami-event="cta-nav-mobile-check">
+            {cta.checkNav} <span className="btn-arrow" aria-hidden="true"></span>
+          </a>
+          <a className="btn btn-ghost nav-mobile-cta" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-nav-mobile" onClick={() => setOpen(false)}>
+            {cta.book}
           </a>
         </div>
       )}
@@ -568,25 +603,41 @@ function SectionHead({ rubric, h2, lede, children }: { rubric: ReactNode; h2: Re
   );
 }
 
-function Hero({ c, cta }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"] }) {
+function Hero({ c, cta, lang }: { c: LandingCopy["hero"]; cta: LandingCopy["cta"]; lang: "de" | "en" }) {
   return (
     <section className="hero container" id="top" data-screen-label="01 Hero">
+      {/* Kicker und Schlagzeile über die volle Seitenbreite — erst darunter
+          teilt sich der Hero in Copy und Film. */}
       <RubricRow rubric={c.kicker} />
 
       <h1 className="display hero-headline">{c.headline}</h1>
 
       <div className="hero-divider" />
 
-      <div className="hero-body">
-        <p className="lede">{c.lede}</p>
-        <p className="lede">{c.close}</p>
-        <div className="hero-actions">
-          <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-hero">
-            {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
-          </a>
-          <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
+      <div className="hero-cols">
+        <div className="hero-col-copy">
+          <div className="hero-body">
+            {/* Beide Absätze sind ein Gedanke — sie bleiben zusammen, wenn der
+                Rest der Spalte über die Höhe verteilt wird. */}
+            <div className="hero-lede-group">
+              <p className="lede">{c.lede}</p>
+              <p className="lede">{c.close}</p>
+            </div>
+            <div className="hero-actions">
+              <a className="btn btn-primary" href={`#${CHECK_ID}`} onClick={onJump(CHECK_ID)} data-umami-event="cta-hero-check">
+                {cta.check} <span className="btn-arrow" aria-hidden="true"></span>
+              </a>
+              <a className="btn btn-ghost" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-hero">
+                {cta.book}
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="micro">{cta.micro}</div>
+
+        <div className="hero-col-film">
+          <RubricRow rubric={c.filmRubric} />
+          <MethodFilm label={c.filmLabel} copy={lang === "en" ? FILM_EN : FILM_DE} />
+        </div>
       </div>
     </section>
   );
@@ -706,8 +757,11 @@ function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["
             <p className="ns-cta-lede">{c.lede}</p>
           </div>
           <div className="ns-cta-action">
-            <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-mid">
-              {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
+            <a className="btn btn-primary" href={`#${CHECK_ID}`} onClick={onJump(CHECK_ID)} data-umami-event="cta-mid-check">
+              {cta.check} <span className="btn-arrow" aria-hidden="true"></span>
+            </a>
+            <a className="btn btn-ghost" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-mid">
+              {cta.book}
             </a>
             <div className="ns-cta-micro">{cta.microShort}</div>
           </div>
@@ -945,7 +999,9 @@ function Final({ c, cta }: { c: LandingCopy["final"]; cta: LandingCopy["cta"] })
             <a className="btn btn-primary" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-final">
               {cta.book} <span className="btn-arrow" aria-hidden="true"></span>
             </a>
-            <a className="btn btn-ghost" href="#zielbild" onClick={onJump("zielbild")}>{cta.seeMethod}</a>
+            <a className="btn btn-ghost" href={`#${CHECK_ID}`} onClick={onJump(CHECK_ID)} data-umami-event="cta-final-check">
+              {cta.check}
+            </a>
           </div>
           <div className="micro" style={{ marginTop: 22 }}>{cta.finalMicro}</div>
           <div className="micro" style={{ marginTop: 12 }}>
@@ -998,7 +1054,7 @@ function RedesignLanding() {
     <div className="nt-page">
       <Nav nav={L.nav} cta={L.cta} />
       <main>
-        <Hero c={L.hero} cta={L.cta} />
+        <Hero c={L.hero} cta={L.cta} lang={lang} />
         <TrustBar items={L.trust} />
         <Problem c={L.problem} />
         <Zielbild c={L.zielbild} />
@@ -1009,6 +1065,7 @@ function RedesignLanding() {
         <Team c={L.team} />
         <Lehre c={L.lehre} cta={L.cta} />
         <Disqualify c={L.disqualify} />
+        <ReifecheckSection c={L.reifecheck} />
         <Final c={L.final} cta={L.cta} />
       </main>
       <Footer />

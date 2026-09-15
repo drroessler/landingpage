@@ -21,7 +21,7 @@ export default function Datenschutz() {
         <p>
           {t.datenschutz.s2_text}{" "}
           <a
-            href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+            href="https://vercel.com/legal/privacy-policy"
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent hover:underline"
@@ -71,6 +71,12 @@ export default function Datenschutz() {
         <h3 className="font-semibold text-ink mt-6 mb-2">{t.datenschutz.s4_email}</h3>
         <p>{t.datenschutz.s4_emailText}</p>
         <p className="mt-4">{t.datenschutz.s4_emailLegal}</p>
+
+        <h3 className="font-semibold text-ink mt-6 mb-2">{t.datenschutz.s4_check}</h3>
+        <p>{t.datenschutz.s4_checkText}</p>
+        <p className="mt-4">{t.datenschutz.s4_checkPurpose}</p>
+        <p className="mt-4">{t.datenschutz.s4_checkLegal}</p>
+        <p className="mt-4">{t.datenschutz.s4_checkStorage}</p>
       </section>
 
       <section>
