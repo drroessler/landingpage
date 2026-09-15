@@ -56,6 +56,7 @@ steht ohnehin im Seiteninhalt.
 | `Quelle` | Auswahl | wird auf `Reifecheck` gesetzt |
 | `Status` | Auswahl oder Status | wird auf `Neu` gesetzt |
 | `Stufen` | Text | z. B. `2-2-2-1-2-2` in Achsenreihenfolge |
+| `Reifecheck` | Datei | das erzeugte PDF, gleicher Dateiname wie im Mailanhang |
 | `F1`…`F3` | Auswahl | gewählte Antwort |
 | `R1`…`R6` | Zahl | Stufe 1–3 |
 

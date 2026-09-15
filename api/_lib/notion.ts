@@ -22,6 +22,7 @@ const P = {
   source: "Quelle",
   status: "Status",
   stufen: "Stufen",
+  pdf: "Reifecheck",
 } as const;
 
 type PropMap = Record<string, { type: string }>;
@@ -77,7 +78,12 @@ function answerBlocks(a: EvaluatedAnswer) {
   ];
 }
 
-function buildProperties(props: PropMap, contact: Contact, evaluation: Evaluation) {
+function buildProperties(
+  props: PropMap,
+  contact: Contact,
+  evaluation: Evaluation,
+  attachment: { id: string; filename: string } | null,
+) {
   const out: Record<string, unknown> = {};
 
   const has = (key: string, ...types: string[]) =>
@@ -106,6 +112,21 @@ function buildProperties(props: PropMap, contact: Contact, evaluation: Evaluatio
   if (has(P.status, "select")) out[P.status] = { select: { name: "Neu" } };
   else if (has(P.status, "status")) out[P.status] = { status: { name: "Neu" } };
   if (has(P.stufen, "rich_text")) out[P.stufen] = { rich_text: text(evaluation.stufen.join("-")) };
+
+  // Das fertige Dokument selbst, sofern es hochgeladen werden konnte.
+  if (attachment !== null && has(P.pdf, "files")) {
+    // Derselbe Name wie im Mailanhang: eine aus Notion geladene Datei soll genau
+    // die sein, die der Interessent bekommen hat.
+    out[P.pdf] = {
+      files: [
+        {
+          type: "file_upload",
+          file_upload: { id: attachment.id },
+          name: attachment.filename,
+        },
+      ],
+    };
+  }
 
   // Je Frage eine Spalte, falls angelegt: F1..F3 als Auswahl, R1..R6 als Zahl.
   for (const a of evaluation.context) {
@@ -187,13 +208,67 @@ export async function resolveDataSource(
   }
 }
 
+/** Das Dokument, das an die Notion-Seite gehängt wird. */
+export interface PdfAttachment {
+  content: Buffer;
+  filename: string;
+}
+
+/** Notion nimmt Dateien in zwei Schritten entgegen: erst wird der Upload
+ *  angemeldet, dann der Inhalt gesendet. Die zurückgegebene Kennung wird beim
+ *  Anlegen der Seite in der Datei-Spalte referenziert und verfällt, wenn sie
+ *  nicht binnen einer Stunde verwendet wird.
+ *
+ *  Scheitert der Upload, gibt diese Funktion null zurück statt zu werfen: das
+ *  Dokument ist bereits per Mail unterwegs, und die Auswertung steht vollständig
+ *  im Seiteninhalt — eine fehlende Anlage darf die Ablage nicht verhindern.
+ */
+async function uploadPdf(notion: Client, pdf: PdfAttachment): Promise<string | null> {
+  // Notion nimmt in einem Teil bis 20 MB; unser Dokument liegt bei etwa 0,3 MB.
+  const LIMIT = 20 * 1024 * 1024;
+  if (pdf.content.byteLength > LIMIT) {
+    console.error(
+      `[reifecheck] PDF zu groß für einen Notion-Upload: ${pdf.content.byteLength} Bytes`,
+    );
+    return null;
+  }
+
+  try {
+    const upload = await notion.fileUploads.create({
+      mode: "single_part",
+      filename: pdf.filename,
+      content_type: "application/pdf",
+    });
+    await notion.fileUploads.send({
+      file_upload_id: upload.id,
+      file: {
+        filename: pdf.filename,
+        data: new Blob([new Uint8Array(pdf.content)], { type: "application/pdf" }),
+      },
+    });
+    return upload.id;
+  } catch (err) {
+    console.error("[reifecheck] PDF-Upload zu Notion fehlgeschlagen", err);
+    return null;
+  }
+}
+
 export async function storeInNotion(
   env: NotionEnv,
   contact: Contact,
   evaluation: Evaluation,
+  pdf?: PdfAttachment,
 ): Promise<string> {
   const notion = new Client({ auth: env.token });
   const source = await resolveDataSource(notion, env.databaseId);
+
+  // Nur hochladen, wenn es in Notion auch eine Datei-Spalte gibt — sonst bliebe
+  // der Upload unreferenziert liegen.
+  let attachment: { id: string; filename: string } | null = null;
+  if (pdf !== undefined && source.properties[P.pdf]?.type === "files") {
+    const id = await uploadPdf(notion, pdf);
+    if (id !== null) attachment = { id, filename: pdf.filename };
+  }
 
   const children = [
     callout(
@@ -214,7 +289,7 @@ export async function storeInNotion(
 
   const page = (await notion.pages.create({
     parent: { type: "data_source_id", data_source_id: source.id },
-    properties: buildProperties(source.properties, contact, evaluation) as never,
+    properties: buildProperties(source.properties, contact, evaluation, attachment) as never,
     children: children as never,
   })) as { id: string };
 

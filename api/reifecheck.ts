@@ -1,7 +1,8 @@
 /** POST /api/reifecheck
  *
  *  Nimmt die neun Antworten und die Kontaktdaten entgegen, wertet regelbasiert
- *  aus, rendert das PDF, verschickt es und legt den Vorgang in Notion ab.
+ *  aus, rendert das PDF, verschickt es und legt den Vorgang samt Dokument in
+ *  Notion ab.
  *
  *  Die Auswertung wird hier aus den Antworten NEU berechnet. Was der Browser an
  *  Statements angezeigt hat, wird nicht übernommen — sonst könnte man den Inhalt
@@ -123,7 +124,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   let notionPageId: string | null = null;
   try {
-    notionPageId = await storeInNotion(readNotionEnv(), contact, evaluation);
+    notionPageId = await storeInNotion(readNotionEnv(), contact, evaluation, {
+      content: pdf,
+      filename: pdfFilename(evaluation.reference),
+    });
   } catch (err) {
     console.error("[reifecheck] Notion-Ablage fehlgeschlagen", evaluation.reference, err);
   }

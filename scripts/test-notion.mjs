@@ -1,8 +1,9 @@
 /** Prüft die Notion-Ablage allein — ohne PDF, ohne Mailversand.
  *
  *  Legt eine echte Testseite in der konfigurierten Datenbank an und meldet,
- *  welche Spalten erkannt und welche übersprungen wurden. Die Seite darf danach
- *  gelöscht werden; sie trägt die Kennung RC-TEST-0001.
+ *  welche Spalten erkannt und welche übersprungen wurden. Gibt es eine
+ *  Datei-Spalte, wird auch das echte PDF erzeugt und hochgeladen. Die Seite darf
+ *  danach gelöscht werden; sie trägt die Kennung RC-TEST-0001.
  *
  *  Aufruf:
  *    npm run notion:test              Schema zeigen und Testseite anlegen
@@ -34,13 +35,15 @@ const entry = join(cache, "notion-entry.mjs");
 writeFileSync(
   entry,
   `export { storeInNotion, readNotionEnv, resolveDataSource, EXPECTED_COLUMNS } from ${JSON.stringify(join(process.cwd(), "api/_lib/notion.ts"))};\n` +
+    `export { renderDocumentHtml } from ${JSON.stringify(join(process.cwd(), "api/_lib/document.ts"))};\n` +
+    `export { renderPdf, pdfFilename } from ${JSON.stringify(join(process.cwd(), "api/_lib/pdf.ts"))};\n` +
     `export { evaluate } from ${JSON.stringify(join(process.cwd(), "src/reifecheck/evaluate.ts"))};`,
 );
 const out = join(cache, "notion-test.mjs");
 await build({ entryPoints: [entry], bundle: true, platform: "node", format: "esm",
               target: "node20", outfile: out, packages: "external" });
-const { storeInNotion, readNotionEnv, resolveDataSource, EXPECTED_COLUMNS, evaluate } =
-  await import(out);
+const { storeInNotion, readNotionEnv, resolveDataSource, EXPECTED_COLUMNS, evaluate,
+        renderDocumentHtml, renderPdf, pdfFilename } = await import(out);
 
 const env = readNotionEnv();
 
@@ -84,8 +87,20 @@ const evaluation = evaluate(answers, {
   reference: "RC-TEST-0001",
 });
 
+// Gibt es eine Datei-Spalte, gehört das echte Dokument dazu — sonst prüft der
+// Lauf den Upload nicht mit.
+let pdf;
+if (source.properties["Reifecheck"]?.type === "files") {
+  const bytes = await renderPdf(
+    renderDocumentHtml(evaluation, { name: contact.name, organisation: contact.organisation }),
+    evaluation.reference,
+  );
+  pdf = { content: bytes, filename: pdfFilename(evaluation.reference) };
+  console.log(`ok  PDF erzeugt (${(bytes.length / 1024).toFixed(0)} kB), wird hochgeladen`);
+}
+
 try {
-  const pageId = await storeInNotion(env, contact, evaluation);
+  const pageId = await storeInNotion(env, contact, evaluation, pdf);
   console.log(`ok  Seite angelegt: ${pageId}`);
   console.log(`    https://www.notion.so/${pageId.replace(/-/g, "")}`);
   console.log("    Inhalt prüfen, dann löschen — die Seite ist nur ein Test.");
