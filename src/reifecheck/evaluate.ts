@@ -25,6 +25,7 @@ function evaluateOne(q: Question, optionKey: string): EvaluatedAnswer {
     id: q.id,
     axis: q.axis,
     prompt: q.prompt,
+    ...(q.note ? { note: q.note } : {}),
     optionKey: option.key,
     optionLabel: option.label,
     statement: option.statement,

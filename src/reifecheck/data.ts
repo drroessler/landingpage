@@ -101,7 +101,6 @@ export const REIFE_QUESTIONS: Question[] = [
     id: "R1",
     axis: "Analysetiefe",
     prompt: "Wie gründlich ist die Ausgangssituation analysiert?",
-    note: "Vier Antwortoptionen, drei Stufen. Die Optionen (a) und (b) beschreiben verschiedene Ausgangslagen mit gleichem Ergebnis: In beiden Fällen fehlt eine unvoreingenommene Ursachenanalyse.",
     options: [
       {
         key: "a",
@@ -174,102 +173,8 @@ export const REIFE_QUESTIONS: Question[] = [
   },
   {
     id: "R3",
-    axis: "Beteiligung",
-    prompt: "Wie eng sind die eingebunden, die direkt betroffen sind?",
-    options: [
-      {
-        key: "a",
-        label: "Sie werden durch Führungskräfte oder Stabsstellen vertreten",
-        stufe: 1,
-        statementTitle: "Vertreten durch Dritte",
-        statement:
-          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome. Eine Prüfrunde mit den unmittelbar Betroffenen ist der günstigste Weg, eine Fehldiagnose zu bemerken, solange sie noch korrigierbar ist. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
-      },
-      {
-        key: "b",
-        label: "Sie wurden befragt. Die daraus gezogenen Schlüsse haben sie nicht mehr zu sehen bekommen",
-        stufe: 2,
-        statementTitle: "Befragt, aber nicht rückgespiegelt",
-        statement:
-          "Auskunft geben und Schlussfolgerungen prüfen sind verschiedene Dinge. Die Rückspiegelung ist der Schritt, an dem sich zeigt, ob die Diagnose stimmt. Was würden die Befragten sagen, wenn sie die daraus gezogenen Schlüsse zu lesen bekämen?",
-      },
-      {
-        key: "c",
-        label: "Sie haben die Ergebnisse geprüft, durch Mitarbeit oder durch Stellungnahme im Review",
-        stufe: 3,
-        statementTitle: "Ergebnisse geprüft",
-        statement:
-          "Die Diagnose ist von denen bestätigt, die es betrifft. Sie ruht damit auf mehr als einer Stellvertreterbeschreibung. Genau die ist der häufigste Grund dafür, dass eine formal saubere Entscheidung in der Umsetzung keine Zustimmung findet.",
-      },
-    ],
-  },
-  {
-    id: "R4",
-    axis: "Rückmeldung",
-    prompt: "Wie kommt die Rückmeldung der Beteiligten zustande?",
-    options: [
-      {
-        key: "a",
-        label: "Mündlich im Termin. Berücksichtigt wird, wer sich äußert",
-        stufe: 1,
-        statementTitle: "Mündlich im Termin",
-        statement:
-          "In der mündlichen Runde zählt, wer sich äußert. Wer schweigt, gilt als einverstanden, auch wenn er nur zu langsam war oder sich nicht getraut hat. Zusätzlich entscheidet oft die Rhetorik über das Gewicht eines Einwands. Wessen Einwand ist zuletzt untergegangen, weil er im Termin nicht vorgebracht wurde?",
-      },
-      {
-        key: "b",
-        label:
-          "Überwiegend mündlich, die Ergebnisse landen im Protokoll und werden ggf. schriftlich ergänzt",
-        stufe: 2,
-        statementTitle: "Mündlich mit Protokoll",
-        statement:
-          "Ein Protokoll hält das Ergebnis fest, aber selten die Begründung. Wochen später ist nachvollziehbar, was entschieden wurde, und meist nicht mehr, warum die Gegenposition unterlag. Genau diese Begründung brauchen Sie, wenn die Frage in der Umsetzung erneut aufkommt.",
-      },
-      {
-        key: "c",
-        label: "Schriftlich am Dokument, mit Bezug auf die Stelle, die kritisiert wird",
-        stufe: 3,
-        statementTitle: "Schriftlich am Dokument",
-        statement:
-          "Schriftliches Feedback zwingt beide Seiten zur Präzision: den Autor zur Klarheit, den Kommentierenden dazu, seinen Einwand an einer konkreten Stelle zu belegen. Damit verschiebt sich die Diskussion von Meinungen zu Fakten.",
-      },
-    ],
-  },
-  {
-    id: "R5",
-    axis: "Freigabe",
-    prompt: "Wie verbindlich ist die Freigabe geregelt?",
-    options: [
-      {
-        key: "a",
-        label: "Es gibt keine benannte Instanz. Zustimmung entsteht dadurch, dass niemand widerspricht",
-        stufe: 1,
-        statementTitle: "Keine benannte Instanz",
-        statement:
-          "Zustimmung durch Nicht-Widerspruch fühlt sich im Termin wie Konsens an. Sie hält nur, solange nichts schwierig wird. Wenn es später anders kommt, kann sich niemand erinnern, zugestimmt zu haben. Wer würde heute unterschreiben, wenn Sie darum bäten?",
-      },
-      {
-        key: "b",
-        label: "Eine Instanz ist benannt, die Freigabe erfolgt ohne dokumentierte Grundlage",
-        stufe: 2,
-        statementTitle: "Instanz benannt, Grundlage nicht dokumentiert",
-        statement:
-          "Die Zuständigkeit ist geklärt, die Grundlage der Entscheidung nicht. Damit hängt die Freigabe daran, was die Beteiligten im Kopf hatten, als sie zustimmten. Diese Bilder gehen mit der Zeit auseinander, ohne dass es jemandem auffällt.",
-      },
-      {
-        key: "c",
-        label: "Eine benannte Instanz gibt auf einer dokumentierten Grundlage frei",
-        stufe: 3,
-        statementTitle: "Benannte Instanz, dokumentierte Grundlage",
-        statement:
-          "Zuständigkeit und Grundlage sind beide geklärt. Damit lässt sich später rekonstruieren, worauf die Entscheidung beruhte, und das ist die Voraussetzung dafür, sie bei neuen Erkenntnissen begründet zu ändern.",
-      },
-    ],
-  },
-  {
-    id: "R6",
     axis: "Annahmen",
-    prompt: "Wie explizit sind die Annahmen, auf denen das Vorhaben aufbaut?",
+    prompt: "Wie explizit sind die Annahmen, auf denen die Entscheidung aufbaut?",
     options: [
       {
         key: "a",
@@ -294,6 +199,99 @@ export const REIFE_QUESTIONS: Question[] = [
         statementTitle: "Festgehalten und belegt",
         statement:
           "Annahmen mit Beleg oder offener Prüffrage lassen sich im Verlauf gezielt überprüfen. Damit haben Sie einen Mechanismus, um zu bemerken, wenn sich die Grundlage der Entscheidung verändert, statt es erst am Ergebnis zu sehen.",
+      },
+    ],
+  },  {
+    id: "R4",
+    axis: "Beteiligung",
+    prompt: "Wie eng sind die eingebunden, die direkt betroffen sind?",
+    options: [
+      {
+        key: "a",
+        label: "Sie werden durch Führungskräfte oder Stabsstellen vertreten",
+        stufe: 1,
+        statementTitle: "Vertreten durch Dritte",
+        statement:
+          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome. Eine Prüfrunde mit den unmittelbar Betroffenen ist der günstigste Weg, eine Fehldiagnose zu bemerken, solange sie noch korrigierbar ist. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
+      },
+      {
+        key: "b",
+        label: "Sie wurden befragt. Die daraus gezogenen Schlüsse haben sie nicht mehr zu sehen bekommen",
+        stufe: 2,
+        statementTitle: "Befragt, aber nicht rückgespiegelt",
+        statement:
+          "Auskunft geben und Schlussfolgerungen prüfen sind verschiedene Dinge. Die Rückspiegelung ist der Schritt, an dem sich zeigt, ob die Diagnose stimmt. Was würden die Befragten sagen, wenn sie die daraus gezogenen Schlüsse zu lesen bekämen?",
+      },
+      {
+        key: "c",
+        label: "Sie haben die Analyse geprüft, durch Mitarbeit oder durch Stellungnahme im Review",
+        stufe: 3,
+        statementTitle: "Analyse geprüft",
+        statement:
+          "Die Diagnose ist von denen bestätigt, die es betrifft. Sie ruht damit auf mehr als einer Stellvertreterbeschreibung. Genau die ist der häufigste Grund dafür, dass eine formal saubere Entscheidung in der Umsetzung keine Zustimmung findet.",
+      },
+    ],
+  },
+  {
+    id: "R5",
+    axis: "Rückmeldung",
+    prompt: "Wie wird Feedback zur Analyse der Ausgangssituation gegeben?",
+    options: [
+      {
+        key: "a",
+        label: "Es gibt dazu keine Feedback-Runde",
+        stufe: 1,
+        statementTitle: "Keine Feedback-Runde",
+        statement:
+          "Ohne eine eigene Runde bleibt die Analyse die Sicht derer, die sie geschrieben haben. Ob sie die Lage trifft, zeigt sich dann erst in der Umsetzung — dort ist eine Korrektur am teuersten. Wer außerhalb des Autorenkreises hat die Analyse gelesen und hätte widersprechen können?",
+      },
+      {
+        key: "b",
+        label: "Mündlich im Termin. Berücksichtigt wird, wer sich äußert",
+        stufe: 2,
+        statementTitle: "Mündlich im Termin",
+        statement:
+          "In der mündlichen Runde zählt, wer sich äußert. Wer schweigt, gilt als einverstanden, auch wenn er nur zu langsam war oder sich nicht getraut hat. Zusätzlich entscheidet oft die Rhetorik über das Gewicht eines Einwands. Wessen Einwand ist zuletzt untergegangen, weil er im Termin nicht vorgebracht wurde?",
+      },
+      {
+        key: "c",
+        label: "Schriftlich am konkreten Dokument",
+        stufe: 3,
+        statementTitle: "Schriftlich am Dokument",
+        statement:
+          "Schriftliches Feedback zwingt beide Seiten zur Präzision: den Autor zur Klarheit, den Kommentierenden dazu, seinen Einwand an einer konkreten Stelle zu belegen. Damit verschiebt sich die Diskussion von Meinungen zu Fakten.",
+      },
+    ],
+  },
+  {
+    id: "R6",
+    axis: "Freigabe",
+    prompt: "Wie verbindlich ist die Freigabe* zur Umsetzung geregelt?",
+    note: "* Freigabe = Entscheidung zur Umsetzung",
+    options: [
+      {
+        key: "a",
+        label: "Es gibt keine benannte Instanz. Zustimmung entsteht dadurch, dass niemand widerspricht",
+        stufe: 1,
+        statementTitle: "Keine benannte Instanz",
+        statement:
+          "Zustimmung durch Nicht-Widerspruch fühlt sich im Termin wie Konsens an. Sie hält nur, solange nichts schwierig wird. Wenn es später anders kommt, kann sich niemand erinnern, zugestimmt zu haben. Wer würde heute unterschreiben, wenn Sie darum bäten?",
+      },
+      {
+        key: "b",
+        label: "Eine Instanz ist benannt, die Freigabe erfolgt ohne dokumentierte Grundlage",
+        stufe: 2,
+        statementTitle: "Instanz benannt, Grundlage nicht dokumentiert",
+        statement:
+          "Die Zuständigkeit ist geklärt, die Grundlage der Entscheidung nicht. Damit hängt die Freigabe daran, was die Beteiligten im Kopf hatten, als sie zustimmten. Diese Bilder gehen mit der Zeit auseinander, ohne dass es jemandem auffällt.",
+      },
+      {
+        key: "c",
+        label: "Eine benannte Instanz gibt auf einer dokumentierten Grundlage frei",
+        stufe: 3,
+        statementTitle: "Benannte Instanz, dokumentierte Grundlage",
+        statement:
+          "Zuständigkeit und Grundlage sind beide geklärt. Damit lässt sich später rekonstruieren, worauf die Entscheidung beruhte, und das ist die Voraussetzung dafür, sie bei neuen Erkenntnissen begründet zu ändern.",
       },
     ],
   },

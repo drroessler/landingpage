@@ -20,7 +20,6 @@ export interface SectionCopy {
   note?: string;
   start: string;
   resume: string;
-  micro: string;
   /** Beschriftung und Alternativtext der Dokumentvorschau. */
   previewCaption: string;
   previewAlt: string;
@@ -162,6 +161,16 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
                 <h2 className="display rc-h2-lead" tabIndex={-1} ref={headingRef}>{c.h2}</h2>
                 <p className="lede rc-intro-lede">{c.lede}</p>
                 {c.note && <p className="micro rc-intro-note">{c.note}</p>}
+
+                {/* Der Aufruf steht neben der Dokumentvorschau statt unter den
+                    drei Punkten: er füllt die Fläche, die der kurze Einleitungstext
+                    neben dem hohen Vorschaubild frei lässt. */}
+                <div className="rc-intro-actions">
+                  <button type="button" className="btn btn-primary" onClick={begin} data-umami-event="reifecheck-start">
+                    {answeredCount > 0 ? c.resume : c.start}
+                    <span className="btn-arrow" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
 
               {/* Die Vorschau ist die echte erste Seite, gerendert aus demselben
@@ -190,14 +199,6 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
                 </li>
               ))}
             </ol>
-
-            <div className="rc-intro-actions">
-              <button type="button" className="btn btn-primary" onClick={begin} data-umami-event="reifecheck-start">
-                {answeredCount > 0 ? c.resume : c.start}
-                <span className="btn-arrow" aria-hidden="true" />
-              </button>
-              <span className="micro">{c.micro}</span>
-            </div>
           </div>
         )}
 

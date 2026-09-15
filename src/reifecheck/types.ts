@@ -58,6 +58,9 @@ export interface EvaluatedAnswer {
   id: QuestionId;
   axis: string;
   prompt: string;
+  /** Erläuterung zur Frage, etwa die Auflösung eines Sternchens im Fragetext.
+   *  Steht im Fragebogen unter den Optionen und im Dokument unter der Frage. */
+  note?: string;
   optionKey: string;
   optionLabel: string;
   statement: string;

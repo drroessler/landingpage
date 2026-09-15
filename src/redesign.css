@@ -1493,22 +1493,35 @@ h1.hero-headline {
    breiterer Film wird auch höher, die Lücke wuchs dadurch. Was hilft, ist ein
    schmaleres Satzmaß: mehr Zeilen bei kleinerer Schrift. */
 .hero-lede-group .lede {
-  font-size: clamp(19px, 1.6vw, 23px);
+  font-size: clamp(17px, 1.4vw, 20px);
   /* Schmaler als die 58ch der übrigen Lede: auf breiten Schirmen wird die
      Copy-Spalte sonst so breit, dass der Text zu wenige Zeilen bekommt und
-     unter den Absätzen eine Lücke aufreißt. */
-  max-width: 38ch;
+     unter den Absätzen eine Lücke aufreißt. In ch, also mitwachsend mit der
+     Schrift — kleinere Schrift ergibt hier nicht weniger Zeilen, sondern
+     dieselbe Zeilenzahl in ruhigerem Satz. */
+  max-width: 36ch;
+  line-height: 1.55;
+  /* Verhindert Schusterjungen: die letzte Zeile bekommt nie ein einzelnes Wort.
+     Browser ohne Unterstützung brechen wie bisher. */
+  text-wrap: pretty;
 }
-/* 465px ist die Schwelle, an der die Filmspalte genauso hoch wird wie die
-   Copy-Spalte (gemessen bei 1500px Breite, Seitenverhältnis 16:10). Darunter
-   bestimmt die Copy die Höhe des Hero — der Film wächst dort, ohne etwas zu
-   kosten. Darüber wird er zum Begrenzer: der Hero wird höher, die Trust-Leiste
-   rutscht aus dem Bild und zwischen Absätzen und Schaltflächen reißt eine
-   Lücke auf. Deshalb genau hier deckeln. */
+/* Der Film ist der Begrenzer des Hero: er hat ein festes Seitenverhältnis, also
+   macht jede zusätzliche Breite ihn auch höher und schiebt die Trust-Leiste
+   nach unten. Ab 465px ist er höher als die Copy-Spalte — ab da kostet Breite
+   also Höhe, die woanders fehlt.
+
+   Statt einer festen Zahl deshalb zwei Grenzen, die kleinere gewinnt:
+   – 58vh bindet ihn an die tatsächlich vorhandene Fensterhöhe. Auf einem hohen
+     Fenster darf er die freie Fläche über der Falz nutzen, auf einem flachen
+     schrumpft er von selbst, statt die Trust-Leiste aus dem Bild zu drücken.
+   – 520px ist die obere Kappung: darüber reißt zwischen Absätzen und
+     Schaltflächen eine Lücke auf, die der Text nicht mehr füllt.
+   Gemessen bei 1440px Breite: 900px Fensterhöhe ergibt 520px Film und 89px
+   Luft unter der Trust-Leiste, 800px ergeben 464px — also etwa den alten Wert. */
 .hero-col-film {
   flex: 1 1 420px;
   min-width: 0;
-  max-width: 465px;
+  max-width: min(520px, 58vh);
 }
 
 /* Beide Spalten setzen unter der Trennlinie auf derselben Höhe an:

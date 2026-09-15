@@ -123,10 +123,10 @@
 }
 .rc-intro-points p { margin: 0; color: var(--ink-2); font-size: 15px; }
 
+/* Sitzt jetzt im Kopf der Sektion, unter dem Einleitungstext — ohne Trennlinie,
+   weil er dort nichts abschließt, sondern zum Text gehört. */
 .rc-intro-actions {
-  margin-top: 44px;
-  padding-top: 26px;
-  border-top: 1px solid var(--rule);
+  margin-top: 30px;
   display: flex;
   align-items: center;
   gap: 20px;

@@ -164,7 +164,9 @@ const T = {
   itemAnswer: 9.5,
   itemStatement: 10,
   itemLh: 1.42,
-  itemPad: 5,
+  /* Wirkt neunmal, oben und unten: 1 pt hier sind rund 18 pt auf Seite 2.
+     Der Haupthebel, wenn die Seite wieder eng wird. */
+  itemPad: 4,
   // Seite 3
   blockH2: 25,
   blockBody: 11.5,
@@ -193,6 +195,7 @@ function itemHtml(a: EvaluatedAnswer, opts: { first?: boolean } = {}): string {
 <div>
 <div style="display:flex;align-items:center;gap:7px;font-family:${F.mono};font-size:${T.itemMeta}px;letter-spacing:0.09em;line-height:1.4">${meta}</div>
 <div style="margin-top:4px;font-family:${F.display};font-size:${T.itemPrompt}px;line-height:1.14;letter-spacing:-0.008em;color:${C.ink}">${escapeHtml(a.prompt)}</div>
+${a.note ? `<div style="margin-top:3px;font-size:${T.itemMeta + 0.5}px;line-height:1.3;color:${C.ink3}">${escapeHtml(a.note)}</div>` : ""}
 <div style="margin-top:5px;padding:5px 9px;border:1px solid color-mix(in oklab, ${C.accent} 24%, #fff);border-radius:2px;background:color-mix(in oklab, ${C.accent} 8%, #fff);color:${C.accentInk};font-size:${T.itemAnswer}px;line-height:1.42"><span style="font-family:${F.mono};font-size:${T.itemMeta - 0.5}px;letter-spacing:0.1em;text-transform:uppercase;margin-right:7px">Ihre Antwort</span>${escapeHtml(a.optionLabel)}</div>
 </div>
 <div style="padding-top:${T.itemMeta + 3}px">

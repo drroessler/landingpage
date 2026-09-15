@@ -50,7 +50,7 @@ const landingDe = {
         <span className="line">Von der Entscheidung in die <em>Umsetzung.</em></span>
       </>
     ) as ReactNode,
-    lede: "Ihre Fachleute haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten und wissenschaftlich publizierten Weg von der Fragestellung zur begründeten Entscheidung — und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
+    lede: "Ihre Experten haben die Antworten. NarraTec gibt ihnen die Struktur: einen erprobten und publizierten Weg von der Fragestellung zur begründeten Entscheidung\u00A0— und von dort zu Arbeitspaketen und leistungsfähigen Teams.",
     close: "Wir befähigen Ihre Leute, statt sie zu ersetzen.",
     filmRubric: (<><span style={{ color: "var(--accent-ink)" }}>Methode</span> in vier Phasen</>) as ReactNode,
     filmLabel: "Die Methode in vier Phasen: Verstehen — die Ist-Analyse trennt Symptome von Ursachen. Entscheiden — aus der Analyse entsteht ein Narrativ als Entscheidungsvorlage, kommentiert und freigegeben. Übersetzen — die Absätze des Narrativs werden zu Arbeitspaketen mit Zuständigkeit und Prüfkriterium. Liefern — die Pakete durchlaufen eine Arbeitsstruktur von Planung über Umsetzung bis Ergebnis.",
@@ -241,7 +241,6 @@ const landingDe = {
     note: undefined as string | undefined,
     start: "Reifecheck starten",
     resume: "Reifecheck fortsetzen",
-    micro: "neun Fragen · rund vier Minuten · Auswertung als PDF",
     previewCaption: "Seite 1 von 3 · Ihre Auswertung als PDF",
     previewAlt: "Vorschau der Auswertung: die erste von drei A4-Seiten mit Einleitung und dem Netzdiagramm der sechs Reifedimensionen.",
   },
@@ -473,7 +472,6 @@ const landingEn: LandingCopy = {
     note: "The check itself is in German.",
     start: "Start the readiness check",
     resume: "Resume the readiness check",
-    micro: "nine questions · about four minutes · PDF evaluation",
     previewCaption: "Page 1 of 3 · your evaluation as a PDF",
     previewAlt: "Preview of the evaluation: the first of three A4 pages, with the introduction and the radar chart of the six maturity dimensions.",
   },
