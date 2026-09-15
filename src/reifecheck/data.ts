@@ -131,9 +131,9 @@ export const REIFE_QUESTIONS: Question[] = [
       {
         key: "d",
         label:
-          "Die Ursachen wurden aus mehreren Blickwinkeln untersucht und festgehalten, beispielsweise: Fähigkeiten des Personals, technische Voraussetzungen, organisatorische Rahmenbedingungen",
+          "Die Ursachen wurden aus mehreren Blickwinkeln untersucht, beispielsweise: Fähigkeiten des Personals, technische Voraussetzungen, organisatorische Rahmenbedingungen",
         stufe: 3,
-        statementTitle: "Mehrere Blickwinkel, dokumentiert",
+        statementTitle: "Mehrere Blickwinkel",
         statement:
           "Damit ist die Grundlage gelegt, an der die meisten Vorhaben lange vor der Umsetzung scheitern. Die Anschlussfrage lautet dann, ob die Begründung Ihrer Analyse auch bei denen ankommt, die sie umsetzen.",
       },
@@ -141,6 +141,36 @@ export const REIFE_QUESTIONS: Question[] = [
   },
   {
     id: "R2",
+    axis: "Annahmen",
+    prompt: "Wie explizit sind die Annahmen, auf denen die Analyse aufbaut?",
+    options: [
+      {
+        key: "a",
+        label: "Sie sind nicht ausdrücklich benannt. Jeder Beteiligte hat seine eigenen im Kopf",
+        stufe: 1,
+        statementTitle: "Nicht ausdrücklich benannt",
+        statement:
+          "Jedes Vorhaben ruht auf Annahmen. Sind sie unausgesprochen, hat jeder Beteiligte eigene, und alle halten sie für geteilt. Auffallen wird das erst, wenn eine davon nicht zutrifft. Welche Annahme würde Ihr Vorhaben zu Fall bringen, wenn sie falsch wäre?",
+      },
+      {
+        key: "b",
+        label: "Die wichtigsten sind benannt, aber nicht mit Belegen hinterlegt, bspw. Zahlen, Daten, Fakten",
+        stufe: 2,
+        statementTitle: "Benannt, ohne Belege",
+        statement:
+          "Die Annahmen sind sichtbar, was den schwierigeren Teil bereits erledigt. Offen bleibt, welche davon geprüft sind und welche bislang nur plausibel klingen. Diese Unterscheidung entscheidet darüber, wo Sie zuerst nachsehen sollten.",
+      },
+      {
+        key: "c",
+        label: "Sie sind schriftlich festgehalten und belegt",
+        stufe: 3,
+        statementTitle: "Festgehalten und belegt",
+        statement:
+          "Annahmen mit Beleg oder offener Prüffrage lassen sich im Verlauf gezielt überprüfen. Damit haben Sie einen Mechanismus, um zu bemerken, wenn sich die Grundlage der Entscheidung verändert, statt es erst am Ergebnis zu sehen.",
+      },
+    ],
+  },  {
+    id: "R3",
     axis: "Verantwortung",
     prompt: "Wer verantwortet die Analyse der Ausgangssituation?",
     options: [
@@ -172,36 +202,6 @@ export const REIFE_QUESTIONS: Question[] = [
     ],
   },
   {
-    id: "R3",
-    axis: "Annahmen",
-    prompt: "Wie explizit sind die Annahmen, auf denen die Entscheidung aufbaut?",
-    options: [
-      {
-        key: "a",
-        label: "Sie sind nicht ausdrücklich benannt. Jeder Beteiligte hat seine eigenen im Kopf",
-        stufe: 1,
-        statementTitle: "Nicht ausdrücklich benannt",
-        statement:
-          "Jedes Vorhaben ruht auf Annahmen. Sind sie unausgesprochen, hat jeder Beteiligte eigene, und alle halten sie für geteilt. Auffallen wird das erst, wenn eine davon nicht zutrifft. Welche Annahme würde Ihr Vorhaben zu Fall bringen, wenn sie falsch wäre?",
-      },
-      {
-        key: "b",
-        label: "Die wichtigsten sind benannt, aber nicht mit Belegen hinterlegt, bspw. Zahlen, Daten, Fakten",
-        stufe: 2,
-        statementTitle: "Benannt, ohne Belege",
-        statement:
-          "Die Annahmen sind sichtbar, was den schwierigeren Teil bereits erledigt. Offen bleibt, welche davon geprüft sind und welche bislang nur plausibel klingen. Diese Unterscheidung entscheidet darüber, wo Sie zuerst nachsehen sollten.",
-      },
-      {
-        key: "c",
-        label: "Sie sind schriftlich festgehalten und belegt",
-        stufe: 3,
-        statementTitle: "Festgehalten und belegt",
-        statement:
-          "Annahmen mit Beleg oder offener Prüffrage lassen sich im Verlauf gezielt überprüfen. Damit haben Sie einen Mechanismus, um zu bemerken, wenn sich die Grundlage der Entscheidung verändert, statt es erst am Ergebnis zu sehen.",
-      },
-    ],
-  },  {
     id: "R4",
     axis: "Beteiligung",
     prompt: "Wie eng sind die eingebunden, die direkt betroffen sind?",
@@ -266,8 +266,7 @@ export const REIFE_QUESTIONS: Question[] = [
   {
     id: "R6",
     axis: "Freigabe",
-    prompt: "Wie verbindlich ist die Freigabe* zur Umsetzung geregelt?",
-    note: "* Freigabe = Entscheidung zur Umsetzung",
+    prompt: "Wie verbindlich ist die Entscheidung zur Umsetzung geregelt?",
     options: [
       {
         key: "a",
@@ -279,7 +278,7 @@ export const REIFE_QUESTIONS: Question[] = [
       },
       {
         key: "b",
-        label: "Eine Instanz ist benannt, die Freigabe erfolgt ohne dokumentierte Grundlage",
+        label: "Eine Instanz ist benannt, die Entscheidung erfolgt ohne dokumentierte Grundlage",
         stufe: 2,
         statementTitle: "Instanz benannt, Grundlage nicht dokumentiert",
         statement:
@@ -287,7 +286,7 @@ export const REIFE_QUESTIONS: Question[] = [
       },
       {
         key: "c",
-        label: "Eine benannte Instanz gibt auf einer dokumentierten Grundlage frei",
+        label: "Eine benannte Instanz entscheidet auf einer dokumentierten Grundlage",
         stufe: 3,
         statementTitle: "Benannte Instanz, dokumentierte Grundlage",
         statement:

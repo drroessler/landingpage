@@ -166,7 +166,7 @@ const T = {
   itemLh: 1.42,
   /* Wirkt neunmal, oben und unten: 1 pt hier sind rund 18 pt auf Seite 2.
      Der Haupthebel, wenn die Seite wieder eng wird. */
-  itemPad: 4,
+  itemPad: 5,
   // Seite 3
   blockH2: 25,
   blockBody: 11.5,
