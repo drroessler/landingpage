@@ -5,7 +5,7 @@
  */
 
 import puppeteer, { type Browser } from "puppeteer-core";
-import { footerTemplate, headerTemplate } from "./document";
+import { footerTemplate, headerTemplate } from "./document.js";
 
 /** Kandidaten für eine lokale Chrome-Installation (nur Entwicklung).
  *  Playwright-Caches sind mit aufgeführt, weil der One-Pager-Build im selben

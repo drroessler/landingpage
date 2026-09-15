@@ -26,6 +26,12 @@ Use the existing skill defined in `SKILL.md`
 - Build output: `dist/`
 - `vercel.json` rewrites everything except `/api/*` to `index.html` (BrowserRouter)
 - Serverless functions live in `api/`; secrets go in Vercel env vars, never in the repo
+- `package.json` has `"type": "module"`, so Vercel compiles `api/` to **ESM**: every
+  relative import in `api/` and in the `src/reifecheck/*.ts` files it pulls in needs an
+  explicit `.js` extension — even though the file is `.ts`. Without it the function dies
+  at load with `ERR_MODULE_NOT_FOUND`, before the handler runs. esbuild and Vite resolve
+  extensionless specifiers, so this never shows up locally; `npm run check:esm` guards it
+  and runs as part of `npm run build`.
 
 ## Hero
 - Two columns: copy left, the four-phase method film right (`src/hero/`), ported

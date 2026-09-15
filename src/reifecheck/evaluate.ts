@@ -5,7 +5,7 @@
  *  Es wird nicht gerechnet und nicht gewichtet. Kein Sprachmodell beteiligt.
  */
 
-import { CONTEXT_QUESTIONS, REIFE_QUESTIONS, ALL_QUESTIONS } from "./data";
+import { CONTEXT_QUESTIONS, REIFE_QUESTIONS, ALL_QUESTIONS } from "./data.js";
 import type {
   Answers,
   CompleteAnswers,
@@ -14,7 +14,7 @@ import type {
   Question,
   QuestionId,
   Stufe,
-} from "./types";
+} from "./types.js";
 
 function evaluateOne(q: Question, optionKey: string): EvaluatedAnswer {
   const option = q.options.find((o) => o.key === optionKey);

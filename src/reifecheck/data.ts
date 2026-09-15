@@ -6,7 +6,7 @@
  *  dieser Datei.
  */
 
-import type { Question } from "./types";
+import type { Question } from "./types.js";
 
 /** Reihenfolge der Ausgabe im Dokument: F1, F2, F3, R1 bis R6. */
 export const CONTEXT_QUESTIONS: Question[] = [

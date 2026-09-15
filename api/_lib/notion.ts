@@ -8,8 +8,8 @@
  */
 
 import { Client } from "@notionhq/client";
-import { formatDate } from "../../src/reifecheck/evaluate";
-import type { Contact, EvaluatedAnswer, Evaluation } from "../../src/reifecheck/types";
+import { formatDate } from "../../src/reifecheck/evaluate.js";
+import type { Contact, EvaluatedAnswer, Evaluation } from "../../src/reifecheck/types.js";
 
 /** Spaltennamen der Notion-Datenbank. Siehe api/README.md für das Schema. */
 const P = {

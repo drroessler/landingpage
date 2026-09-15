@@ -8,10 +8,10 @@
  *  Schriften und druckt. Nichts anderes muss ausgeführt werden.
  */
 
-import { DOC } from "../../src/reifecheck/copy";
-import { FONT_CSS } from "./fonts";
-import { UMSETZUNG_AXES, REIFE_AXES } from "../../src/reifecheck/data";
-import { formatDate } from "../../src/reifecheck/evaluate";
+import { DOC } from "../../src/reifecheck/copy.js";
+import { FONT_CSS } from "./fonts.js";
+import { UMSETZUNG_AXES, REIFE_AXES } from "../../src/reifecheck/data.js";
+import { formatDate } from "../../src/reifecheck/evaluate.js";
 import {
   AXIS_LABELS,
   TICKS,
@@ -20,8 +20,8 @@ import {
   areaVertices,
   axisLines,
   ringPoints,
-} from "../../src/reifecheck/geometry";
-import type { EvaluatedAnswer, Evaluation, Stufe } from "../../src/reifecheck/types";
+} from "../../src/reifecheck/geometry.js";
+import type { EvaluatedAnswer, Evaluation, Stufe } from "../../src/reifecheck/types.js";
 
 const BOOK_URL = "https://cal.meetergo.com/richard-rossler/narratec?src=reifecheck-pdf";
 const MAIL = "contact@narratec.io";

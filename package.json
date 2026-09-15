@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && npm run typecheck:api && vite build",
+    "build": "tsc -b && npm run typecheck:api && npm run check:esm && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck:api": "tsc -p tsconfig.api.json",
@@ -15,7 +15,8 @@
     "pdf:worst": "node scripts/worst-case.mjs",
     "preview:build": "node scripts/build-preview.mjs",
     "notion:test": "node scripts/test-notion.mjs",
-    "mail:test": "node scripts/test-mail.mjs"
+    "mail:test": "node scripts/test-mail.mjs",
+    "check:esm": "node scripts/check-esm-imports.mjs"
   },
   "dependencies": {
     "@notionhq/client": "^5.26.0",

@@ -9,12 +9,12 @@
  */
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { evaluate, isComplete, missingAnswers } from "../src/reifecheck/evaluate";
-import type { Answers, CompleteAnswers, Contact } from "../src/reifecheck/types";
-import { renderDocumentHtml } from "./_lib/document";
-import { pdfFilename, renderPdf } from "./_lib/pdf";
-import { readMailEnv, sendEvaluation } from "./_lib/mail";
-import { readNotionEnv, storeInNotion } from "./_lib/notion";
+import { evaluate, isComplete, missingAnswers } from "../src/reifecheck/evaluate.js";
+import type { Answers, CompleteAnswers, Contact } from "../src/reifecheck/types.js";
+import { renderDocumentHtml } from "./_lib/document.js";
+import { pdfFilename, renderPdf } from "./_lib/pdf.js";
+import { readMailEnv, sendEvaluation } from "./_lib/mail.js";
+import { readNotionEnv, storeInNotion } from "./_lib/notion.js";
 
 export const config = { maxDuration: 60 };
 

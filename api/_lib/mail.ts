@@ -5,9 +5,9 @@
  */
 
 import nodemailer from "nodemailer";
-import { formatDate } from "../../src/reifecheck/evaluate";
-import type { Contact, Evaluation } from "../../src/reifecheck/types";
-import { escapeHtml } from "./document";
+import { formatDate } from "../../src/reifecheck/evaluate.js";
+import type { Contact, Evaluation } from "../../src/reifecheck/types.js";
+import { escapeHtml } from "./document.js";
 
 const FROM_NAME = "NarraTec";
 
