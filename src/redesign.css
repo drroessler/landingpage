@@ -678,55 +678,6 @@ h1.hero-headline {
 }
 .lb-note .lb-star { color: var(--accent); }
 
-/* ---------- Nächste Schritte (mid-page CTA) ---------- */
-
-.ns {
-  padding: clamp(48px, 6vw, 80px) 0;
-  border-top: 1px solid var(--rule);
-}
-.ns-cta {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(28px, 5vw, 64px);
-  align-items: center;
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--accent);
-  border-radius: 3px;
-  background: var(--paper-2);
-  padding: clamp(32px, 4vw, 52px) clamp(28px, 4vw, 56px);
-}
-@media (max-width: 900px) {
-  .ns-cta { grid-template-columns: 1fr; align-items: start; }
-}
-.ns-cta-copy .zb-rubric-row { margin-bottom: 0; }
-.ns-cta-h2 {
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1.04;
-  max-width: 20ch;
-  margin: 16px 0 0;
-}
-.ns-cta-lede {
-  margin: 14px 0 0;
-  max-width: 54ch;
-  font-family: var(--f-sans);
-  font-size: clamp(15px, 1.3vw, 17px);
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-.ns-cta-action {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-.ns-cta-micro {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
 /* ---------- Belege aus der Praxis (case evidence) ---------- */
 
 .cs-grid {

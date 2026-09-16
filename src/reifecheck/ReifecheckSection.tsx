@@ -148,7 +148,7 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
   };
 
   return (
-    <section className="section rc-section" id="reifecheck" ref={sectionRef} data-screen-label="10 Reifecheck">
+    <section className="section rc-section" id="reifecheck" ref={sectionRef} data-screen-label="05 Reifecheck">
       <div className="container">
         {phase === "intro" && (
           <div className="rc-intro">

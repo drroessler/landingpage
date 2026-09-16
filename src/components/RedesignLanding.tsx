@@ -28,7 +28,6 @@ const landingDe = {
     check: "Reifecheck starten",
     checkNav: "Reifecheck",
     book: "30 Min Erstgespräch buchen",
-    microShort: "neun Fragen · rund vier Minuten · Auswertung als PDF",
     finalMicro: "kostenfrei · Sie wählen den Termin selbst · NDA auf Wunsch",
     mail: { text: "Lieber erst eine Frage stellen?", addr: "contact@narratec.io" },
   },
@@ -37,10 +36,10 @@ const landingDe = {
     { label: "Methode", id: "zielbild" },
     { label: "Einsatz", id: "einsatz" },
     { label: "Praxis", id: "case-study" },
+    { label: "Reifecheck", id: "reifecheck" },
     { label: "Leistungen", id: "bausteine" },
     { label: "Team", id: "team" },
     { label: "Lehre", id: "lehre" },
-    { label: "Reifecheck", id: "reifecheck" },
   ],
   hero: {
     kicker: numRubric("01", "FÜR ENTSCHEIDER IN KOMPLEXEN IT-VORHABEN"),
@@ -93,7 +92,7 @@ const landingDe = {
     },
   },
   bausteine: {
-    rubric: numRubric("07", "LÖSUNGSBAUSTEINE"),
+    rubric: numRubric("06", "LÖSUNGSBAUSTEINE"),
     h2: (<>Feste Pakete. <em>Feste Ergebnisse.</em></>) as ReactNode,
     lede: "Klar umrissene Leistungen, klar benannte Ergebnisse und ein Festpreis, der vor Beginn feststeht: keine Abrechnung nach Tagen, keine offene Beratungsrechnung.",
     note: "Zuschnitt und Festpreis auf Anfrage. Der Einstieg beginnt in der Regel mit einem Narrative Sprint.",
@@ -103,11 +102,6 @@ const landingDe = {
       { badge: "Ausbildung", title: "Anwender-Ausbildung", body: "Ihre Mitarbeitenden lernen die Methode an eigenen, echten Fällen — zunächst das Schreiben und Steuern von Narrativen („Narrative Owner“), im Aufbaukurs die Übersetzung in Arbeitspakete („Narrative Steward“). Im eigenen Haus oder in offenen Gruppen.", price: "Festpreis je Teilnehmer:in", meta: "Grundkurs + Aufbaukurs · im eigenen Haus zum Paketpreis" },
       { badge: "Verstetigung", title: "Lizenz & Begleitung", body: "Das Nutzungsrecht an der Methode für Ihre ausgebildeten Anwender — plus laufende Begleitung mit festen Sprechstunden, Durchsicht Ihrer Narrative und einer vierteljährlichen Überprüfung Ihrer Arbeitsstrukturen.", price: "Jahreslizenz", meta: "Lizenz jährlich · Begleitung monatlich" },
     ],
-  },
-  nextSteps: {
-    rubric: numRubric("06", "NÄCHSTE SCHRITTE"),
-    h2: (<>30 Minuten. Ein Partner. <em>Ihre</em> nächste Entscheidung.</>) as ReactNode,
-    lede: "Bringen Sie eine offene Frage mit — wir bringen die Methode. Keine Folien, keine Vertriebsschleife. Am Ende wissen Sie, ob eine Zusammenarbeit der richtige nächste Schritt ist.",
   },
   caseStudy: {
     rubric: numRubric("04", "BELEGE AUS DER PRAXIS"),
@@ -176,7 +170,7 @@ const landingDe = {
     ],
   },
   team: {
-    rubric: numRubric("05", "WER DAHINTER STEHT"),
+    rubric: numRubric("07", "WER DAHINTER STEHT"),
     h2: (<>Zwei Perspektiven. <em>Ein</em> Anspruch.</>) as ReactNode,
     people: [
       { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Gründer · Entwicklung der Methode", bio: (<>
@@ -235,7 +229,7 @@ const landingDe = {
     ],
   },
   reifecheck: {
-    rubric: numRubric("10", "REIFECHECK"),
+    rubric: numRubric("05", "REIFECHECK"),
     h2: (<>Wie belastbar ist die Grundlage <em>Ihrer</em> Entscheidung?</>) as ReactNode,
     lede: "Neun Fragen, rund vier Minuten. Sie erhalten eine Auswertung Ihrer Entscheidungsreife als PDF per E-Mail.",
     note: undefined as string | undefined,
@@ -259,7 +253,6 @@ const landingEn: LandingCopy = {
     check: "Start the readiness check",
     checkNav: "Readiness check",
     book: "Book a 30-min intro call",
-    microShort: "nine questions · about four minutes · PDF evaluation · German only",
     finalMicro: "free · you pick the time · NDA on request",
     mail: { text: "Prefer to ask a question first?", addr: "contact@narratec.io" },
   },
@@ -268,10 +261,10 @@ const landingEn: LandingCopy = {
     { label: "Method", id: "zielbild" },
     { label: "Use cases", id: "einsatz" },
     { label: "Evidence", id: "case-study" },
+    { label: "Readiness check", id: "reifecheck" },
     { label: "Packages", id: "bausteine" },
     { label: "Team", id: "team" },
     { label: "Teaching", id: "lehre" },
-    { label: "Readiness check", id: "reifecheck" },
   ],
   hero: {
     kicker: numRubric("01", "FOR DECISION-MAKERS IN COMPLEX IT INITIATIVES"),
@@ -324,7 +317,7 @@ const landingEn: LandingCopy = {
     },
   },
   bausteine: {
-    rubric: numRubric("07", "SOLUTION BUILDING BLOCKS"),
+    rubric: numRubric("06", "SOLUTION BUILDING BLOCKS"),
     h2: <>Fixed packages. <em>Fixed outcomes.</em></>,
     lede: "Clearly defined services, clearly named outcomes and a fixed price agreed before we start: no billing by the day, no open-ended consulting invoice.",
     note: "Scope and fixed price on request. Engagements usually begin with a Narrative Sprint.",
@@ -334,11 +327,6 @@ const landingEn: LandingCopy = {
       { badge: "Training", title: "Practitioner Training", body: "Your people learn the method on their own, real cases — first writing and steering narratives (“Narrative Owner”), then translating them into work packages (“Narrative Steward”) in the advanced course. In-house or in open groups.", price: "Fixed price per participant", meta: "core course + advanced course · in-house at a package price" },
       { badge: "Continuity", title: "License & Support", body: "The right to use the method for your trained practitioners — plus ongoing support with fixed office hours, review of your narratives and a quarterly review of your working structures.", price: "Annual license", meta: "license annually · support monthly" },
     ],
-  },
-  nextSteps: {
-    rubric: numRubric("06", "NEXT STEPS"),
-    h2: <>30 minutes. One partner. <em>Your</em> next decision.</>,
-    lede: "Bring an open question — we bring the method. No slides, no sales loop. In the end you'll know whether working together is the right next step.",
   },
   caseStudy: {
     rubric: numRubric("04", "EVIDENCE FROM PRACTICE"),
@@ -407,7 +395,7 @@ const landingEn: LandingCopy = {
     ],
   },
   team: {
-    rubric: numRubric("05", "WHO IS BEHIND THIS"),
+    rubric: numRubric("07", "WHO IS BEHIND THIS"),
     h2: <>Two perspectives. <em>One</em> standard.</>,
     people: [
       { photo: "/Roessler.jpeg", name: "Dr. Richard Rößler", role: "Founder · Method development", bio: (<>
@@ -466,7 +454,7 @@ const landingEn: LandingCopy = {
     ],
   },
   reifecheck: {
-    rubric: numRubric("10", "READINESS CHECK"),
+    rubric: numRubric("05", "READINESS CHECK"),
     h2: <>How solid is the ground under <em>your</em> decision?</>,
     lede: "Nine questions, about four minutes. You receive an evaluation of your decision readiness as a PDF by email.",
     note: "The check itself is in German.",
@@ -719,7 +707,7 @@ function Zielbild({ c }: { c: LandingCopy["zielbild"] }) {
 
 function Bausteine({ c }: { c: LandingCopy["bausteine"] }) {
   return (
-    <section className="section" id="bausteine" data-screen-label="07 Lösungsbausteine">
+    <section className="section" id="bausteine" data-screen-label="06 Lösungsbausteine">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} lede={c.lede} />
 
@@ -739,31 +727,6 @@ function Bausteine({ c }: { c: LandingCopy["bausteine"] }) {
         </div>
 
         <p className="lb-note"><span className="lb-star" aria-hidden="true">*</span> {c.note}</p>
-      </div>
-    </section>
-  );
-}
-
-function NextSteps({ c, cta }: { c: LandingCopy["nextSteps"]; cta: LandingCopy["cta"] }) {
-  return (
-    <section className="ns" id="naechste-schritte" data-screen-label="06 Nächste Schritte">
-      <div className="container">
-        <div className="ns-cta">
-          <div className="ns-cta-copy">
-            <RubricRow rubric={c.rubric} />
-            <h2 className="display ns-cta-h2">{c.h2}</h2>
-            <p className="ns-cta-lede">{c.lede}</p>
-          </div>
-          <div className="ns-cta-action">
-            <a className="btn btn-primary" href={`#${CHECK_ID}`} onClick={onJump(CHECK_ID)} data-umami-event="cta-mid-check">
-              {cta.check} <span className="btn-arrow" aria-hidden="true"></span>
-            </a>
-            <a className="btn btn-ghost" href={BOOK_URL} data-meetergo-link={BOOK_URL} data-umami-event="cta-mid">
-              {cta.book}
-            </a>
-            <div className="ns-cta-micro">{cta.microShort}</div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -792,7 +755,7 @@ function UseCases({ c }: { c: LandingCopy["usecases"] }) {
 
 function Team({ c }: { c: LandingCopy["team"] }) {
   return (
-    <section className="section" id="team" data-screen-label="05 Wer dahinter steht">
+    <section className="section" id="team" data-screen-label="07 Wer dahinter steht">
       <div className="container">
         <SectionHead rubric={c.rubric} h2={c.h2} />
 
@@ -1058,12 +1021,15 @@ function RedesignLanding() {
         <Zielbild c={L.zielbild} />
         <UseCases c={L.usecases} />
         <CaseStudy c={L.caseStudy} />
-        <NextSteps c={L.nextSteps} cta={L.cta} />
+        {/* Der Reifecheck steht hier statt am Seitenende: nach den Belegen ist der
+            Leser überzeugt, aber noch nicht bei einem Gespräch — genau seine Rolle.
+            Er ersetzt den früheren Mittel-CTA, der wörtlich dasselbe sagte wie der
+            Abschluss der Seite. */}
+        <ReifecheckSection c={L.reifecheck} />
         <Bausteine c={L.bausteine} />
         <Team c={L.team} />
         <Lehre c={L.lehre} cta={L.cta} />
         <Disqualify c={L.disqualify} />
-        <ReifecheckSection c={L.reifecheck} />
         <Final c={L.final} cta={L.cta} />
       </main>
       <Footer />
