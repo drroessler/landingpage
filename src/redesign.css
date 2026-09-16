@@ -1281,7 +1281,9 @@ h1.hero-headline {
 .lehre-invite {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* Nicht space-between: der Text ist auf 62ch begrenzt, die Schaltfläche würde
+     sonst allein am rechten Rand stehen und gehörte optisch zu nichts mehr. */
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: clamp(20px, 3vw, 40px);
   margin-top: clamp(24px, 3vw, 36px);

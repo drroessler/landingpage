@@ -60,7 +60,12 @@
 
 /* ---------- Intro ---------- */
 
-.rc-intro { max-width: 1040px; }
+/* Die Rubrikzeile läuft über die volle Containerbreite wie in allen anderen
+   Sektionen — sonst endet ihre Trennlinie sichtbar früher. Begrenzt wird nur
+   der Inhalt darunter. */
+.rc-intro { max-width: none; }
+.rc-intro-top,
+.rc-intro-points { max-width: 1040px; }
 .rc-intro-note { margin-top: 14px; }
 
 /* Kopf der Sektion: Text links, Dokumentvorschau rechts. Die Vorschau zeigt,
