@@ -78,10 +78,3 @@ export interface Evaluation {
   /** die sechs Stufen in Achsenreihenfolge R1..R6 */
   stufen: Stufe[];
 }
-
-export interface Submission {
-  contact: Contact & { /** Honigtopf gegen Formular-Bots — bleibt bei Menschen leer. */ website?: string };
-  answers: CompleteAnswers;
-  createdAt: string;
-  reference: string;
-}

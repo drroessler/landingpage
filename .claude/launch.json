@@ -14,18 +14,6 @@
         "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
       },
       "port": 5173
-    },
-    {
-      "name": "onepager",
-      "runtimeExecutable": "/opt/homebrew/bin/python3",
-      "runtimeArgs": [
-        "-m",
-        "http.server",
-        "5199",
-        "--directory",
-        "docs/onepager/build"
-      ],
-      "port": 5199
     }
   ]
 }

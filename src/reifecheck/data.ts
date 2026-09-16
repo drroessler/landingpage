@@ -27,14 +27,14 @@ export const CONTEXT_QUESTIONS: Question[] = [
         label: "Die Entscheidung ist gefallen, die Umsetzung ist noch nicht beauftragt",
         statementTitle: "Entschieden, noch nicht beauftragt",
         statement:
-          "Das Fenster ist noch offen. Solange keine Kapazität gebunden ist, lässt sich eine Lücke in der Vorbereitung ohne größeren Reibungsverlust schließen. Nach der Beauftragung ändert sich das.",
+          "Solange keine Kapazität gebunden ist, lässt sich eine Lücke in der Vorbereitung ohne größeren Reibungsverlust schließen.",
       },
       {
         key: "c",
         label: "Die Umsetzung läuft bereits",
         statementTitle: "Die Umsetzung läuft",
         statement:
-          "Die Qualität der Entscheidungsgrundlage wirkt bereits und lässt sich rückwirkend nicht mehr verbessern. Zwei Stellschrauben bleiben Ihnen: der Abstand zwischen zwei Prüfterminen und der direkte Kontakt zwischen den Betroffenen und denen, die bauen. Beides begrenzt, wie lange eine falsche Annahme unbemerkt weiterläuft.",
+          "Die Qualität der Entscheidungsgrundlage wirkt bereits. Zwei Stellschrauben bleiben Ihnen: der Abstand zwischen zwei Prüfterminen und der direkte Kontakt zwischen den Betroffenen und denen, die bauen. Beides begrenzt, wie lange eine falsche Annahme unbemerkt weiterläuft.",
       },
     ],
   },
@@ -90,7 +90,7 @@ export const CONTEXT_QUESTIONS: Question[] = [
         label: "Mehrere Bereiche, Gesellschaften oder Standorte",
         statementTitle: "Mehrere Bereiche oder Standorte",
         statement:
-          "Über Bereichsgrenzen hinweg entsteht keine geteilte Ausgangslage von selbst. Was in einem Bereich als bekannt gilt, ist im nächsten unbekannt oder umstritten. Welche Zahl zur Ausgangslage würde in allen beteiligten Bereichen unwidersprochen bleiben?",
+          "Über Bereichsgrenzen hinweg entsteht keine geteilte Ausgangslage von selbst. Was in einem Bereich als bekannt gilt, ist im nächsten unbekannt oder umstritten. Welche Aussagen zur Ausgangslage würde in allen beteiligten Bereichen unwidersprochen bleiben?",
       },
     ],
   },
@@ -150,7 +150,7 @@ export const REIFE_QUESTIONS: Question[] = [
         stufe: 1,
         statementTitle: "Nicht ausdrücklich benannt",
         statement:
-          "Jedes Vorhaben ruht auf Annahmen. Sind sie unausgesprochen, hat jeder Beteiligte eigene, und alle halten sie für geteilt. Auffallen wird das erst, wenn eine davon nicht zutrifft. Welche Annahme würde Ihr Vorhaben zu Fall bringen, wenn sie falsch wäre?",
+          "Jedes Vorhaben ruht auf Annahmen. Sind sie unausgesprochen, hat jeder Beteiligte eigene, und alle halten sie für geteilt. Auffallen wird das erst, wenn eine davon nicht zutrifft. Welche Annahme würde Ihr Vorhaben gefährden, wenn sie falsch wäre?",
       },
       {
         key: "b",
@@ -188,7 +188,7 @@ export const REIFE_QUESTIONS: Question[] = [
         stufe: 2,
         statementTitle: "Projektleitung nebenbei",
         statement:
-          "Eine Analyse, die zwischen den übrigen Aufgaben der Projektleitung läuft, wird unter Termindruck als Erstes gekürzt. Der Grund liegt selten in Nachlässigkeit. Sie ist die einzige Aufgabe ohne eigenen Termin. Wie viel Zeit war zuletzt tatsächlich dafür reserviert, und wie viel davon ist ausgefallen?",
+          "Eine Analyse, die zwischen den übrigen Aufgaben der Projektleitung läuft, wird unter Termindruck als Erstes gekürzt. Der Grund liegt selten in Nachlässigkeit. Sie ist die einzige Aufgabe ohne eigenen Termin. Wie viel Zeit war zuletzt tatsächlich für Analyse verfügbar?",
       },
       {
         key: "c",
@@ -212,11 +212,11 @@ export const REIFE_QUESTIONS: Question[] = [
         stufe: 1,
         statementTitle: "Vertreten durch Dritte",
         statement:
-          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome. Eine Prüfrunde mit den unmittelbar Betroffenen ist der günstigste Weg, eine Fehldiagnose zu bemerken, solange sie noch korrigierbar ist. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
+          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome.  Genau die ist der häufigste Grund dafür, dass eine formal saubere Entscheidung in der Umsetzung keine Zustimmung findet. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
       },
       {
         key: "b",
-        label: "Sie wurden befragt. Die daraus gezogenen Schlüsse haben sie nicht mehr zu sehen bekommen",
+        label: "Sie wurden befragt. Die daraus gezogenen Schlüsse haben sie aber nicht mehr zu sehen bekommen",
         stufe: 2,
         statementTitle: "Befragt, aber nicht rückgespiegelt",
         statement:
@@ -243,7 +243,7 @@ export const REIFE_QUESTIONS: Question[] = [
         stufe: 1,
         statementTitle: "Keine Feedback-Runde",
         statement:
-          "Ohne eine eigene Runde bleibt die Analyse die Sicht derer, die sie geschrieben haben. Ob sie die Lage trifft, zeigt sich dann erst in der Umsetzung — dort ist eine Korrektur am teuersten. Wer außerhalb des Autorenkreises hat die Analyse gelesen und hätte widersprechen können?",
+          "Ohne eine eigene Runde bleibt die Analyse die Sicht derer, die sie geschrieben haben. Ob sie die Lage trifft, zeigt sich dann erst in der Umsetzung — dort ist eine Korrektur am teuersten. Wer hätte noch die Analyse lesen und widersprechen können?",
       },
       {
         key: "b",
