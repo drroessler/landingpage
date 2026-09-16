@@ -10,7 +10,10 @@
      macht ihn als Handlungsfläche kenntlich, ohne ihn wie ein Banner zu rahmen. */
   background: var(--paper-2);
   border-top: 1px solid var(--rule);
-  scroll-margin-top: 76px;
+  /* Kein scroll-margin-top: die Sektion soll beim Anspringen genauso stehen wie
+     jede andere. Die sticky Navigation verdeckt dabei die obersten 75 px — das
+     sind reines Padding, der Inhalt beginnt erst bei 129 px. Ein eigener Wert
+     hier hat die Sektion sichtbar tiefer starten lassen als alle übrigen. */
 }
 
 /* Überschrift der Sektion — nutzt die Displaygröße der übrigen Sektionen. */
