@@ -457,7 +457,10 @@ const landingEn: LandingCopy = {
     rubric: numRubric("05", "READINESS CHECK"),
     h2: <>How solid is the ground under <em>your</em> decision?</>,
     lede: "Nine questions, about four minutes. You receive an evaluation of your decision readiness as a PDF by email.",
-    note: "The check itself is in German.",
+    /* Der Fragebogen gibt es jetzt auf Englisch — der frühere Hinweis darauf,
+       dass er nur deutsch vorliegt, ist gegenstandslos. Das Feld bleibt für
+       künftige Hinweise erhalten. */
+    note: undefined as string | undefined,
     start: "Start the readiness check",
     resume: "Resume the readiness check",
     previewCaption: "Page 1 of 3 · your evaluation as a PDF",
@@ -1025,7 +1028,7 @@ function RedesignLanding() {
             Leser überzeugt, aber noch nicht bei einem Gespräch — genau seine Rolle.
             Er ersetzt den früheren Mittel-CTA, der wörtlich dasselbe sagte wie der
             Abschluss der Seite. */}
-        <ReifecheckSection c={L.reifecheck} />
+        <ReifecheckSection c={L.reifecheck} lang={lang} />
         <Bausteine c={L.bausteine} />
         <Team c={L.team} />
         <Lehre c={L.lehre} cta={L.cta} />

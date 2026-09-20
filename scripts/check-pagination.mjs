@@ -23,15 +23,31 @@ const pages = Array.from({ length: pageCount }, (_, i) =>
 );
 
 // Marker, die genau einmal und nur im gemeinten Abschnitt vorkommen.
-const EXPECTED = [
-  ["SECHS ACHSEN", "Diagramm 1", 1],
-  ["Status und Kontext", "F1–F3", 2],
-  ["Die sechs Punkte im Einzelnen", "R1–R6", 2],
-  ["Wie explizit sind die Annahmen", "letzte Reifefrage (R6)", 2],
-  ["DIAGRAMM 2", "Diagramm 2", 3],
-  ["Wie es weitergehen kann", "Nächster Schritt", 3],
-  ["Woher die Fragen kommen", "methodischer Hinweis", 3],
-];
+// Je Sprache eigene Marker — die englische Fassung bricht anders um und muss
+// dieselbe Aufteilung halten. Die letzte Reifefrage ist R6 (Freigabe); stünde
+// hier eine frühere, liefe die Prüfung ins Leere, sobald sich die Reihenfolge
+// ändert, ohne dass jemand es merkt.
+const MARKERS = {
+  de: [
+    ["SECHS ACHSEN", "Diagramm 1", 1],
+    ["Status und Kontext", "F1–F3", 2],
+    ["Die sechs Punkte im Einzelnen", "R1–R6", 2],
+    ["Wie verbindlich ist die Entscheidung", "letzte Reifefrage (R6)", 2],
+    ["DIAGRAMM 2", "Diagramm 2", 3],
+    ["Wie es weitergehen kann", "Nächster Schritt", 3],
+    ["Woher die Fragen kommen", "methodischer Hinweis", 3],
+  ],
+  en: [
+    ["SIX AXES", "Diagramm 1", 1],
+    ["Status and context", "F1–F3", 2],
+    ["The six points in detail", "R1–R6", 2],
+    ["How binding is the decision", "letzte Reifefrage (R6)", 2],
+    ["CHART 2", "Diagramm 2", 3],
+    ["Where it can go from here", "Nächster Schritt", 3],
+    ["Where the questions come from", "methodischer Hinweis", 3],
+  ],
+};
+const EXPECTED = MARKERS[process.argv.includes("--en") ? "en" : "de"];
 
 let bad = 0;
 console.log(`${pageCount} Seiten` + (pageCount === 3 ? "" : "   <-- erwartet: 3"));

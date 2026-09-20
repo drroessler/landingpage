@@ -8,9 +8,9 @@
  *  Schriften und druckt. Nichts anderes muss ausgeführt werden.
  */
 
-import { DOC } from "../../src/reifecheck/copy.js";
+import { docFor } from "../../src/reifecheck/copy.js";
 import { FONT_CSS } from "./fonts.js";
-import { UMSETZUNG_AXES, REIFE_AXES } from "../../src/reifecheck/data.js";
+import { reifeAxesFor, umsetzungAxesFor } from "../../src/reifecheck/data.js";
 import { formatDate } from "../../src/reifecheck/evaluate.js";
 import {
   AXIS_LABELS,
@@ -21,7 +21,7 @@ import {
   axisLines,
   ringPoints,
 } from "../../src/reifecheck/geometry.js";
-import type { EvaluatedAnswer, Evaluation, Stufe } from "../../src/reifecheck/types.js";
+import type { EvaluatedAnswer, Evaluation, Lang, Stufe } from "../../src/reifecheck/types.js";
 
 const BOOK_URL = "https://cal.meetergo.com/richard-rossler/narratec?src=reifecheck-pdf";
 const MAIL = "contact@narratec.io";
@@ -60,6 +60,27 @@ export function escapeHtml(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
+/** Beschriftungen, die zur Mechanik des Dokuments gehören und nicht zum Inhalt:
+ *  Alternativtexte der Diagramme, Stufenangabe, Antwortmarke, Kopfzeile. */
+const L = {
+  de: {
+    stufe: (n: number | undefined) => `Stufe ${n}`,
+    stufeVon: (n: number | undefined) => `Stufe ${n}/3`,
+    diagramm1Alt: (achsen: string) => `Netzdiagramm Entscheidungsreife: ${achsen}`,
+    diagramm2Alt: "Netzdiagramm Umsetzungsreife, identischer Aufbau, keine gefüllte Fläche",
+    ihreAntwort: "Ihre Antwort",
+    auswertungVom: (datum: string) => `Auswertung vom ${datum}`,
+  },
+  en: {
+    stufe: (n: number | undefined) => `level ${n}`,
+    stufeVon: (n: number | undefined) => `Level ${n}/3`,
+    diagramm1Alt: (achsen: string) => `Radar chart of decision readiness: ${achsen}`,
+    diagramm2Alt: "Radar chart of implementation readiness, same structure, no filled area",
+    ihreAntwort: "Your answer",
+    auswertungVom: (datum: string) => `Evaluation of ${datum}`,
+  },
+} as const;
+
 /* ---------- Netzdiagramme ---------- */
 
 const WRAPPED: Record<string, [string, string]> = {
@@ -92,9 +113,10 @@ function ringsSvg(outerDashed: boolean): string {
     .join("")}</g>`;
 }
 
-function entscheidungsreifeSvg(stufen: Stufe[]): string {
-  const label = REIFE_AXES.map((a, i) => `${a} Stufe ${stufen[i]}`).join(", ");
-  return `<svg viewBox="${VIEWBOX}" style="width:100%;height:auto;overflow:visible" role="img" aria-label="Netzdiagramm Entscheidungsreife: ${escapeHtml(label)}">
+function entscheidungsreifeSvg(stufen: Stufe[], lang: Lang): string {
+  const REIFE_AXES = reifeAxesFor(lang);
+  const label = REIFE_AXES.map((a, i) => `${a} ${L[lang].stufe(stufen[i])}`).join(", ");
+  return `<svg viewBox="${VIEWBOX}" style="width:100%;height:auto;overflow:visible" role="img" aria-label="${escapeHtml(L[lang].diagramm1Alt(label))}">
 ${ringsSvg(false)}
 <polygon points="${areaPoints(stufen)}" fill="color-mix(in oklab, ${C.accent} 15%, transparent)" stroke="${C.accent}" stroke-width="2.4"></polygon>
 <g fill="${C.accentInk}">${areaVertices(stufen)
@@ -109,8 +131,9 @@ ${ringsSvg(false)}
 </svg>`;
 }
 
-function umsetzungsreifeSvg(): string {
-  return `<svg viewBox="${VIEWBOX}" style="width:100%;height:auto;overflow:visible" role="img" aria-label="Netzdiagramm Umsetzungsreife, identischer Aufbau, keine gefüllte Fläche">
+function umsetzungsreifeSvg(lang: Lang): string {
+  const UMSETZUNG_AXES = umsetzungAxesFor(lang);
+  return `<svg viewBox="${VIEWBOX}" style="width:100%;height:auto;overflow:visible" role="img" aria-label="${escapeHtml(L[lang].diagramm2Alt)}">
 ${ringsSvg(true)}
 <g font-family="${F.sans}" font-size="16" fill="${C.ink3}">${UMSETZUNG_AXES.map((a, i) =>
     axisLabelSvg(a, i),
@@ -129,7 +152,8 @@ function bars(stufe: Stufe, width: number): string {
     .join("");
 }
 
-function ladder(stufen: Stufe[]): string {
+function ladder(stufen: Stufe[], lang: Lang): string {
+  const REIFE_AXES = reifeAxesFor(lang);
   const rows = REIFE_AXES.map((axis, i) => {
     const last = i === REIFE_AXES.length - 1;
     const border = last ? "" : `border-bottom:1px solid ${C.rule};`;
@@ -177,7 +201,7 @@ const T = {
 
 /* ---------- Ein Antwortblock (Seite 2) ---------- */
 
-function itemHtml(a: EvaluatedAnswer, opts: { first?: boolean } = {}): string {
+function itemHtml(a: EvaluatedAnswer, lang: Lang, opts: { first?: boolean } = {}): string {
   const top = opts.first ? "" : `border-top:1px solid ${C.rule};`;
   const low = a.stufe === 1;
   const meta = [
@@ -186,7 +210,7 @@ function itemHtml(a: EvaluatedAnswer, opts: { first?: boolean } = {}): string {
     a.stufe === undefined
       ? ""
       : `<span style="display:inline-flex;gap:3px;align-items:center">${bars(a.stufe, 12)}` +
-        `<span style="color:${low ? C.accentInk : C.ink3};margin-left:5px">Stufe ${a.stufe}/3</span></span>`,
+        `<span style="color:${low ? C.accentInk : C.ink3};margin-left:5px">${L[lang].stufeVon(a.stufe)}</span></span>`,
   ]
     .filter(Boolean)
     .join(`<span style="color:${C.rule}">·</span>`);
@@ -196,7 +220,7 @@ function itemHtml(a: EvaluatedAnswer, opts: { first?: boolean } = {}): string {
 <div style="display:flex;align-items:center;gap:7px;font-family:${F.mono};font-size:${T.itemMeta}px;letter-spacing:0.09em;line-height:1.4">${meta}</div>
 <div style="margin-top:4px;font-family:${F.display};font-size:${T.itemPrompt}px;line-height:1.14;letter-spacing:-0.008em;color:${C.ink}">${escapeHtml(a.prompt)}</div>
 ${a.note ? `<div style="margin-top:3px;font-size:${T.itemMeta + 0.5}px;line-height:1.3;color:${C.ink3}">${escapeHtml(a.note)}</div>` : ""}
-<div style="margin-top:5px;padding:5px 9px;border:1px solid color-mix(in oklab, ${C.accent} 24%, #fff);border-radius:2px;background:color-mix(in oklab, ${C.accent} 8%, #fff);color:${C.accentInk};font-size:${T.itemAnswer}px;line-height:1.42"><span style="font-family:${F.mono};font-size:${T.itemMeta - 0.5}px;letter-spacing:0.1em;text-transform:uppercase;margin-right:7px">Ihre Antwort</span>${escapeHtml(a.optionLabel)}</div>
+<div style="margin-top:5px;padding:5px 9px;border:1px solid color-mix(in oklab, ${C.accent} 24%, #fff);border-radius:2px;background:color-mix(in oklab, ${C.accent} 8%, #fff);color:${C.accentInk};font-size:${T.itemAnswer}px;line-height:1.42"><span style="font-family:${F.mono};font-size:${T.itemMeta - 0.5}px;letter-spacing:0.1em;text-transform:uppercase;margin-right:7px">${escapeHtml(L[lang].ihreAntwort)}</span>${escapeHtml(a.optionLabel)}</div>
 </div>
 <div style="padding-top:${T.itemMeta + 3}px">
 <p style="margin:0;font-size:${T.itemStatement}px;line-height:${T.itemLh};color:${C.ink2}">${escapeHtml(a.statement)}</p>
@@ -223,12 +247,14 @@ export function renderDocumentHtml(
   recipient: { name: string; organisation: string },
 ): string {
   const { context, reife, stufen } = evaluation;
+  const lang = evaluation.lang;
+  const DOC = docFor(lang);
 
   return `<!DOCTYPE html>
-<html lang="de">
+<html lang="${lang}">
 <head>
 <meta charset="utf-8">
-<title>Reifecheck IT-Vorhaben — Auswertung ${evaluation.reference}</title>
+<title>${escapeHtml(DOC.runningHead)} ${evaluation.reference}</title>
 <style>
 ${FONT_CSS}
 </style>
@@ -266,7 +292,7 @@ ${FONT_CSS}
 
 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:20px;padding-top:10px;border-top:1px solid ${C.rule};font-family:${F.mono};font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:${C.ink3}">
 <span>Für ${escapeHtml(recipient.name)}${recipient.organisation ? ` · ${escapeHtml(recipient.organisation)}` : ""}</span>
-<span>Auswertung vom ${formatDate(evaluation.createdAt)} · ${evaluation.reference}</span>
+<span>${escapeHtml(L[lang].auswertungVom(formatDate(evaluation.createdAt, lang)))} · ${evaluation.reference}</span>
 </div>
 
 <h2 class="nt-h" style="font-family:${F.display};font-size:${T.h2}px;line-height:1.1;letter-spacing:-0.01em;margin:22px 0 11px;color:${C.ink}">${escapeHtml(DOC.vorspann.h2)}</h2>
@@ -285,17 +311,17 @@ ${rubric(DOC.diagram1.rubric)}
 <div style="font-family:${F.mono};font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:${C.accentInk}">${escapeHtml(DOC.diagram1.meta)}</div>
 </div>
 <div style="display:flex;gap:26px;align-items:center;margin-top:8px">
-<div style="flex:0 0 290px;max-width:290px">${entscheidungsreifeSvg(stufen)}</div>
-${ladder(stufen)}
+<div style="flex:0 0 290px;max-width:290px">${entscheidungsreifeSvg(stufen, lang)}</div>
+${ladder(stufen, lang)}
 </div>
 </div>
 
 <div class="nt-page-2">
 ${sectionHead(DOC.contextSection.rubric, DOC.contextSection.h2, DOC.contextSection.lede, 0)}
-${context.map((a, i) => itemHtml(a, { first: i === 0 })).join("")}
+${context.map((a, i) => itemHtml(a, lang, { first: i === 0 })).join("")}
 
 ${sectionHead(DOC.reifeSection.rubric, DOC.reifeSection.h2, DOC.reifeSection.lede, 10)}
-${reife.map((a, i) => itemHtml(a, { first: i === 0 })).join("")}
+${reife.map((a, i) => itemHtml(a, lang, { first: i === 0 })).join("")}
 </div>
 
 <div class="nt-page-3">
@@ -307,7 +333,7 @@ ${rubric(DOC.diagram2.rubric)}
 <p style="margin:0;font-size:${T.blockBody}px;line-height:${T.blockLh};color:${C.ink2}">${escapeHtml(DOC.diagram2.right)}</p>
 </div>
 <div style="display:flex;gap:24px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed ${C.ruleStrong}">
-<div style="flex:0 0 235px;max-width:235px">${umsetzungsreifeSvg()}</div>
+<div style="flex:0 0 235px;max-width:235px">${umsetzungsreifeSvg(lang)}</div>
 <p style="flex:1 1 0;min-width:0;margin:0;font-family:${F.display};font-size:${T.pull}px;line-height:1.28;letter-spacing:-0.005em;color:${C.ink}">${escapeHtml(DOC.diagram2.pull)}</p>
 </div>
 </div>
@@ -341,7 +367,8 @@ ${rubric(DOC.methode.rubric)}
 }
 
 /** Kopf- und Fußzeile für Chromium — dort, wo die Vorlage sie hatte. */
-export function headerTemplate(): string {
+export function headerTemplate(lang: Lang = "de"): string {
+  const DOC = docFor(lang);
   return `<div style="width:100%;padding:0 16mm;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:#6b6b66;display:flex;justify-content:space-between;border-bottom:1px solid #dedcd7;padding-bottom:5px;margin-bottom:4px">
 <span>NarraTec</span><span>${DOC.runningHead}</span></div>`;
 }

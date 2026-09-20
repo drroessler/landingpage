@@ -1,4 +1,4 @@
-import { DOC } from "./copy";
+import { docFor, formFor } from "./copy";
 import { formatDate } from "./evaluate";
 import { EntscheidungsreifeChart, Stufenleiter, UmsetzungsreifeChart } from "./RadarChart";
 import type { EvaluatedAnswer, Evaluation } from "./types";
@@ -46,6 +46,10 @@ export default function ResultView({
   mailState?: "sent" | "pending" | "failed";
 }) {
   const { context, reife, stufen } = evaluation;
+  // Das Ergebnis auf der Seite spricht dieselbe Sprache wie das versendete PDF.
+  const lang = evaluation.lang;
+  const DOC = docFor(lang);
+  const FORM = formFor(lang);
 
   return (
     <div className="rc-doc">
@@ -62,16 +66,14 @@ export default function ResultView({
         <div className={`rc-mail-note is-${mailState}`} role="status">
           {mailState === "sent" && recipient && (
             <>
-              Die Auswertung ist als PDF an <strong>{recipient}</strong> unterwegs. Sollte sie nicht
-              ankommen, sehen Sie bitte im Spam-Ordner nach.
+              {FORM.mailState.sentBefore}<strong>{recipient}</strong>{FORM.mailState.sentAfter}
             </>
           )}
-          {mailState === "pending" && <>Die Auswertung wird erzeugt und versendet …</>}
+          {mailState === "pending" && <>{FORM.mailState.pending}</>}
           {mailState === "failed" && (
             <>
-              Der Versand hat nicht geklappt. Ihre Auswertung steht vollständig auf dieser Seite —
-              drucken Sie sie über die Druckfunktion Ihres Browsers, oder schreiben Sie kurz an{" "}
-              <a href={`mailto:${MAIL}`}>{MAIL}</a>, dann kommt sie auf anderem Weg.
+              {FORM.mailState.failedBefore}
+              <a href={`mailto:${MAIL}`}>{MAIL}</a>{FORM.mailState.failedAfter}
             </>
           )}
         </div>
@@ -106,9 +108,9 @@ export default function ResultView({
         </div>
         <div className="rc-figure-body">
           <div className="rc-figure-net">
-            <EntscheidungsreifeChart stufen={stufen} />
+            <EntscheidungsreifeChart stufen={stufen} lang={lang} />
           </div>
-          <Stufenleiter stufen={stufen} />
+          <Stufenleiter stufen={stufen} lang={lang} />
         </div>
       </section>
 
@@ -143,7 +145,7 @@ export default function ResultView({
         </div>
         <div className="rc-block-2-body">
           <div className="rc-figure-net rc-figure-net-2">
-            <UmsetzungsreifeChart />
+            <UmsetzungsreifeChart lang={lang} />
           </div>
           <p className="rc-pull">{DOC.diagram2.pull}</p>
         </div>

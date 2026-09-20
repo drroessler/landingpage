@@ -6,7 +6,14 @@
  *  dieser Datei.
  */
 
-import type { Question } from "./types.js";
+import type { Lang, Question } from "./types.js";
+import {
+  ALL_QUESTIONS_EN,
+  CONTEXT_QUESTIONS_EN,
+  REIFE_QUESTIONS_EN,
+  REIFE_AXES_EN,
+  UMSETZUNG_AXES_EN,
+} from "./data.en.js";
 
 /** Reihenfolge der Ausgabe im Dokument: F1, F2, F3, R1 bis R6. */
 export const CONTEXT_QUESTIONS: Question[] = [
@@ -212,7 +219,7 @@ export const REIFE_QUESTIONS: Question[] = [
         stufe: 1,
         statementTitle: "Vertreten durch Dritte",
         statement:
-          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome.  Genau die ist der häufigste Grund dafür, dass eine formal saubere Entscheidung in der Umsetzung keine Zustimmung findet. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
+          "Wer ein Problem beschreibt, ohne es zu haben, beschreibt Symptome. Eine Prüfrunde mit den unmittelbar Betroffenen ist der günstigste Weg, eine Fehldiagnose zu bemerken, solange sie noch korrigierbar ist. Wer im aktuellen Kreis erlebt das Problem selbst, und wer berichtet darüber?",
       },
       {
         key: "b",
@@ -310,3 +317,23 @@ export const UMSETZUNG_AXES = [
   "Rückkopplung",
   "Führungsrückhalt",
 ];
+
+/* ---------- Sprachwahl ----------
+   Beide Fassungen tragen dieselben Kennungen, Optionsschlüssel und Stufen;
+   `npm run check:i18n` wacht darüber. Die Auswertung rechnet mit den Schlüsseln,
+   also darf die Sprache erst bei der Textausgabe entschieden werden. */
+
+export const contextQuestionsFor = (lang: Lang): Question[] =>
+  lang === "en" ? CONTEXT_QUESTIONS_EN : CONTEXT_QUESTIONS;
+
+export const reifeQuestionsFor = (lang: Lang): Question[] =>
+  lang === "en" ? REIFE_QUESTIONS_EN : REIFE_QUESTIONS;
+
+export const allQuestionsFor = (lang: Lang): Question[] =>
+  lang === "en" ? ALL_QUESTIONS_EN : ALL_QUESTIONS;
+
+export const reifeAxesFor = (lang: Lang): string[] =>
+  lang === "en" ? REIFE_AXES_EN : REIFE_AXES;
+
+export const umsetzungAxesFor = (lang: Lang): string[] =>
+  lang === "en" ? UMSETZUNG_AXES_EN : UMSETZUNG_AXES;

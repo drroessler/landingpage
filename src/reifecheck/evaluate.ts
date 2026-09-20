@@ -5,12 +5,13 @@
  *  Es wird nicht gerechnet und nicht gewichtet. Kein Sprachmodell beteiligt.
  */
 
-import { CONTEXT_QUESTIONS, REIFE_QUESTIONS, ALL_QUESTIONS } from "./data.js";
+import { ALL_QUESTIONS, contextQuestionsFor, reifeQuestionsFor } from "./data.js";
 import type {
   Answers,
   CompleteAnswers,
   EvaluatedAnswer,
   Evaluation,
+  Lang,
   Question,
   QuestionId,
   Stufe,
@@ -33,7 +34,9 @@ function evaluateOne(q: Question, optionKey: string): EvaluatedAnswer {
   };
 }
 
-/** Prüft, ob für jede der neun Fragen eine gültige Option gewählt wurde. */
+/** Prüft, ob für jede der neun Fragen eine gültige Option gewählt wurde.
+ *  Sprachunabhängig: geprüft werden Kennungen und Optionsschlüssel, die in
+ *  beiden Fassungen dieselben sind. */
 export function isComplete(answers: Answers): answers is CompleteAnswers {
   return ALL_QUESTIONS.every((q) => {
     const key = answers[q.id];
@@ -59,23 +62,25 @@ export function makeReference(random: () => number = Math.random): string {
 
 export function evaluate(
   answers: CompleteAnswers,
-  opts: { createdAt?: string; reference?: string } = {},
+  opts: { createdAt?: string; reference?: string; lang?: Lang } = {},
 ): Evaluation {
-  const context = CONTEXT_QUESTIONS.map((q) => evaluateOne(q, answers[q.id]));
-  const reife = REIFE_QUESTIONS.map((q) => evaluateOne(q, answers[q.id]));
+  const lang: Lang = opts.lang ?? "de";
+  const context = contextQuestionsFor(lang).map((q) => evaluateOne(q, answers[q.id]));
+  const reife = reifeQuestionsFor(lang).map((q) => evaluateOne(q, answers[q.id]));
 
   return {
     createdAt: opts.createdAt ?? new Date().toISOString(),
     reference: opts.reference ?? makeReference(),
+    lang,
     context,
     reife,
     stufen: reife.map((a) => a.stufe as Stufe),
   };
 }
 
-/** Deutsches Langdatum, wie es im Dokumentkopf steht. */
-export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("de-DE", {
+/** Langdatum für Dokumentkopf und Begleitmail, in der Sprache der Auswertung. */
+export function formatDate(iso: string, lang: Lang = "de"): string {
+  return new Date(iso).toLocaleDateString(lang === "en" ? "en-GB" : "de-DE", {
     day: "numeric",
     month: "long",
     year: "numeric",

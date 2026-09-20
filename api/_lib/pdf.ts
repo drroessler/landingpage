@@ -6,6 +6,7 @@
 
 import puppeteer, { type Browser } from "puppeteer-core";
 import { footerTemplate, headerTemplate } from "./document.js";
+import type { Lang } from "../../src/reifecheck/types.js";
 
 /** Kandidaten für eine lokale Chrome-Installation (nur Entwicklung).
  *  Playwright-Caches sind mit aufgeführt, weil der One-Pager-Build im selben
@@ -77,7 +78,7 @@ export async function launch(): Promise<Browser> {
   });
 }
 
-export async function renderPdf(html: string, reference: string): Promise<Buffer> {
+export async function renderPdf(html: string, reference: string, lang: Lang = "de"): Promise<Buffer> {
   const browser = await launch();
   try {
     const page = await browser.newPage();
@@ -89,7 +90,7 @@ export async function renderPdf(html: string, reference: string): Promise<Buffer
       format: "a4",
       printBackground: true,
       displayHeaderFooter: true,
-      headerTemplate: headerTemplate(),
+      headerTemplate: headerTemplate(lang),
       footerTemplate: footerTemplate(reference),
       margin: { top: "18mm", right: "16mm", bottom: "14mm", left: "16mm" },
     });

@@ -11,7 +11,7 @@
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { evaluate, isComplete, missingAnswers } from "../src/reifecheck/evaluate.js";
-import type { Answers, CompleteAnswers, Contact } from "../src/reifecheck/types.js";
+import type { Answers, CompleteAnswers, Contact, Lang } from "../src/reifecheck/types.js";
 import { renderDocumentHtml } from "./_lib/document.js";
 import { pdfFilename, renderPdf } from "./_lib/pdf.js";
 import { readMailEnv, sendEvaluation } from "./_lib/mail.js";
@@ -38,6 +38,7 @@ interface Body {
   answers?: Answers;
   createdAt?: string;
   reference?: string;
+  lang?: string;
 }
 
 function validate(body: Body): { error: string } | { contact: Contact; answers: CompleteAnswers } {
@@ -97,7 +98,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ? body.reference
       : undefined;
 
-  const evaluation = evaluate(answers, { createdAt, reference });
+  // Sprache des Fragebogens: bestimmt Dokument und Begleitmail. Alles außer
+  // "en" gilt als Deutsch — ein unbekannter Wert darf keinen Fehler auslösen.
+  const lang: Lang = body.lang === "en" ? "en" : "de";
+
+  const evaluation = evaluate(answers, { createdAt, reference, lang });
 
   let pdf: Buffer;
   try {
@@ -105,7 +110,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       name: contact.name,
       organisation: contact.organisation,
     });
-    pdf = await renderPdf(html, evaluation.reference);
+    pdf = await renderPdf(html, evaluation.reference, lang);
   } catch (err) {
     console.error("[reifecheck] PDF fehlgeschlagen", evaluation.reference, err);
     return res.status(500).json({ error: "Das Dokument konnte nicht erzeugt werden." });

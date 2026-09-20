@@ -1,3 +1,6 @@
+import type { Lang } from "./types.js";
+import { DOC_EN, FORM_EN } from "./copy.en.js";
+
 /** Textpassagen des Ergebnisdokuments — Quelle: reifecheck_set1_v40.md.
  *
  *  Reihenfolge im Dokument: Vorspann, Diagramm 1, die neun Statements,
@@ -65,7 +68,7 @@ export const DOC = {
     right: "Die Auswertung läuft regelbasiert. Jede Antwortoption gibt einen vorher formulierten Text aus, es wird nicht gerechnet und nicht gewichtet. Kein Sprachmodell ist an der Beurteilung beteiligt.",
     imprint: "NarraTec — eine Marke der Dr. Richard Rößler Management Advisory, Dresden",
   },
-} as const;
+};
 
 /** Copy des Fragebogens auf der Landingpage — nicht Teil des Dokuments. */
 export const FORM = {
@@ -106,8 +109,32 @@ export const FORM = {
     consentLinkLabel: "Datenschutzerklärung",
     submitLabel: "Auswertung erzeugen und zusenden",
     sending: "Auswertung wird erzeugt …",
+    /** Für Menschen unsichtbares Feld gegen Formular-Bots — Screenreader lesen es. */
+    honeypot: "Website (bitte frei lassen)",
+    errors: {
+      name: "Bitte tragen Sie Ihren Namen ein.",
+      email: "Bitte tragen Sie eine gültige E-Mail-Adresse ein.",
+      organisation: "Bitte tragen Sie Ihre Organisation ein.",
+      consent: "Ohne diese Einwilligung können wir Ihnen die Auswertung nicht zusenden.",
+    },
+  },
+  toContact: "Zu den Kontaktdaten",
+  mailState: {
+    pending: "Die Auswertung wird erzeugt und versendet …",
+    sentBefore: "Die Auswertung ist als PDF an ",
+    sentAfter: " unterwegs. Sollte sie nicht ankommen, sehen Sie bitte im Spam-Ordner nach.",
+    failedBefore:
+      "Der Versand hat nicht geklappt. Ihre Auswertung steht vollständig auf dieser Seite — drucken Sie sie über die Druckfunktion Ihres Browsers, oder schreiben Sie kurz an ",
+    failedAfter: ", dann kommt sie auf anderem Weg.",
   },
   progress: (current: number, total: number) => `Frage ${current} von ${total}`,
   back: "Zurück",
   next: "Weiter",
-} as const;
+};
+
+/** Struktur beider Sprachfassungen — copy.en.ts wird daran gemessen. */
+export type DocCopy = typeof DOC;
+export type FormCopy = typeof FORM;
+
+export const docFor = (lang: Lang): DocCopy => (lang === "en" ? DOC_EN : DOC);
+export const formFor = (lang: Lang): FormCopy => (lang === "en" ? FORM_EN : FORM);

@@ -46,9 +46,42 @@ function firstName(full: string): string {
 /** Die Mail selbst bleibt schlicht. Das Dokument ist der Anhang, nicht die Mail:
  *  die Mail kündigt an, die Auswertung steht im PDF. */
 function bodyText(contact: Contact, evaluation: Evaluation): string {
-  return `Guten Tag ${firstName(contact.name)},
+  const name = firstName(contact.name);
+  const datum = formatDate(evaluation.createdAt, evaluation.lang);
 
-anbei Ihre Auswertung des Reifechecks vom ${formatDate(evaluation.createdAt)}.
+  if (evaluation.lang === "en") {
+    return `Dear ${name},
+
+please find attached your readiness check evaluation of ${datum}.
+
+It contains the radar chart of your decision readiness and, for each of your
+nine answers, a short assessment.
+
+The evaluation does not judge your initiative and gives no score. It shows where
+your preparation stands today and which questions might come up before your next
+commitment.
+
+If you would like to work on any of the open points, let us talk about it.
+A first conversation takes 30 minutes:
+https://cal.meetergo.com/richard-rossler/narratec?src=reifecheck-mail
+
+Kind regards
+Dr. Richard Rößler
+
+--
+NarraTec — a brand of Dr. Richard Rößler Management Advisory
+Flensburger Straße 92, 01157 Dresden, Germany
+contact@narratec.io
+
+Reference of this evaluation: ${evaluation.reference}
+You are receiving this email because you completed the readiness check on
+narratec.io and consented to it being sent. You can withdraw that consent at any
+time and without formality — an email to contact@narratec.io is enough.`;
+  }
+
+  return `Guten Tag ${name},
+
+anbei Ihre Auswertung des Reifechecks vom ${datum}.
 
 Sie finden darin das Netzdiagramm Ihrer Entscheidungsreife und zu jeder Ihrer
 neun Antworten eine kurze Einordnung.
@@ -103,7 +136,10 @@ export async function sendEvaluation(
     to: `${contact.name} <${contact.email}>`,
     bcc: env.bcc,
     replyTo: env.from,
-    subject: `Ihre Reifecheck-Auswertung (${evaluation.reference})`,
+    subject:
+      evaluation.lang === "en"
+        ? `Your readiness check evaluation (${evaluation.reference})`
+        : `Ihre Reifecheck-Auswertung (${evaluation.reference})`,
     text: bodyText(contact, evaluation),
     html: bodyHtml(contact, evaluation),
     attachments: [{ filename, content: pdf, contentType: "application/pdf" }],

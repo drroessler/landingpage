@@ -10,6 +10,9 @@
 /** Stufe auf einer Reifeachse. Stufe 1 liegt auf dem inneren Ring, nicht im Mittelpunkt. */
 export type Stufe = 1 | 2 | 3;
 
+/** Sprache von Fragebogen, Dokument und Begleitmail. */
+export type Lang = "de" | "en";
+
 /** Kennungen der drei Kontextfragen (kein Diagramm) und der sechs Reifedimensionen. */
 export type ContextId = "F1" | "F2" | "F3";
 export type ReifeId = "R1" | "R2" | "R3" | "R4" | "R5" | "R6";
@@ -73,6 +76,8 @@ export interface Evaluation {
   createdAt: string;
   /** kurze, nicht erratbare Kennung — taucht im Dokument und in Notion auf */
   reference: string;
+  /** Sprache, in der ausgewertet wurde — Dokument und Mail folgen ihr. */
+  lang: Lang;
   context: EvaluatedAnswer[];
   reife: EvaluatedAnswer[];
   /** die sechs Stufen in Achsenreihenfolge R1..R6 */

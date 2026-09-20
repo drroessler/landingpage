@@ -9,6 +9,9 @@
  */
 import { build } from "esbuild";
 import { writeFileSync, mkdirSync } from "node:fs";
+
+/** Sprache der Messung: `node scripts/worst-case.mjs --en` misst die englische Fassung. */
+const LANG = process.argv.includes("--en") ? "en" : "de";
 import { join } from "node:path";
 
 const cache = join(process.cwd(), "node_modules/.cache/reifecheck");
@@ -31,7 +34,7 @@ await page.setViewport({ width: Math.round((210 - 32) * 96 / 25.4), height: 1400
 
 /** Misst die neun Antwortblöcke für eine Antwortkombination. */
 async function heights(answers) {
-  const ev = evaluate(answers, { createdAt: new Date().toISOString(), reference: "RC-MESS-0001" });
+  const ev = evaluate(answers, { createdAt: new Date().toISOString(), reference: "RC-MESS-0001", lang: LANG });
   const html = renderDocumentHtml(ev, { name: "Beispiel Empfänger", organisation: "Beispiel GmbH" });
   await page.setContent(html, { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
@@ -44,6 +47,8 @@ async function heights(answers) {
   });
 }
 
+// Sprache der Messung: die Blockhöhen unterscheiden sich, weil die Texte
+// unterschiedlich lang umbrechen. Beide Fassungen müssen drei Seiten halten.
 // Ausgangspunkt: überall die erste Option.
 const base = Object.fromEntries(ALL_QUESTIONS.map((q) => [q.id, q.options[0].key]));
 const perOption = {};
@@ -69,7 +74,7 @@ for (const q of ALL_QUESTIONS) {
 
 // Die gemessene Kombination ist die Autorität; render-sample.mjs --worst liest sie.
 writeFileSync(
-  new URL("worst-case.json", import.meta.url),
+  new URL(LANG === "en" ? "worst-case.en.json" : "worst-case.json", import.meta.url),
   JSON.stringify({ note: "Erzeugt von scripts/worst-case.mjs — je Frage die Option mit dem höchsten Block.", answers: worst }, null, 2) + "\n",
 );
 

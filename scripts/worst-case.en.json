@@ -1,0 +1,14 @@
+{
+  "note": "Erzeugt von scripts/worst-case.mjs — je Frage die Option mit dem höchsten Block.",
+  "answers": {
+    "F1": "b",
+    "F2": "a",
+    "F3": "c",
+    "R1": "d",
+    "R2": "a",
+    "R3": "a",
+    "R4": "b",
+    "R5": "b",
+    "R6": "a"
+  }
+}

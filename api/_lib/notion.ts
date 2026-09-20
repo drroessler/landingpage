@@ -8,7 +8,7 @@
  */
 
 import { Client } from "@notionhq/client";
-import { REIFE_AXES } from "../../src/reifecheck/data.js";
+import { reifeAxesFor } from "../../src/reifecheck/data.js";
 import { formatDate } from "../../src/reifecheck/evaluate.js";
 import type { Contact, EvaluatedAnswer, Evaluation } from "../../src/reifecheck/types.js";
 
@@ -274,7 +274,7 @@ export async function storeInNotion(
   const children = [
     callout(
       `Reifecheck vom ${formatDate(evaluation.createdAt)} · Kennung ${evaluation.reference} · ` +
-        `Stufen ${evaluation.stufen.join("-")} (${REIFE_AXES.join(", ")})`,
+        `Stufen ${evaluation.stufen.join("-")} (${reifeAxesFor(evaluation.lang).join(", ")})`,
     ),
     heading(2, "Status und Kontext"),
     ...evaluation.context.flatMap(answerBlocks),

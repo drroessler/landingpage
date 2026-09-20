@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ALL_QUESTIONS } from "./data";
-import { FORM } from "./copy";
+import { allQuestionsFor } from "./data";
+import { formFor } from "./copy";
 import { evaluate, isComplete, makeReference } from "./evaluate";
 import ResultView from "./ResultView";
-import type { Answers, Contact, Evaluation } from "./types";
+import type { Answers, Contact, Evaluation, Lang } from "./types";
 import "./reifecheck.css";
 
 const ENDPOINT = import.meta.env.VITE_REIFECHECK_ENDPOINT ?? "/api/reifecheck";
@@ -41,7 +41,11 @@ function loadAnswers(): Answers {
   }
 }
 
-export default function ReifecheckSection({ c }: { c: SectionCopy }) {
+export default function ReifecheckSection({ c, lang = "de" }: { c: SectionCopy; lang?: Lang }) {
+  // Fragen und Bedienung in der Sprache der Seite. Die Auswertung rechnet mit
+  // Kennungen, nicht mit Wortlaut — ein Sprachwechsel verliert keine Antworten.
+  const ALL_QUESTIONS = allQuestionsFor(lang);
+  const FORM = formFor(lang);
   const [phase, setPhase] = useState<Phase>("intro");
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>(loadAnswers);
@@ -95,11 +99,11 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
 
   const validate = (v: Contact) => {
     const e: Partial<Record<keyof Contact, string>> = {};
-    if (!v.name.trim()) e.name = "Bitte tragen Sie Ihren Namen ein.";
+    if (!v.name.trim()) e.name = FORM.contact.errors.name;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim()))
-      e.email = "Bitte tragen Sie eine gültige E-Mail-Adresse ein.";
-    if (!v.organisation.trim()) e.organisation = "Bitte tragen Sie Ihre Organisation ein.";
-    if (!v.consent) e.consent = "Ohne diese Einwilligung können wir Ihnen die Auswertung nicht zusenden.";
+      e.email = FORM.contact.errors.email;
+    if (!v.organisation.trim()) e.organisation = FORM.contact.errors.organisation;
+    if (!v.consent) e.consent = FORM.contact.errors.consent;
     return e;
   };
 
@@ -115,7 +119,7 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
     // Kennung gehen mit, damit Bildschirm, PDF und Notion übereinstimmen.
     const createdAt = new Date().toISOString();
     const reference = makeReference();
-    setEvaluation(evaluate(answers, { createdAt, reference }));
+    setEvaluation(evaluate(answers, { createdAt, reference, lang }));
     setMailState("pending");
     setPhase("result");
 
@@ -133,6 +137,7 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
           answers,
           createdAt,
           reference,
+          lang,
         }),
       });
       setMailState(res.ok ? "sent" : "failed");
@@ -236,7 +241,7 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
             <div className="rc-step-actions">
               <button type="button" className="btn btn-ghost" onClick={goBack}>{FORM.back}</button>
               <button type="button" className="btn btn-primary" onClick={goNext} disabled={!selected}>
-                {index + 1 === total ? "Zu den Kontaktdaten" : FORM.next}
+                {index + 1 === total ? FORM.toContact : FORM.next}
                 <span className="btn-arrow" aria-hidden="true" />
               </button>
             </div>
@@ -264,7 +269,7 @@ export default function ReifecheckSection({ c }: { c: SectionCopy }) {
               {/* Honigtopf — nicht sichtbar, nicht fokussierbar, nicht vorgelesen.
                   Ausgefüllt wird das Feld nur von Formular-Bots. */}
               <div className="rc-honeypot" aria-hidden="true">
-                <label htmlFor="rc-website">Website (bitte frei lassen)</label>
+                <label htmlFor="rc-website">{FORM.contact.honeypot}</label>
                 <input id="rc-website" name="website" type="text" tabIndex={-1} autoComplete="off"
                        value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
               </div>

@@ -3,6 +3,7 @@
  *
  *    node scripts/render-sample.mjs [ziel.pdf]           Antworten wie im Entwurf
  *    node scripts/render-sample.mjs [ziel.pdf] --worst   längstmögliche Antworten
+ *    node scripts/render-sample.mjs [ziel.pdf] --en      englische Fassung
  *
  *  Die Seitenhöhe hängt davon ab, welche Optionen gewählt wurden: längere
  *  Antworttexte und Statements brauchen mehr Zeilen. Das Dokument soll für JEDE
@@ -44,20 +45,22 @@ let answers = { F1: "b", F2: "b", F3: "c", R1: "c", R2: "b", R3: "b", R4: "a", R
 // höchsten Block ergibt, lässt sich nicht an der Textlänge ablesen — Frage und
 // Einordnung stehen in verschiedenen Spalten, die höhere bestimmt die Zeile.
 // Die Datei erzeugt `node scripts/worst-case.mjs`.
+const lang = process.argv.includes("--en") ? "en" : "de";
+
 if (process.argv.includes("--worst")) {
-  const file = new URL("worst-case.json", import.meta.url);
+  const file = new URL(lang === "en" ? "worst-case.en.json" : "worst-case.json", import.meta.url);
   if (!existsSync(file)) {
-    console.error("scripts/worst-case.json fehlt — erst `node scripts/worst-case.mjs` laufen lassen.");
+    console.error(`${file.pathname.split("/").pop()} fehlt — erst \`node scripts/worst-case.mjs${lang === "en" ? " --en" : ""}\` laufen lassen.`);
     process.exit(1);
   }
   answers = JSON.parse(readFileSync(file, "utf8")).answers;
   console.log("ungünstigster Fall:", Object.entries(answers).map(([k, v]) => k + v).join(" "));
 }
-const ev = evaluate(answers, { createdAt: new Date().toISOString(), reference: "RC-MUST-ER01" });
+const ev = evaluate(answers, { createdAt: new Date().toISOString(), reference: "RC-MUST-ER01", lang });
 const html = renderDocumentHtml(ev, { name: "Beispiel Empfänger", organisation: "Beispiel GmbH" });
 
 const target = process.argv.slice(2).find((a) => !a.startsWith("--")) ?? "reifecheck-beispiel.pdf";
 writeFileSync(target.replace(/\.pdf$/, ".html"), html);
-const pdf = await renderPdf(html, ev.reference);
+const pdf = await renderPdf(html, ev.reference, lang);
 writeFileSync(target, pdf);
-console.log(`${target} — ${(pdf.length / 1024).toFixed(0)} KB, Stufen ${ev.stufen.join("-")}`);
+console.log(`${target} — ${(pdf.length / 1024).toFixed(0)} KB, Sprache ${lang}, Stufen ${ev.stufen.join("-")}`);

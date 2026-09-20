@@ -1,4 +1,4 @@
-import { REIFE_AXES, UMSETZUNG_AXES } from "./data";
+import { reifeAxesFor, umsetzungAxesFor } from "./data";
 import {
   AXIS_LABELS,
   TICKS,
@@ -8,7 +8,7 @@ import {
   axisLines,
   ringPoints,
 } from "./geometry";
-import type { Stufe } from "./types";
+import type { Stufe, Lang } from "./types";
 
 /** Zweizeilig gesetzte Achsenbeschriftungen von Diagramm 2 — sonst kollidieren
  *  sie mit dem Netz. Der Umbruchpunkt ist aus der Vorlage übernommen. */
@@ -62,7 +62,8 @@ function Rings({ outerDashed = false }: { outerDashed?: boolean }) {
 }
 
 /** Diagramm 1 — Entscheidungsreife, mit gefüllter Fläche. */
-export function EntscheidungsreifeChart({ stufen }: { stufen: Stufe[] }) {
+export function EntscheidungsreifeChart({ stufen, lang = "de" }: { stufen: Stufe[]; lang?: Lang }) {
+  const REIFE_AXES = reifeAxesFor(lang);
   const label = REIFE_AXES.map((a, i) => `${a} Stufe ${stufen[i]}`).join(", ");
   return (
     <svg viewBox={VIEWBOX} className="rc-net" role="img" aria-label={`Netzdiagramm Entscheidungsreife: ${label}`}>
@@ -96,7 +97,8 @@ export function EntscheidungsreifeChart({ stufen }: { stufen: Stufe[] }) {
 
 /** Diagramm 2 — Umsetzungsreife, angedeutet. Gleicher Aufbau, keine Fläche.
  *  Die Symmetrie macht die Aussage ohne erklärenden Satz. */
-export function UmsetzungsreifeChart() {
+export function UmsetzungsreifeChart({ lang = "de" }: { lang?: Lang } = {}) {
+  const UMSETZUNG_AXES = umsetzungAxesFor(lang);
   return (
     <svg
       viewBox={VIEWBOX}
@@ -116,7 +118,8 @@ export function UmsetzungsreifeChart() {
 
 /** Stufenleiter — dieselbe Information als Liste, für schmale Viewports und
  *  als Textalternative zum Netz. */
-export function Stufenleiter({ stufen }: { stufen: Stufe[] }) {
+export function Stufenleiter({ stufen, lang = "de" }: { stufen: Stufe[]; lang?: Lang }) {
+  const REIFE_AXES = reifeAxesFor(lang);
   return (
     <div className="rc-ladder">
       {REIFE_AXES.map((axis, i) => (

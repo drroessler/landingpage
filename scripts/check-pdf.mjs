@@ -1,6 +1,9 @@
 /** Gesamtprüfung des Auswertungs-PDF: rendert beide maßgeblichen Antwortfälle
  *  und prüft für jeden die geforderte Seitenaufteilung.
  *
+ *  Geprüft werden beide Sprachfassungen: englische Texte brechen anders um, das
+ *  Dokument muss auch dort genau drei Seiten umfassen.
+ *
  *  Aufruf: npm run pdf:check
  */
 import { execFileSync } from "node:child_process";
@@ -13,14 +16,16 @@ const run = (args) => execFileSync("node", args, { stdio: "inherit" });
 
 let failed = 0;
 for (const [label, extra] of [
-  ["Antworten des Entwurfs", []],
-  ["ungünstigster Fall", ["--worst"]],
+  ["Deutsch · Antworten des Entwurfs", []],
+  ["Deutsch · ungünstigster Fall", ["--worst"]],
+  ["Englisch · Antworten des Entwurfs", ["--en"]],
+  ["Englisch · ungünstigster Fall", ["--en", "--worst"]],
 ]) {
-  const pdf = join(dir, `${extra.length ? "worst" : "sample"}.pdf`);
+  const pdf = join(dir, `${extra.join("") || "sample"}.pdf`);
   console.log(`\n── ${label} ─────────────────────────────`);
   try {
     execFileSync("node", ["scripts/render-sample.mjs", pdf, ...extra], { stdio: "pipe" });
-    run(["scripts/check-pagination.mjs", pdf]);
+    run(["scripts/check-pagination.mjs", pdf, ...extra.filter((a) => a === "--en")]);
   } catch {
     failed++;
   }
