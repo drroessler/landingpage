@@ -57,7 +57,10 @@ if (process.argv.includes("--worst")) {
   console.log("ungünstigster Fall:", Object.entries(answers).map(([k, v]) => k + v).join(" "));
 }
 const ev = evaluate(answers, { createdAt: new Date().toISOString(), reference: "RC-MUST-ER01", lang });
-const html = renderDocumentHtml(ev, { name: "Beispiel Empfänger", organisation: "Beispiel GmbH" });
+const html = renderDocumentHtml(ev, {
+  name: lang === "en" ? "Sample Recipient" : "Beispiel Empfänger",
+  organisation: lang === "en" ? "Example Ltd" : "Beispiel GmbH",
+});
 
 const target = process.argv.slice(2).find((a) => !a.startsWith("--")) ?? "reifecheck-beispiel.pdf";
 writeFileSync(target.replace(/\.pdf$/, ".html"), html);

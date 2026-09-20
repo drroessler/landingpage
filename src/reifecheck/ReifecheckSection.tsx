@@ -182,7 +182,7 @@ export default function ReifecheckSection({ c, lang = "de" }: { c: SectionCopy; 
                   Dokument, das später verschickt wird (npm run preview:build). */}
               <figure className="rc-preview">
                 <img
-                  src="/reifecheck-auswertung-seite1.jpg"
+                  src={lang === "en" ? "/reifecheck-auswertung-seite1.en.jpg" : "/reifecheck-auswertung-seite1.jpg"}
                   alt={c.previewAlt}
                   width={760}
                   height={1074}

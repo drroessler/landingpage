@@ -56,6 +56,14 @@ Use the existing skill defined in `SKILL.md`
 - Questions, statements and document copy: `src/reifecheck/data.ts` + `copy.ts` — single source
   for the web view, the PDF and the Notion entry. Source of truth for the wording is
   `reifecheck_set1_v40.md`.
+- **Bilingual.** German lives in `data.ts` / `copy.ts`, English in `data.en.ts` / `copy.en.ts`;
+  German stays the source when content changes. The language travels inside the evaluation
+  (`evaluation.lang`), so document, email and Notion entry all follow the language the visitor
+  filled the form in. `copy.en.ts` is typed against `DocCopy`/`FormCopy`, so a missing passage
+  fails the typecheck.
+- Both language versions must share identical ids, option keys and levels — the evaluation
+  matches on keys, not on wording. `npm run check:i18n` guards this (and flags untranslated
+  text); it runs as part of `npm run build`.
 - The evaluation is rule-based by design: one statement per chosen option, no scoring,
   no weighting, no language model. That claim is printed in the document — keep it true.
 - The PDF must be **exactly three pages**: (1) title, preamble, Diagramm 1;
@@ -65,10 +73,12 @@ Use the existing skill defined in `SKILL.md`
   (`public/reifecheck-auswertung-seite1.jpg`) rendered from the same document.
   Regenerate with `npm run preview:build` after document changes; `pdf:check`
   warns when it is stale. Needs poppler.
-- After changing document copy or layout run `npm run pdf:check` — it verifies both
-  the design's answers and the measured worst-case answer set. Size lever is the
-  type scale `T` at the top of `api/_lib/document.ts`. Re-run `npm run pdf:worst`
-  after editing answer or statement texts in `data.ts`.
+- After changing document copy or layout run `npm run pdf:check` — it verifies **four** cases:
+  both languages × the design's answers and the measured worst-case answer set. English text
+  wraps differently, so it needs its own worst case: `npm run pdf:worst` writes
+  `scripts/worst-case.json`, `npm run pdf:worst:en` writes `worst-case.en.json`. Re-run the
+  matching one after editing answer or statement texts. Size lever is the type scale `T` at the
+  top of `api/_lib/document.ts` (`itemPad` acts nine times over, so 1 pt there is ~18 pt on page 2).
 
 ## Workflow
 1. Analyze existing index.html content and structure

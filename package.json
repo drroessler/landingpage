@@ -15,6 +15,7 @@
     "pdf:worst": "node scripts/worst-case.mjs",
     "endpoint:test": "node scripts/test-endpoint.mjs",
     "preview:build": "node scripts/build-preview.mjs",
+    "preview:build:en": "node scripts/build-preview.mjs --en",
     "notion:test": "node scripts/test-notion.mjs",
     "mail:test": "node scripts/test-mail.mjs",
     "check:esm": "node scripts/check-esm-imports.mjs",

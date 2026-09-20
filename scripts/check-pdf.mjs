@@ -32,21 +32,25 @@ for (const [label, extra] of [
 }
 // Die Vorschau auf der Landingpage ist ein gerendertes Bild der ersten Seite.
 // Ändert sich das Dokument, veraltet sie lautlos — deshalb hier der Abgleich.
-const preview = "public/reifecheck-auswertung-seite1.jpg";
-const quellen = [
-  "api/_lib/document.ts",
-  "src/reifecheck/copy.ts",
-  "src/reifecheck/data.ts",
-  "src/reifecheck/geometry.ts",
-];
-if (!existsSync(preview)) {
-  console.log(`\nVorschau fehlt: ${preview} — \`npm run preview:build\` ausführen.`);
-  failed++;
-} else {
+// Je Sprache ein Bild: die Sektion zeigt im englischen Modus das englische
+// Blatt. Gemeinsame Quellen sind Gestaltung und Geometrie, dazu je Sprache die
+// eigenen Texte.
+const GEMEINSAM = ["api/_lib/document.ts", "src/reifecheck/geometry.ts"];
+for (const [preview, eigene, befehl] of [
+  ["public/reifecheck-auswertung-seite1.jpg",
+   ["src/reifecheck/copy.ts", "src/reifecheck/data.ts"], "npm run preview:build"],
+  ["public/reifecheck-auswertung-seite1.en.jpg",
+   ["src/reifecheck/copy.en.ts", "src/reifecheck/data.en.ts"], "npm run preview:build:en"],
+]) {
+  if (!existsSync(preview)) {
+    console.log(`\nVorschau fehlt: ${preview} — \`${befehl}\` ausführen.`);
+    failed++;
+    continue;
+  }
   const alter = statSync(preview).mtimeMs;
-  const neuer = quellen.filter((f) => existsSync(f) && statSync(f).mtimeMs > alter);
+  const neuer = [...GEMEINSAM, ...eigene].filter((f) => existsSync(f) && statSync(f).mtimeMs > alter);
   if (neuer.length > 0) {
-    console.log(`\nVorschau ist älter als ${neuer.join(", ")} — \`npm run preview:build\` ausführen.`);
+    console.log(`\n${preview} ist älter als ${neuer.join(", ")} — \`${befehl}\` ausführen.`);
     failed++;
   }
 }

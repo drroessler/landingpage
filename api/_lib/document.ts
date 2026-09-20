@@ -69,6 +69,7 @@ const L = {
     diagramm1Alt: (achsen: string) => `Netzdiagramm Entscheidungsreife: ${achsen}`,
     diagramm2Alt: "Netzdiagramm Umsetzungsreife, identischer Aufbau, keine gefüllte Fläche",
     ihreAntwort: "Ihre Antwort",
+    fuer: "Für",
     auswertungVom: (datum: string) => `Auswertung vom ${datum}`,
   },
   en: {
@@ -77,6 +78,7 @@ const L = {
     diagramm1Alt: (achsen: string) => `Radar chart of decision readiness: ${achsen}`,
     diagramm2Alt: "Radar chart of implementation readiness, same structure, no filled area",
     ihreAntwort: "Your answer",
+    fuer: "For",
     auswertungVom: (datum: string) => `Evaluation of ${datum}`,
   },
 } as const;
@@ -291,7 +293,7 @@ ${FONT_CSS}
 <p style="font-family:${F.display};font-style:italic;font-size:${T.subtitle}px;line-height:1.15;letter-spacing:-0.01em;color:${C.accentInk};margin:9px 0 0">${escapeHtml(DOC.subtitle)}</p>
 
 <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:20px;padding-top:10px;border-top:1px solid ${C.rule};font-family:${F.mono};font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:${C.ink3}">
-<span>Für ${escapeHtml(recipient.name)}${recipient.organisation ? ` · ${escapeHtml(recipient.organisation)}` : ""}</span>
+<span>${escapeHtml(L[lang].fuer)} ${escapeHtml(recipient.name)}${recipient.organisation ? ` · ${escapeHtml(recipient.organisation)}` : ""}</span>
 <span>${escapeHtml(L[lang].auswertungVom(formatDate(evaluation.createdAt, lang)))} · ${evaluation.reference}</span>
 </div>
 
