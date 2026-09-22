@@ -15,7 +15,7 @@ const onJump = (id: string) => (e: MouseEvent) => {
 const BOOK_URL = "https://cal.meetergo.com/richard-rossler/narratec";
 const CHECK_ID = "reifecheck";
 const PAPER_PUBLISHED_URL = "https://link.springer.com/epdf/10.1365/s40702-025-01234-z?sharing_token=2GcSA2NwyHc5ZFVHNLOokX2kjFioqY_JoFJDVSa1602aUYkWxEZ0qDiq0nqKya3TVcFpFlMJ-w6U_3aV089ye1tk2LK8kCB7LXf3vW4rNlkuQzP6Iv71lk5qIUaz2KuVMlxU-loa0RJZ4qvO6c6UaS6fnPhQeXqYPV8neYP5xbM%3D";
-const PAPER_PREREAD_URL = "/Pre-Read%20Narrative%20To%20Action.pdf";
+const PAPER_N2A_URL = "https://link.springer.com/epdf/10.1365/s40702-026-01328-2?sharing_token=1_iVK_U7eWWXx8W8QnYlJX2kjFioqY_JoFJDVSa1603mJUF25YB4nAl3_RUtzdzv9RZid1M7FozcUGIdEHY-V4bHAZ17v9lL0T9d95aUuA58RQl0G_dwJxfV78ZugmWNuAiXF2EsZKJDkuW15k3NIZvjaKhhNP895pQA2KSX7IA%3D";
 const hl: CSSProperties = { color: "var(--accent-ink)", fontStyle: "italic" };
 const numRubric = (num: string, label: string): ReactNode => (
   <><span style={{ color: "var(--accent-ink)" }}>{num}</span> {label}</>
@@ -177,19 +177,19 @@ const landingDe = {
         <p style={{ margin: "0 0 12px" }}>Richard ist Entwickler der NarraTec-Methodik und seit über zehn Jahren in der Steuerung komplexer IT-Vorhaben tätig — aktuell als Technical Lead für Data & AI Delivery in einem DAX-Konzern, wo er Entscheidungsnarrative in umsetzbare Anforderungen und Arbeitspakete überführt.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf messbarer Entscheidungsqualität: Die Methodik strukturierter Narrative hat er in realen Konzernvorhaben entwickelt, erprobt und wissenschaftlich publiziert — an der Schnittstelle von Managementforschung und Projektpraxis.</p>
         <p style={{ margin: 0 }}>Als technischer Programm-Manager verantwortete er unter anderem eine konzernweite digitale Produktionsplattform (SAFe), die in enger Zusammenarbeit mit Partnern wie Amazon Web Services entstand, sowie Vorhaben zu Open-Source-Compliance und Industrie 4.0 und wirkte an der Neuausrichtung einer Softwareentwicklungsorganisation mit über 500 Mitarbeitenden mit.</p>
-      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX-Konzern", "Konzernweite Produktionsplattform mit AWS (SAFe)", "Publiziert in HMD · Springer Verlag"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Lehre & Beirat", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe ist ein sehr praxisorientierter Professor für Wirtschaftsinformatik, Gründer der gemeinnützigen Initiative matchIO und Mitentwickler des Decision & Execution Engineering Ansatzes von NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>Sein Fokus liegt auf der Verwendungsfähigkeit von Technologie und der Frage, wie Unternehmen komplexe Herausforderungen in belastbare Entscheidungen, wirksame Organisationen und nachhaltige Umsetzung überführen können.</p>
         <p style={{ margin: 0 }}>Als Mitglied des acatech Forschungsbeirats Industrie 4.0, Aufsichtsratsmitglied des DFKI sowie Gestalter zahlreicher Industrie- und Transformationsvorhaben verbindet er wissenschaftliche Erkenntnisse mit langjähriger Erfahrung aus Digitalisierung, AI, Plattformökonomie und organisatorischer Transformation.</p>
-      </>) as ReactNode, credentials: ["acatech Forschungsbeirat Industrie 4.0", "Aufsichtsrat DFKI", "Professur Wirtschaftsinformatik"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
+      </>) as ReactNode, linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Wissenschaftlich publiziert",
     badgeTitle: (<>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>) as ReactNode,
     badgeSub: "Peer-reviewed · Springer Verlag",
     papers: [
       { status: "Veröffentlicht", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
-      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "In Begutachtung · Manuskript verfügbar", url: PAPER_PREREAD_URL, event: "paper-preread" },
+      { status: "Veröffentlicht", title: "Narrative-to-Action: Ein Framework zur methodischen Überführung analytischer Narrative in agile Backlog-Items", meta: "HMD · 2026", url: PAPER_N2A_URL, event: "paper-hmd-n2a" },
     ],
   },
   lehre: {
@@ -402,19 +402,19 @@ const landingEn: LandingCopy = {
         <p style={{ margin: "0 0 12px" }}>Richard is the creator of the NarraTec method and has spent more than ten years steering complex IT initiatives — currently as Technical Lead for Data & AI Delivery at a DAX corporation, where he translates decision narratives into actionable requirements and work packages.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on measurable decision quality: he developed the method of structured narratives in real corporate initiatives, proved it in practice, and published it academically — at the intersection of management research and project practice.</p>
         <p style={{ margin: 0 }}>As technical program manager, he was responsible for a group-wide digital production platform (SAFe), built in close partnership with companies such as Amazon Web Services, as well as initiatives on open-source compliance and Industry 4.0, and contributed to the realignment of a software development organization with more than 500 employees.</p>
-      </>) as ReactNode, credentials: ["Technical Lead Data & AI Delivery, DAX corporation", "Group-wide production platform with AWS (SAFe)", "Published in HMD · Springer Verlag"], linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
+      </>) as ReactNode, linkedin: "https://www.linkedin.com/in/dr-richard-rößler-b786492a9/" },
       { photo: "/Wieland.jpeg", name: "Prof. Dr. Uwe Wieland", role: "Partner · Teaching & Advisory", bio: (<>
         <p style={{ margin: "0 0 12px" }}>Uwe is a highly practice-oriented professor of business informatics, founder of the non-profit initiative matchIO, and co-developer of the Decision & Execution Engineering approach at NarraTec.</p>
         <p style={{ margin: "0 0 12px" }}>His focus is on the usability of technology and the question of how organizations can translate complex challenges into sound decisions, effective structures, and sustainable implementation.</p>
         <p style={{ margin: 0 }}>As a member of the acatech Research Advisory Board on Industry 4.0, supervisory board member of the DFKI, and shaper of numerous industry and transformation initiatives, he combines academic insight with many years of experience in digitalization, AI, platform economics, and organizational transformation.</p>
-      </>) as ReactNode, credentials: ["acatech Industry 4.0 research board", "Supervisory board, DFKI", "Professor of business informatics"], linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
+      </>) as ReactNode, linkedin: "https://www.linkedin.com/in/praxisprofwieland" },
     ],
     badgeLabel: "Academically published",
     badgeTitle: <>HMD <span style={{ color: "var(--ink-3)" }}>—</span> Praxis der Wirtschaftsinformatik</>,
     badgeSub: "Peer-reviewed · Springer Verlag",
     papers: [
       { status: "Published", title: "Evidenzbasierte IT-Entscheidungen durch strukturierte Narrative", meta: "HMD · 2025", url: PAPER_PUBLISHED_URL, event: "paper-hmd" },
-      { status: "Pre-Read", title: "Narrative-to-Action: Ein Framework zur Überführung in agile Backlog-Items", meta: "Under review · manuscript available", url: PAPER_PREREAD_URL, event: "paper-preread" },
+      { status: "Published", title: "Narrative-to-Action: Ein Framework zur methodischen Überführung analytischer Narrative in agile Backlog-Items", meta: "HMD · 2026", url: PAPER_N2A_URL, event: "paper-hmd-n2a" },
     ],
   },
   lehre: {
@@ -776,9 +776,6 @@ function Team({ c }: { c: LandingCopy["team"] }) {
                 </div>
               </div>
               <div className="person-bio">{p.bio}</div>
-              <ul className="person-creds">
-                {p.credentials.map((cr, j) => <li key={j}>{cr}</li>)}
-              </ul>
               {p.linkedin && (
                 <a className="person-linkedin" href={p.linkedin} target="_blank" rel="noopener noreferrer">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -806,8 +803,8 @@ function Team({ c }: { c: LandingCopy["team"] }) {
           </div>
 
           <div className="papers">
-            {c.papers.map((paper, i) => (
-              <a key={i} className={`paper-row${i === 0 ? " paper-row--accent" : ""}`}
+            {c.papers.map((paper) => (
+              <a key={paper.event} className="paper-row paper-row--accent"
                  href={paper.url} target="_blank" rel="noopener noreferrer" data-umami-event={paper.event}>
                 <div>
                   <div className="paper-status">{paper.status}</div>

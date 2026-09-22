@@ -995,32 +995,11 @@ h1.hero-headline {
   color: var(--ink-2);
   max-width: 52ch;
 }
-.person-creds {
-  list-style: none;
-  margin: 0;
-  padding: 16px 0 0 0;
-  border-top: 1px solid var(--rule);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
-}
-.person-creds li {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  padding: 6px 10px;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  background: var(--paper-2);
-}
 .person-linkedin {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 16px;
+  margin-top: auto;
   font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
